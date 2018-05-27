@@ -15,6 +15,6 @@ target 'YFL-IOS' do
   pod 'AvoidCrash','~> 2.2.3'
   pod 'Bugly'
   #pod 'YYCache'
-
+  pod 'FMDB'
 
   end

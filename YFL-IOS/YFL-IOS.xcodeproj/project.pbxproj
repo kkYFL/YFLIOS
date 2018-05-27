@@ -39,6 +39,7 @@
 		3A699B9420BA790300F7BB60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A699B9820BA795900F7BB60 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3A699B9920BA795900F7BB60 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		3A699B9D20BAAECD00F7BB60 /* YFLHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFLHeader.pch; sourceTree = "<group>"; };
 		5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		3A699B6320BA650C00F7BB60 = {
 			isa = PBXGroup;
 			children = (
+				3A699B9B20BAAE6900F7BB60 /* Headers */,
 				3A699B9020BA766900F7BB60 /* HTTP */,
 				3A699B8F20BA75E000F7BB60 /* Category */,
 				3A699B8E20BA75D400F7BB60 /* 三方库 */,
@@ -152,6 +154,14 @@
 				3A699B9920BA795900F7BB60 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		3A699B9B20BAAE6900F7BB60 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3A699B9D20BAAECD00F7BB60 /* YFLHeader.pch */,
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 		92681C27C3696884EEEE72A9 /* Pods */ = {
@@ -438,6 +448,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Headers/YFLHeader.pch";
 				INFOPLIST_FILE = "YFL-IOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -454,6 +466,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Headers/YFLHeader.pch";
 				INFOPLIST_FILE = "YFL-IOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

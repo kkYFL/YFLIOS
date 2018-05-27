@@ -17,6 +17,8 @@
 		3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9320BA790300F7BB60 /* iCarousel.m */; };
 		3A699B9620BA790300F7BB60 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B9420BA790300F7BB60 /* Info.plist */; };
 		3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9920BA795900F7BB60 /* Reachability.m */; };
+		3A699BA020BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9F20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m */; };
+		3A699BA520BAB3F800F7BB60 /* UIColor+YFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699BA420BAB3F800F7BB60 /* UIColor+YFL.m */; };
 		61B65107CF6228423FCF8BA1 /* Pods_YFL_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,10 @@
 		3A699B9820BA795900F7BB60 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3A699B9920BA795900F7BB60 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3A699B9D20BAAECD00F7BB60 /* YFLHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFLHeader.pch; sourceTree = "<group>"; };
+		3A699B9E20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YFLCurrentVC.h"; sourceTree = "<group>"; };
+		3A699B9F20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YFLCurrentVC.m"; sourceTree = "<group>"; };
+		3A699BA320BAB3F800F7BB60 /* UIColor+YFL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+YFL.h"; sourceTree = "<group>"; };
+		3A699BA420BAB3F800F7BB60 /* UIColor+YFL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YFL.m"; sourceTree = "<group>"; };
 		5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +132,10 @@
 		3A699B8F20BA75E000F7BB60 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3A699B9E20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.h */,
+				3A699B9F20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m */,
+				3A699BA320BAB3F800F7BB60 /* UIColor+YFL.h */,
+				3A699BA420BAB3F800F7BB60 /* UIColor+YFL.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -317,8 +327,10 @@
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
+				3A699BA020BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m in Sources */,
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
+				3A699BA520BAB3F800F7BB60 /* UIColor+YFL.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

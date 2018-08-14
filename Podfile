@@ -16,5 +16,7 @@ target 'YFL-IOS' do
   pod 'Bugly'
   #pod 'YYCache'
   pod 'FMDB'
+  pod 'SSKeychain', '~> 1.4.0'
+
 
   end

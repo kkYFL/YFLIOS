@@ -17,8 +17,23 @@
 		3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9320BA790300F7BB60 /* iCarousel.m */; };
 		3A699B9620BA790300F7BB60 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B9420BA790300F7BB60 /* Info.plist */; };
 		3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9920BA795900F7BB60 /* Reachability.m */; };
-		3A699BA020BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9F20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m */; };
-		3A699BA520BAB3F800F7BB60 /* UIColor+YFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699BA420BAB3F800F7BB60 /* UIColor+YFL.m */; };
+		3A6BA54421271E5B00322875 /* PromptBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA49721271E5A00322875 /* PromptBox.m */; };
+		3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4D421271E5A00322875 /* HTTPEngine.m */; };
+		3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4D521271E5A00322875 /* HTTPRequest.m */; };
+		3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4DA21271E5A00322875 /* EWTHttpServer.m */; };
+		3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4EB21271E5B00322875 /* EWTNotification.m */; };
+		3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4F221271E5B00322875 /* PublicMethod.m */; };
+		3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4F321271E5B00322875 /* YFKeychainUUID.m */; };
+		3A6BA57321271E5B00322875 /* EWTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4FB21271E5B00322875 /* EWTWebView.m */; };
+		3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4FF21271E5B00322875 /* EWTBaseViewController.m */; };
+		3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA50421271E5B00322875 /* EWTBaseNavigationController.m */; };
+		3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA51621271E5B00322875 /* UIColor+EWT.m */; };
+		3A6BA57D21271E5B00322875 /* NSString+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA51A21271E5B00322875 /* NSString+EWT.m */; };
+		3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA51B21271E5B00322875 /* UIView+EWT.m */; };
+		3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA52421271E5B00322875 /* NSObject+EWTCurrentController.m */; };
+		3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA52721271E5B00322875 /* NSDate+EWT.m */; };
+		3A6BA58821271E5B00322875 /* UINavigationBar+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA52F21271E5B00322875 /* UINavigationBar+EWT.m */; };
+		3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA53421271E5B00322875 /* NSData+EWT.m */; };
 		61B65107CF6228423FCF8BA1 /* Pods_YFL_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,10 +57,46 @@
 		3A699B9820BA795900F7BB60 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3A699B9920BA795900F7BB60 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3A699B9D20BAAECD00F7BB60 /* YFLHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFLHeader.pch; sourceTree = "<group>"; };
-		3A699B9E20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YFLCurrentVC.h"; sourceTree = "<group>"; };
-		3A699B9F20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YFLCurrentVC.m"; sourceTree = "<group>"; };
-		3A699BA320BAB3F800F7BB60 /* UIColor+YFL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+YFL.h"; sourceTree = "<group>"; };
-		3A699BA420BAB3F800F7BB60 /* UIColor+YFL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YFL.m"; sourceTree = "<group>"; };
+		3A6BA49721271E5A00322875 /* PromptBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromptBox.m; sourceTree = "<group>"; };
+		3A6BA4BD21271E5A00322875 /* PromptBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromptBox.h; sourceTree = "<group>"; };
+		3A6BA4D421271E5A00322875 /* HTTPEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPEngine.m; sourceTree = "<group>"; };
+		3A6BA4D521271E5A00322875 /* HTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
+		3A6BA4D621271E5A00322875 /* EWTHttpServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTHttpServer.h; sourceTree = "<group>"; };
+		3A6BA4D721271E5A00322875 /* HTTPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPEngine.h; sourceTree = "<group>"; };
+		3A6BA4D821271E5A00322875 /* HttpConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConfig.h; sourceTree = "<group>"; };
+		3A6BA4D921271E5A00322875 /* HTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
+		3A6BA4DA21271E5A00322875 /* EWTHttpServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTHttpServer.m; sourceTree = "<group>"; };
+		3A6BA4DE21271E5A00322875 /* EWTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTNotification.h; sourceTree = "<group>"; };
+		3A6BA4E321271E5B00322875 /* YFKeychainUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFKeychainUUID.h; sourceTree = "<group>"; };
+		3A6BA4E521271E5B00322875 /* PublicMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicMethod.h; sourceTree = "<group>"; };
+		3A6BA4EB21271E5B00322875 /* EWTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTNotification.m; sourceTree = "<group>"; };
+		3A6BA4F221271E5B00322875 /* PublicMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicMethod.m; sourceTree = "<group>"; };
+		3A6BA4F321271E5B00322875 /* YFKeychainUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFKeychainUUID.m; sourceTree = "<group>"; };
+		3A6BA4F921271E5B00322875 /* EWTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTBaseViewController.h; sourceTree = "<group>"; };
+		3A6BA4FB21271E5B00322875 /* EWTWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTWebView.m; sourceTree = "<group>"; };
+		3A6BA4FC21271E5B00322875 /* EWTBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTBaseNavigationController.h; sourceTree = "<group>"; };
+		3A6BA4FF21271E5B00322875 /* EWTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTBaseViewController.m; sourceTree = "<group>"; };
+		3A6BA50421271E5B00322875 /* EWTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTBaseNavigationController.m; sourceTree = "<group>"; };
+		3A6BA50521271E5B00322875 /* EWTWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTWebView.h; sourceTree = "<group>"; };
+		3A6BA50721271E5B00322875 /* EWTBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTBase.h; sourceTree = "<group>"; };
+		3A6BA50821271E5B00322875 /* EWTWebViewJumperConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTWebViewJumperConfig.h; sourceTree = "<group>"; };
+		3A6BA50921271E5B00322875 /* EWTModuleType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTModuleType.h; sourceTree = "<group>"; };
+		3A6BA50A21271E5B00322875 /* EWTMyDownloadManagerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTMyDownloadManagerHeader.h; sourceTree = "<group>"; };
+		3A6BA50D21271E5B00322875 /* UINavigationBar+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+EWT.h"; sourceTree = "<group>"; };
+		3A6BA51521271E5B00322875 /* NSDate+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EWT.h"; sourceTree = "<group>"; };
+		3A6BA51621271E5B00322875 /* UIColor+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+EWT.m"; sourceTree = "<group>"; };
+		3A6BA51921271E5B00322875 /* NSData+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+EWT.h"; sourceTree = "<group>"; };
+		3A6BA51A21271E5B00322875 /* NSString+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EWT.m"; sourceTree = "<group>"; };
+		3A6BA51B21271E5B00322875 /* UIView+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+EWT.m"; sourceTree = "<group>"; };
+		3A6BA52221271E5B00322875 /* CategoryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHeader.h; sourceTree = "<group>"; };
+		3A6BA52421271E5B00322875 /* NSObject+EWTCurrentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EWTCurrentController.m"; sourceTree = "<group>"; };
+		3A6BA52621271E5B00322875 /* UIColor+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+EWT.h"; sourceTree = "<group>"; };
+		3A6BA52721271E5B00322875 /* NSDate+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EWT.m"; sourceTree = "<group>"; };
+		3A6BA52F21271E5B00322875 /* UINavigationBar+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+EWT.m"; sourceTree = "<group>"; };
+		3A6BA53321271E5B00322875 /* UIView+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+EWT.h"; sourceTree = "<group>"; };
+		3A6BA53421271E5B00322875 /* NSData+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+EWT.m"; sourceTree = "<group>"; };
+		3A6BA53521271E5B00322875 /* NSString+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EWT.h"; sourceTree = "<group>"; };
+		3A6BA53821271E5B00322875 /* NSObject+EWTCurrentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EWTCurrentController.h"; sourceTree = "<group>"; };
 		5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,9 +125,9 @@
 		3A699B6320BA650C00F7BB60 = {
 			isa = PBXGroup;
 			children = (
+				3A6BA48721271C0B00322875 /* Base */,
+				3A6BA4862127169500322875 /* HTTPServer */,
 				3A699B9B20BAAE6900F7BB60 /* Headers */,
-				3A699B9020BA766900F7BB60 /* HTTP */,
-				3A699B8F20BA75E000F7BB60 /* Category */,
 				3A699B8E20BA75D400F7BB60 /* 三方库 */,
 				3A699B8720BA6EFC00F7BB60 /* BaseModule */,
 				3A699B6E20BA650C00F7BB60 /* YFL-IOS */,
@@ -129,24 +180,6 @@
 			path = "三方库";
 			sourceTree = "<group>";
 		};
-		3A699B8F20BA75E000F7BB60 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				3A699B9E20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.h */,
-				3A699B9F20BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m */,
-				3A699BA320BAB3F800F7BB60 /* UIColor+YFL.h */,
-				3A699BA420BAB3F800F7BB60 /* UIColor+YFL.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		3A699B9020BA766900F7BB60 /* HTTP */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HTTP;
-			sourceTree = "<group>";
-		};
 		3A699B9120BA790300F7BB60 /* iCarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +207,108 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		3A6BA4862127169500322875 /* HTTPServer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HTTPServer;
+			sourceTree = "<group>";
+		};
+		3A6BA48721271C0B00322875 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA50B21271E5B00322875 /* Category */,
+				3A6BA4F721271E5B00322875 /* Controller */,
+				3A6BA50621271E5B00322875 /* Headers */,
+				3A6BA4D321271E5A00322875 /* HTTP */,
+				3A6BA4DB21271E5A00322875 /* Utils */,
+				3A6BA48821271E5A00322875 /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		3A6BA48821271E5A00322875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA49721271E5A00322875 /* PromptBox.m */,
+				3A6BA4BD21271E5A00322875 /* PromptBox.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A6BA4D321271E5A00322875 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA4D421271E5A00322875 /* HTTPEngine.m */,
+				3A6BA4D521271E5A00322875 /* HTTPRequest.m */,
+				3A6BA4D621271E5A00322875 /* EWTHttpServer.h */,
+				3A6BA4D721271E5A00322875 /* HTTPEngine.h */,
+				3A6BA4D821271E5A00322875 /* HttpConfig.h */,
+				3A6BA4D921271E5A00322875 /* HTTPRequest.h */,
+				3A6BA4DA21271E5A00322875 /* EWTHttpServer.m */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		3A6BA4DB21271E5A00322875 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA4DE21271E5A00322875 /* EWTNotification.h */,
+				3A6BA4EB21271E5B00322875 /* EWTNotification.m */,
+				3A6BA4E521271E5B00322875 /* PublicMethod.h */,
+				3A6BA4F221271E5B00322875 /* PublicMethod.m */,
+				3A6BA4E321271E5B00322875 /* YFKeychainUUID.h */,
+				3A6BA4F321271E5B00322875 /* YFKeychainUUID.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3A6BA4F721271E5B00322875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA4F921271E5B00322875 /* EWTBaseViewController.h */,
+				3A6BA4FF21271E5B00322875 /* EWTBaseViewController.m */,
+				3A6BA50421271E5B00322875 /* EWTBaseNavigationController.m */,
+				3A6BA4FC21271E5B00322875 /* EWTBaseNavigationController.h */,
+				3A6BA50521271E5B00322875 /* EWTWebView.h */,
+				3A6BA4FB21271E5B00322875 /* EWTWebView.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3A6BA50621271E5B00322875 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA50721271E5B00322875 /* EWTBase.h */,
+				3A6BA50821271E5B00322875 /* EWTWebViewJumperConfig.h */,
+				3A6BA50921271E5B00322875 /* EWTModuleType.h */,
+				3A6BA50A21271E5B00322875 /* EWTMyDownloadManagerHeader.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		3A6BA50B21271E5B00322875 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA52221271E5B00322875 /* CategoryHeader.h */,
+				3A6BA52621271E5B00322875 /* UIColor+EWT.h */,
+				3A6BA51621271E5B00322875 /* UIColor+EWT.m */,
+				3A6BA51921271E5B00322875 /* NSData+EWT.h */,
+				3A6BA52721271E5B00322875 /* NSDate+EWT.m */,
+				3A6BA50D21271E5B00322875 /* UINavigationBar+EWT.h */,
+				3A6BA52F21271E5B00322875 /* UINavigationBar+EWT.m */,
+				3A6BA53321271E5B00322875 /* UIView+EWT.h */,
+				3A6BA51B21271E5B00322875 /* UIView+EWT.m */,
+				3A6BA51521271E5B00322875 /* NSDate+EWT.h */,
+				3A6BA53421271E5B00322875 /* NSData+EWT.m */,
+				3A6BA53521271E5B00322875 /* NSString+EWT.h */,
+				3A6BA51A21271E5B00322875 /* NSString+EWT.m */,
+				3A6BA53821271E5B00322875 /* NSObject+EWTCurrentController.h */,
+				3A6BA52421271E5B00322875 /* NSObject+EWTCurrentController.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		92681C27C3696884EEEE72A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +330,6 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
-				9DBBC65C4F7B71F1DD3B5FD6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,21 +387,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9DBBC65C4F7B71F1DD3B5FD6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9F10B425799630A608E22B9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,20 +415,34 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoidCrash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -324,14 +457,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
+				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
+				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
+				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
+				3A6BA57321271E5B00322875 /* EWTWebView.m in Sources */,
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
+				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
+				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
-				3A699BA020BAB2B900F7BB60 /* NSObject+YFLCurrentVC.m in Sources */,
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
+				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
+				3A6BA58821271E5B00322875 /* UINavigationBar+EWT.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
-				3A699BA520BAB3F800F7BB60 /* UIColor+YFL.m in Sources */,
+				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
+				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
+				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
+				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
+				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
+				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
+				3A6BA57D21271E5B00322875 /* NSString+EWT.m in Sources */,
+				3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */,
+				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

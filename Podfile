@@ -31,6 +31,9 @@ target 'YFL-IOS' do
   #pod 'TZImagePickerController'
   #pod 'Bugly'
   #pod 'M3U8Kit', '0.2.3'
+  pod 'YYText'
+
+
 
 
 

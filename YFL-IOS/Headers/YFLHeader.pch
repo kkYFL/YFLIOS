@@ -9,22 +9,7 @@
 #ifndef YFLHeader_pch
 #define YFLHeader_pch
 #import <UIKit/UIKit.h>
-
-
-
-// RGB颜色
-#define RGB(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
-#define RGB2(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
-
-//布局
-#define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
-
-#define WIDTH_SCALE [UIScreen mainScreen].bounds.size.width/375.0
-#define HEIGHT_SCALE [UIScreen mainScreen].bounds.size.height/667.0
-
-//字体
-#define KFont(i)  [UIFont systemFontOfSize:i]
+#import "EWTBase.h"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

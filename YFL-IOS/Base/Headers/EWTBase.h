@@ -23,6 +23,7 @@
 #import "YYModel.h"
 
 
+#define gbk CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000)
 
 
 //***** ***** ***** ***** ***** other ***** ***** ***** ***** *****/

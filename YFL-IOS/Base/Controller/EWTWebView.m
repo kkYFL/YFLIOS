@@ -8,7 +8,7 @@
 
 
 #import "EWTWebView.h"
-#import "EWTWebNativeBridge.h"
+
 static void *EWTWebBrowserContext = &EWTWebBrowserContext;
 @interface EWTWebView ()<UIAlertViewDelegate>
 @property (nonatomic, strong) NSTimer *progressTimer;

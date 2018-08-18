@@ -129,14 +129,7 @@
 // 下线通知
 //+ (void)OfflineNotificationWithCode:(NSString *)code;
 
-//离线统计视频时长
-+ (void)addOfflineInAnArrayOfAtatistics;
-//通过时间戳判断是否大于1天
-+ (BOOL)intervalSinceNow:(NSString *)stringTimeT lastTime:(NSString *)lastTime;
-//有网状态下上传离线视频所得学分
-//+ (void)haveUploadedOfflineVideoNetworkStateIncomeCredits;
-//根据省编码找到省名字
-+ (NSString *)getProvinceNamePlist:(NSString *)provnID;
+
 //行高
 + (CGFloat)getSpaceLabelHeight:(NSString *)str withWidh:(CGFloat)width font:(NSInteger)font;
 //判断字符串是否为空

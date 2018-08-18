@@ -7,12 +7,12 @@
 //
 
 #import "PublicMethod.h"
+#import "SAMKeychain.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonCryptor.h>
 //#import "NSData+Base64.h"
 //#import "NSString+Base64.h"
 #import "sys/utsname.h"
-#import "SAMKeychain.h"
 #import "YFKeychainUUID.h"
 //获取IP
 #include <ifaddrs.h>
@@ -1017,34 +1017,7 @@
 }
 
 
-//添加离线统计数组中
-+ (void)addOfflineInAnArrayOfAtatistics {
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[userDefaults objectForKey:EACH_VIDEO_RECORD]];
-    if (dic.count != 0 && ![[dic objectForKey:@"duration"] isEqualToString:@"0"]) {
-        id obj = [userDefaults objectForKey:ADD_OFFLINE_STATISTICS_ARRAY];
-        if (!obj) {
-            NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:0];
-            [mutableArray addObject:dic];
-            [userDefaults setObject:mutableArray forKey:ADD_OFFLINE_STATISTICS_ARRAY];
-        } else {
-            NSMutableArray *arr = [NSMutableArray arrayWithArray:obj];
-            [arr addObject:dic];
-            [userDefaults setObject:arr forKey:ADD_OFFLINE_STATISTICS_ARRAY];
-        }
-        dic = nil;
-        [userDefaults setObject:dic forKey:EACH_VIDEO_RECORD];
-    }
-}
 
-+ (NSString *)getProvinceNamePlist:(NSString *)provnID {
-    
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProvinceID" ofType:@"plist"];
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSString *provinceName = [data objectForKey:provnID];
-    return provinceName;
-}
 
 
 

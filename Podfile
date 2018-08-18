@@ -25,6 +25,7 @@ target 'YFL-IOS' do
   pod 'FMDB'
   # Keychain Accessor on iOS & OS X
   pod 'SSKeychain', '~> 1.4.0'
+  pod 'SAMKeychain'
   pod 'Reachability', '~> 3.2'
   # Image Storage
   #pod 'Qiniu', :git => 'https://github.com/qiniu/objc-sdk.git'

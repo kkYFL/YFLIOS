@@ -25,6 +25,7 @@ PODS:
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.3)
   - Reachability (3.2)
+  - SAMKeychain (1.5.3)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.1.2):
@@ -45,29 +46,12 @@ DEPENDENCIES:
   - MJExtension (~> 3.0.10)
   - MJRefresh (~> 3.1.12)
   - Reachability (~> 3.2)
+  - SAMKeychain
   - SDCycleScrollView (~> 1.64)
   - SDWebImage (~> 4.1.0)
   - SSKeychain (~> 1.4.0)
   - YYModel (~> 1.0.4)
   - YYText
-
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
-    - AvoidCrash
-    - Bugly
-    - FMDB
-    - IQKeyboardManager
-    - Masonry
-    - MBProgressHUD
-    - MJExtension
-    - MJRefresh
-    - Reachability
-    - SDCycleScrollView
-    - SDWebImage
-    - SSKeychain
-    - YYModel
-    - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -80,12 +64,13 @@ SPEC CHECKSUMS:
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
   SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: f2cde3c87f0f31ccf4652c04dd00eb60c5b8e8bf
+PODFILE CHECKSUM: af4a09f92edefe62f4ad3e6d810fe8c920adecd8
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0

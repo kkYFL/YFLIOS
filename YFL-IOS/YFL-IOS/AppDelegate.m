@@ -7,8 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "NewsViewController.h"
+#import "EducationViewController.h"
+#import "ExamnationViewController.h"
+#import "PersonalViewController.h"
 
-@interface AppDelegate ()
+
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -16,8 +21,60 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+
+    
+    [self tabBarViewInit];
+    
     return YES;
+}
+
+-(void)tabBarViewInit{
+    NewsViewController *newVC = [[NewsViewController alloc]init];
+    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:@"党员资讯" image:[UIImage imageNamed:@"tabbar_classroom_normal"] selectedImage:[UIImage imageNamed:@"tabbar_classroom_selected"] VC:newVC];
+
+    
+    
+    
+    EducationViewController *educationVC = [[EducationViewController alloc]init];
+    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:@"党员教育" image:[UIImage imageNamed:@"ecourse_normal"] selectedImage:[UIImage imageNamed:@"ecourse_selected"] VC:educationVC];
+    
+    
+    
+    ExamnationViewController *examtionVC = [[ExamnationViewController alloc]init];
+    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:@"党员考试" image:[UIImage imageNamed:@"tabbar_community_normal"] selectedImage:[UIImage imageNamed:@"tabbar_community_selected"] VC:examtionVC];
+    
+    
+    
+    PersonalViewController *personalVC = [[PersonalViewController alloc]init];
+    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:@"个人中心" image:[UIImage imageNamed:@"personal_center_tabbar_normal"] selectedImage:[UIImage imageNamed:@"personal_center_tabbar_selected"] VC:personalVC];
+    
+    
+    
+    UITabBarController *tabBar = [[UITabBarController alloc]init];
+    tabBar.delegate = self;
+    tabBar.viewControllers = @[newsNav,educationNav,examtionNav,personalNav];
+    
+    
+    if (!self.window) {
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [self.window setBackgroundColor:[UIColor whiteColor]];
+
+    }
+    [self.window setRootViewController:tabBar];
+    [self.window makeKeyAndVisible];
+
+    
+
+}
+
+
+- (EWTBaseNavigationController *)viewControllerWithTitle:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage VC:(UIViewController *)VC{
+    VC.tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    VC.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    VC.tabBarItem.title = title;
+    EWTBaseNavigationController *nav = [[EWTBaseNavigationController alloc] initWithRootViewController:VC];
+    return nav;
 }
 
 

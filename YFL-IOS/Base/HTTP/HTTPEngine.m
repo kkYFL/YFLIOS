@@ -130,9 +130,9 @@
             if ([[dic allKeys] containsObject:@"code"]){
                 NSString *resultCode = [NSString stringWithFormat:@"%@",dic[@"code"]];
                 if ([resultCode integerValue] == CommunityLogin) {
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationCommunityNeedLogin object:nil];
+//                    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationCommunityNeedLogin object:nil];
                 }else if ([resultCode integerValue] == KickedofLine) {
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserWasKickedofLine object:nil];
+//                    [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserWasKickedofLine object:nil];
                 }
             }
         }
@@ -167,9 +167,9 @@
                    if ([[dic allKeys] containsObject:@"code"]){
                        NSString *resultCode = [NSString stringWithFormat:@"%@",dic[@"code"]];
                        if ([resultCode integerValue] == CommunityLogin) {
-                           [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationCommunityNeedLogin object:nil];
+//                           [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationCommunityNeedLogin object:nil];
                        }else if ([resultCode integerValue] == KickedofLine) {
-                           [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserWasKickedofLine object:nil];
+//                           [[NSNotificationCenter defaultCenter]postNotificationName:kNotificationUserWasKickedofLine object:nil];
                        }
                    }
                }

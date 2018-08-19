@@ -32,6 +32,10 @@
 		3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA52421271E5B00322875 /* NSObject+EWTCurrentController.m */; };
 		3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA52721271E5B00322875 /* NSDate+EWT.m */; };
 		3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA53421271E5B00322875 /* NSData+EWT.m */; };
+		3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A22129C1BA00322875 /* NewsViewController.m */; };
+		3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A52129C1D000322875 /* PersonalViewController.m */; };
+		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
+		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
 		61B65107CF6228423FCF8BA1 /* Pods_YFL_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +95,14 @@
 		3A6BA53421271E5B00322875 /* NSData+EWT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+EWT.m"; sourceTree = "<group>"; };
 		3A6BA53521271E5B00322875 /* NSString+EWT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EWT.h"; sourceTree = "<group>"; };
 		3A6BA53821271E5B00322875 /* NSObject+EWTCurrentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+EWTCurrentController.h"; sourceTree = "<group>"; };
+		3A6BA5A12129C1BA00322875 /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		3A6BA5A22129C1BA00322875 /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		3A6BA5A42129C1D000322875 /* PersonalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
+		3A6BA5A52129C1D000322875 /* PersonalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		3A6BA5A72129C1E500322875 /* ExamnationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamnationViewController.h; sourceTree = "<group>"; };
+		3A6BA5A82129C1E500322875 /* ExamnationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamnationViewController.m; sourceTree = "<group>"; };
+		3A6BA5AA2129C1F400322875 /* EducationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
+		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +154,10 @@
 		3A699B6E20BA650C00F7BB60 /* YFL-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				3A6BA5932129C09B00322875 /* Education */,
+				3A6BA5942129C09B00322875 /* Examination */,
+				3A6BA5912129C09A00322875 /* News */,
+				3A6BA5922129C09B00322875 /* Personal */,
 				3A699B6F20BA650C00F7BB60 /* AppDelegate.h */,
 				3A699B7020BA650C00F7BB60 /* AppDelegate.m */,
 				3A699B7220BA650C00F7BB60 /* ViewController.h */,
@@ -299,6 +315,138 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		3A6BA5912129C09A00322875 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA59C2129C15500322875 /* Controller */,
+				3A6BA59B2129C15400322875 /* Model */,
+				3A6BA59D2129C15500322875 /* View */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		3A6BA5922129C09B00322875 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5A02129C16100322875 /* Controller */,
+				3A6BA59E2129C16000322875 /* Model */,
+				3A6BA59F2129C16000322875 /* View */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		3A6BA5932129C09B00322875 /* Education */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5972129C13D00322875 /* Controller */,
+				3A6BA5952129C13D00322875 /* Model */,
+				3A6BA5962129C13D00322875 /* View */,
+			);
+			path = Education;
+			sourceTree = "<group>";
+		};
+		3A6BA5942129C09B00322875 /* Examination */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5992129C14800322875 /* Controller */,
+				3A6BA5982129C14800322875 /* Model */,
+				3A6BA59A2129C14800322875 /* View */,
+			);
+			path = Examination;
+			sourceTree = "<group>";
+		};
+		3A6BA5952129C13D00322875 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A6BA5962129C13D00322875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A6BA5972129C13D00322875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5AA2129C1F400322875 /* EducationViewController.h */,
+				3A6BA5AB2129C1F400322875 /* EducationViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3A6BA5982129C14800322875 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A6BA5992129C14800322875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5A72129C1E500322875 /* ExamnationViewController.h */,
+				3A6BA5A82129C1E500322875 /* ExamnationViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3A6BA59A2129C14800322875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A6BA59B2129C15400322875 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A6BA59C2129C15500322875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5A12129C1BA00322875 /* NewsViewController.h */,
+				3A6BA5A22129C1BA00322875 /* NewsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3A6BA59D2129C15500322875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A6BA59E2129C16000322875 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A6BA59F2129C16000322875 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A6BA5A02129C16100322875 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A6BA5A42129C1D000322875 /* PersonalViewController.h */,
+				3A6BA5A52129C1D000322875 /* PersonalViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		92681C27C3696884EEEE72A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,7 +468,6 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
-				36C80325D9A3EB7F9B812B54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -378,21 +525,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36C80325D9A3EB7F9B812B54 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9F10B425799630A608E22B9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,7 +562,6 @@
 				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 			);
@@ -448,7 +579,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 			);
@@ -464,12 +594,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
 				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
+				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
@@ -481,8 +613,10 @@
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
+				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
+				3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */,
 				3A6BA57D21271E5B00322875 /* NSString+EWT.m in Sources */,
 				3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */,
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,

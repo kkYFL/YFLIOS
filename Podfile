@@ -9,7 +9,7 @@ target 'YFL-IOS' do
 
   pod 'AFNetworking', '~> 3.1.0'
   pod 'YYModel', '~> 1.0.4'
-  pod 'MBProgressHUD', '~> 0.9.1'
+  pod 'MBProgressHUD'
   pod 'SDWebImage', '~> 4.1.0'
   pod 'MJRefresh', '~> 3.1.12'
   pod 'Masonry', '~> 1.0.2'
@@ -24,7 +24,7 @@ target 'YFL-IOS' do
   #pod 'YYCache'
   pod 'FMDB'
   # Keychain Accessor on iOS & OS X
-  pod 'SSKeychain', '~> 1.4.0'
+  #pod 'SSKeychain', '~> 1.4.0'
   pod 'SAMKeychain'
   pod 'Reachability', '~> 3.2'
   # Image Storage

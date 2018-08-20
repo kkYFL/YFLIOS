@@ -22,8 +22,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-
-    
     [self tabBarViewInit];
     
     return YES;
@@ -54,6 +52,8 @@
     UITabBarController *tabBar = [[UITabBarController alloc]init];
     tabBar.delegate = self;
     tabBar.viewControllers = @[newsNav,educationNav,examtionNav,personalNav];
+    tabBar.tabBar.barTintColor = [UIColor redColor];
+    tabBar.tabBar.translucent = NO;
     
     
     if (!self.window) {
@@ -74,6 +74,12 @@
     VC.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     VC.tabBarItem.title = title;
     EWTBaseNavigationController *nav = [[EWTBaseNavigationController alloc] initWithRootViewController:VC];
+    nav.navigationBar.translucent = NO;
+    nav.navigationBar.barTintColor = [UIColor redColor];
+    NSDictionary *dict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [nav.navigationBar setTitleTextAttributes:dict];
+    [VC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
+    [VC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     return nav;
 }
 

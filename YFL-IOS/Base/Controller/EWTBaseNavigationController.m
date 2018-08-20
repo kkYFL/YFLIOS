@@ -18,13 +18,13 @@
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     //解决同一控制器多次push（PsychologyFMDetailViewController bug）
-    if (self.viewControllers.count > 1) {
-        for (UIViewController *VC in self.viewControllers) {
-            if (VC == viewController) {
-                return;
-            }
-        }
-    }
+//    if (self.viewControllers.count > 1) {
+//        for (UIViewController *VC in self.viewControllers) {
+//            if (VC == viewController) {
+//                return;
+//            }
+//        }
+//    }
 
     [super pushViewController:viewController animated:animated];
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */; };
+		3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */; };
 		3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7020BA650C00F7BB60 /* AppDelegate.m */; };
 		3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7320BA650C00F7BB60 /* ViewController.m */; };
 		3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B7820BA650C00F7BB60 /* Assets.xcassets */; };
@@ -40,6 +42,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A3AA573212C12A600FE8CC0 /* EWTLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginView.h; sourceTree = "<group>"; };
+		3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginView.m; sourceTree = "<group>"; };
+		3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginAndRegisterViewController.h; sourceTree = "<group>"; };
+		3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginAndRegisterViewController.m; sourceTree = "<group>"; };
 		3A699B6C20BA650C00F7BB60 /* YFL-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YFL-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A699B6F20BA650C00F7BB60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A699B7020BA650C00F7BB60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -128,6 +134,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3A3AA570212C118C00FE8CC0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3A3AA575212C12A600FE8CC0 /* Controller */,
+				3A3AA571212C12A600FE8CC0 /* Model */,
+				3A3AA572212C12A600FE8CC0 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3A3AA571212C12A600FE8CC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3A3AA572212C12A600FE8CC0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A3AA573212C12A600FE8CC0 /* EWTLoginView.h */,
+				3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A3AA575212C12A600FE8CC0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */,
+				3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		3A699B6320BA650C00F7BB60 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +195,7 @@
 		3A699B6E20BA650C00F7BB60 /* YFL-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				3A3AA570212C118C00FE8CC0 /* Login */,
 				3A6BA5932129C09B00322875 /* Education */,
 				3A6BA5942129C09B00322875 /* Examination */,
 				3A6BA5912129C09A00322875 /* News */,
@@ -596,6 +638,7 @@
 			files = (
 				3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
+				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
 				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
@@ -613,6 +656,7 @@
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
+				3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,

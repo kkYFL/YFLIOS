@@ -11,6 +11,7 @@
 #import "EducationViewController.h"
 #import "ExamnationViewController.h"
 #import "PersonalViewController.h"
+#import "EWTLoginAndRegisterViewController.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -22,7 +23,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [self tabBarViewInit];
+    [self showLoginAndRegistController];
+    
+    //[self tabBarViewInit];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
+    
     
     return YES;
 }
@@ -59,13 +65,27 @@
     if (!self.window) {
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [self.window setBackgroundColor:[UIColor whiteColor]];
-
     }
     [self.window setRootViewController:tabBar];
     [self.window makeKeyAndVisible];
 
     
 
+}
+    
+-(void)showLoginAndRegistController {
+    EWTLoginAndRegisterViewController *loginVC = [[EWTLoginAndRegisterViewController alloc] init];
+    EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"user_center_navigationBar_background"] forBarMetrics:UIBarMetricsDefault];
+    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor redColor]};
+    nav.navigationBar.translucent = NO;
+    
+    if (!self.window) {
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [self.window setBackgroundColor:[UIColor whiteColor]];
+    }
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
 }
 
 
@@ -108,6 +128,12 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+    
+    
+#pragma mark - 通知
+-(void)appAccessHomeWindow:(NSNotification *)noti{
+    [self tabBarViewInit];
 }
 
 

@@ -11,6 +11,7 @@
 
 #pragma mark - 系统
 NSString * const KNotificationUserSignOut = @"SignOut";
+NSString * const KNotificationAccessHomeWindow = @"kNotificationAccessHomeWindow";
 
 
 @end

@@ -20,7 +20,7 @@ target 'YFL-IOS' do
   # Json-Model Transformation
   pod 'MJExtension', '~> 3.0.10'
   # Keyboard Cover Issues
-  pod 'IQKeyboardManager', '~> 4.0.6'
+  #pod 'IQKeyboardManager', '~> 4.0.6'
   #pod 'YYCache'
   pod 'FMDB'
   # Keychain Accessor on iOS & OS X

@@ -16,6 +16,7 @@
 
 #pragma mark - 系统
 FOUNDATION_EXPORT NSString * const KNotificationUserSignOut;                         //退出登陆
+FOUNDATION_EXPORT NSString * const KNotificationAccessHomeWindow;                    //进入主窗口
 
 
 @end

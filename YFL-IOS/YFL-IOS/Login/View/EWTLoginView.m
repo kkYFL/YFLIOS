@@ -10,9 +10,9 @@
 #import "EWTBase.h"
 
 
-#define kTextFieldHeight (40*HEIGHT_SCALE)
+#define kTextFieldHeight (60*HEIGHT_SCALE)
 
-@interface EWTLoginView ()
+@interface EWTLoginView ()<UIAlertViewDelegate>
 @property (nonatomic, strong) UIImageView *phoneImageIcon;
 @property (nonatomic, strong) UIImageView *passwordImageIcon;
 
@@ -59,13 +59,12 @@
     [self addSubview:phoneImageIcon];
     self.phoneImageIcon = phoneImageIcon;
     [phoneImageIcon setContentMode:UIViewContentModeCenter];
-    [phoneImageIcon setImage:[UIImage imageNamed:@"change_phone_num__second_verification_code"]];
+    [phoneImageIcon setImage:[UIImage imageNamed:@"change_phone_num__second_phone"]];
     [phoneImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20);
         make.top.equalTo(self).offset(0);
         make.height.mas_equalTo(kTextFieldHeight);
     }];
-    
     
 
     //账号/手机号
@@ -181,7 +180,8 @@
 
 #pragma mark 忘记密码
 - (void)findPassword {
-
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"忘记密码" message:@"请拨打 13634174103进行充值！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
     
 }
 
@@ -196,5 +196,13 @@
         self.loginBtnBlock(btn);
     }
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"13634174103"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+}
+
 
 @end

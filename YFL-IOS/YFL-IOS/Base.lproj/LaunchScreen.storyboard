@@ -20,7 +20,20 @@
                     <view key="view" contentMode="scaleToFill" id="f0O-DY-Y5P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-qq" translatesAutoresizingMaskIntoConstraints="NO" id="uEe-3d-GFe">
+                                <rect key="frame" x="157" y="303.5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="T2n-Wf-yr3"/>
+                                    <constraint firstAttribute="height" constant="60" id="lgT-D3-3nD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.048207972406873356" blue="0.04943620738344523" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uEe-3d-GFe" firstAttribute="centerY" secondItem="f0O-DY-Y5P" secondAttribute="centerY" id="69p-2I-4rq"/>
+                            <constraint firstItem="uEe-3d-GFe" firstAttribute="centerX" secondItem="f0O-DY-Y5P" secondAttribute="centerX" id="eFe-9R-TWC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -28,4 +41,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="login-qq" width="55" height="55"/>
+    </resources>
 </document>

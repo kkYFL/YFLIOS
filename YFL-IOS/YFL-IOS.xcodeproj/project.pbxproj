@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */; };
 		3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */; };
+		3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D512212D3FD300BD2919 /* BannerScrollView.m */; };
+		3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D515212D46F500BD2919 /* BannerScrollViewCell.m */; };
+		3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D518212D4BD400BD2919 /* NewsItemsTableCell.m */; };
+		3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D51B212D69CC00BD2919 /* NewsRightIConTableCell.m */; };
+		3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D51F212DBB9100BD2919 /* EducationHeadTableCell.m */; };
+		3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D522212DC3C100BD2919 /* EducationItemsTableCell.m */; };
 		3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7020BA650C00F7BB60 /* AppDelegate.m */; };
 		3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7320BA650C00F7BB60 /* ViewController.m */; };
 		3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B7820BA650C00F7BB60 /* Assets.xcassets */; };
@@ -46,6 +52,18 @@
 		3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginView.m; sourceTree = "<group>"; };
 		3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginAndRegisterViewController.h; sourceTree = "<group>"; };
 		3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginAndRegisterViewController.m; sourceTree = "<group>"; };
+		3A50D511212D3FD300BD2919 /* BannerScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerScrollView.h; sourceTree = "<group>"; };
+		3A50D512212D3FD300BD2919 /* BannerScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerScrollView.m; sourceTree = "<group>"; };
+		3A50D514212D46F500BD2919 /* BannerScrollViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerScrollViewCell.h; sourceTree = "<group>"; };
+		3A50D515212D46F500BD2919 /* BannerScrollViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerScrollViewCell.m; sourceTree = "<group>"; };
+		3A50D517212D4BD400BD2919 /* NewsItemsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsItemsTableCell.h; sourceTree = "<group>"; };
+		3A50D518212D4BD400BD2919 /* NewsItemsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsItemsTableCell.m; sourceTree = "<group>"; };
+		3A50D51A212D69CC00BD2919 /* NewsRightIConTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsRightIConTableCell.h; sourceTree = "<group>"; };
+		3A50D51B212D69CC00BD2919 /* NewsRightIConTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsRightIConTableCell.m; sourceTree = "<group>"; };
+		3A50D51E212DBB9100BD2919 /* EducationHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationHeadTableCell.h; sourceTree = "<group>"; };
+		3A50D51F212DBB9100BD2919 /* EducationHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationHeadTableCell.m; sourceTree = "<group>"; };
+		3A50D521212DC3C100BD2919 /* EducationItemsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationItemsTableCell.h; sourceTree = "<group>"; };
+		3A50D522212DC3C100BD2919 /* EducationItemsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationItemsTableCell.m; sourceTree = "<group>"; };
 		3A699B6C20BA650C00F7BB60 /* YFL-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YFL-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A699B6F20BA650C00F7BB60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A699B7020BA650C00F7BB60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -167,6 +185,32 @@
 				3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3A50D510212D3FBE00BD2919 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A50D511212D3FD300BD2919 /* BannerScrollView.h */,
+				3A50D512212D3FD300BD2919 /* BannerScrollView.m */,
+				3A50D514212D46F500BD2919 /* BannerScrollViewCell.h */,
+				3A50D515212D46F500BD2919 /* BannerScrollViewCell.m */,
+				3A50D517212D4BD400BD2919 /* NewsItemsTableCell.h */,
+				3A50D518212D4BD400BD2919 /* NewsItemsTableCell.m */,
+				3A50D51A212D69CC00BD2919 /* NewsRightIConTableCell.h */,
+				3A50D51B212D69CC00BD2919 /* NewsRightIConTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A50D51D212DBB7000BD2919 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A50D51E212DBB9100BD2919 /* EducationHeadTableCell.h */,
+				3A50D51F212DBB9100BD2919 /* EducationHeadTableCell.m */,
+				3A50D521212DC3C100BD2919 /* EducationItemsTableCell.h */,
+				3A50D522212DC3C100BD2919 /* EducationItemsTableCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3A699B6320BA650C00F7BB60 = {
@@ -360,9 +404,9 @@
 		3A6BA5912129C09A00322875 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				3A50D510212D3FBE00BD2919 /* View */,
 				3A6BA59C2129C15500322875 /* Controller */,
 				3A6BA59B2129C15400322875 /* Model */,
-				3A6BA59D2129C15500322875 /* View */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -380,9 +424,9 @@
 		3A6BA5932129C09B00322875 /* Education */ = {
 			isa = PBXGroup;
 			children = (
+				3A50D51D212DBB7000BD2919 /* View */,
 				3A6BA5972129C13D00322875 /* Controller */,
 				3A6BA5952129C13D00322875 /* Model */,
-				3A6BA5962129C13D00322875 /* View */,
 			);
 			path = Education;
 			sourceTree = "<group>";
@@ -402,13 +446,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		3A6BA5962129C13D00322875 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3A6BA5972129C13D00322875 /* Controller */ = {
@@ -457,13 +494,6 @@
 				3A6BA5A22129C1BA00322875 /* NewsViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		3A6BA59D2129C15500322875 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3A6BA59E2129C16000322875 /* Model */ = {
@@ -635,6 +665,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */,
+				3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
@@ -645,8 +676,11 @@
 				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
+				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
+				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
+				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
@@ -654,6 +688,7 @@
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
+				3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */,
 				3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
@@ -662,6 +697,7 @@
 				3A6BA57D21271E5B00322875 /* NSString+EWT.m in Sources */,
 				3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */,
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
+				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +824,7 @@
 			baseConfigurationReference = 5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -806,6 +843,7 @@
 			baseConfigurationReference = D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

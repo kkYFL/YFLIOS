@@ -62,7 +62,7 @@
     [headerViewBg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.view);
-        make.height.mas_equalTo(@(StandardBy6(160)));
+        make.height.mas_equalTo(200*HEIGHT_SCALE);
     }];
     
     
@@ -86,6 +86,16 @@
     }];
     
     
+    UIImageView *iconImageView = [[UIImageView alloc]init];
+    [iconImageView setBackgroundColor:[UIColor whiteColor]];
+    [headerViewBg addSubview:iconImageView];
+    [iconImageView setContentMode:UIViewContentModeCenter];
+    [iconImageView setImage:[UIImage imageNamed:@"login-qq"]];
+    [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(headerViewBg);
+        make.centerY.equalTo(headerViewBg.mas_centerY).offset(NAVIGATION_BAR_HEIGHT/2.0);
+    }];
+
     
     
 //    UIImageView *headerImage = [[UIImageView alloc] init];

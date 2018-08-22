@@ -65,70 +65,93 @@
         make.height.mas_equalTo(@(StandardBy6(160)));
     }];
     
-    UIImageView *headerImage = [[UIImageView alloc] init];
-    self.headerImage = headerImage;
-    headerImage.image = [UIImage imageNamed:@"login-bg"];
-    [headerViewBg addSubview:headerImage];
-    [headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(headerViewBg);
+    
+    UIView *navView = [[UIView alloc]init];
+    navView.backgroundColor = [UIColor redColor];
+    [headerViewBg addSubview:navView];
+    [navView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.equalTo(headerViewBg).offset(0);
+        make.height.mas_equalTo(NAVIGATION_BAR_HEIGHT);
     }];
     
-    UILabel* titleLab = [[UILabel alloc] init];
-    titleLab.text = @"登陆页面";
-    titleLab.textColor = HEXACOLOR(0xFFFFFF, 1.0);
-    titleLab.font = [UIFont boldSystemFontOfSize:23];
-    titleLab.textAlignment = NSTextAlignmentCenter;
-    [headerViewBg addSubview:titleLab];
-    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(headerViewBg).offset(57);
-        make.height.mas_equalTo(@24);
-        make.width.lessThanOrEqualTo(@200);
-        make.centerX.equalTo(headerViewBg);
+    UILabel *navTitleLab = [[UILabel alloc] init];
+    navTitleLab.font = [UIFont boldSystemFontOfSize:18];
+    navTitleLab.text = @"登录";
+    navTitleLab.textColor = [UIColor whiteColor];
+    navTitleLab.textAlignment = NSTextAlignmentLeft;
+    [navView addSubview:navTitleLab];
+    [navTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(navView).offset(0);
+        make.centerY.equalTo(navView).offset(10);
     }];
     
-    UIButton* loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.loginBtn = loginBtn;
-    loginBtn.titleLabel.font = KFont(16);
-    [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    [loginBtn setTitleColor:HEXACOLOR(0xFFFFFF, 1.0) forState:UIControlStateNormal];
-    [loginBtn addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    loginBtn.tag = 100;
-    [headerViewBg addSubview:loginBtn];
-    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(headerViewBg.mas_bottom).offset(-20);
-        make.height.mas_equalTo(@16);
-        make.width.lessThanOrEqualTo(@50);
-        make.centerX.equalTo(headerViewBg.mas_centerX).multipliedBy(0.5);
-    }];
-    self.selectedBtn = loginBtn;
     
-    UIButton* registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    registerBtn.titleLabel.font = KFont(16);
-    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
-    [registerBtn setTitleColor:HEXACOLOR(0xFFFFFF, 1.0) forState:UIControlStateNormal];
-    [registerBtn addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    registerBtn.tag = 101;
-    [headerViewBg addSubview:registerBtn];
-    [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(headerViewBg.mas_bottom).offset(-20);
-        make.height.mas_equalTo(@16);
-        make.width.lessThanOrEqualTo(@50);
-        make.centerX.equalTo(headerViewBg.mas_centerX).multipliedBy(1.5);
-    }];
     
-    UIView* lineView = [[UIView alloc] init];
-    lineView.backgroundColor = HEXACOLOR(0xFFFFFF, 1.0);
-    [headerViewBg addSubview:lineView];
-    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(headerViewBg.mas_bottom).offset(-20);
-        make.height.mas_equalTo(@16);
-        make.width.mas_equalTo(@1);
-        make.centerX.equalTo(headerViewBg);
-    }];
     
-    UIImageView* triangleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-choose"]];
-    self.triangleView = triangleView;
-    [headerViewBg addSubview:triangleView];
+//    UIImageView *headerImage = [[UIImageView alloc] init];
+//    self.headerImage = headerImage;
+//    headerImage.image = [UIImage imageNamed:@"login-bg"];
+//    [headerViewBg addSubview:headerImage];
+//    [headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.bottom.equalTo(headerViewBg);
+//    }];
+//
+//    UILabel* titleLab = [[UILabel alloc] init];
+//    titleLab.text = @"登陆页面";
+//    titleLab.textColor = HEXACOLOR(0xFFFFFF, 1.0);
+//    titleLab.font = [UIFont boldSystemFontOfSize:23];
+//    titleLab.textAlignment = NSTextAlignmentCenter;
+//    [headerViewBg addSubview:titleLab];
+//    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(headerViewBg).offset(57);
+//        make.height.mas_equalTo(@24);
+//        make.width.lessThanOrEqualTo(@200);
+//        make.centerX.equalTo(headerViewBg);
+//    }];
+//
+//    UIButton* loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.loginBtn = loginBtn;
+//    loginBtn.titleLabel.font = KFont(16);
+//    [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+//    [loginBtn setTitleColor:HEXACOLOR(0xFFFFFF, 1.0) forState:UIControlStateNormal];
+//    [loginBtn addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    loginBtn.tag = 100;
+//    [headerViewBg addSubview:loginBtn];
+//    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(headerViewBg.mas_bottom).offset(-20);
+//        make.height.mas_equalTo(@16);
+//        make.width.lessThanOrEqualTo(@50);
+//        make.centerX.equalTo(headerViewBg.mas_centerX).multipliedBy(0.5);
+//    }];
+//    self.selectedBtn = loginBtn;
+//
+//    UIButton* registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    registerBtn.titleLabel.font = KFont(16);
+//    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+//    [registerBtn setTitleColor:HEXACOLOR(0xFFFFFF, 1.0) forState:UIControlStateNormal];
+//    [registerBtn addTarget:self action:@selector(switchBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    registerBtn.tag = 101;
+//    [headerViewBg addSubview:registerBtn];
+//    [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(headerViewBg.mas_bottom).offset(-20);
+//        make.height.mas_equalTo(@16);
+//        make.width.lessThanOrEqualTo(@50);
+//        make.centerX.equalTo(headerViewBg.mas_centerX).multipliedBy(1.5);
+//    }];
+//
+//    UIView* lineView = [[UIView alloc] init];
+//    lineView.backgroundColor = HEXACOLOR(0xFFFFFF, 1.0);
+//    [headerViewBg addSubview:lineView];
+//    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(headerViewBg.mas_bottom).offset(-20);
+//        make.height.mas_equalTo(@16);
+//        make.width.mas_equalTo(@1);
+//        make.centerX.equalTo(headerViewBg);
+//    }];
+//
+//    UIImageView* triangleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login-choose"]];
+//    self.triangleView = triangleView;
+//    [headerViewBg addSubview:triangleView];
 }
 
 - (void)_configLoginView {
@@ -138,6 +161,7 @@
     self.loginView = loginView;
     [self.view addSubview:loginView];
     [loginView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //make.top.equalTo(self.view).offset(160);;
         make.top.equalTo(self.headerViewBg.mas_bottom);
         make.bottom.equalTo(self.view);
         make.left.right.equalTo(self.view);

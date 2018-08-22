@@ -25,10 +25,9 @@
 
     [self showLoginAndRegistController];
     
-    //[self tabBarViewInit];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
     
     return YES;
 }
@@ -75,10 +74,13 @@
     
 -(void)showLoginAndRegistController {
     EWTLoginAndRegisterViewController *loginVC = [[EWTLoginAndRegisterViewController alloc] init];
+    loginVC.title = @"登录";
     EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
-    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"user_center_navigationBar_background"] forBarMetrics:UIBarMetricsDefault];
-    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor redColor]};
+    
     nav.navigationBar.translucent = NO;
+    nav.navigationBar.barTintColor = [UIColor redColor];
+    NSDictionary *dict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [nav.navigationBar setTitleTextAttributes:dict];
     
     if (!self.window) {
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -134,6 +136,21 @@
 #pragma mark - 通知
 -(void)appAccessHomeWindow:(NSNotification *)noti{
     [self tabBarViewInit];
+}
+
+-(void)appSignOut:(NSNotification *)noti{
+    EWTLoginAndRegisterViewController *loginVC = [[EWTLoginAndRegisterViewController alloc] init];
+    EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"user_center_navigationBar_background"] forBarMetrics:UIBarMetricsDefault];
+    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor redColor]};
+    nav.navigationBar.translucent = NO;
+    
+    if (!self.window) {
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [self.window setBackgroundColor:[UIColor whiteColor]];
+    }
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
 }
 
 

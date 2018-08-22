@@ -582,16 +582,16 @@
 }
 
 
-+(NSString *)readDeviceUUIDFromKeychain{
-    NSString * deviceUUIDStr = [SAMKeychain passwordForService:@"ewt"account:@"uuid"];
-    if (deviceUUIDStr == nil || [deviceUUIDStr isEqualToString:@""])
-    {
-        NSUUID * deviceUUID  = [UIDevice currentDevice].identifierForVendor;
-        deviceUUIDStr = deviceUUID.UUIDString;
-        [SAMKeychain setPassword: deviceUUIDStr forService:@"ewt"account:@"uuid"];
-    }
-    return deviceUUIDStr;
-}
+//+(NSString *)readDeviceUUIDFromKeychain{
+//    NSString * deviceUUIDStr = [SAMKeychain passwordForService:@"ewt"account:@"uuid"];
+//    if (deviceUUIDStr == nil || [deviceUUIDStr isEqualToString:@""])
+//    {
+//        NSUUID * deviceUUID  = [UIDevice currentDevice].identifierForVendor;
+//        deviceUUIDStr = deviceUUID.UUIDString;
+//        [SAMKeychain setPassword: deviceUUIDStr forService:@"ewt"account:@"uuid"];
+//    }
+//    return deviceUUIDStr;
+//}
 
 
 + (NSString *)getSubjectTypeWithId:(NSString *)string

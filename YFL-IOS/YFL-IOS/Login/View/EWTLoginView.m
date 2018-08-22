@@ -10,7 +10,14 @@
 #import "EWTBase.h"
 
 
-#define kTextFieldHeight (60*HEIGHT_SCALE)
+#define kTextFieldHeight (40*HEIGHT_SCALE)
+
+@interface EWTLoginView ()
+@property (nonatomic, strong) UIImageView *phoneImageIcon;
+@property (nonatomic, strong) UIImageView *passwordImageIcon;
+
+@end
+
 @implementation EWTLoginView
 
 - (id)init
@@ -46,6 +53,21 @@
 
 - (void)configUI {
     self.backgroundColor = [UIColor whiteColor];
+    
+    //
+    UIImageView *phoneImageIcon = [[UIImageView alloc]init];
+    [self addSubview:phoneImageIcon];
+    self.phoneImageIcon = phoneImageIcon;
+    [phoneImageIcon setContentMode:UIViewContentModeCenter];
+    [phoneImageIcon setImage:[UIImage imageNamed:@"change_phone_num__second_verification_code"]];
+    [phoneImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(20);
+        make.top.equalTo(self).offset(0);
+        make.height.mas_equalTo(kTextFieldHeight);
+    }];
+    
+    
+
     //账号/手机号
     _phoneAndIDField = [[UITextField alloc] init];
     _phoneAndIDField.placeholder = @"账号/手机号";
@@ -58,7 +80,7 @@
     [_phoneAndIDField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.height.mas_equalTo(kTextFieldHeight);
-        make.left.equalTo(self).offset(20);
+        make.left.equalTo(self.phoneImageIcon.mas_right).offset(5);
         make.right.equalTo(self).offset(-20);
     }];
     
@@ -68,8 +90,22 @@
     [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.phoneAndIDField);
         make.height.mas_equalTo(1);
-        make.left.right.equalTo(self.phoneAndIDField);
+        make.left.equalTo(self.phoneImageIcon);
+        make.right.equalTo(self.phoneAndIDField);
+
     }];
+    
+    UIImageView *passwordImageIcon = [[UIImageView alloc]init];
+    [self addSubview:passwordImageIcon];
+    self.passwordImageIcon = passwordImageIcon;
+    [passwordImageIcon setContentMode:UIViewContentModeCenter];
+    [passwordImageIcon setImage:[UIImage imageNamed:@"change_phone_num__second_verification_code"]];
+    [passwordImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(20);
+        make.top.equalTo(self.phoneAndIDField.mas_bottom);
+        make.height.mas_equalTo(kTextFieldHeight);
+    }];
+    
     
     //密码
     _passwordField = [[UITextField alloc] init];
@@ -83,7 +119,7 @@
     [_passwordField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.phoneAndIDField.mas_bottom);
         make.height.mas_equalTo(kTextFieldHeight);
-        make.left.equalTo(self).offset(20);
+        make.left.equalTo(self.passwordImageIcon.mas_right).offset(5);
         make.right.equalTo(self).offset(-20);
     }];
     UIView* line2 = [[UIView alloc] init];
@@ -92,13 +128,15 @@
     [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.passwordField);
         make.height.mas_equalTo(1);
-        make.left.right.equalTo(self.passwordField);
+        make.left.equalTo(self.passwordImageIcon);
+        make.right.equalTo(self.passwordField);
     }];
+    
     
     //下一步
     _nextVCButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _nextVCButton.frame = CGRectMake(20, kTextFieldHeight*2+36, SCREEN_WIDTH - 20*2, 45);
-    _nextVCButton.layer.cornerRadius = 45/2.0;
+    _nextVCButton.layer.cornerRadius = 4.0;
     _nextVCButton.layer.masksToBounds = YES;
 
     
@@ -110,24 +148,28 @@
     [_nextVCButton setTitle:@"登录" forState:UIControlStateNormal];
     [_nextVCButton addTarget:self action:@selector(dologin:) forControlEvents:UIControlEventTouchUpInside];
     [_nextVCButton setBackgroundColor:[UIColor colorWithHexString:@"#0096F6"]];
-    [_nextVCButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [_nextVCButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_nextVCButton setBackgroundColor:[UIColor redColor]];
     [_nextVCButton setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-    _nextVCButton.titleLabel.font = [UIFont systemFontOfSize:17];
+    _nextVCButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     [self addSubview:_nextVCButton];
 
     //密码找回
     UIButton *findButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [findButton setTitle:@"忘记账号，密码" forState:UIControlStateNormal];
+    [findButton setTitle:@"忘记密码?" forState:UIControlStateNormal];
     findButton.titleLabel.textAlignment = NSTextAlignmentRight;
-    findButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    findButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [findButton addTarget:self action:@selector(findPassword) forControlEvents:UIControlEventTouchUpInside];
-    [findButton setTitleColor:HEXACOLOR(0xA7ACB9, 1.0) forState:UIControlStateNormal];
+//    [findButton setTitleColor:HEXACOLOR(0xA7ACB9, 1.0) forState:UIControlStateNormal];
+    [findButton setTitleColor:[UIColor colorWithHexString:@"#0096F6"] forState:UIControlStateNormal];
+
     [self addSubview:findButton];
     [findButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nextVCButton.mas_bottom).offset(12);
         make.height.mas_equalTo(18);
         make.width.lessThanOrEqualTo(@100);
-        make.right.equalTo(self).offset(-22);
+        //make.right.equalTo(self).offset(-22);
+        make.centerX.equalTo(self.nextVCButton);
     }];
     
     

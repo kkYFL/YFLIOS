@@ -8,7 +8,9 @@
 
 #import "PersonalViewController.h"
 
-@interface PersonalViewController ()
+@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UITableView *table;
+
 
 @end
 
@@ -16,24 +18,136 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"个人中心";
+    
+    [self initView];
+    
+    [self loadData];
+}
 
+-(void)initView{
+    self.title = @"个人中心";
+    self.view.backgroundColor = [UIColor whiteColor];
+    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"navigaitionBar_back_normal", @"navigationBar_back_select", leftButtonAction);
+    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
+    
+    
+    [self.view addSubview:self.table];
+    
+    //无网络页面
+    //DisnetViewDelegate
+//    disView = [[DisnetView alloc] initWithFrame:self.view.bounds];
+//    disView.delegate = self;
+//    disView.hidden = YES;
+//    [self.view addSubview:disView];
+}
+
+-(void)loadData{
+//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+//    
+//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
+//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+//        
+//        if ([code isEqualToString:@"200"]) {
+//            [self hideDisnetView];
+//            // 数据加载完成
+//            [[PromptBox sharedBox] removeLoadingView];
+//            //
+//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+//            NSArray *listArr = [dataDic objectForKey:@"list"];
+//            
+//            [<#tableName#> reloadData];
+//        }
+//        
+//    }else{
+//        //数据刷新
+//        [[PromptBox sharedBox] removeLoadingView];
+//        [self hideDisnetView];
+//        
+//        //数据异常情况处理
+//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
+//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
+//        }else{
+//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
+//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
+//        }
+//    }
+//     
+//     } failure:^(NSError *error) {
+//         [[PromptBox sharedBox] removeLoadingView];
+//         [self showDisnetView];
+//     }];
+}
+
+
+#pragma mark - 无网络加载数据
+- (void)refreshNet{
+    [self loadData];
+}
+
+#pragma mark - 返回
+- (void)leftButtonAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - 右侧按钮
+-(void)rightButtonAction{
+    
+}
+
+
+
+#pragma mark - UITableView Delegate And Datasource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 4;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identify = @"cellIdentify";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+}
+
+#pragma mark - 懒加载
+-(UITableView *)table{
+    if(!_table){
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT)];
+        _table = table;
+        _table.backgroundColor = RGB(242, 242, 242);
+        _table.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _table.delegate = self;
+        _table.dataSource = self;
+        [self.view addSubview:_table];
+        
+        //[_table registerClass:[CareerProfessionjingduCell class] forCellReuseIdentifier:@"CareerjindguCell"];
+    }
+    return _table;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

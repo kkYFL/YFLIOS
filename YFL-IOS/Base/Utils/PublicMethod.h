@@ -81,7 +81,7 @@
 //+(void)getServerTimestampBack:(void (^)(NSString *serverTimeStamp))serverTimeStamp;
 
 //从Keychain获取当前设备UUID
-+(NSString *)readDeviceUUIDFromKeychain;
+//+(NSString *)readDeviceUUIDFromKeychain;
 
 //传入科目id返回科目
 + (NSString *)getSubjectTypeWithId:(NSString *)string;

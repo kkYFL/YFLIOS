@@ -96,7 +96,7 @@
 {
     self.navigationController.navigationBar.translucent = NO;
 
-    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];//返回按钮颜色
+    self.navigationController.navigationBar.tintColor=[UIColor redColor];//返回按钮颜色
 }
 
 #pragma mark-- navigationBar的title设置
@@ -116,6 +116,7 @@
 -(void)navigationBarLeftButtonAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark-- navigationBar的返回按钮设置
 - (void)setNavBackBtn:(UIImage *)image
 {

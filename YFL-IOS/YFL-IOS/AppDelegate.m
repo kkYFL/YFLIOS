@@ -12,6 +12,7 @@
 #import "ExamnationViewController.h"
 #import "PersonalViewController.h"
 #import "EWTLoginAndRegisterViewController.h"
+#import "ICarouselViewController.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -23,9 +24,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    //[self showLoginAndRegistController];
+    [self showLoginAndRegistController];
     
-    [self tabBarViewInit];
+    //[self tabBarViewInit];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
@@ -74,12 +75,28 @@
 }
     
 -(void)showLoginAndRegistController {
-    EWTLoginAndRegisterViewController *loginVC = [[EWTLoginAndRegisterViewController alloc] init];
-    loginVC.title = @"登录";
-    EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
+//    EWTLoginAndRegisterViewController *loginVC = [[EWTLoginAndRegisterViewController alloc] init];
+//    loginVC.title = @"登录";
+//    EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
+//
+//    nav.navigationBar.translucent = NO;
+//    nav.navigationBar.barTintColor = [UIColor redColor];
+//    NSDictionary *dict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+//    [nav.navigationBar setTitleTextAttributes:dict];
+//
+//    if (!self.window) {
+//        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        [self.window setBackgroundColor:[UIColor whiteColor]];
+//    }
+//    self.window.rootViewController = nav;
+//    [self.window makeKeyAndVisible];
     
+    
+    
+    ICarouselViewController *loginVC = [[ICarouselViewController alloc] init];
+    EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
     nav.navigationBar.translucent = NO;
-    nav.navigationBar.barTintColor = [UIColor redColor];
+    nav.navigationBar.barTintColor = [UIColor grayColor];
     NSDictionary *dict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [nav.navigationBar setTitleTextAttributes:dict];
     

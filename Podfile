@@ -33,6 +33,7 @@ target 'YFL-IOS' do
   #pod 'Bugly'
   #pod 'M3U8Kit', '0.2.3'
   pod 'YYText'
+  pod 'iCarousel'
 
 
 

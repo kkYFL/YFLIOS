@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */; };
+		3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */; };
+		3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */; };
+		3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D97213C264D00363947 /* ICarouselViewController.m */; };
+		3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D9A213C26FC00363947 /* EWTICarousel.m */; };
 		3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */; };
 		3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */; };
 		3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D512212D3FD300BD2919 /* BannerScrollView.m */; };
@@ -48,6 +53,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A2E5D88213ADE4700363947 /* ExamTableViewCommonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamTableViewCommonCell.h; sourceTree = "<group>"; };
+		3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamTableViewCommonCell.m; sourceTree = "<group>"; };
+		3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonMidTableViewCell.h; sourceTree = "<group>"; };
+		3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonMidTableViewCell.m; sourceTree = "<group>"; };
+		3A2E5D8F213AFF8500363947 /* PersonRowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonRowTableViewCell.h; sourceTree = "<group>"; };
+		3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonRowTableViewCell.m; sourceTree = "<group>"; };
+		3A2E5D96213C264D00363947 /* ICarouselViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ICarouselViewController.h; sourceTree = "<group>"; };
+		3A2E5D97213C264D00363947 /* ICarouselViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICarouselViewController.m; sourceTree = "<group>"; };
+		3A2E5D99213C26FC00363947 /* EWTICarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWTICarousel.h; sourceTree = "<group>"; };
+		3A2E5D9A213C26FC00363947 /* EWTICarousel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWTICarousel.m; sourceTree = "<group>"; };
 		3A3AA573212C12A600FE8CC0 /* EWTLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginView.h; sourceTree = "<group>"; };
 		3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginView.m; sourceTree = "<group>"; };
 		3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginAndRegisterViewController.h; sourceTree = "<group>"; };
@@ -152,6 +167,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3A2E5D87213ADE2D00363947 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A2E5D88213ADE4700363947 /* ExamTableViewCommonCell.h */,
+				3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3A2E5D8B213AF8F400363947 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */,
+				3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */,
+				3A2E5D8F213AFF8500363947 /* PersonRowTableViewCell.h */,
+				3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3A3AA570212C118C00FE8CC0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +287,10 @@
 				3A699B7A20BA650C00F7BB60 /* LaunchScreen.storyboard */,
 				3A699B7D20BA650C00F7BB60 /* Info.plist */,
 				3A699B7E20BA650C00F7BB60 /* main.m */,
+				3A2E5D96213C264D00363947 /* ICarouselViewController.h */,
+				3A2E5D97213C264D00363947 /* ICarouselViewController.m */,
+				3A2E5D99213C26FC00363947 /* EWTICarousel.h */,
+				3A2E5D9A213C26FC00363947 /* EWTICarousel.m */,
 			);
 			path = "YFL-IOS";
 			sourceTree = "<group>";
@@ -414,9 +453,9 @@
 		3A6BA5922129C09B00322875 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				3A2E5D8B213AF8F400363947 /* View */,
 				3A6BA5A02129C16100322875 /* Controller */,
 				3A6BA59E2129C16000322875 /* Model */,
-				3A6BA59F2129C16000322875 /* View */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -434,9 +473,9 @@
 		3A6BA5942129C09B00322875 /* Examination */ = {
 			isa = PBXGroup;
 			children = (
+				3A2E5D87213ADE2D00363947 /* View */,
 				3A6BA5992129C14800322875 /* Controller */,
 				3A6BA5982129C14800322875 /* Model */,
-				3A6BA59A2129C14800322875 /* View */,
 			);
 			path = Examination;
 			sourceTree = "<group>";
@@ -473,13 +512,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		3A6BA59A2129C14800322875 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		3A6BA59B2129C15400322875 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,13 +533,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		3A6BA59F2129C16000322875 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3A6BA5A02129C16100322875 /* Controller */ = {
@@ -635,6 +660,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
+				"${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -651,6 +677,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iCarousel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -670,7 +697,9 @@
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
+				3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */,
 				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
+				3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */,
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
 				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
@@ -681,13 +710,16 @@
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
+				3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
+				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
+				3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */,
 				3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */,
 				3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,

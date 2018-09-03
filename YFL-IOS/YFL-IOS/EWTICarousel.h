@@ -19,6 +19,12 @@ typedef NS_ENUM(NSInteger,EWTICarouselSourceType) {
     EWTiCarouselSourceLocal   //本地图片（本地图片名称数组）
 };
 
+typedef NS_ENUM(NSInteger,EWTICarouselPagePosition) {
+    EWTiCarouselPageRight,    //右边
+    EWTiCarouselPageCenter,   //中心
+    EWTiCarouselPageLeft      //左边
+};
+
 
 
 @interface EWTICarousel : UIView
@@ -47,7 +53,7 @@ typedef NS_ENUM(NSInteger,EWTICarouselSourceType) {
  */
 -(void)setContentSource:(NSMutableArray *)sourceArr SourceType:(EWTICarouselSourceType)sourceType;
 
-
+-(void)showPageControl:(BOOL)show PositionType:(EWTICarouselPagePosition)pagePosition;
 
 @property (nonatomic, copy) void (^ewtIcarouselSelectBlock) (NSInteger selectIndex);
 

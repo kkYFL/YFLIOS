@@ -63,6 +63,7 @@
 		3A2E5D97213C264D00363947 /* ICarouselViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICarouselViewController.m; sourceTree = "<group>"; };
 		3A2E5D99213C26FC00363947 /* EWTICarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWTICarousel.h; sourceTree = "<group>"; };
 		3A2E5D9A213C26FC00363947 /* EWTICarousel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWTICarousel.m; sourceTree = "<group>"; };
+		3A2E5D9E213D7C5A00363947 /* sss.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sss.jpg; sourceTree = "<group>"; };
 		3A3AA573212C12A600FE8CC0 /* EWTLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginView.h; sourceTree = "<group>"; };
 		3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginView.m; sourceTree = "<group>"; };
 		3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginAndRegisterViewController.h; sourceTree = "<group>"; };
@@ -453,6 +454,7 @@
 		3A6BA5922129C09B00322875 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				3A2E5D9E213D7C5A00363947 /* sss.jpg */,
 				3A2E5D8B213AF8F400363947 /* View */,
 				3A6BA5A02129C16100322875 /* Controller */,
 				3A6BA59E2129C16000322875 /* Model */,

@@ -32,13 +32,49 @@
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"navigaitionBar_back_normal", @"navigationBar_back_select", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
+
     
-    self.icarousel1 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 80) withEWTICarouselType:EWTiCarouselTypeLinear contetnViewW:200 viewSpace:10.0];
-    [self.view addSubview:self.icarousel1];
+
+    {
+        NSMutableArray *dataArr = [NSMutableArray arrayWithObjects:@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg", nil];
+        self.icarousel1 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeLinear contetnViewW:280 viewSpace:10.0];
+        [self.icarousel1 setContentSource:dataArr SourceType:EWTiCarouselSourceRomote];
+        [self.icarousel1 showPageControl:YES PositionType:EWTiCarouselPageRight];
+        self.icarousel1.ewtIcarouselSelectBlock = ^(NSInteger selectIndex) {
+            
+        };
+        [self.view addSubview:self.icarousel1];
+    }
     
     
-    self.icarousel2 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 200, SCREEN_WIDTH, 80) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:200 viewSpace:20];
-    [self.view addSubview:self.icarousel2];
+    
+    
+    
+    {
+        NSMutableArray *dataArr = [NSMutableArray arrayWithObjects:@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg", nil];
+        self.icarousel2 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:280 viewSpace:20];
+        [self.icarousel2 setContentSource:dataArr SourceType:EWTiCarouselSourceRomote];
+        self.icarousel2.ewtIcarouselSelectBlock = ^(NSInteger selectIndex) {
+            
+        };
+        [self.icarousel2 showPageControl:YES PositionType:EWTiCarouselPageCenter];
+        [self.view addSubview:self.icarousel2];
+    }
+    
+    
+    {
+        NSMutableArray *dataArr = [NSMutableArray arrayWithObjects:@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg", nil];
+        EWTICarousel *tmpCarousel = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 450, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:280 viewSpace:20];
+        [tmpCarousel setContentSource:dataArr SourceType:EWTiCarouselSourceRomote];
+        tmpCarousel.ewtIcarouselSelectBlock = ^(NSInteger selectIndex) {
+            
+        };
+        [tmpCarousel showPageControl:YES PositionType:EWTiCarouselPageLeft];
+        [self.view addSubview:tmpCarousel];
+    }
+    
+    
+
 }
 
 

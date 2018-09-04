@@ -51,24 +51,6 @@ DEPENDENCIES:
   - YYModel (~> 1.0.4)
   - YYText
 
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
-    - AvoidCrash
-    - Bugly
-    - FMDB
-    - iCarousel
-    - Masonry
-    - MBProgressHUD
-    - MJExtension
-    - MJRefresh
-    - Reachability
-    - SAMKeychain
-    - SDCycleScrollView
-    - SDWebImage
-    - YYModel
-    - YYText
-
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AvoidCrash: bc1e7e6bb8c977854e8111abc162a9fce53b40d5
@@ -88,4 +70,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 53114aa96fd9bcd5f06cd752c532f640ea010d52
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0

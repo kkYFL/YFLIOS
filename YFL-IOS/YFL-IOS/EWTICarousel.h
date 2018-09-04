@@ -14,10 +14,6 @@ typedef NS_ENUM(NSInteger,EWTICarouselType) {
     EWTiCarouselTypeCustom   // 放大轮播
 };
 
-typedef NS_ENUM(NSInteger,EWTICarouselSourceType) {
-    EWTiCarouselSourceRomote, //网络图片（网络图片地址数组）
-    EWTiCarouselSourceLocal   //本地图片（本地图片名称数组）
-};
 
 typedef NS_ENUM(NSInteger,EWTICarouselPagePosition) {
     EWTiCarouselPageRight,    //右边
@@ -36,10 +32,10 @@ typedef NS_ENUM(NSInteger,EWTICarouselPagePosition) {
 
 
 /**
- @param frame          轮播控件frame（主意：控件的宽度是固定的等于屏幕宽度）
- @param icarouselType  轮播banner类型
- @param contentW       轮播子视图宽度
- @param viewSpace      轮播子视图间距离
+ @param frame            轮播控件frame（主意：控件的宽度是固定的等于屏幕宽度）
+ @param icarouselType    轮播banner类型
+ @param contentW         轮播子视图宽度
+ @param viewSpace        轮播子视图间距离
  */
 -(instancetype)initWithFrame:(CGRect)frame withEWTICarouselType:(EWTICarouselType)icarouselType contetnViewW:(CGFloat)contentW viewSpace:(CGFloat)viewSpace;
 
@@ -48,15 +44,37 @@ typedef NS_ENUM(NSInteger,EWTICarouselPagePosition) {
 /**
  设置数据
 
- @param sourceArr     图片地址
- @param sourceType    资源类型
- */
--(void)setContentSource:(NSMutableArray *)sourceArr SourceType:(EWTICarouselSourceType)sourceType;
+ @param sourceArr        图片地址
 
--(void)showPageControl:(BOOL)show PositionType:(EWTICarouselPagePosition)pagePosition;
+ */
+-(void)setContentSource:(NSMutableArray *)sourceArr;
+
+
+
+/**
+ 分页控制器
+
+ @param show               是否显示
+ @param pagePosition       位置
+ @param currentPageImage   选中图片
+ @param pageImage          非选中图片
+ */
+-(void)showPageControl:(BOOL)show PositionType:(EWTICarouselPagePosition)pagePosition CurentPageImage:(NSString *)currentPageImage PageImage:(NSString *)pageImage;
+
+
+
+/**
+ 系统分页控制器圆点颜色
+
+ @param currentColor       当前选中颜色
+ @param pointColor         非选中颜色
+ */
+-(void)setPageControlCurrentPointColor:(UIColor *)currentColor pointColor:(UIColor *)pointColor;
+
 
 @property (nonatomic, copy) void (^ewtIcarouselSelectBlock) (NSInteger selectIndex);
 
+@property (nonatomic, assign) BOOL autoPlay;
 
 
 @end

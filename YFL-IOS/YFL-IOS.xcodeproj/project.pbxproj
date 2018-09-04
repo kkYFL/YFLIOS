@@ -14,6 +14,7 @@
 		3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D9A213C26FC00363947 /* EWTICarousel.m */; };
 		3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */; };
 		3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */; };
+		3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B4901213E399F000D8BF0 /* EWTiCarouselPageControl.m */; };
 		3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D512212D3FD300BD2919 /* BannerScrollView.m */; };
 		3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D515212D46F500BD2919 /* BannerScrollViewCell.m */; };
 		3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D518212D4BD400BD2919 /* NewsItemsTableCell.m */; };
@@ -68,6 +69,8 @@
 		3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginView.m; sourceTree = "<group>"; };
 		3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginAndRegisterViewController.h; sourceTree = "<group>"; };
 		3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginAndRegisterViewController.m; sourceTree = "<group>"; };
+		3A3B4900213E399F000D8BF0 /* EWTiCarouselPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWTiCarouselPageControl.h; sourceTree = "<group>"; };
+		3A3B4901213E399F000D8BF0 /* EWTiCarouselPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWTiCarouselPageControl.m; sourceTree = "<group>"; };
 		3A50D511212D3FD300BD2919 /* BannerScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerScrollView.h; sourceTree = "<group>"; };
 		3A50D512212D3FD300BD2919 /* BannerScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerScrollView.m; sourceTree = "<group>"; };
 		3A50D514212D46F500BD2919 /* BannerScrollViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerScrollViewCell.h; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				3A2E5D97213C264D00363947 /* ICarouselViewController.m */,
 				3A2E5D99213C26FC00363947 /* EWTICarousel.h */,
 				3A2E5D9A213C26FC00363947 /* EWTICarousel.m */,
+				3A3B4900213E399F000D8BF0 /* EWTiCarouselPageControl.h */,
+				3A3B4901213E399F000D8BF0 /* EWTiCarouselPageControl.m */,
 			);
 			path = "YFL-IOS";
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
+				8636B863B375F420ED1373F1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -624,6 +630,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8636B863B375F420ED1373F1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9F10B425799630A608E22B9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -710,6 +731,7 @@
 				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
+				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */,
@@ -859,6 +881,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -868,6 +891,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "YFL.YFL-IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -878,6 +902,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -887,6 +912,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "YFL.YFL-IOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

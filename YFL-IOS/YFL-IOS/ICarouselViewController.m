@@ -37,12 +37,14 @@
 
     {
         NSMutableArray *dataArr = [NSMutableArray arrayWithObjects:@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg", nil];
-        self.icarousel1 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeLinear contetnViewW:280 viewSpace:10.0];
-        [self.icarousel1 setContentSource:dataArr SourceType:EWTiCarouselSourceRomote];
-        [self.icarousel1 showPageControl:YES PositionType:EWTiCarouselPageRight];
+        self.icarousel1 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeLinear contetnViewW:280 viewSpace:10.0];
+        [self.icarousel1 setContentSource:dataArr];
         self.icarousel1.ewtIcarouselSelectBlock = ^(NSInteger selectIndex) {
             
         };
+        self.icarousel1.autoPlay = YES;
+        [self.icarousel1 showPageControl:YES PositionType:EWTiCarouselPageRight CurentPageImage:@"shengya-banner-lunbo-press" PageImage:@"shengya-banner-lunbo-nor"];
+
         [self.view addSubview:self.icarousel1];
     }
     
@@ -52,24 +54,30 @@
     
     {
         NSMutableArray *dataArr = [NSMutableArray arrayWithObjects:@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg", nil];
-        self.icarousel2 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 250, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:280 viewSpace:20];
-        [self.icarousel2 setContentSource:dataArr SourceType:EWTiCarouselSourceRomote];
+        self.icarousel2 = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 170, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:280 viewSpace:20];
+        [self.icarousel2 setContentSource:dataArr];
         self.icarousel2.ewtIcarouselSelectBlock = ^(NSInteger selectIndex) {
             
         };
-        [self.icarousel2 showPageControl:YES PositionType:EWTiCarouselPageCenter];
+        
+        [self.icarousel2 showPageControl:YES PositionType:EWTiCarouselPageCenter CurentPageImage:@"shengya-banner-lunbo-press" PageImage:@"shengya-banner-lunbo-nor"];
+
         [self.view addSubview:self.icarousel2];
     }
     
     
     {
         NSMutableArray *dataArr = [NSMutableArray arrayWithObjects:@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg",@"http://bangimg1.dahe.cn/forum/201511/06/221846mfq6haf2mxllaqhz.jpg", nil];
-        EWTICarousel *tmpCarousel = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 450, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:280 viewSpace:20];
-        [tmpCarousel setContentSource:dataArr SourceType:EWTiCarouselSourceRomote];
+        EWTICarousel *tmpCarousel = [[EWTICarousel alloc] initWithFrame:CGRectMake(0, 350, SCREEN_WIDTH, 150) withEWTICarouselType:EWTiCarouselTypeCustom contetnViewW:280 viewSpace:20];
+        [tmpCarousel setContentSource:dataArr];
         tmpCarousel.ewtIcarouselSelectBlock = ^(NSInteger selectIndex) {
             
         };
-        [tmpCarousel showPageControl:YES PositionType:EWTiCarouselPageLeft];
+        
+        [tmpCarousel showPageControl:YES PositionType:EWTiCarouselPageRight CurentPageImage:nil PageImage:nil];
+        [tmpCarousel setPageControlCurrentPointColor:[UIColor blackColor] pointColor:[UIColor blueColor]];
+        //[tmpCarousel setPageControlCurentPageImage:@"shengya-banner-lunbo-press" PageImage:@"shengya-banner-lunbo-nor"];
+
         [self.view addSubview:tmpCarousel];
     }
     

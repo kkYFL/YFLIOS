@@ -7,22 +7,26 @@
 //
 
 #import "EWTICarousel.h"
+#import "EWTiCarouselPageControl.h"
 
 @interface EWTICarousel ()<iCarouselDataSource, iCarouselDelegate>{
-    CGFloat _EWTICarouselW;             //W
-    CGFloat _EWTICarouselH;             //H
-    CGFloat _EWTICarouselSpace;         //Space
+    CGFloat _EWTICarouselW;             //cell宽度
+    CGFloat _EWTICarouselH;             //cell高度
+    CGFloat _EWTICarouselSpace;         //cell间距
     
     EWTICarouselType _icarouselType;
-    EWTICarouselSourceType _sourceType;
     EWTICarouselPagePosition _pagePosition;
+    
+    NSString *_currentPageImage;
+    NSString *_pageImage;
     
     BOOL _hasReloadData;                //是否刷新数据（防止频繁加载数据卡顿问题）
 }
 
-@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) EWTiCarouselPageControl *pageControl;
 @property (nonatomic, strong) NSMutableArray *sourceDataArr;
 @property (nonatomic, assign) BOOL showPageControl;
+@property (nonatomic, strong) NSTimer *timer;
 
 
 @end
@@ -50,7 +54,7 @@
 
 -(void)iCarouselInit{
     self.carousel = [[iCarousel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, _EWTICarouselH)];
-    self.carousel.backgroundColor = [UIColor yellowColor];
+    self.carousel.backgroundColor = [UIColor grayColor];
     self.carousel.type = (_icarouselType == EWTiCarouselTypeLinear)?iCarouselTypeLinear:iCarouselTypeCustom;
     self.carousel.pagingEnabled = YES;
     self.carousel.scrollEnabled = YES;
@@ -74,11 +78,7 @@
     UIImageView *contentimageView = (UIImageView *)view;
     if(_sourceDataArr && _sourceDataArr.count > index){
         NSString *imageurl = _sourceDataArr[index];
-        if(_sourceType == EWTiCarouselSourceRomote){
-            [contentimageView sd_setImageWithURL:[NSURL URLWithString:imageurl] placeholderImage:nil];
-        }else{
-            [contentimageView setImage:[UIImage imageNamed:imageurl]];
-        }
+        [contentimageView sd_setImageWithURL:[NSURL URLWithString:imageurl] placeholderImage:nil];
     }
     
     return contentimageView;
@@ -161,24 +161,18 @@
     [contentimageView setContentMode:UIViewContentModeScaleToFill];
     if(_sourceDataArr && _sourceDataArr.count > index){
         NSString *imageurl = _sourceDataArr[index];
-        if(_sourceType == EWTiCarouselSourceRomote){
-            [contentimageView sd_setImageWithURL:[NSURL URLWithString:imageurl] placeholderImage:nil];
-        }else{
-            [contentimageView setImage:[UIImage imageNamed:imageurl]];
-        }
+        [contentimageView sd_setImageWithURL:[NSURL URLWithString:imageurl] placeholderImage:nil];
     }
     return contentimageView;
 }
 
 - (void)carouselCurrentItemIndexDidChange:(__unused iCarousel *)carousel {
     if (_showPageControl) _pageControl.currentPage = carousel.currentItemIndex;
-    
 }
 
 
--(void)setContentSource:(NSMutableArray *)sourceArr SourceType:(EWTICarouselSourceType)sourceType{
+-(void)setContentSource:(NSMutableArray *)sourceArr{
     _sourceDataArr = sourceArr;
-    _sourceType = sourceType;
     
     //数据已经刷新返回避免频繁刷新数据
     if(_hasReloadData) return;
@@ -186,85 +180,125 @@
     [self.carousel reloadData];
 }
 
-
-
--(void)showPageControl:(BOOL)show PositionType:(EWTICarouselPagePosition)pagePosition{
+-(void)showPageControl:(BOOL)show PositionType:(EWTICarouselPagePosition)pagePosition CurentPageImage:(NSString *)currentPageImage PageImage:(NSString *)pageImage{
     _showPageControl = show;
     _pagePosition = pagePosition;
+    _currentPageImage = currentPageImage;
+    _pageImage = pageImage;
+    
+    if (!_showPageControl) return;
     
     
     if(_showPageControl){
         [self.carousel addSubview:self.pageControl];
         
+        
         CGFloat marginSpace = (SCREEN_WIDTH-_EWTICarouselW)/2.0;
-        CGFloat pageW = 150.0f;
         CGFloat pageH = 30.0f;
-        
-
-        
-        if (_pagePosition == EWTiCarouselPageRight) {
-            [_pageControl setFrame:CGRectMake(SCREEN_WIDTH-marginSpace-pageW, _EWTICarouselH-pageH, pageW, pageH)];
-            CGSize pointSize = [self.pageControl sizeForNumberOfPages:self.sourceDataArr.count];
-            CGFloat page_x_margin = -(self.pageControl.bounds.size.width - pointSize.width) / 2.0 ;
-            [_pageControl setBounds:CGRectMake(page_x_margin, _pageControl.bounds.origin.y,_pageControl.bounds.size.width, _pageControl.bounds.size.height)];
+        //自定义图片
+        if (_currentPageImage && _pageImage) {
             
-        }else if (_pagePosition == EWTiCarouselPageCenter){
-            [_pageControl setFrame:CGRectMake((SCREEN_WIDTH-pageW)/2.0, _EWTICarouselH-pageH, pageW, pageH)];
-
-        }else if (_pagePosition == EWTiCarouselPageLeft){
-
-            [_pageControl setFrame:CGRectMake(marginSpace, _EWTICarouselH-pageH, pageW, pageH)];
-            CGSize pointSize = [self.pageControl sizeForNumberOfPages:self.sourceDataArr.count];
-            CGFloat page_x_margin = -(self.pageControl.bounds.size.width - pointSize.width) / 2.0 ;
-            [_pageControl setBounds:CGRectMake(-page_x_margin, _pageControl.bounds.origin.y,_pageControl.bounds.size.width, _pageControl.bounds.size.height)];
-        }
+            //布局(默认布局样式,圆点图片自定义)
+            CGFloat pageControlW = (self.sourceDataArr.count- 1)*(8+6)+12;
+            
+            if (_pagePosition == EWTiCarouselPageRight) {
+                [_pageControl setFrame:CGRectMake(SCREEN_WIDTH-marginSpace-pageControlW, _EWTICarouselH-pageH, pageControlW, pageH)];
+            }else if (_pagePosition == EWTiCarouselPageCenter){
+                [_pageControl setFrame:CGRectMake((SCREEN_WIDTH-pageControlW)/2.0, _EWTICarouselH-pageH, pageControlW, pageH)];
+                
+            }else if (_pagePosition == EWTiCarouselPageLeft){
+                [_pageControl setFrame:CGRectMake(marginSpace, _EWTICarouselH-pageH, pageControlW, pageH)];
+            }
+            
+            //设置圆点自定义图片
+            [self.pageControl setDiyPointImage:YES];
+            [self.pageControl setValue:[UIImage imageNamed:_pageImage] forKeyPath:@"_pageImage"];
+            [self.pageControl setValue:[UIImage imageNamed:_currentPageImage] forKeyPath:@"_currentPageImage"];
         
+        }else{
+            
+            //布局(默认布局样式,圆点图片系统)
+            CGFloat marginSpace = (SCREEN_WIDTH-_EWTICarouselW)/2.0;
+            CGFloat pageW = 180.0f;
+            
+            if (_pagePosition == EWTiCarouselPageRight) {
+                [_pageControl setFrame:CGRectMake(SCREEN_WIDTH-marginSpace-pageW, _EWTICarouselH-pageH, pageW, pageH)];
+                CGSize pointSize = [self.pageControl sizeForNumberOfPages:self.sourceDataArr.count];
+                CGFloat page_x_margin = -(self.pageControl.bounds.size.width - pointSize.width) / 2.0 ;
+                [_pageControl setBounds:CGRectMake(page_x_margin, _pageControl.bounds.origin.y,_pageControl.bounds.size.width, _pageControl.bounds.size.height)];
+                
+            }else if (_pagePosition == EWTiCarouselPageCenter){
+                [_pageControl setFrame:CGRectMake((SCREEN_WIDTH-pageW)/2.0, _EWTICarouselH-pageH, pageW, pageH)];
+                
+            }else if (_pagePosition == EWTiCarouselPageLeft){
+                
+                [_pageControl setFrame:CGRectMake(marginSpace, _EWTICarouselH-pageH, pageW, pageH)];
+                CGSize pointSize = [self.pageControl sizeForNumberOfPages:self.sourceDataArr.count];
+                CGFloat page_x_margin = -(self.pageControl.bounds.size.width - pointSize.width) / 2.0 ;
+                [_pageControl setBounds:CGRectMake(-page_x_margin, _pageControl.bounds.origin.y,_pageControl.bounds.size.width, _pageControl.bounds.size.height)];
+            }
+            
+        }
+    
         self.pageControl.numberOfPages = self.sourceDataArr.count;
         self.pageControl.hidden = NO;
+        
     }else{
         self.pageControl.hidden = YES;
     }
+
 }
 
-#pragma mark - actions
-
-//切换index时候更新PageControl图片
--(void)updateDots {
-    for (int i = 0; i < [self.pageControl.subviews count]; i++)  {
-        if ([[self.pageControl.subviews objectAtIndex:i] isKindOfClass:[UIImageView class]]) {
-            UIImageView* dot = [self.pageControl.subviews objectAtIndex:i];
-            if (i == self.pageControl.currentPage){
-                dot.frame = CGRectMake(dot.frame.origin.x, dot.frame.origin.y, 20, 6);
-                dot.image = [UIImage imageNamed:@"shengya-list-lunbo-press"];
-            }else{
-                dot.frame = CGRectMake(dot.frame.origin.x, dot.frame.origin.y, 6, 6);
-                dot.image = [UIImage imageNamed:@"shengya-list-lunbo-nor"];
-            }
-        }
+-(void)setPageControlCurrentPointColor:(UIColor *)currentColor pointColor:(UIColor *)pointColor{
+    if (currentColor && pointColor) {
+        self.pageControl.currentPageIndicatorTintColor = currentColor;
+        self.pageControl.pageIndicatorTintColor = pointColor;
     }
 }
 
 
+#pragma mark - actions
+
+- (void)addTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)nextImage {
+    if (!self.carousel.isDragging && !self.carousel.isDecelerating && !self.carousel.isScrolling) {
+        [self.carousel scrollByNumberOfItems:1 duration:1.0];
+    }
+}
+
+-(void)endTimer{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+-(void)setAutoPlay:(BOOL)autoPlay{
+    _autoPlay = autoPlay;
+    if (_autoPlay) {
+        [self addTimer];
+    }else{
+        [self endTimer];
+    }
+}
+
+
+
 #pragma mark - 懒加载
--(UIPageControl *)pageControl{
+-(EWTiCarouselPageControl *)pageControl{
     if(!_pageControl){
-        _pageControl = [[UIPageControl alloc] init];
+        _pageControl = [[EWTiCarouselPageControl alloc] init];
         _pageControl.backgroundColor = [UIColor redColor];
         _pageControl.hidden = YES;
-        //NSArray *itemSourceArr = (NSArray *)self.careerLessonVideosArr[0];
-        //self.pageControl.numberOfPages = itemSourceArr.count;
-        //self.pageControl.currentPage = pageIndex;
-        //[self.pageControl setValue:[UIImage imageNamed:@"shengya-list-lunbo-nor"] forKeyPath:@"_pageImage"];
-        //[self.pageControl setValue:[UIImage imageNamed:@"shengya-list-lunbo-press"] forKeyPath:@"_currentPageImage"];
-        
         _pageControl.currentPage = 0;
-        _pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
-        _pageControl.pageIndicatorTintColor = [UIColor greenColor];
+        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+        _pageControl.pageIndicatorTintColor = [UIColor grayColor];
         [self.carousel addSubview:_pageControl];
     }
     return _pageControl;
 }
 
-//  初始化pageControl
 
 @end

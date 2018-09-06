@@ -11,6 +11,7 @@
 #import "BannerScrollView.h"
 #import "NewsItemsTableCell.h"
 #import "NewsRightIConTableCell.h"
+#import "NewsVideoDetailViewController.h"
 #define SDViewH 150
 
 @interface NewsViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>
@@ -94,7 +95,9 @@
     
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        
+    NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+    videoVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:videoVC animated:YES];
 }
     
 

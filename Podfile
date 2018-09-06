@@ -34,10 +34,15 @@ target 'YFL-IOS' do
   #pod 'M3U8Kit', '0.2.3'
   pod 'YYText'
   pod 'iCarousel'
-
-
-
-
+  
+  #ZFPlayer
+  pod 'ZFPlayer', '~> 3.0'
+  pod 'ZFPlayer/ControlView', '~> 3.0'
+  pod 'ZFPlayer/AVPlayer', '~> 3.0'
+  #pod 'ZFPlayer/ijkplayer', '~> 3.0'
+  #pod 'ZFPlayer/KSYMediaPlayer', '~> 3.0'
+  
+  
 
 
 

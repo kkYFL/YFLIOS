@@ -9,6 +9,7 @@
 #import "PersonalViewController.h"
 #import "PersonMidTableViewCell.h"
 #import "PersonRowTableViewCell.h"
+#import "SigninRecordViewController.h"
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -118,6 +119,16 @@
     
     if(indexPath.row == 0){
         PersonMidTableViewCell *midCell = [tableView dequeueReusableCellWithIdentifier:@"midCell"];
+        __weak typeof(self) weakSelf = self;
+        midCell.selectViewBlock = ^(NSInteger viewIndex) {
+            if (viewIndex == 1) {
+                
+            }else if (viewIndex == 2){
+                SigninRecordViewController *signRecordVC = [[SigninRecordViewController alloc]init];
+                signRecordVC.hidesBottomBarWhenPushed  = YES;
+                [weakSelf.navigationController pushViewController:signRecordVC animated:YES];
+            }
+        };
         return midCell;
     }
     
@@ -153,7 +164,7 @@
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT)];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-TAB_BAR_HEIGHT)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;

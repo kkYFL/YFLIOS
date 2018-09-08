@@ -51,6 +51,8 @@
 		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
 		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
 		3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */; };
+		3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */; };
+		3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */; };
 		61B65107CF6228423FCF8BA1 /* Pods_YFL_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +151,10 @@
 		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		3AFBC2B421417AC900D154D3 /* NewsVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVideoDetailViewController.h; sourceTree = "<group>"; };
 		3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVideoDetailViewController.m; sourceTree = "<group>"; };
+		3AFBC2B721422A3200D154D3 /* SigninRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SigninRecordViewController.h; sourceTree = "<group>"; };
+		3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SigninRecordViewController.m; sourceTree = "<group>"; };
+		3AFBC2BA2143D45300D154D3 /* DIYCalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DIYCalendarCell.h; sourceTree = "<group>"; };
+		3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIYCalendarCell.m; sourceTree = "<group>"; };
 		5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +192,8 @@
 		3A2E5D8B213AF8F400363947 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AFBC2BA2143D45300D154D3 /* DIYCalendarCell.h */,
+				3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */,
 				3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */,
 				3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */,
 				3A2E5D8F213AFF8500363947 /* PersonRowTableViewCell.h */,
@@ -552,6 +560,8 @@
 			children = (
 				3A6BA5A42129C1D000322875 /* PersonalViewController.h */,
 				3A6BA5A52129C1D000322875 /* PersonalViewController.m */,
+				3AFBC2B721422A3200D154D3 /* SigninRecordViewController.h */,
+				3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -662,6 +672,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -680,6 +691,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvoidCrash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -718,6 +730,7 @@
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
 				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
+				3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
@@ -732,6 +745,7 @@
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
 				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
+				3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */,
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,

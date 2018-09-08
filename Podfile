@@ -34,6 +34,8 @@ target 'YFL-IOS' do
   #pod 'M3U8Kit', '0.2.3'
   pod 'YYText'
   pod 'iCarousel'
+  pod 'FSCalendar'
+
   
   #ZFPlayer
   pod 'ZFPlayer', '~> 3.0'

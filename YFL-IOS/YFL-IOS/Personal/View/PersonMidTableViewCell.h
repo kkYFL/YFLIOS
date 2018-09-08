@@ -10,5 +10,6 @@
 
 @interface PersonMidTableViewCell : UITableViewCell
 +(CGFloat)CellH;
+@property (nonatomic, copy) void (^selectViewBlock) (NSInteger viewIndex);
 
 @end

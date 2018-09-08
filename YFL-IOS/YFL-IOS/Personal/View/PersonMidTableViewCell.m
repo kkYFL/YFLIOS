@@ -37,6 +37,7 @@
     self.leftBackView = leftBackView;
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
     leftBackView.userInteractionEnabled = YES;
+    leftBackView.tag = 101;
     [leftBackView addGestureRecognizer:tap1];
     [leftBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.bottom.equalTo(self).offset(0);
@@ -50,6 +51,7 @@
     self.rightBackView = rightBackView;
     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
     rightBackView.userInteractionEnabled = YES;
+    rightBackView.tag = 102;
     [rightBackView addGestureRecognizer:tap2];
     [rightBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(SCREEN_WIDTH/2.0);
@@ -154,7 +156,18 @@
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    
+    NSInteger viewTag = tap.view.tag;
+    //获取积分
+    if (viewTag == 101) {
+        if (self.selectViewBlock) {
+            self.selectViewBlock(1);
+        }
+    //积分纪录
+    }else if (viewTag == 102){
+        if (self.selectViewBlock) {
+            self.selectViewBlock(2);
+        }
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

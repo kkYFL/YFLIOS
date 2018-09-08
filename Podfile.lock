@@ -19,6 +19,7 @@ PODS:
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
+  - FSCalendar (2.7.9)
   - iCarousel (1.8.3)
   - Masonry (1.0.2)
   - MBProgressHUD (1.1.0)
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - AvoidCrash (~> 2.2.3)
   - Bugly
   - FMDB
+  - FSCalendar
   - iCarousel
   - Masonry (~> 1.0.2)
   - MBProgressHUD
@@ -67,6 +69,7 @@ SPEC REPOS:
     - AvoidCrash
     - Bugly
     - FMDB
+    - FSCalendar
     - iCarousel
     - Masonry
     - MBProgressHUD
@@ -85,6 +88,7 @@ SPEC CHECKSUMS:
   AvoidCrash: bc1e7e6bb8c977854e8111abc162a9fce53b40d5
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
@@ -98,6 +102,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZFPlayer: 8e5936c6b5ec971f105431a7764acff8d16b5fa4
 
-PODFILE CHECKSUM: f103b0dacbe1ae8e8c9749145663cdf13d31ef40
+PODFILE CHECKSUM: 4f85870c6b3ece67ba18f0f364f2db4dac097c71
 
 COCOAPODS: 1.5.0

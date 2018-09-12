@@ -21,6 +21,12 @@
 		3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D51B212D69CC00BD2919 /* NewsRightIConTableCell.m */; };
 		3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D51F212DBB9100BD2919 /* EducationHeadTableCell.m */; };
 		3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A50D522212DC3C100BD2919 /* EducationItemsTableCell.m */; };
+		3A5C0F102144DCEE00BB11FB /* ExamWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F0F2144DCEE00BB11FB /* ExamWaitingViewController.m */; };
+		3A5C0F132144DD8600BB11FB /* ExamWaitingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F122144DD8600BB11FB /* ExamWaitingTableViewCell.m */; };
+		3A5C0F162144E46D00BB11FB /* ExamhomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F152144E46D00BB11FB /* ExamhomeViewController.m */; };
+		3A5C0F19214964A100BB11FB /* ExamConentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F18214964A100BB11FB /* ExamConentViewController.m */; };
+		3A5C0F1C2149657C00BB11FB /* ExamTopTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F1B2149657C00BB11FB /* ExamTopTitleTableViewCell.m */; };
+		3A5C0F1F2149692C00BB11FB /* ExamChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F1E2149692C00BB11FB /* ExamChooseCell.m */; };
 		3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7020BA650C00F7BB60 /* AppDelegate.m */; };
 		3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7320BA650C00F7BB60 /* ViewController.m */; };
 		3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B7820BA650C00F7BB60 /* Assets.xcassets */; };
@@ -86,6 +92,18 @@
 		3A50D51F212DBB9100BD2919 /* EducationHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationHeadTableCell.m; sourceTree = "<group>"; };
 		3A50D521212DC3C100BD2919 /* EducationItemsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationItemsTableCell.h; sourceTree = "<group>"; };
 		3A50D522212DC3C100BD2919 /* EducationItemsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationItemsTableCell.m; sourceTree = "<group>"; };
+		3A5C0F0E2144DCEE00BB11FB /* ExamWaitingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamWaitingViewController.h; sourceTree = "<group>"; };
+		3A5C0F0F2144DCEE00BB11FB /* ExamWaitingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamWaitingViewController.m; sourceTree = "<group>"; };
+		3A5C0F112144DD8600BB11FB /* ExamWaitingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamWaitingTableViewCell.h; sourceTree = "<group>"; };
+		3A5C0F122144DD8600BB11FB /* ExamWaitingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamWaitingTableViewCell.m; sourceTree = "<group>"; };
+		3A5C0F142144E46D00BB11FB /* ExamhomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamhomeViewController.h; sourceTree = "<group>"; };
+		3A5C0F152144E46D00BB11FB /* ExamhomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamhomeViewController.m; sourceTree = "<group>"; };
+		3A5C0F17214964A100BB11FB /* ExamConentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamConentViewController.h; sourceTree = "<group>"; };
+		3A5C0F18214964A100BB11FB /* ExamConentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamConentViewController.m; sourceTree = "<group>"; };
+		3A5C0F1A2149657C00BB11FB /* ExamTopTitleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamTopTitleTableViewCell.h; sourceTree = "<group>"; };
+		3A5C0F1B2149657C00BB11FB /* ExamTopTitleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamTopTitleTableViewCell.m; sourceTree = "<group>"; };
+		3A5C0F1D2149692C00BB11FB /* ExamChooseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamChooseCell.h; sourceTree = "<group>"; };
+		3A5C0F1E2149692C00BB11FB /* ExamChooseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamChooseCell.m; sourceTree = "<group>"; };
 		3A699B6C20BA650C00F7BB60 /* YFL-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YFL-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A699B6F20BA650C00F7BB60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A699B7020BA650C00F7BB60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -185,6 +203,12 @@
 			children = (
 				3A2E5D88213ADE4700363947 /* ExamTableViewCommonCell.h */,
 				3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */,
+				3A5C0F112144DD8600BB11FB /* ExamWaitingTableViewCell.h */,
+				3A5C0F122144DD8600BB11FB /* ExamWaitingTableViewCell.m */,
+				3A5C0F1A2149657C00BB11FB /* ExamTopTitleTableViewCell.h */,
+				3A5C0F1B2149657C00BB11FB /* ExamTopTitleTableViewCell.m */,
+				3A5C0F1D2149692C00BB11FB /* ExamChooseCell.h */,
+				3A5C0F1E2149692C00BB11FB /* ExamChooseCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -526,6 +550,12 @@
 			children = (
 				3A6BA5A72129C1E500322875 /* ExamnationViewController.h */,
 				3A6BA5A82129C1E500322875 /* ExamnationViewController.m */,
+				3A5C0F0E2144DCEE00BB11FB /* ExamWaitingViewController.h */,
+				3A5C0F0F2144DCEE00BB11FB /* ExamWaitingViewController.m */,
+				3A5C0F142144E46D00BB11FB /* ExamhomeViewController.h */,
+				3A5C0F152144E46D00BB11FB /* ExamhomeViewController.m */,
+				3A5C0F17214964A100BB11FB /* ExamConentViewController.h */,
+				3A5C0F18214964A100BB11FB /* ExamConentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -719,6 +749,7 @@
 			files = (
 				3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */,
 				3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */,
+				3A5C0F162144E46D00BB11FB /* ExamhomeViewController.m in Sources */,
 				3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
@@ -730,6 +761,7 @@
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
 				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
+				3A5C0F132144DD8600BB11FB /* ExamWaitingTableViewCell.m in Sources */,
 				3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
@@ -740,6 +772,7 @@
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */,
+				3A5C0F1C2149657C00BB11FB /* ExamTopTitleTableViewCell.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
@@ -748,10 +781,13 @@
 				3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */,
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
+				3A5C0F1F2149692C00BB11FB /* ExamChooseCell.m in Sources */,
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
 				3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */,
+				3A5C0F19214964A100BB11FB /* ExamConentViewController.m in Sources */,
 				3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */,
 				3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */,
+				3A5C0F102144DCEE00BB11FB /* ExamWaitingViewController.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,

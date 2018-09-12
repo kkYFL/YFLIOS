@@ -7,6 +7,7 @@
 //
 
 #import "ExamnationViewController.h"
+#import "ExamWaitingViewController.h"
 #import "ExamTableViewCommonCell.h"
 
 @interface ExamnationViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -250,6 +251,7 @@
         UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
         selectImageView.userInteractionEnabled = YES;
         [selectImageView addGestureRecognizer:tap1];
+        selectImageView.tag = 101;
         [selectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_headerView).offset(25.0f);
             make.bottom.equalTo(headerImageView.mas_bottom).offset(16.0);
@@ -273,6 +275,7 @@
         [_headerView addSubview:selectImageView2];
         selectImageView2.layer.masksToBounds = YES;
         selectImageView2.layer.cornerRadius = 4.0f;
+        selectImageView2.tag = 102;
         UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
         selectImageView2.userInteractionEnabled = YES;
         [selectImageView2 addGestureRecognizer:tap2];
@@ -364,7 +367,15 @@
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    
+    UIImageView *touchView = (UIImageView *)tap.view;
+    NSInteger viewTag = touchView.tag;
+    if (viewTag == 101) {
+        
+    }else if (viewTag == 102){
+        ExamWaitingViewController *waitingVC = [[ExamWaitingViewController alloc]init];
+        waitingVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:waitingVC animated:YES];
+    }
 }
 
 

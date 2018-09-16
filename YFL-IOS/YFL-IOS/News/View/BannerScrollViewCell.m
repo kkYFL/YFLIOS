@@ -26,14 +26,14 @@
 
 
 -(void)initView{
-    self.contentView.backgroundColor = [UIColor colorWithHexString:@"#F2F2F2"];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     
     UIImageView *remindView = [[UIImageView alloc]init];
-    [remindView setBackgroundColor:[UIColor grayColor]];
+    [remindView setBackgroundColor:[UIColor clearColor]];
     [self.contentView addSubview:remindView];
     self.remindView = remindView;
     [remindView setContentMode:UIViewContentModeCenter];
-    [remindView setImage:[UIImage imageNamed:@""]];
+    [remindView setImage:[UIImage imageNamed:@"news_laba"]];
     
     [remindView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(12);
@@ -43,7 +43,7 @@
     
     UILabel *contentLab = [[UILabel alloc] init];
     contentLab.font = [UIFont systemFontOfSize:16.0f];
-    contentLab.text = @"djfsjdfojdofjdsfoksdofksdkfokdofk";
+    contentLab.text = @"河南县党建项目已成功上线，请大家踊跃学习";
     contentLab.textColor = [UIColor blackColor];
     contentLab.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:contentLab];

@@ -9,6 +9,7 @@
 #import "EducationViewController.h"
 #import "EducationHeadTableCell.h"
 #import "EducationItemsTableCell.h"
+#import "EducationLearHeartViewController.h"
 
 @interface EducationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -27,14 +28,12 @@
 
 -(void)initView{
     self.title = @"党员教育";
-    self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"navigaitionBar_back_normal", @"navigationBar_back_select", leftButtonAction);
-    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
-    
+    self.view.backgroundColor = [UIColor whiteColor];    
     
     [self.view addSubview:self.table];
     
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemsSelectAction:) name:KNotificationEducationItemsSelect object:nil];;
 }
 
 
@@ -152,9 +151,33 @@
     
 }
 
+#pragma mark - 通知
+-(void)itemsSelectAction:(NSNotification *)noti{
+    NSDictionary *userInfo = noti.userInfo;
+    NSInteger index = [[userInfo objectForKey:@"index"] integerValue];
+    if (index == 1) {
+        EducationLearHeartViewController *heartVC = [[EducationLearHeartViewController alloc]init];
+        heartVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:heartVC animated:YES];
+    }else if (index == 2){
+        EducationLearHeartViewController *heartVC = [[EducationLearHeartViewController alloc]init];
+        heartVC.hidesBottomBarWhenPushed = YES;
+        heartVC.title = @"党员教育";
+        [self.navigationController pushViewController:heartVC animated:YES];
+    }else if (index == 3){
+        
+    }else if (index == 4){
+        
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

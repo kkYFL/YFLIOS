@@ -18,6 +18,7 @@
 FOUNDATION_EXPORT NSString * const KNotificationUserSignOut;                         //退出登陆
 FOUNDATION_EXPORT NSString * const KNotificationAccessHomeWindow;                    //进入主窗口
 
-
+FOUNDATION_EXPORT NSString * const KNotificationNewsItemsSelect;
+FOUNDATION_EXPORT NSString * const KNotificationEducationItemsSelect;
 @end
 

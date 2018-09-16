@@ -59,7 +59,7 @@
     [self addSubview:phoneImageIcon];
     self.phoneImageIcon = phoneImageIcon;
     [phoneImageIcon setContentMode:UIViewContentModeCenter];
-    [phoneImageIcon setImage:[UIImage imageNamed:@"change_phone_num__second_phone"]];
+    [phoneImageIcon setImage:[UIImage imageNamed:@"login_person"]];
     [phoneImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20);
         make.top.equalTo(self).offset(0);
@@ -84,7 +84,7 @@
     }];
     
     UIView* line1 = [[UIView alloc] init];
-    line1.backgroundColor = HEXACOLOR(0xEEEFF3, 1.0);
+    line1.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
     [_phoneAndIDField addSubview:line1];
     [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.phoneAndIDField);
@@ -98,7 +98,7 @@
     [self addSubview:passwordImageIcon];
     self.passwordImageIcon = passwordImageIcon;
     [passwordImageIcon setContentMode:UIViewContentModeCenter];
-    [passwordImageIcon setImage:[UIImage imageNamed:@"change_phone_num__second_verification_code"]];
+    [passwordImageIcon setImage:[UIImage imageNamed:@"login_password"]];
     [passwordImageIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20);
         make.top.equalTo(self.phoneAndIDField.mas_bottom);
@@ -122,7 +122,7 @@
         make.right.equalTo(self).offset(-20);
     }];
     UIView* line2 = [[UIView alloc] init];
-    line2.backgroundColor = HEXACOLOR(0xEEEFF3, 1.0);
+    line2.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
     [_passwordField addSubview:line2];
     [line2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.passwordField);

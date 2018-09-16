@@ -80,20 +80,24 @@
     CGFloat itemTop = 25*2+18;
     self.item1 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop, itemViewW, itemViewH)];
     self.item1.titleLabel.text = @"学习任务";
+    self.item1.backView.tag = 101;
     [self.contentView addSubview:self.item1];
     
     self.item2 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop, itemViewW, itemViewH)];
     self.item2.titleLabel.text = @"学习痕迹";
+    self.item2.tag = 102;
     [self.contentView addSubview:self.item2];
     
     
     self.item3 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
     self.item3.titleLabel.text = @"意见反馈";
+    self.item3.tag = 103;
     [self.contentView addSubview:self.item3];
     
     
     self.item4 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
     self.item4.titleLabel.text = @"学习心得";
+    self.item4.tag = 104;
     [self.contentView addSubview:self.item4];
     
     
@@ -161,34 +165,37 @@
     self.icon = icon;
     [icon setContentMode:UIViewContentModeCenter];
     [icon setImage:[UIImage imageNamed:@"ZjDoubtView"]];
-    
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(backView.mas_right).offset(-20);
+        make.right.equalTo(backView.mas_right).offset(-15);
         make.centerY.equalTo(backView);
         make.height.width.mas_equalTo(40);
     }];
+    
     
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
     titleLabel.text = @"学习任务";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.textAlignment = NSTextAlignmentRight;
     [backView addSubview:titleLabel];
     self.titleLabel = titleLabel;
     
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(backView).offset(20);
-        make.right.equalTo(backView.mas_left).offset(-10);
-        make.centerY.equalTo(icon.mas_centerY).offset(0);
+//        make.left.equalTo(backView).offset(20);
+        make.right.equalTo(icon.mas_left).offset(-12);
+        make.centerY.equalTo(backView.mas_centerY);
+        make.height.mas_equalTo(20);
     }];
 
 }
 
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    
+    UIImageView *touchView = (UIImageView *)tap.view;
+    NSInteger viweTag = touchView.tag - 100;
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationEducationItemsSelect object:nil userInfo:@{@"index":@(viweTag)}];
 }
 
 

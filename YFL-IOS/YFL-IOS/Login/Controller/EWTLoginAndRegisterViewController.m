@@ -90,7 +90,7 @@
     [iconImageView setBackgroundColor:[UIColor whiteColor]];
     [headerViewBg addSubview:iconImageView];
     [iconImageView setContentMode:UIViewContentModeCenter];
-    [iconImageView setImage:[UIImage imageNamed:@"login-qq"]];
+    [iconImageView setImage:[UIImage imageNamed:@"LOGO"]];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(headerViewBg);
         make.centerY.equalTo(headerViewBg.mas_centerY).offset(NAVIGATION_BAR_HEIGHT/2.0);

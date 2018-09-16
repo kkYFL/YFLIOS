@@ -39,33 +39,39 @@
     [self.contentView addSubview:self.item1];
     self.item1.titleLab.text = @"要闻速递";
     self.item1.contentLab.text = @"最新信息你先知";
+    self.item1.backView.tag = 101;
+    
     
     self.item2 = [[NewsItemContentView alloc]initWithFrame:CGRectMake(marginSpace+contentW+viewSpace, topSpce, contentW, contentH)];
     [self.contentView addSubview:self.item2];
     self.item2.titleLab.text = @"政策法规";
     self.item2.contentLab.text = @"遵从党的安排";
+    self.item2.backView.tag = 102;
+    
     
     self.item3 = [[NewsItemContentView alloc]initWithFrame:CGRectMake(marginSpace, topSpce+contentH+viewSpace, contentW, contentH)];
     [self.contentView addSubview:self.item3];
     self.item3.titleLab.text = @"通知公告";
     self.item3.contentLab.text = @"最新通知你先知";
+    self.item3.backView.tag = 103;
+    
     
     self.item4 = [[NewsItemContentView alloc]initWithFrame:CGRectMake(marginSpace+contentW+viewSpace, topSpce+contentH+viewSpace, contentW, contentH)];
     [self.contentView addSubview:self.item4];
     self.item4.titleLab.text = @"组织活动";
     self.item4.contentLab.text = @"活动不能缺你";
+    self.item4.backView.tag = 104;
     
     
     UIView *line = [[UIView alloc]init];
-    line.backgroundColor = [UIColor colorWithHexString:@"#F2F2F2"];
+    line.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
     self.line = line;
     [self.contentView addSubview:line];
-    
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(0);
-        make.bottom.equalTo(self.contentView);
+        make.top.equalTo(self.contentView);
         make.right.equalTo(self.contentView);
-        make.height.mas_equalTo(1.0);
+        make.height.mas_equalTo(0.5);
     }];
 }
 
@@ -87,7 +93,6 @@
 #pragma mark - NewsItemContentView
 
 @interface NewsItemContentView ()
-@property (nonatomic, strong) UIImageView *backView;
 
 @end
 
@@ -103,7 +108,7 @@
 
 -(void)initView{
     UIImageView *backView = [[UIImageView alloc]init];
-    [backView setBackgroundColor:[UIColor colorWithHexString:@"#F7FAFF"]];
+    [backView setBackgroundColor:[UIColor colorWithHexString:@"#DEECF2"]];
     [self addSubview:backView];
     self.backView = backView;
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
@@ -166,11 +171,18 @@
         make.right.equalTo(self.iconImageView.mas_left).offset(-5);
     }];
     
+    
+    
 }
 
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    
+    UIImageView *touchView = (UIImageView *)tap.view;
+    NSInteger index = touchView.tag - 100;
+    if (index) {        
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationNewsItemsSelect object:nil userInfo:@{@"index":@(index)}];
+    }
+
 }
 
 @end

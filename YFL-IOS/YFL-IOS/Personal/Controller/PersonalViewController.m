@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UIView *footerView;
+
 
 @end
 
@@ -158,7 +160,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+
 }
 
 #pragma mark - 懒加载
@@ -171,6 +173,7 @@
         _table.delegate = self;
         _table.dataSource = self;
         [self.view addSubview:_table];
+        _table.tableFooterView = self.footerView;
         
         [_table registerClass:[PersonMidTableViewCell class] forCellReuseIdentifier:@"midCell"];
         [_table registerClass:[PersonRowTableViewCell class] forCellReuseIdentifier:@"rowCell"];
@@ -301,13 +304,42 @@
             make.left.equalTo(signButton.mas_right).offset(16.0f);
             make.centerY.equalTo(signButton);
         }];
-        
-        
-
     }
     return _headerView;
 }
 
+-(UIView *)footerView{
+    if (!_footerView) {
+        UIView *footerView = [[UIView alloc]init];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"#F2F2F2"];
+        [footerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, HEIGHT_SCALE*(50+25)+40)];
+        _footerView = footerView;
+        
+        UIButton *outButton = [[UIButton alloc]init];
+        outButton.backgroundColor = [UIColor whiteColor];
+        [outButton addTarget:self action:@selector(signOutAction:) forControlEvents:UIControlEventTouchUpInside];
+        outButton.layer.masksToBounds = YES;
+        [outButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [outButton setTitleColor:[UIColor colorWithHexString:@"#FF0000"] forState:UIControlStateNormal];
+        [outButton setTitle:@"安全退出" forState:UIControlStateNormal];
+        outButton.layer.cornerRadius = 4.0f;
+        [_footerView addSubview:outButton];
+        
+        [outButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_footerView).offset(HEIGHT_SCALE*50);
+            make.centerX.equalTo(_footerView);
+            make.width.mas_equalTo(WIDTH_SCALE*300);
+            make.height.mas_equalTo(40.0f);
+        }];
+        
+    }
+    return _footerView;
+}
+
+//退出登录
+-(void)signOutAction:(UIButton *)sender{
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+}
 
 -(void)sign:(UIButton *)sender{
     

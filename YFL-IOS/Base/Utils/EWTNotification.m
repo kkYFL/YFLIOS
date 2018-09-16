@@ -13,5 +13,9 @@
 NSString * const KNotificationUserSignOut = @"SignOut";
 NSString * const KNotificationAccessHomeWindow = @"kNotificationAccessHomeWindow";
 
+NSString * const KNotificationNewsItemsSelect = @"kNotificationNewsItemsSelect";
+NSString * const KNotificationEducationItemsSelect = @"kNotificationEducationItemsSelect";
+
+
 
 @end

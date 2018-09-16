@@ -35,10 +35,7 @@
 
 -(void)initView{
     self.title = @"党员考试";
-    self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"navigaitionBar_back_normal", @"navigationBar_back_select", leftButtonAction);
-    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
-    
+    self.view.backgroundColor = [UIColor whiteColor];    
     
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.headerView;

@@ -40,7 +40,7 @@
 
     
     UILabel *cellTitleLabel = [[UILabel alloc] init];
-    cellTitleLabel.font = [UIFont systemFontOfSize:14.0f];
+    cellTitleLabel.font = [UIFont boldSystemFontOfSize:17.0f];
     cellTitleLabel.numberOfLines = 2;
     cellTitleLabel.text = @"北京清热暴晒继续 周末或有雷阵雨热度不减！北京清热暴晒继续 周末或有雷阵雨热度不减！北京清热暴晒继续 周末或有雷阵雨热度不减！北京清热暴晒继续 周末或有雷阵雨热度不减！";
     cellTitleLabel.textColor = [UIColor colorWithHexString:@"#2A333A"];
@@ -91,6 +91,17 @@
     [pinlunLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.laiyunLabel.mas_right).offset(20);
         make.bottom.equalTo(self.cellImageView.mas_bottom).offset(0);
+    }];
+    
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(15);
+        make.bottom.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.height.mas_equalTo(0.5);
     }];
     
 }

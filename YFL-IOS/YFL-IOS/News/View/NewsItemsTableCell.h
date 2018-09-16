@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsItemsTableCell : UITableViewCell
+
 +(CGFloat)CellH;
 @end
 
@@ -16,4 +17,5 @@
 @property (nonatomic, strong) UILabel *titleLab;
 @property (nonatomic, strong) UILabel *contentLab;
 @property (nonatomic, strong) UIImageView *iconImageView;
+@property (nonatomic, strong) UIImageView *backView;
 @end

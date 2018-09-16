@@ -66,6 +66,18 @@
     }];
     
     
+    UILabel *labelA = [[UILabel alloc] init];
+    labelA.font = [UIFont systemFontOfSize:17.0f];
+    labelA.text = @"A：撤销党内职务";
+    labelA.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    labelA.textAlignment = NSTextAlignmentLeft;
+    [self.contentView addSubview:labelA];
+    [labelA mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.A.mas_right).offset(10);
+        make.centerY.equalTo(self.A);
+    }];
+    
+    
     
     UIImageView *B = [[UIImageView alloc]init];
     [B setBackgroundColor:[UIColor whiteColor]];
@@ -82,6 +94,18 @@
         make.top.equalTo(self.A.mas_bottom).offset(15);
         make.height.width.mas_equalTo(25);
     }];
+    
+    UILabel *labelB = [[UILabel alloc] init];
+    labelB.font = [UIFont systemFontOfSize:17.0f];
+    labelB.text = @"B：撤销党内职务";
+    labelB.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    labelB.textAlignment = NSTextAlignmentLeft;
+    [self.contentView addSubview:labelB];
+    [labelB mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.B.mas_right).offset(10);
+        make.centerY.equalTo(self.B);
+    }];
+
     
     
     
@@ -101,6 +125,17 @@
         make.height.width.mas_equalTo(25);
     }];
     
+    UILabel *labelC = [[UILabel alloc] init];
+    labelC.font = [UIFont systemFontOfSize:17.0f];
+    labelC.text = @"B：撤销党内职务";
+    labelC.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    labelC.textAlignment = NSTextAlignmentLeft;
+    [self.contentView addSubview:labelC];
+    [labelC mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.C.mas_right).offset(10);
+        make.centerY.equalTo(self.C);
+    }];
+    
     
     
     UIImageView *D = [[UIImageView alloc]init];
@@ -117,6 +152,17 @@
         make.left.equalTo(self).offset(10);
         make.top.equalTo(self.C.mas_bottom).offset(15);
         make.height.width.mas_equalTo(25);
+    }];
+    
+    UILabel *labelD = [[UILabel alloc] init];
+    labelD.font = [UIFont systemFontOfSize:17.0f];
+    labelD.text = @"B：撤销党内职务";
+    labelD.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    labelD.textAlignment = NSTextAlignmentLeft;
+    [self.contentView addSubview:labelD];
+    [labelD mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.D.mas_right).offset(10);
+        make.centerY.equalTo(self.D);
     }];
     
     

@@ -58,5 +58,11 @@
           failure:(void (^)( NSError *error))failure;
 
 
+
+//墨云Post请求方法
+- (void)postRequestWithBodyUrl:(NSString *)url
+                        params:(NSDictionary *)params
+                       success:(void (^)( NSDictionary *responseObject))success
+                       failure:(void (^)( NSError *error))failure;
 @end
 

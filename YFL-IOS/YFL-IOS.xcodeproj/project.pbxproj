@@ -42,6 +42,7 @@
 		3A5C0F46214DDCE000BB11FB /* EducationHeartLearnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F45214DDCE000BB11FB /* EducationHeartLearnCell.m */; };
 		3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F48214DE10F00BB11FB /* EducationLearHeartViewController.m */; };
 		3A5C0F4C214DE51A00BB11FB /* EducationTaskDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F4B214DE51A00BB11FB /* EducationTaskDetailController.m */; };
+		3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F4F2152840500BB11FB /* HTTPEngineGuide.m */; };
 		3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7020BA650C00F7BB60 /* AppDelegate.m */; };
 		3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7320BA650C00F7BB60 /* ViewController.m */; };
 		3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B7820BA650C00F7BB60 /* Assets.xcassets */; };
@@ -149,6 +150,8 @@
 		3A5C0F48214DE10F00BB11FB /* EducationLearHeartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationLearHeartViewController.m; sourceTree = "<group>"; };
 		3A5C0F4A214DE51A00BB11FB /* EducationTaskDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationTaskDetailController.h; sourceTree = "<group>"; };
 		3A5C0F4B214DE51A00BB11FB /* EducationTaskDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationTaskDetailController.m; sourceTree = "<group>"; };
+		3A5C0F4E2152840500BB11FB /* HTTPEngineGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPEngineGuide.h; sourceTree = "<group>"; };
+		3A5C0F4F2152840500BB11FB /* HTTPEngineGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPEngineGuide.m; sourceTree = "<group>"; };
 		3A699B6C20BA650C00F7BB60 /* YFL-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YFL-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A699B6F20BA650C00F7BB60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A699B7020BA650C00F7BB60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -346,11 +349,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		3A5C0F4D2152840500BB11FB /* HTTPSever */ = {
+			isa = PBXGroup;
+			children = (
+				3A5C0F4E2152840500BB11FB /* HTTPEngineGuide.h */,
+				3A5C0F4F2152840500BB11FB /* HTTPEngineGuide.m */,
+			);
+			path = HTTPSever;
+			sourceTree = "<group>";
+		};
 		3A699B6320BA650C00F7BB60 = {
 			isa = PBXGroup;
 			children = (
+				3A5C0F4D2152840500BB11FB /* HTTPSever */,
 				3A6BA48721271C0B00322875 /* Base */,
-				3A6BA4862127169500322875 /* HTTPServer */,
 				3A699B9B20BAAE6900F7BB60 /* Headers */,
 				3A699B8E20BA75D400F7BB60 /* 三方库 */,
 				3A699B8720BA6EFC00F7BB60 /* BaseModule */,
@@ -440,13 +452,6 @@
 				3A699B9D20BAAECD00F7BB60 /* YFLHeader.pch */,
 			);
 			path = Headers;
-			sourceTree = "<group>";
-		};
-		3A6BA4862127169500322875 /* HTTPServer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HTTPServer;
 			sourceTree = "<group>";
 		};
 		3A6BA48721271C0B00322875 /* Base */ = {
@@ -853,6 +858,7 @@
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
 				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
 				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
+				3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A5C0F4C214DE51A00BB11FB /* EducationTaskDetailController.m in Sources */,
 				3A5C0F3A214DCB0500BB11FB /* NewsActivityViewController.m in Sources */,

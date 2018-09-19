@@ -223,5 +223,41 @@
     
 }
 
+
+
+- (void)postRequestWithBodyUrl:(NSString *)url
+                        params:(NSDictionary *)params
+                       success:(void (^)( NSDictionary *responseObject))success
+                       failure:(void (^)( NSError *error))failure{
+    NSLog(@"请求路径: %@ \n\t请求参数: %@", url, params?:@"nil");
+    
+
+    NSString *requestURL= url;
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:requestURL parameters:nil error:nil];
+    
+    request.timeoutInterval= 5;
+    request.HTTPMethod = @"POST";
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSData *bodyData= [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:nil];
+    
+    [request setHTTPBody:bodyData];
+    
+    
+    [[self.requestSessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData * responseObject, NSError * _Nullable error) {
+        NSError *error1 = nil;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error1];
+        NSInteger code = [[dic objectForKey:@"code"] integerValue];
+        
+        if (200 == code) {
+            success(dic);
+        }else {
+            failure(error);
+        }
+ 
+    }] resume];
+    
+}
+
+
 @end
 

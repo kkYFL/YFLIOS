@@ -10,7 +10,11 @@
 #import "EWTLoginView.h"
 //#import "UserCenterHTTPEngineGuide.h"
 #import "PublicMethod.h"
+#import "HTTPEngineGuide.h"
 
+
+#import "AFNetworking.h"
+#import "AFHTTPSessionManager.h"
 
 
 @interface EWTLoginAndRegisterViewController ()<UIAlertViewDelegate>
@@ -35,6 +39,9 @@
     [self _configLoginView];
     
     [self _configRegisterView];
+    
+    
+    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -253,6 +260,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
     
+    
 
     
     // 获取服务器Date
@@ -399,6 +407,118 @@
     
 }
 
+
+-(void)loadData{
+    
+//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+//
+//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
+//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+//
+//        if ([code isEqualToString:@"200"]) {
+//            disView.hidden = YES;
+//            // 数据加载完成
+//            [[PromptBox sharedBox] removeLoadingView];
+//            //
+//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+//
+//
+//        }else{
+//            //数据刷新
+//            [[PromptBox sharedBox] removeLoadingView];
+//
+//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
+//
+//        }
+//
+//
+//    } failure:^(NSError *error) {
+//        [[PromptBox sharedBox] removeLoadingView];
+//    }];
+   
+    
+    
+    
+    
+//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+//    [HTTPEngineGuide MYGetSeverTimerStampSuccess:^(NSDictionary *responseObject) {
+//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+//
+//        if ([code isEqualToString:@"200"]) {
+//
+//            // 数据加载完成
+//            [[PromptBox sharedBox] removeLoadingView];
+//            //
+//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+//
+//
+//        }else{
+//            //数据刷新
+//            [[PromptBox sharedBox] removeLoadingView];
+//
+//            //[[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
+//
+//        }
+//    } failure:^(NSError *error) {
+//        [[PromptBox sharedBox] removeLoadingView];
+//
+//    }];
+    
+    
+    
+    
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [HTTPEngineGuide MYLessonListSourceWithType:1 Page:1 PageNum:1 Success:^(NSDictionary *responseObject) {
+        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+
+        if ([code isEqualToString:@"200"]) {
+
+            // 数据加载完成
+            [[PromptBox sharedBox] removeLoadingView];
+            //
+            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+
+
+        }else{
+            //数据刷新
+            [[PromptBox sharedBox] removeLoadingView];
+
+            //[[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
+
+        }
+    } failure:^(NSError *error) {
+        [[PromptBox sharedBox] removeLoadingView];
+    }];
+    
+    
+//    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getData"];
+//    NSDictionary *paraDic = @{@"type":@(1),
+//                              @"page":@(1),
+//                              @"limit":@(10),
+//                              @"userId":@"1"};
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    request.timeoutInterval = 5;
+//    request.HTTPMethod = @"POST";
+//    NSData *Dicdata= [NSJSONSerialization dataWithJSONObject:paraDic options:NSJSONWritingPrettyPrinted error:nil];
+//    //NSString *paraStr = [NSString stringWithFormat:@"type=1&page=1&limit=10&userId=1"];
+//    request.HTTPBody = Dicdata;
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+//        //NSDictionary *dictFromData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+//
+//        NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+//
+//        NSLog(@"");
+//    }];
+    
+    
+    
+    
+    
+    
+}
+
 - (void)judgeAccountNumberStaus {
 //    [[PromptBox sharedBox] removeLoadingView];
 //
@@ -421,6 +541,9 @@
 //        [self.navigationController pushViewController:security animated:YES];
 //    }
 }
+
+
+
 
 - (void)judgeLoginWithCardType:(NSString *)cardType{
     

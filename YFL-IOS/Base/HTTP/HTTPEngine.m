@@ -248,7 +248,7 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error1];
         NSInteger code = [[dic objectForKey:@"code"] integerValue];
         
-        if (200 == code) {
+        if (2000 == code) {
             success(dic);
         }else {
             failure(error);

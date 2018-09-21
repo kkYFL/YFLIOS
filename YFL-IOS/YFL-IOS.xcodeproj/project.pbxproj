@@ -50,8 +50,6 @@
 		3A699B7F20BA650C00F7BB60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7E20BA650C00F7BB60 /* main.m */; };
 		3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B8920BA6F1000F7BB60 /* BaseViewController.m */; };
 		3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B8C20BA6F3100F7BB60 /* BaseNavigationController.m */; };
-		3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9320BA790300F7BB60 /* iCarousel.m */; };
-		3A699B9620BA790300F7BB60 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B9420BA790300F7BB60 /* Info.plist */; };
 		3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B9920BA795900F7BB60 /* Reachability.m */; };
 		3A6BA54421271E5B00322875 /* PromptBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA49721271E5A00322875 /* PromptBox.m */; };
 		3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA4D421271E5A00322875 /* HTTPEngine.m */; };
@@ -165,9 +163,6 @@
 		3A699B8920BA6F1000F7BB60 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		3A699B8B20BA6F3100F7BB60 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		3A699B8C20BA6F3100F7BB60 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		3A699B9220BA790300F7BB60 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
-		3A699B9320BA790300F7BB60 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
-		3A699B9420BA790300F7BB60 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A699B9820BA795900F7BB60 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3A699B9920BA795900F7BB60 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3A699B9D20BAAECD00F7BB60 /* YFLHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFLHeader.pch; sourceTree = "<group>"; };
@@ -422,19 +417,8 @@
 			isa = PBXGroup;
 			children = (
 				3A699B9720BA795900F7BB60 /* Reachability */,
-				3A699B9120BA790300F7BB60 /* iCarousel */,
 			);
 			path = "三方库";
-			sourceTree = "<group>";
-		};
-		3A699B9120BA790300F7BB60 /* iCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				3A699B9220BA790300F7BB60 /* iCarousel.h */,
-				3A699B9320BA790300F7BB60 /* iCarousel.m */,
-				3A699B9420BA790300F7BB60 /* Info.plist */,
-			);
-			path = iCarousel;
 			sourceTree = "<group>";
 		};
 		3A699B9720BA795900F7BB60 /* Reachability */ = {
@@ -745,7 +729,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A699B9620BA790300F7BB60 /* Info.plist in Resources */,
 				3A699B7C20BA650C00F7BB60 /* LaunchScreen.storyboard in Resources */,
 				3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */,
 			);
@@ -857,7 +840,6 @@
 				3A5C0F31214DC3E400BB11FB /* NewsPolicyViewController.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
 				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
-				3A699B9520BA790300F7BB60 /* iCarousel.m in Sources */,
 				3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A5C0F4C214DE51A00BB11FB /* EducationTaskDetailController.m in Sources */,

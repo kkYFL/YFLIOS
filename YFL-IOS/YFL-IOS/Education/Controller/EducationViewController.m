@@ -9,6 +9,7 @@
 #import "EducationViewController.h"
 #import "EducationHeadTableCell.h"
 #import "EducationItemsTableCell.h"
+#import "EducationOptionsController.h"
 #import "EducationLearHeartViewController.h"
 
 @interface EducationViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -66,13 +67,7 @@
     
     EducationItemsTableCell *ItemsCell = [tableView dequeueReusableCellWithIdentifier:@"ItemsCell"];
     return ItemsCell;
-    
-    static NSString *identify = @"cellIdentify";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
-    }
-    return cell;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,14 +152,18 @@
     NSInteger index = [[userInfo objectForKey:@"index"] integerValue];
     if (index == 1) {
         EducationLearHeartViewController *heartVC = [[EducationLearHeartViewController alloc]init];
+        heartVC.type = MYEducationViewTypeDefault;
         heartVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:heartVC animated:YES];
     }else if (index == 2){
         EducationLearHeartViewController *heartVC = [[EducationLearHeartViewController alloc]init];
         heartVC.hidesBottomBarWhenPushed = YES;
-        heartVC.title = @"党员教育";
+        heartVC.type = MYEducationViewTypeHistory;
         [self.navigationController pushViewController:heartVC animated:YES];
     }else if (index == 3){
+        EducationOptionsController *optionsVC = [[EducationOptionsController alloc]init];
+        optionsVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:optionsVC animated:YES];
         
     }else if (index == 4){
         

@@ -83,21 +83,23 @@
     self.item1.backView.tag = 101;
     [self.contentView addSubview:self.item1];
     
+    
+    
     self.item2 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop, itemViewW, itemViewH)];
     self.item2.titleLabel.text = @"学习痕迹";
-    self.item2.tag = 102;
+    self.item2.backView.tag = 102;
     [self.contentView addSubview:self.item2];
     
     
     self.item3 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
     self.item3.titleLabel.text = @"意见反馈";
-    self.item3.tag = 103;
+    self.item3.backView.tag = 103;
     [self.contentView addSubview:self.item3];
     
     
     self.item4 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
     self.item4.titleLabel.text = @"学习心得";
-    self.item4.tag = 104;
+    self.item4.backView.tag = 104;
     [self.contentView addSubview:self.item4];
     
     

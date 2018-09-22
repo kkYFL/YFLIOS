@@ -66,7 +66,7 @@ DEPENDENCIES:
   - ZFPlayer/ControlView (~> 3.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - AvoidCrash
     - Bugly
@@ -108,4 +108,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e265e306fa48076d314aeacdb8398efade42fb55
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

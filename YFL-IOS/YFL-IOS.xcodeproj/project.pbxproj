@@ -43,6 +43,10 @@
 		3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F48214DE10F00BB11FB /* EducationLearHeartViewController.m */; };
 		3A5C0F4C214DE51A00BB11FB /* EducationTaskDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F4B214DE51A00BB11FB /* EducationTaskDetailController.m */; };
 		3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F4F2152840500BB11FB /* HTTPEngineGuide.m */; };
+		3A5C0F532155386000BB11FB /* EducationTaskHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F522155386000BB11FB /* EducationTaskHistoryController.m */; };
+		3A5C0F5621553C8D00BB11FB /* EducationOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F5521553C8D00BB11FB /* EducationOptionsController.m */; };
+		3A5C0F5921553D7F00BB11FB /* EducationOptionsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F5821553D7F00BB11FB /* EducationOptionsTableCell.m */; };
+		3A5C0F5C2155450600BB11FB /* EducationAddOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C0F5B2155450600BB11FB /* EducationAddOptionController.m */; };
 		3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7020BA650C00F7BB60 /* AppDelegate.m */; };
 		3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A699B7320BA650C00F7BB60 /* ViewController.m */; };
 		3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A699B7820BA650C00F7BB60 /* Assets.xcassets */; };
@@ -150,6 +154,14 @@
 		3A5C0F4B214DE51A00BB11FB /* EducationTaskDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationTaskDetailController.m; sourceTree = "<group>"; };
 		3A5C0F4E2152840500BB11FB /* HTTPEngineGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPEngineGuide.h; sourceTree = "<group>"; };
 		3A5C0F4F2152840500BB11FB /* HTTPEngineGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPEngineGuide.m; sourceTree = "<group>"; };
+		3A5C0F512155386000BB11FB /* EducationTaskHistoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationTaskHistoryController.h; sourceTree = "<group>"; };
+		3A5C0F522155386000BB11FB /* EducationTaskHistoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationTaskHistoryController.m; sourceTree = "<group>"; };
+		3A5C0F5421553C8D00BB11FB /* EducationOptionsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationOptionsController.h; sourceTree = "<group>"; };
+		3A5C0F5521553C8D00BB11FB /* EducationOptionsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationOptionsController.m; sourceTree = "<group>"; };
+		3A5C0F5721553D7F00BB11FB /* EducationOptionsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationOptionsTableCell.h; sourceTree = "<group>"; };
+		3A5C0F5821553D7F00BB11FB /* EducationOptionsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationOptionsTableCell.m; sourceTree = "<group>"; };
+		3A5C0F5A2155450600BB11FB /* EducationAddOptionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationAddOptionController.h; sourceTree = "<group>"; };
+		3A5C0F5B2155450600BB11FB /* EducationAddOptionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationAddOptionController.m; sourceTree = "<group>"; };
 		3A699B6C20BA650C00F7BB60 /* YFL-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YFL-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A699B6F20BA650C00F7BB60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A699B7020BA650C00F7BB60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -340,6 +352,8 @@
 				3A50D522212DC3C100BD2919 /* EducationItemsTableCell.m */,
 				3A5C0F44214DDCE000BB11FB /* EducationHeartLearnCell.h */,
 				3A5C0F45214DDCE000BB11FB /* EducationHeartLearnCell.m */,
+				3A5C0F5721553D7F00BB11FB /* EducationOptionsTableCell.h */,
+				3A5C0F5821553D7F00BB11FB /* EducationOptionsTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -586,6 +600,12 @@
 				3A5C0F48214DE10F00BB11FB /* EducationLearHeartViewController.m */,
 				3A5C0F4A214DE51A00BB11FB /* EducationTaskDetailController.h */,
 				3A5C0F4B214DE51A00BB11FB /* EducationTaskDetailController.m */,
+				3A5C0F512155386000BB11FB /* EducationTaskHistoryController.h */,
+				3A5C0F522155386000BB11FB /* EducationTaskHistoryController.m */,
+				3A5C0F5421553C8D00BB11FB /* EducationOptionsController.h */,
+				3A5C0F5521553C8D00BB11FB /* EducationOptionsController.m */,
+				3A5C0F5A2155450600BB11FB /* EducationAddOptionController.h */,
+				3A5C0F5B2155450600BB11FB /* EducationAddOptionController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -822,6 +842,7 @@
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
 				3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */,
 				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
+				3A5C0F532155386000BB11FB /* EducationTaskHistoryController.m in Sources */,
 				3A5C0F25214D461600BB11FB /* ExamTextViewPutINCell.m in Sources */,
 				3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */,
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
@@ -862,6 +883,7 @@
 				3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */,
 				3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */,
 				3A5C0F102144DCEE00BB11FB /* ExamWaitingViewController.m in Sources */,
+				3A5C0F5921553D7F00BB11FB /* EducationOptionsTableCell.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
@@ -874,6 +896,8 @@
 				3A5C0F43214DD34800BB11FB /* NewsNoticiTableViewCell.m in Sources */,
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
 				3A5C0F40214DD2B000BB11FB /* NewsNoticeViewController.m in Sources */,
+				3A5C0F5621553C8D00BB11FB /* EducationOptionsController.m in Sources */,
+				3A5C0F5C2155450600BB11FB /* EducationAddOptionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,25 +1,22 @@
 //
-//  EducationLearHeartViewController.m
+//  EducationOptionsController.m
 //  YFL-IOS
 //
-//  Created by 杨丰林 on 2018/9/16.
+//  Created by 杨丰林 on 2018/9/21.
 //  Copyright © 2018年 杨丰林. All rights reserved.
 //
 
-#import "EducationLearHeartViewController.h"
-#import "EducationHeartLearnCell.h"
-#import "EducationTaskDetailController.h"
-#import "EducationTaskHistoryController.h"
+#import "EducationOptionsController.h"
+#import "EducationOptionsTableCell.h"
+#import "EducationAddOptionController.h"
 
-@interface EducationLearHeartViewController ()<UITableViewDelegate,UITableViewDataSource
+@interface EducationOptionsController ()<UITableViewDelegate,UITableViewDataSource
 >
 @property (nonatomic, strong) UITableView *table;
-@property (nonatomic, strong) UIView *itemsView;
-
 
 @end
 
-@implementation EducationLearHeartViewController
+@implementation EducationOptionsController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,10 +27,10 @@
 }
 
 -(void)initView{
-    self.title = (_type == MYEducationViewTypeDefault)?@"学习任务":@"党员教育";
+    self.title = @"意见反馈";
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"view_back", @"view_back", leftButtonAction);
-    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
+    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"options_right", @"options_right", rightButtonAction)
     
     
     [self.view addSubview:self.table];
@@ -92,26 +89,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [EducationHeartLearnCell CellH];
+    return [EducationOptionsTableCell CellH];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EducationHeartLearnCell *heartCell = [tableView dequeueReusableCellWithIdentifier:@"heartCell"];
-    return heartCell;
-    
+    EducationOptionsTableCell *optionsCell = [tableView dequeueReusableCellWithIdentifier:@"optionsCell"];
+    return optionsCell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (self.type == MYEducationViewTypeDefault) {
-        EducationTaskDetailController *detailVC = [[EducationTaskDetailController alloc]init];
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }else{
-        EducationTaskHistoryController *hisoryVC = [[EducationTaskHistoryController alloc]init];
-        [self.navigationController pushViewController:hisoryVC animated:YES];
-    }
+
 }
 
 #pragma mark - 懒加载
@@ -125,11 +115,10 @@
         _table.dataSource = self;
         [self.view addSubview:_table];
         
-        [_table registerClass:[EducationHeartLearnCell class] forCellReuseIdentifier:@"heartCell"];
+        [_table registerClass:[EducationOptionsTableCell class] forCellReuseIdentifier:@"optionsCell"];
     }
     return _table;
 }
-
 
 
 #pragma mark - 无网络加载数据
@@ -144,12 +133,12 @@
 
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
-    
+    EducationAddOptionController *addVC = [[EducationAddOptionController alloc]init];
+    [self.navigationController pushViewController:addVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

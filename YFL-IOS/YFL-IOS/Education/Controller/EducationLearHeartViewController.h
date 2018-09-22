@@ -8,6 +8,13 @@
 
 #import "EWTBaseViewController.h"
 
+
+typedef NS_ENUM(NSInteger,MYEducationViewType) {
+    MYEducationViewTypeDefault,  //学习任务
+    MYEducationViewTypeHistory   //学习记录
+};
+
 @interface EducationLearHeartViewController : EWTBaseViewController
+@property (nonatomic, assign) MYEducationViewType type;
 
 @end

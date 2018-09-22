@@ -78,6 +78,13 @@
 		3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */; };
 		3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */; };
 		61B65107CF6228423FCF8BA1 /* Pods_YFL_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */; };
+		8923F5A42155CCF700CB98E4 /* HanZhaoHua.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5A32155CCF700CB98E4 /* HanZhaoHua.m */; };
+		8923F5A82155D31700CB98E4 /* TestInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5A72155D31700CB98E4 /* TestInterface.m */; };
+		8923F5AC2155ECCD00CB98E4 /* LearningTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5AB2155ECCD00CB98E4 /* LearningTaskModel.m */; };
+		8923F5AF2156338500CB98E4 /* PartyMemberThinking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5AE2156338500CB98E4 /* PartyMemberThinking.m */; };
+		8923F5B2215640CB00CB98E4 /* LearningHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5B1215640CB00CB98E4 /* LearningHistory.m */; };
+		8923F5B52156455100CB98E4 /* SuggestionFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5B42156455100CB98E4 /* SuggestionFeedback.m */; };
+		8923F5B82156542300CB98E4 /* StudyNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5B72156542300CB98E4 /* StudyNotes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +236,20 @@
 		3AFBC2BA2143D45300D154D3 /* DIYCalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DIYCalendarCell.h; sourceTree = "<group>"; };
 		3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIYCalendarCell.m; sourceTree = "<group>"; };
 		5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8923F5A22155CCF700CB98E4 /* HanZhaoHua.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HanZhaoHua.h; sourceTree = "<group>"; };
+		8923F5A32155CCF700CB98E4 /* HanZhaoHua.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HanZhaoHua.m; sourceTree = "<group>"; };
+		8923F5A62155D31700CB98E4 /* TestInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestInterface.h; sourceTree = "<group>"; };
+		8923F5A72155D31700CB98E4 /* TestInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestInterface.m; sourceTree = "<group>"; };
+		8923F5AA2155ECCD00CB98E4 /* LearningTaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LearningTaskModel.h; sourceTree = "<group>"; };
+		8923F5AB2155ECCD00CB98E4 /* LearningTaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LearningTaskModel.m; sourceTree = "<group>"; };
+		8923F5AD2156338500CB98E4 /* PartyMemberThinking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PartyMemberThinking.h; sourceTree = "<group>"; };
+		8923F5AE2156338500CB98E4 /* PartyMemberThinking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PartyMemberThinking.m; sourceTree = "<group>"; };
+		8923F5B0215640CB00CB98E4 /* LearningHistory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LearningHistory.h; sourceTree = "<group>"; };
+		8923F5B1215640CB00CB98E4 /* LearningHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LearningHistory.m; sourceTree = "<group>"; };
+		8923F5B32156455100CB98E4 /* SuggestionFeedback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuggestionFeedback.h; sourceTree = "<group>"; };
+		8923F5B42156455100CB98E4 /* SuggestionFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestionFeedback.m; sourceTree = "<group>"; };
+		8923F5B62156542300CB98E4 /* StudyNotes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyNotes.h; sourceTree = "<group>"; };
+		8923F5B72156542300CB98E4 /* StudyNotes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyNotes.m; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -370,6 +391,7 @@
 		3A699B6320BA650C00F7BB60 = {
 			isa = PBXGroup;
 			children = (
+				8923F5A52155D2A900CB98E4 /* HanZhaoHua */,
 				3A5C0F4D2152840500BB11FB /* HTTPSever */,
 				3A6BA48721271C0B00322875 /* Base */,
 				3A699B9B20BAAE6900F7BB60 /* Headers */,
@@ -680,6 +702,35 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		8923F5A52155D2A900CB98E4 /* HanZhaoHua */ = {
+			isa = PBXGroup;
+			children = (
+				8923F5A92155EC3E00CB98E4 /* Model */,
+				8923F5A22155CCF700CB98E4 /* HanZhaoHua.h */,
+				8923F5A32155CCF700CB98E4 /* HanZhaoHua.m */,
+				8923F5A62155D31700CB98E4 /* TestInterface.h */,
+				8923F5A72155D31700CB98E4 /* TestInterface.m */,
+			);
+			path = HanZhaoHua;
+			sourceTree = "<group>";
+		};
+		8923F5A92155EC3E00CB98E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8923F5AA2155ECCD00CB98E4 /* LearningTaskModel.h */,
+				8923F5AB2155ECCD00CB98E4 /* LearningTaskModel.m */,
+				8923F5AD2156338500CB98E4 /* PartyMemberThinking.h */,
+				8923F5AE2156338500CB98E4 /* PartyMemberThinking.m */,
+				8923F5B0215640CB00CB98E4 /* LearningHistory.h */,
+				8923F5B1215640CB00CB98E4 /* LearningHistory.m */,
+				8923F5B32156455100CB98E4 /* SuggestionFeedback.h */,
+				8923F5B42156455100CB98E4 /* SuggestionFeedback.m */,
+				8923F5B62156542300CB98E4 /* StudyNotes.h */,
+				8923F5B72156542300CB98E4 /* StudyNotes.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		92681C27C3696884EEEE72A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,6 +887,7 @@
 				3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */,
 				3A5C0F2E214D6D4C00BB11FB /* NewsContentMaxImageViewCell.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
+				8923F5A42155CCF700CB98E4 /* HanZhaoHua.m in Sources */,
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
 				3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
@@ -843,6 +895,7 @@
 				3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */,
 				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
 				3A5C0F532155386000BB11FB /* EducationTaskHistoryController.m in Sources */,
+				8923F5B52156455100CB98E4 /* SuggestionFeedback.m in Sources */,
 				3A5C0F25214D461600BB11FB /* ExamTextViewPutINCell.m in Sources */,
 				3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */,
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
@@ -857,8 +910,12 @@
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
+				8923F5AF2156338500CB98E4 /* PartyMemberThinking.m in Sources */,
 				3A5C0F37214DC9C600BB11FB /* NewsPolicyDetailViewController.m in Sources */,
+				8923F5A82155D31700CB98E4 /* TestInterface.m in Sources */,
 				3A5C0F31214DC3E400BB11FB /* NewsPolicyViewController.m in Sources */,
+				8923F5B82156542300CB98E4 /* StudyNotes.m in Sources */,
+				8923F5AC2155ECCD00CB98E4 /* LearningTaskModel.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
 				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
 				3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */,
@@ -885,6 +942,7 @@
 				3A5C0F102144DCEE00BB11FB /* ExamWaitingViewController.m in Sources */,
 				3A5C0F5921553D7F00BB11FB /* EducationOptionsTableCell.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
+				8923F5B2215640CB00CB98E4 /* LearningHistory.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
 				3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */,

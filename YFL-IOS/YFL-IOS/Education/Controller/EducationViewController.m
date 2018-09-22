@@ -11,6 +11,7 @@
 #import "EducationItemsTableCell.h"
 #import "EducationOptionsController.h"
 #import "EducationLearHeartViewController.h"
+#import "EducationLearnController.h"
 
 @interface EducationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -166,7 +167,9 @@
         [self.navigationController pushViewController:optionsVC animated:YES];
         
     }else if (index == 4){
-        
+        EducationLearnController *learnVC = [[EducationLearnController alloc]init];
+        learnVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:learnVC animated:YES];
     }
 }
 

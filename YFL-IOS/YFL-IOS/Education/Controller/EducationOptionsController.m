@@ -9,6 +9,7 @@
 #import "EducationOptionsController.h"
 #import "EducationOptionsTableCell.h"
 #import "EducationAddOptionController.h"
+#import "EducationDetailController.h"
 
 @interface EducationOptionsController ()<UITableViewDelegate,UITableViewDataSource
 >
@@ -101,7 +102,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    EducationDetailController *optionDetailVC = [[EducationDetailController alloc]init];
+    [self.navigationController pushViewController:optionDetailVC animated:YES];
 }
 
 #pragma mark - 懒加载

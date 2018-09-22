@@ -310,6 +310,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     return _playBtn;
 }
 
+
+//自定义Items切换固定items
 -(UIView *)itemsView{
     if (!_itemsView) {
         _itemsView = [[UIView alloc]init];

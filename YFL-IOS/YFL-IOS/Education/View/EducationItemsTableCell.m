@@ -81,6 +81,8 @@
     self.item1 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop, itemViewW, itemViewH)];
     self.item1.titleLabel.text = @"学习任务";
     self.item1.backView.tag = 101;
+    self.item1.backView.backgroundColor = [UIColor colorWithHexString:@"#FFAA54"];
+    [self.item1.icon setImage:[UIImage imageNamed:@"Education_renwu"]];
     [self.contentView addSubview:self.item1];
     
     
@@ -88,18 +90,24 @@
     self.item2 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop, itemViewW, itemViewH)];
     self.item2.titleLabel.text = @"学习痕迹";
     self.item2.backView.tag = 102;
+    self.item2.backView.backgroundColor = [UIColor colorWithHexString:@"#F57373"];
+    [self.item2.icon setImage:[UIImage imageNamed:@"Education_henji"]];
     [self.contentView addSubview:self.item2];
     
     
     self.item3 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
     self.item3.titleLabel.text = @"意见反馈";
     self.item3.backView.tag = 103;
+    self.item3.backView.backgroundColor = [UIColor colorWithHexString:@"#B489F0"];
+    [self.item3.icon setImage:[UIImage imageNamed:@"Education_fankui"]];
     [self.contentView addSubview:self.item3];
     
     
     self.item4 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
     self.item4.titleLabel.text = @"学习心得";
     self.item4.backView.tag = 104;
+    self.item4.backView.backgroundColor = [UIColor colorWithHexString:@"#959DF5"];
+    [self.item4.icon setImage:[UIImage imageNamed:@"Education_xinde"]];
     [self.contentView addSubview:self.item4];
     
     
@@ -149,10 +157,11 @@
 -(void)initView{
     UIImageView *backView = [[UIImageView alloc]init];
     [backView setBackgroundColor:[UIColor whiteColor]];
+    backView.layer.masksToBounds = YES;
+    backView.layer.cornerRadius = 4.0f;
     [self addSubview:backView];
     self.backView = backView;
     [backView setContentMode:UIViewContentModeScaleToFill];
-    [backView setImage:[UIImage imageNamed:@"Pfofession_card-bg-2"]];
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
     backView.userInteractionEnabled = YES;
     [backView addGestureRecognizer:tap1];
@@ -162,11 +171,9 @@
     
 
     UIImageView *icon = [[UIImageView alloc]init];
-    [icon setBackgroundColor:[UIColor whiteColor]];
     [backView addSubview:icon];
     self.icon = icon;
     [icon setContentMode:UIViewContentModeCenter];
-    [icon setImage:[UIImage imageNamed:@"ZjDoubtView"]];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(backView.mas_right).offset(-15);
         make.centerY.equalTo(backView);

@@ -13,6 +13,7 @@
 
 @interface BannerScrollView ()<SDCycleScrollViewDelegate>
 @property (nonatomic, strong) SDCycleScrollView* scrollView;
+@property (nonatomic, strong) UIImageView *remindView;
 @property (nonatomic, strong) NSMutableArray *contentViewsArr;
 @end
 
@@ -81,6 +82,18 @@
         _scrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.bounds delegate:self placeholderImage:nil];
         _scrollView.scrollDirection = UICollectionViewScrollDirectionVertical;
         _scrollView.showPageControl = NO;
+        
+        UIImageView *remindView = [[UIImageView alloc]init];
+        [remindView setBackgroundColor:[UIColor clearColor]];
+        [_scrollView addSubview:remindView];
+        self.remindView = remindView;
+        [remindView setContentMode:UIViewContentModeCenter];
+        [remindView setImage:[UIImage imageNamed:@"news_laba"]];
+        [remindView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_scrollView).offset(12);
+            make.centerY.equalTo(_scrollView);
+            make.height.width.mas_equalTo(15);
+        }];
     }
     return _scrollView;
 }

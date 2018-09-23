@@ -26,7 +26,7 @@
 
     //[self showLoginAndRegistController];
     
-//    [self tabBarViewInit];
+    [self tabBarViewInit];
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
@@ -37,23 +37,23 @@
 
 -(void)tabBarViewInit{
     NewsViewController *newVC = [[NewsViewController alloc]init];
-    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:@"党员资讯" image:[UIImage imageNamed:@"tabbar_classroom_normal"] selectedImage:[UIImage imageNamed:@"tabbar_classroom_selected"] VC:newVC];
+    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:@"党员资讯" image:[UIImage imageNamed:@"NewsTab_gray"] selectedImage:[UIImage imageNamed:@"NewsTab_light"] VC:newVC];
 
     
     
     
     EducationViewController *educationVC = [[EducationViewController alloc]init];
-    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:@"党员教育" image:[UIImage imageNamed:@"ecourse_normal"] selectedImage:[UIImage imageNamed:@"ecourse_selected"] VC:educationVC];
+    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:@"党员教育" image:[UIImage imageNamed:@"Educationtag_gray"] selectedImage:[UIImage imageNamed:@"Educationtab_light"] VC:educationVC];
     
     
     
     ExamnationViewController *examtionVC = [[ExamnationViewController alloc]init];
-    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:@"党员考试" image:[UIImage imageNamed:@"tabbar_community_normal"] selectedImage:[UIImage imageNamed:@"tabbar_community_selected"] VC:examtionVC];
+    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:@"党员考试" image:[UIImage imageNamed:@"Examtab_gray"] selectedImage:[UIImage imageNamed:@"Examtab_light"] VC:examtionVC];
     
     
     
     PersonalViewController *personalVC = [[PersonalViewController alloc]init];
-    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:@"个人中心" image:[UIImage imageNamed:@"personal_center_tabbar_normal"] selectedImage:[UIImage imageNamed:@"personal_center_tabbar_selected"] VC:personalVC];
+    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:@"个人中心" image:[UIImage imageNamed:@"Persontab_gray"] selectedImage:[UIImage imageNamed:@"Persontab_light"] VC:personalVC];
     
     
     

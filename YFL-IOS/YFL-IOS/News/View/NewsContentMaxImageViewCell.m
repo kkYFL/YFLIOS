@@ -13,6 +13,8 @@
 @interface NewsContentMaxImageViewCell ()
 @property (nonatomic, strong) UILabel *cellTitleLab;
 @property (nonatomic, strong) UIImageView *iconImageView;
+@property (nonatomic, strong) UIImageView *playIcon;
+
 
 @end
 
@@ -66,6 +68,30 @@
         make.top.equalTo(self.cellTitleLab.mas_bottom).offset(10.0f);
         make.right.equalTo(self.mas_right).offset(-15.0f);
         make.height.mas_equalTo(NewsIconH);
+    }];
+    
+    
+    //
+    UIImageView *playIcon = [[UIImageView alloc]init];
+    [iconImageView addSubview:playIcon];
+    self.playIcon = playIcon;
+    [playIcon setContentMode:UIViewContentModeCenter];
+    [playIcon setImage:[UIImage imageNamed:@"news_play_icon"]];
+    [playIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(iconImageView);
+        make.centerY.equalTo(iconImageView);
+    }];
+
+    
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.height.mas_equalTo(0.5f);
     }];
     
 }

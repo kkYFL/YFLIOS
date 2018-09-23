@@ -61,7 +61,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-       // [_table registerClass:[EducationHeadTableCell class] forCellReuseIdentifier:@"topCell"];
         EducationHeadTableCell *topCell = [tableView dequeueReusableCellWithIdentifier:@"topCell"];
         return topCell;
     }

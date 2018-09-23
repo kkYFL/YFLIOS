@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UILabel *numLabel;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *paimingLabel;
-
 @end
 
 
@@ -82,6 +81,15 @@
     }];
 
     
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.height.mas_equalTo(0.5f);
+    }];
 }
 
 +(CGFloat)CellH{

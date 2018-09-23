@@ -9,7 +9,7 @@
 #import "BannerScrollViewCell.h"
 
 @interface BannerScrollViewCell ()
-@property (nonatomic, strong) UIImageView *remindView;
+//@property (nonatomic, strong) UIImageView *remindView;
 @property (nonatomic, strong) UILabel *contentLab;
 @end
 
@@ -28,18 +28,18 @@
 -(void)initView{
     self.contentView.backgroundColor = [UIColor whiteColor];
     
-    UIImageView *remindView = [[UIImageView alloc]init];
-    [remindView setBackgroundColor:[UIColor clearColor]];
-    [self.contentView addSubview:remindView];
-    self.remindView = remindView;
-    [remindView setContentMode:UIViewContentModeCenter];
-    [remindView setImage:[UIImage imageNamed:@"news_laba"]];
-    
-    [remindView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(12);
-        make.centerY.equalTo(self);
-        make.height.width.mas_equalTo(15);
-    }];
+//    UIImageView *remindView = [[UIImageView alloc]init];
+//    [remindView setBackgroundColor:[UIColor clearColor]];
+//    [self.contentView addSubview:remindView];
+//    self.remindView = remindView;
+//    [remindView setContentMode:UIViewContentModeCenter];
+//    [remindView setImage:[UIImage imageNamed:@"news_laba"]];
+//    
+//    [remindView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(12);
+//        make.centerY.equalTo(self);
+//        make.height.width.mas_equalTo(15);
+//    }];
     
     UILabel *contentLab = [[UILabel alloc] init];
     contentLab.font = [UIFont systemFontOfSize:16.0f];
@@ -49,7 +49,7 @@
     [self.contentView addSubview:contentLab];
     self.contentLab = contentLab;
     [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(remindView.mas_right).offset(8);
+        make.left.equalTo(self).offset(12+15+8);
         make.top.equalTo(self).offset(0);
         make.right.equalTo(self).offset(-12);
         make.bottom.equalTo(self).offset(0);

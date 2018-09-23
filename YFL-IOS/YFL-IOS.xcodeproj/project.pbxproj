@@ -12,6 +12,11 @@
 		3A03CF122156584300C49295 /* EducationLearnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF112156584300C49295 /* EducationLearnCell.m */; };
 		3A03CF152156615400C49295 /* EducationLearnDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF142156615400C49295 /* EducationLearnDetailCell.m */; };
 		3A03CF182156619B00C49295 /* EducationLearnDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF172156619B00C49295 /* EducationLearnDetailController.m */; };
+		3A03CF1B215692BB00C49295 /* PersonJIfenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF1A215692BB00C49295 /* PersonJIfenViewController.m */; };
+		3A03CF1E2156977B00C49295 /* PersonXinxiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF1D2156977B00C49295 /* PersonXinxiViewController.m */; };
+		3A03CF2121569A7F00C49295 /* XinxiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF2021569A7F00C49295 /* XinxiTableViewCell.m */; };
+		3A03CF242156A5CB00C49295 /* PersonPassWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF232156A5CB00C49295 /* PersonPassWordController.m */; };
+		3A03CF272156A72A00C49295 /* PersonPasswordInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */; };
 		3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */; };
 		3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */; };
 		3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */; };
@@ -103,6 +108,16 @@
 		3A03CF142156615400C49295 /* EducationLearnDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationLearnDetailCell.m; sourceTree = "<group>"; };
 		3A03CF162156619B00C49295 /* EducationLearnDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationLearnDetailController.h; sourceTree = "<group>"; };
 		3A03CF172156619B00C49295 /* EducationLearnDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationLearnDetailController.m; sourceTree = "<group>"; };
+		3A03CF19215692BB00C49295 /* PersonJIfenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonJIfenViewController.h; sourceTree = "<group>"; };
+		3A03CF1A215692BB00C49295 /* PersonJIfenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonJIfenViewController.m; sourceTree = "<group>"; };
+		3A03CF1C2156977B00C49295 /* PersonXinxiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonXinxiViewController.h; sourceTree = "<group>"; };
+		3A03CF1D2156977B00C49295 /* PersonXinxiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonXinxiViewController.m; sourceTree = "<group>"; };
+		3A03CF1F21569A7F00C49295 /* XinxiTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XinxiTableViewCell.h; sourceTree = "<group>"; };
+		3A03CF2021569A7F00C49295 /* XinxiTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XinxiTableViewCell.m; sourceTree = "<group>"; };
+		3A03CF222156A5CB00C49295 /* PersonPassWordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonPassWordController.h; sourceTree = "<group>"; };
+		3A03CF232156A5CB00C49295 /* PersonPassWordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonPassWordController.m; sourceTree = "<group>"; };
+		3A03CF252156A72A00C49295 /* PersonPasswordInCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonPasswordInCell.h; sourceTree = "<group>"; };
+		3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonPasswordInCell.m; sourceTree = "<group>"; };
 		3A2E5D88213ADE4700363947 /* ExamTableViewCommonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamTableViewCommonCell.h; sourceTree = "<group>"; };
 		3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamTableViewCommonCell.m; sourceTree = "<group>"; };
 		3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonMidTableViewCell.h; sourceTree = "<group>"; };
@@ -317,6 +332,10 @@
 				3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */,
 				3A2E5D8F213AFF8500363947 /* PersonRowTableViewCell.h */,
 				3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */,
+				3A03CF1F21569A7F00C49295 /* XinxiTableViewCell.h */,
+				3A03CF2021569A7F00C49295 /* XinxiTableViewCell.m */,
+				3A03CF252156A72A00C49295 /* PersonPasswordInCell.h */,
+				3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -723,6 +742,12 @@
 				3A6BA5A52129C1D000322875 /* PersonalViewController.m */,
 				3AFBC2B721422A3200D154D3 /* SigninRecordViewController.h */,
 				3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */,
+				3A03CF19215692BB00C49295 /* PersonJIfenViewController.h */,
+				3A03CF1A215692BB00C49295 /* PersonJIfenViewController.m */,
+				3A03CF1C2156977B00C49295 /* PersonXinxiViewController.h */,
+				3A03CF1D2156977B00C49295 /* PersonXinxiViewController.m */,
+				3A03CF222156A5CB00C49295 /* PersonPassWordController.h */,
+				3A03CF232156A5CB00C49295 /* PersonPassWordController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -918,6 +943,7 @@
 				8923F5A42155CCF700CB98E4 /* HanZhaoHua.m in Sources */,
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
 				3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */,
+				3A03CF272156A72A00C49295 /* PersonPasswordInCell.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
 				3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */,
@@ -938,6 +964,8 @@
 				3A5C0F34214DC64200BB11FB /* NewsPolicyTableViewCell.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
+				3A03CF1E2156977B00C49295 /* PersonXinxiViewController.m in Sources */,
+				3A03CF242156A5CB00C49295 /* PersonPassWordController.m in Sources */,
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
 				8923F5AF2156338500CB98E4 /* PartyMemberThinking.m in Sources */,
 				3A5C0F37214DC9C600BB11FB /* NewsPolicyDetailViewController.m in Sources */,
@@ -961,6 +989,7 @@
 				3A03CF152156615400C49295 /* EducationLearnDetailCell.m in Sources */,
 				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
+				3A03CF2121569A7F00C49295 /* XinxiTableViewCell.m in Sources */,
 				3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */,
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
@@ -983,6 +1012,7 @@
 				3A03CF0F2155E4CF00C49295 /* EducationLearnController.m in Sources */,
 				3A5C0F22214D414F00BB11FB /* ExamTextInViewCell.m in Sources */,
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
+				3A03CF1B215692BB00C49295 /* PersonJIfenViewController.m in Sources */,
 				3A5C0F43214DD34800BB11FB /* NewsNoticiTableViewCell.m in Sources */,
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
 				3A5C0F40214DD2B000BB11FB /* NewsNoticeViewController.m in Sources */,

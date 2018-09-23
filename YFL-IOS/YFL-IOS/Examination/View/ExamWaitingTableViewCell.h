@@ -10,4 +10,6 @@
 
 @interface ExamWaitingTableViewCell : UITableViewCell
 +(CGFloat)CellH;
+@property (nonatomic, assign) BOOL hideRemindLabel;
+
 @end

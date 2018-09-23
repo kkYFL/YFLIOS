@@ -33,7 +33,7 @@
     [self.contentView addSubview:topImageView];
     self.topImageView = topImageView;
     [topImageView setContentMode:UIViewContentModeScaleToFill];
-    [topImageView setImage:[UIImage imageNamed:@"sign_detail_top_area"]];
+    [topImageView setImage:[UIImage imageNamed:@"login-bg"]];
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
     topImageView.userInteractionEnabled = YES;
     [topImageView addGestureRecognizer:tap1];
@@ -47,10 +47,9 @@
     
     
     UIImageView *iconImageView = [[UIImageView alloc]init];
-    [iconImageView setBackgroundColor:[UIColor whiteColor]];
     [topImageView addSubview:iconImageView];
     [iconImageView setContentMode:UIViewContentModeScaleToFill];
-    [iconImageView setImage:[UIImage imageNamed:@"play_video_bth_2_n"]];
+    [iconImageView setImage:[UIImage imageNamed:@"Education_play"]];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(topImageView);
         make.centerY.equalTo(topImageView);

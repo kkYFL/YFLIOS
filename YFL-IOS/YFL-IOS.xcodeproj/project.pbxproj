@@ -85,6 +85,16 @@
 		8923F5B2215640CB00CB98E4 /* LearningHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5B1215640CB00CB98E4 /* LearningHistory.m */; };
 		8923F5B52156455100CB98E4 /* SuggestionFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5B42156455100CB98E4 /* SuggestionFeedback.m */; };
 		8923F5B82156542300CB98E4 /* StudyNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5B72156542300CB98E4 /* StudyNotes.m */; };
+		8923F5BE2156A08100CB98E4 /* TestRanking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5BD2156A08100CB98E4 /* TestRanking.m */; };
+		8923F5C12156A54B00CB98E4 /* HistoryExam.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5C02156A54B00CB98E4 /* HistoryExam.m */; };
+		8923F5C4215744F500CB98E4 /* HistoryExamDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5C3215744F500CB98E4 /* HistoryExamDetail.m */; };
+		8923F5C721577BC300CB98E4 /* Answers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5C621577BC300CB98E4 /* Answers.m */; };
+		8923F5CA215788E200CB98E4 /* Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5C9215788E100CB98E4 /* Banner.m */; };
+		8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5CC2157929C00CB98E4 /* InformationMenu.m */; };
+		8923F5D02157966A00CB98E4 /* NewsMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5CF2157966A00CB98E4 /* NewsMessage.m */; };
+		8923F5D3215799F800CB98E4 /* NewsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5D2215799F800CB98E4 /* NewsDetail.m */; };
+		8923F5D62157A1D500CB98E4 /* UserMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5D52157A1D500CB98E4 /* UserMessage.m */; };
+		8923F5D92157DD2F00CB98E4 /* ScoreRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923F5D82157DD2F00CB98E4 /* ScoreRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +260,26 @@
 		8923F5B42156455100CB98E4 /* SuggestionFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuggestionFeedback.m; sourceTree = "<group>"; };
 		8923F5B62156542300CB98E4 /* StudyNotes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudyNotes.h; sourceTree = "<group>"; };
 		8923F5B72156542300CB98E4 /* StudyNotes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudyNotes.m; sourceTree = "<group>"; };
+		8923F5BC2156A08100CB98E4 /* TestRanking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestRanking.h; sourceTree = "<group>"; };
+		8923F5BD2156A08100CB98E4 /* TestRanking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestRanking.m; sourceTree = "<group>"; };
+		8923F5BF2156A54B00CB98E4 /* HistoryExam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryExam.h; sourceTree = "<group>"; };
+		8923F5C02156A54B00CB98E4 /* HistoryExam.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryExam.m; sourceTree = "<group>"; };
+		8923F5C2215744F500CB98E4 /* HistoryExamDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryExamDetail.h; sourceTree = "<group>"; };
+		8923F5C3215744F500CB98E4 /* HistoryExamDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryExamDetail.m; sourceTree = "<group>"; };
+		8923F5C521577BC300CB98E4 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
+		8923F5C621577BC300CB98E4 /* Answers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Answers.m; sourceTree = "<group>"; };
+		8923F5C8215788E100CB98E4 /* Banner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Banner.h; sourceTree = "<group>"; };
+		8923F5C9215788E100CB98E4 /* Banner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Banner.m; sourceTree = "<group>"; };
+		8923F5CB2157929C00CB98E4 /* InformationMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationMenu.h; sourceTree = "<group>"; };
+		8923F5CC2157929C00CB98E4 /* InformationMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationMenu.m; sourceTree = "<group>"; };
+		8923F5CE2157966A00CB98E4 /* NewsMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsMessage.h; sourceTree = "<group>"; };
+		8923F5CF2157966A00CB98E4 /* NewsMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsMessage.m; sourceTree = "<group>"; };
+		8923F5D1215799F800CB98E4 /* NewsDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetail.h; sourceTree = "<group>"; };
+		8923F5D2215799F800CB98E4 /* NewsDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetail.m; sourceTree = "<group>"; };
+		8923F5D42157A1D500CB98E4 /* UserMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserMessage.h; sourceTree = "<group>"; };
+		8923F5D52157A1D500CB98E4 /* UserMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserMessage.m; sourceTree = "<group>"; };
+		8923F5D72157DD2F00CB98E4 /* ScoreRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreRecord.h; sourceTree = "<group>"; };
+		8923F5D82157DD2F00CB98E4 /* ScoreRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreRecord.m; sourceTree = "<group>"; };
 		A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YFL_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFL-IOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -727,6 +757,26 @@
 				8923F5B42156455100CB98E4 /* SuggestionFeedback.m */,
 				8923F5B62156542300CB98E4 /* StudyNotes.h */,
 				8923F5B72156542300CB98E4 /* StudyNotes.m */,
+				8923F5BC2156A08100CB98E4 /* TestRanking.h */,
+				8923F5BD2156A08100CB98E4 /* TestRanking.m */,
+				8923F5BF2156A54B00CB98E4 /* HistoryExam.h */,
+				8923F5C02156A54B00CB98E4 /* HistoryExam.m */,
+				8923F5C2215744F500CB98E4 /* HistoryExamDetail.h */,
+				8923F5C3215744F500CB98E4 /* HistoryExamDetail.m */,
+				8923F5C521577BC300CB98E4 /* Answers.h */,
+				8923F5C621577BC300CB98E4 /* Answers.m */,
+				8923F5C8215788E100CB98E4 /* Banner.h */,
+				8923F5C9215788E100CB98E4 /* Banner.m */,
+				8923F5CB2157929C00CB98E4 /* InformationMenu.h */,
+				8923F5CC2157929C00CB98E4 /* InformationMenu.m */,
+				8923F5CE2157966A00CB98E4 /* NewsMessage.h */,
+				8923F5CF2157966A00CB98E4 /* NewsMessage.m */,
+				8923F5D1215799F800CB98E4 /* NewsDetail.h */,
+				8923F5D2215799F800CB98E4 /* NewsDetail.m */,
+				8923F5D42157A1D500CB98E4 /* UserMessage.h */,
+				8923F5D52157A1D500CB98E4 /* UserMessage.m */,
+				8923F5D72157DD2F00CB98E4 /* ScoreRecord.h */,
+				8923F5D82157DD2F00CB98E4 /* ScoreRecord.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -887,8 +937,10 @@
 				3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */,
 				3A5C0F2E214D6D4C00BB11FB /* NewsContentMaxImageViewCell.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
+				8923F5BE2156A08100CB98E4 /* TestRanking.m in Sources */,
 				8923F5A42155CCF700CB98E4 /* HanZhaoHua.m in Sources */,
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
+				8923F5CA215788E200CB98E4 /* Banner.m in Sources */,
 				3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
@@ -916,6 +968,7 @@
 				3A5C0F31214DC3E400BB11FB /* NewsPolicyViewController.m in Sources */,
 				8923F5B82156542300CB98E4 /* StudyNotes.m in Sources */,
 				8923F5AC2155ECCD00CB98E4 /* LearningTaskModel.m in Sources */,
+				8923F5C4215744F500CB98E4 /* HistoryExamDetail.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
 				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
 				3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */,
@@ -926,11 +979,13 @@
 				3A5C0F1C2149657C00BB11FB /* ExamTopTitleTableViewCell.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A5C0F28214D689A00BB11FB /* NewsBannerDetailViewController.m in Sources */,
+				8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
 				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
 				3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */,
+				8923F5C12156A54B00CB98E4 /* HistoryExam.m in Sources */,
 				3A6BA58121271E5B00322875 /* NSObject+EWTCurrentController.m in Sources */,
 				3A699B8D20BA6F3100F7BB60 /* BaseNavigationController.m in Sources */,
 				3A5C0F1F2149692C00BB11FB /* ExamChooseCell.m in Sources */,
@@ -944,8 +999,11 @@
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				8923F5B2215640CB00CB98E4 /* LearningHistory.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
+				8923F5D92157DD2F00CB98E4 /* ScoreRecord.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
+				8923F5C721577BC300CB98E4 /* Answers.m in Sources */,
 				3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */,
+				8923F5D3215799F800CB98E4 /* NewsDetail.m in Sources */,
 				3A5C0F46214DDCE000BB11FB /* EducationHeartLearnCell.m in Sources */,
 				3A6BA57D21271E5B00322875 /* NSString+EWT.m in Sources */,
 				3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */,
@@ -953,6 +1011,8 @@
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
 				3A5C0F43214DD34800BB11FB /* NewsNoticiTableViewCell.m in Sources */,
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
+				8923F5D02157966A00CB98E4 /* NewsMessage.m in Sources */,
+				8923F5D62157A1D500CB98E4 /* UserMessage.m in Sources */,
 				3A5C0F40214DD2B000BB11FB /* NewsNoticeViewController.m in Sources */,
 				3A5C0F5621553C8D00BB11FB /* EducationOptionsController.m in Sources */,
 				3A5C0F5C2155450600BB11FB /* EducationAddOptionController.m in Sources */,

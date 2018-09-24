@@ -13,6 +13,16 @@
 #import "LearningHistory.h"
 #import "SuggestionFeedback.h"
 #import "StudyNotes.h"
+#import "TestRanking.h"
+#import "HistoryExam.h"
+#import "HistoryExamDetail.h"
+#import "Answers.h"
+#import "Banner.h"
+#import "InformationMenu.h"
+#import "NewsMessage.h"
+#import "NewsDetail.h"
+#import "UserMessage.h"
+#import "ScoreRecord.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

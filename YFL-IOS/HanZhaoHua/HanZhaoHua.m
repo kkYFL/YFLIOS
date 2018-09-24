@@ -8,14 +8,278 @@
 
 #import "HanZhaoHua.h"
 
+static NSString *host = @"http://47.100.247.71/protal/";
+
 @implementation HanZhaoHua
+
++(void)loginWithUsername: (NSString *)username
+                password: (NSString *)password
+                 success: (void (^)(UserMessage *user))success
+                 failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/doLogin"];
+    NSDictionary *paraDic = @{@"username":username,
+                              @"password":password
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            UserMessage *user = [[UserMessage alloc] init];
+            [user setValuesForKeysWithDictionary:dic];
+            success(user);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)changePasswordWithUserId: (NSString *)userId
+                         oldPwd: (NSString *)oldPwd
+                       password: (NSString *)password
+                        success: (void (^)(NSDictionary *responseObject))success
+                        failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/resetPwd"];
+    NSDictionary *paraDic = @{@"userId":userId,
+                              @"oldPwd":oldPwd,
+                              @"password":password
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)changePersonalInformationWithUserId: (NSString *)userId
+                                   headImg: (NSString *)headImg
+                                     motto: (NSString *)motto
+                                   success: (void (^)(NSDictionary *responseObject))success
+                                   failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/saveUserInfo"];
+    NSDictionary *paraDic = @{@"userId":userId,
+                              @"headImg":headImg,
+                              @"motto":motto
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getUserCurrentScoreWithUserToken: (NSString *)userToken
+                                  userId: (NSString *)userId
+                                 success: (void (^)(NSNumber *score))success
+                                 failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"integral/score.json"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            NSNumber *score = [dic objectForKey:@"score"];
+            success(score);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++ (void)getScoreListWithUserToken:(NSString *)userToken
+                           userId:(NSString *)userId
+                          success:(void (^)(NSArray * _Nonnull))success
+                          failure:(void (^)(NSError * _Nonnull))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"integral/logsList.json"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSMutableArray * result = [[NSMutableArray alloc] init];
+            for (NSDictionary * d in list) {
+                ScoreRecord * model = [[ScoreRecord alloc] init];
+                [model setValuesForKeysWithDictionary:d];
+                [result addObject:model];
+            }
+            success([[NSArray alloc] initWithArray:result]);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++ (void)signInWithUserToken:(NSString *)userToken
+                     userId:(NSString *)userId
+                    success:(void (^)(NSDictionary * _Nonnull))success
+                    failure:(void (^)(NSError * _Nonnull))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"sign/signIn.do"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getUserSignInRecordWithUserToken: (NSString *)userToken
+                                 userId: (NSString *)userId
+                                   year: (NSInteger)year
+                                  month: (NSInteger)month
+                                success: (void (^)(NSDictionary *responseObject))success
+                                failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"sign/signInList.json"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"year":[[NSNumber alloc] initWithInteger:year],
+                              @"month":[[NSNumber alloc] initWithInteger:month]
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getInformationBannerWithUserToken: (NSString *)userToken
+                            positionType:(NSString *)positionType
+                                 success: (void (^)(NSArray *bannerList))success
+                                 failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"positionCtrl/getData"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"positionType":positionType
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSMutableArray * result = [[NSMutableArray alloc] init];
+            for (NSDictionary * d in list) {
+                Banner * model = [[Banner alloc] init];
+                [model setValuesForKeysWithDictionary:d];
+                [result addObject:model];
+            }
+            success([[NSArray alloc] initWithArray:result]);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getInformationMessageWithUserToken: (NSString *)userToken
+                             positionType: (NSString *)positionType
+                                  success: (void (^)(Banner *message))success
+                                  failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"positionCtrl/getData"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"positionType":positionType
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            Banner * model = [[Banner alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            success(model);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getInformationMenuWithUserToken: (NSString *)userToken
+                               success: (void (^)(NSArray *menuList))success
+                               failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationTypeCtrl/getData"];
+    NSDictionary *paraDic = @{@"userToken":userToken};
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+            for (NSDictionary *dic in list) {
+                InformationMenu *menu = [[InformationMenu alloc] init];
+                [menu setValuesForKeysWithDictionary:dic];
+                [result addObject:menu];
+            }
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getNewsListWithUserToken: (NSString *)userToken
+                        typesId: (NSString *)typesId
+                           page: (NSInteger)page
+                        pageNum: (NSInteger)pageNum
+                        success: (void (^)(NSArray *newsList))success
+                        failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getData"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"typesId":typesId,
+                              @"page":[NSNumber numberWithInteger:page],
+                              @"pageSize":[NSNumber numberWithInteger:pageNum]
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+            for (NSDictionary *dic in list) {
+                NewsMessage *menu = [[NewsMessage alloc] init];
+                [menu setValuesForKeysWithDictionary:dic];
+                [result addObject:menu];
+            }
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getNewsDetailWithUserToken: (NSString *)userToken
+                           userId: (NSString *)userId
+                           infoId: (NSString *)infoId
+                    informationId: (NSString *)informationId
+                          success: (void (^)(NewsDetail *newsDetail))success
+                          failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getInfo"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"infoId":infoId,
+                              @"informationId":informationId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            NewsDetail *news = [[NewsDetail alloc] init];
+            [news setValuesForKeysWithDictionary:dic];
+            success(news);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
 
 +(void)getServerTimeWithUserToken: (NSString *)userToken
                            userId: (NSString *)userId
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getSysDate"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/getSysDate"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId};
     [[HTTPEngine sharedEngine] getRequestWithURL:urlStr parameter:paraDic success:^(NSDictionary *responseObject) {
@@ -32,7 +296,7 @@
                              success: (void (^)(NSArray * listArray))success
                              failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/getData"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"type":[NSNumber numberWithInteger:type],
                               @"page":[NSNumber numberWithInteger:page],
@@ -63,7 +327,7 @@
                                    success: (void (^)(NSArray * listArray))success
                                    failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskCommentCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskCommentCtrl/getData"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId,
@@ -93,7 +357,7 @@
                            success: (void (^)(NSDictionary *responseObject))success
                            failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskCommentCtrl/addData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskCommentCtrl/addData"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId,
@@ -113,7 +377,7 @@
                                success: (void (^)(NSDictionary *responseObject))success
                                failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/addHistory"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/addHistory"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId,
@@ -132,7 +396,7 @@
                                success: (void (^)(NSNumber *totalLearnTime, NSArray *list))success
                                failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getHistory"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/getHistory"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId
@@ -160,7 +424,7 @@
                              success: (void (^)(NSArray *list))success
                              failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/advise/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"advise/getData"];
     NSDictionary *paraDic = @{@"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]
                               };
@@ -186,7 +450,7 @@
                             success: (void (^)(NSDictionary *responseObject))success
                             failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/advise/addData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"advise/addData"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"title":title,
                               @"problemInfo":problemInfo
@@ -199,13 +463,13 @@
 }
 
 +(void)getStudyNotesWithUserId: (NSString *)userId
-                          taskId: (NSString *)taskId
-                            page: (NSInteger)page
-                         pageNum: (NSInteger)pageNum
-                         success: (void (^)(NSArray *list))success
-                         failure: (void (^)(NSError *error))failure
+                        taskId: (NSString *)taskId
+                          page: (NSInteger)page
+                       pageNum: (NSInteger)pageNum
+                       success: (void (^)(NSArray *list))success
+                       failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskNotes/getNotes"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/getNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"taskId":taskId,
                               @"page":[NSNumber numberWithInteger:page],
@@ -233,7 +497,7 @@
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskNotes/addNotes"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/addNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"taskId":taskId,
                               @"learnContent":learnContent
@@ -251,7 +515,7 @@
                            success: (void (^)(NSDictionary *responseObject))success
                            failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskNotes/addNotesComment"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/addNotesComment"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"notesId":notesId,
                               @"commentInfo":commentInfo
@@ -267,7 +531,7 @@
                          success: (void (^)(NSDictionary *responseObject))success
                          failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskNotes/fabulous"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/fabulous"];
     NSDictionary *paraDic = @{@"notesId":notesId};
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
@@ -277,12 +541,12 @@
 }
 
 +(void)getNotesCommentListWithNotesId: (NSString *)notesId
-                               page: (NSInteger)page
-                            pageNum: (NSInteger)pageNum
-                            success: (void (^)(NSArray *list))success
-                            failure: (void (^)(NSError *error))failure
+                                 page: (NSInteger)page
+                              pageNum: (NSInteger)pageNum
+                              success: (void (^)(NSArray *list))success
+                              failure: (void (^)(NSError *error))failure
 {
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/taskNotes/getNotesComment"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/getNotesComment"];
     NSDictionary *paraDic = @{@"notesId":notesId,
                               @"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]
@@ -299,6 +563,162 @@
             }
             success([[NSArray alloc] initWithArray:result]);
         }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)testRankingWithUserToken: (NSString *)userToken
+                         userId: (NSString *)userId
+                           page: (NSInteger)page
+                        pageNum: (NSInteger)pageNum
+                        success: (void (^)(TestRanking *owner, NSArray *scoreList))success
+                        failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryNearScore"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"page":[NSNumber numberWithInteger:page],
+                              @"pageSize":[NSNumber numberWithInteger:pageNum]
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            NSDictionary *ownerDic = [dic objectForKey:@"owner"];
+            TestRanking * owner = [[TestRanking alloc] init];
+            [owner setValuesForKeysWithDictionary:ownerDic];
+            NSArray *list = [dic objectForKey:@"scoreList"];
+            NSMutableArray * result = [[NSMutableArray alloc] init];
+            for (NSDictionary * d in list) {
+                TestRanking * model = [[TestRanking alloc] init];
+                [model setValuesForKeysWithDictionary:d];
+                [result addObject:model];
+            }
+            success(owner, [[NSArray alloc] initWithArray:result]);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getExamListWithUserToken: (NSString *)userToken
+                         userId: (NSString *)userId
+                           page: (NSInteger)page
+                        pageNum: (NSInteger)pageNum
+                      queryType: (NSString *)queryType
+                        success: (void (^)(NSArray *list))success
+                        failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperList"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"page":[NSNumber numberWithInteger:page],
+                              @"pageSize":[NSNumber numberWithInteger:pageNum],
+                              @"queryType":queryType
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSMutableArray * result = [[NSMutableArray alloc] init];
+            for (NSDictionary * d in list) {
+                HistoryExam * model = [[HistoryExam alloc] init];
+                [model setValuesForKeysWithDictionary:d];
+                [result addObject:model];
+            }
+            success([[NSArray alloc] initWithArray:result]);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getHistoryExamDetailWithUserToken: (NSString *)userToken
+                                  userId: (NSString *)userId
+                                 paperId: (NSString *)paperId
+                                 success: (void (^)(NSArray *list))success
+                                 failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperDetail"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"paperId":paperId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject);
+        //        if (success) {
+        //            NSArray *list = [responseObject objectForKey:@"data"];
+        //            NSMutableArray * result = [[NSMutableArray alloc] init];
+        //            for (NSDictionary * d in list) {
+        //                HistoryExam * model = [[HistoryExam alloc] init];
+        //                [model setValuesForKeysWithDictionary:d];
+        //                [result addObject:model];
+        //            }
+        //            success([[NSArray alloc] initWithArray:result]);
+        //        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getExamRuleWithUserToken: (NSString *)userToken
+                         userId: (NSString *)userId
+                        paperId: (NSString *)paperId
+                        success: (void (^)(HistoryExam *examRule))success
+                        failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/examPaperDesc"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"paperId":paperId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            HistoryExam * model = [[HistoryExam alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            success(model);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)getWaitingToStartDetailWithUserToken: (NSString *)userToken
+                                     userId: (NSString *)userId
+                                    paperId: (NSString *)paperId
+                                    success: (void (^)(NSArray *detailList))success
+                                    failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperSourceList"];
+    NSDictionary *paraDic = @{@"userToken":userToken,
+                              @"userId":userId,
+                              @"paperId":paperId
+                              };
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSMutableArray *result = [[NSMutableArray alloc] init];
+            for (NSDictionary *dic in list) {
+                HistoryExamDetail *examDetail = [[HistoryExamDetail alloc] init];
+                [examDetail setValuesForKeysWithDictionary:dic];
+                [result addObject:examDetail];
+            }
+            success([[NSArray alloc] initWithArray:result]);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)submitExamPaperWithParaDic: (NSDictionary *)paraDic
+                          success: (void (^)(NSDictionary *responseObject))success
+                          failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperSourceList"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
     } failure:^(NSError *error) {
         if (failure) failure(error);
     }];

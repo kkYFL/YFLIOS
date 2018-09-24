@@ -396,13 +396,13 @@ static NSString *taskId = @"1";
     
     // 文件上传
     // 测试结果:
-    UIImage *image = [UIImage imageNamed:@"personal_icon"];
-    NSData *data = UIImagePNGRepresentation(image);
-    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
-        
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
+//    UIImage *image = [UIImage imageNamed:@"personal_icon"];
+//    NSData *data = UIImagePNGRepresentation(image);
+//    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
+//        
+//    } failure:^(NSError * _Nonnull error) {
+//        NSLog(@"%@", error);
+//    }];
     
 }
 

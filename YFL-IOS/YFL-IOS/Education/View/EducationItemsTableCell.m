@@ -183,7 +183,7 @@
     
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.font = [UIFont boldSystemFontOfSize:20.0f];
+    titleLabel.font = [UIFont systemFontOfSize:18.0f];
     titleLabel.text = @"学习任务";
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.textAlignment = NSTextAlignmentRight;

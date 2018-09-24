@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UIImageView *headerBottonView;
+
 @property (nonatomic, strong) NSMutableArray *viewsArr;
 @property (nonatomic, strong) UILabel *headerNumLab;
 @property (nonatomic, strong) UILabel *remindLabel1;
@@ -147,10 +149,11 @@
         //
         UIImageView *headerImageView = [[UIImageView alloc]init];
         [headerImageView setBackgroundColor:[UIColor whiteColor]];
+        headerImageView.userInteractionEnabled = YES;
         [_headerView addSubview:headerImageView];
         self.headerImageView = headerImageView;
         [headerImageView setContentMode:UIViewContentModeScaleToFill];
-        [headerImageView setImage:[UIImage imageNamed:@"rectangle"]];
+        [headerImageView setImage:[UIImage imageNamed:@"Exam_Header-1"]];
         [headerImageView setFrame:CGRectMake(0, 0, imageViewW, imageViewH)];
 
         
@@ -246,7 +249,7 @@
 
         UIImageView *selectImageView = [[UIImageView alloc]init];
         [selectImageView setBackgroundColor:[[UIColor colorWithHexString:@"#9C9C9C"] colorWithAlphaComponent:0.70]];
-        [_headerView addSubview:selectImageView];
+        [_headerImageView addSubview:selectImageView];
         selectImageView.layer.masksToBounds = YES;
         selectImageView.layer.cornerRadius = 4.0f;
         UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
@@ -256,11 +259,11 @@
         [selectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_headerView).offset(25.0f);
             make.top.equalTo(remindLabel2.mas_bottom).offset(10.0f);
-            make.height.mas_equalTo(selectImageViewH);
+            make.bottom.equalTo(_headerImageView);
             make.width.mas_equalTo(selectImageViewW);
         }];
         UILabel *selectTitle1 = [[UILabel alloc] init];
-        selectTitle1.font = [UIFont boldSystemFontOfSize:19.0f];
+        selectTitle1.font = [UIFont boldSystemFontOfSize:17.0f];
         selectTitle1.text = @"历史考试";
         selectTitle1.textColor = [UIColor whiteColor];
         selectTitle1.textAlignment = NSTextAlignmentCenter;
@@ -273,7 +276,7 @@
         
         UIImageView *selectImageView2 = [[UIImageView alloc]init];
         [selectImageView2 setBackgroundColor:[[UIColor colorWithHexString:@"#9C9C9C"] colorWithAlphaComponent:0.70]];
-        [_headerView addSubview:selectImageView2];
+        [_headerImageView addSubview:selectImageView2];
         selectImageView2.layer.masksToBounds = YES;
         selectImageView2.layer.cornerRadius = 4.0f;
         selectImageView2.tag = 102;
@@ -283,17 +286,31 @@
         [selectImageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_headerView).offset(25.0f+selectImageViewW+15.0f);
             make.top.equalTo(remindLabel2.mas_bottom).offset(10.0f);
-            make.height.mas_equalTo(selectImageViewH);
+            make.bottom.equalTo(_headerImageView);
             make.width.mas_equalTo(selectImageViewW);
         }];
         UILabel *selectTitle2 = [[UILabel alloc] init];
-        selectTitle2.font = [UIFont boldSystemFontOfSize:19.0f];
+        selectTitle2.font = [UIFont boldSystemFontOfSize:17.0f];
         selectTitle2.text = @"待考试";
         selectTitle2.textColor = [UIColor whiteColor];
         selectTitle2.textAlignment = NSTextAlignmentCenter;
         [selectImageView2 addSubview:selectTitle2];
         [selectTitle2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.centerY.equalTo(selectImageView2);
+        }];
+        
+        
+        UIImageView *headerBottonView = [[UIImageView alloc]init];
+        [_headerImageView addSubview:headerBottonView];
+        [headerBottonView setBackgroundColor:[UIColor clearColor]];
+        headerBottonView.userInteractionEnabled = NO;
+        self.headerBottonView = headerBottonView;
+        [headerBottonView setContentMode:UIViewContentModeScaleToFill];
+        [headerBottonView setImage:[UIImage imageNamed:@"Exam_header_botton"]];
+        [headerBottonView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_headerImageView);
+            make.right.equalTo(_headerImageView);
+            make.bottom.equalTo(_headerImageView);
         }];
 
         

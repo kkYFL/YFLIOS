@@ -65,12 +65,12 @@ static NSString *taskId = @"1";
 //    }];
     
     // 签到接口
-    // 测试结果: 后台对userId的长度限制有问题, 报长度过长
-    [HanZhaoHua signInWithUserToken:userToken userId:userId success:^(NSDictionary * _Nonnull responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
+    // 测试结果: 通过
+//    [HanZhaoHua signInWithUserToken:userToken userId:userId success:^(NSDictionary * _Nonnull responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSError * _Nonnull error) {
+//        NSLog(@"%@", error);
+//    }];
     
     // 用户签到日历
     // 测试结果: 接口通过, 但是无有效数据返回
@@ -393,6 +393,16 @@ static NSString *taskId = @"1";
 //    } failure:^(NSError * _Nonnull error) {
 //        NSLog(@"%@", error);
 //    }];
+    
+    // 文件上传
+    // 测试结果:
+    UIImage *image = [UIImage imageNamed:@"personal_icon"];
+    NSData *data = UIImagePNGRepresentation(image);
+    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
+        
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
     
 }
 

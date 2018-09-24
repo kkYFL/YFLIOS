@@ -724,4 +724,24 @@ static NSString *host = @"http://47.100.247.71/protal/";
     }];
 }
 
++(void)uploadFileWithFiles: (NSData *)files
+                   success: (void (^)(NSString *imgUrl))success
+                   failure: (void (^)(NSError *error))failure
+{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"file/upload.do"];
+    [[HTTPEngine sharedEngine] uploadData:files url:urlStr fileName:@"测试" mimeType:@"image/png" success:^(NSDictionary *responseObject) {
+        NSLog(@"%@", responseObject);
+        if (success) {
+            NSArray *list = [responseObject objectForKey:@"data"];
+            NSString * imgUrl = @"";
+            for (NSDictionary *dic in list) {
+                imgUrl = [dic objectForKey:@"imgUrl"];
+            }
+            success(imgUrl);
+        }
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
 @end

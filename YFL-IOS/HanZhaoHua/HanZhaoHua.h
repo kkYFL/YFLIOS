@@ -402,6 +402,15 @@ NS_ASSUME_NONNULL_BEGIN
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure;
 
+/// 公共
+/**
+ *  @method         文件上传
+ *  @param          files 二进制数据
+ */
++(void)uploadFileWithFiles: (NSData *)files
+                   success: (void (^)(NSString *imgUrl))success
+                   failure: (void (^)(NSError *error))failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

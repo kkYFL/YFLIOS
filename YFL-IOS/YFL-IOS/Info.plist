@@ -24,6 +24,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>上传您的照片到社区中和朋友们互动</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>是否允许此APP使用你的相册</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>相册</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

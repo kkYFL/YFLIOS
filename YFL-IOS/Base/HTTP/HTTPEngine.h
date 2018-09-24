@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFHTTPSessionManager.h"
 
 
 @protocol HTTPEngineDelegate <NSObject>

@@ -17,6 +17,33 @@
 		3A03CF2121569A7F00C49295 /* XinxiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF2021569A7F00C49295 /* XinxiTableViewCell.m */; };
 		3A03CF242156A5CB00C49295 /* PersonPassWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF232156A5CB00C49295 /* PersonPassWordController.m */; };
 		3A03CF272156A72A00C49295 /* PersonPasswordInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */; };
+		3A03CFAC2158C4E600C49295 /* YSHYClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF702158C4E500C49295 /* YSHYClipViewController.m */; };
+		3A03CFAD2158C4E600C49295 /* Target_EWTImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF732158C4E500C49295 /* Target_EWTImagePicker.m */; };
+		3A03CFAE2158C4E600C49295 /* EWTImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF742158C4E500C49295 /* EWTImagePickerTool.m */; };
+		3A03CFAF2158C4E600C49295 /* NSBundle+EWTImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF752158C4E500C49295 /* NSBundle+EWTImagePicker.m */; };
+		3A03CFB02158C4E600C49295 /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF762158C4E500C49295 /* UIImage+Helper.m */; };
+		3A03CFB12158C4E600C49295 /* DNAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF7D2158C4E500C49295 /* DNAsset.m */; };
+		3A03CFB22158C4E600C49295 /* DNAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF812158C4E500C49295 /* DNAlbumTableViewController.m */; };
+		3A03CFB32158C4E600C49295 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF832158C4E500C49295 /* UIColor+Hex.m */; };
+		3A03CFB42158C4E600C49295 /* UIView+DNImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF842158C4E500C49295 /* UIView+DNImagePicker.m */; };
+		3A03CFB52158C4E600C49295 /* UIViewController+DNImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF852158C4E500C49295 /* UIViewController+DNImagePicker.m */; };
+		3A03CFB62158C4E600C49295 /* NSURL+DNIMagePickerUrlEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF862158C4E500C49295 /* NSURL+DNIMagePickerUrlEqual.m */; };
+		3A03CFB72158C4E600C49295 /* DNImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF8C2158C4E500C49295 /* DNImagePickerController.m */; };
+		3A03CFB82158C4E600C49295 /* DNPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF8D2158C4E500C49295 /* DNPhotoBrowser.m */; };
+		3A03CFB92158C4E600C49295 /* DNImageFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF8E2158C4E500C49295 /* DNImageFlowViewController.m */; };
+		3A03CFBA2158C4E600C49295 /* DNFullImageCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF912158C4E500C49295 /* DNFullImageCheckButton.m */; };
+		3A03CFBB2158C4E600C49295 /* DNAssetsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF922158C4E500C49295 /* DNAssetsViewCell.m */; };
+		3A03CFBC2158C4E600C49295 /* DNFullImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF942158C4E500C49295 /* DNFullImageButton.m */; };
+		3A03CFBD2158C4E600C49295 /* DNBadgeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF952158C4E500C49295 /* DNBadgeLabel.m */; };
+		3A03CFBE2158C4E600C49295 /* DNCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF992158C4E500C49295 /* DNCheckButton.m */; };
+		3A03CFBF2158C4E600C49295 /* DNUnAuthorizedTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF9A2158C4E500C49295 /* DNUnAuthorizedTipsView.m */; };
+		3A03CFC02158C4E600C49295 /* JKPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF9B2158C4E500C49295 /* JKPromptView.m */; };
+		3A03CFC12158C4E600C49295 /* DNTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF9E2158C4E500C49295 /* DNTapDetectingImageView.m */; };
+		3A03CFC22158C4E600C49295 /* DNSendButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CFA22158C4E500C49295 /* DNSendButton.m */; };
+		3A03CFC32158C4E600C49295 /* DNBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CFA32158C4E500C49295 /* DNBrowserCell.m */; };
+		3A03CFC42158C4E600C49295 /* EWTImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A03CFA52158C4E500C49295 /* EWTImagePicker.bundle */; };
+		3A03CFC52158C4E600C49295 /* EWTMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CFAA2158C4E500C49295 /* EWTMediator.m */; };
+		3A03CFC62158C4E600C49295 /* EWTMediator+EWTImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CFAB2158C4E500C49295 /* EWTMediator+EWTImagePicker.m */; };
 		3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */; };
 		3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */; };
 		3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */; };
@@ -128,6 +155,59 @@
 		3A03CF232156A5CB00C49295 /* PersonPassWordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonPassWordController.m; sourceTree = "<group>"; };
 		3A03CF252156A72A00C49295 /* PersonPasswordInCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonPasswordInCell.h; sourceTree = "<group>"; };
 		3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonPasswordInCell.m; sourceTree = "<group>"; };
+		3A03CF702158C4E500C49295 /* YSHYClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSHYClipViewController.m; sourceTree = "<group>"; };
+		3A03CF712158C4E500C49295 /* YSHYClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSHYClipViewController.h; sourceTree = "<group>"; };
+		3A03CF732158C4E500C49295 /* Target_EWTImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target_EWTImagePicker.m; sourceTree = "<group>"; };
+		3A03CF742158C4E500C49295 /* EWTImagePickerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTImagePickerTool.m; sourceTree = "<group>"; };
+		3A03CF752158C4E500C49295 /* NSBundle+EWTImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+EWTImagePicker.m"; sourceTree = "<group>"; };
+		3A03CF762158C4E500C49295 /* UIImage+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helper.m"; sourceTree = "<group>"; };
+		3A03CF772158C4E500C49295 /* EWTImagePickerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTImagePickerTool.h; sourceTree = "<group>"; };
+		3A03CF782158C4E500C49295 /* Target_EWTImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target_EWTImagePicker.h; sourceTree = "<group>"; };
+		3A03CF792158C4E500C49295 /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
+		3A03CF7A2158C4E500C49295 /* NSBundle+EWTImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+EWTImagePicker.h"; sourceTree = "<group>"; };
+		3A03CF7C2158C4E500C49295 /* DNAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAlbumTableViewController.h; sourceTree = "<group>"; };
+		3A03CF7D2158C4E500C49295 /* DNAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAsset.m; sourceTree = "<group>"; };
+		3A03CF7E2158C4E500C49295 /* DNImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNImagePickerController.h; sourceTree = "<group>"; };
+		3A03CF7F2158C4E500C49295 /* DNPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNPhotoBrowser.h; sourceTree = "<group>"; };
+		3A03CF802158C4E500C49295 /* DNImageFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNImageFlowViewController.h; sourceTree = "<group>"; };
+		3A03CF812158C4E500C49295 /* DNAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAlbumTableViewController.m; sourceTree = "<group>"; };
+		3A03CF832158C4E500C49295 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		3A03CF842158C4E500C49295 /* UIView+DNImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DNImagePicker.m"; sourceTree = "<group>"; };
+		3A03CF852158C4E500C49295 /* UIViewController+DNImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DNImagePicker.m"; sourceTree = "<group>"; };
+		3A03CF862158C4E500C49295 /* NSURL+DNIMagePickerUrlEqual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+DNIMagePickerUrlEqual.m"; sourceTree = "<group>"; };
+		3A03CF872158C4E500C49295 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		3A03CF882158C4E500C49295 /* UIView+DNImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+DNImagePicker.h"; sourceTree = "<group>"; };
+		3A03CF892158C4E500C49295 /* NSURL+DNIMagePickerUrlEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+DNIMagePickerUrlEqual.h"; sourceTree = "<group>"; };
+		3A03CF8A2158C4E500C49295 /* UIViewController+DNImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DNImagePicker.h"; sourceTree = "<group>"; };
+		3A03CF8B2158C4E500C49295 /* DNAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAsset.h; sourceTree = "<group>"; };
+		3A03CF8C2158C4E500C49295 /* DNImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNImagePickerController.m; sourceTree = "<group>"; };
+		3A03CF8D2158C4E500C49295 /* DNPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNPhotoBrowser.m; sourceTree = "<group>"; };
+		3A03CF8E2158C4E500C49295 /* DNImageFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNImageFlowViewController.m; sourceTree = "<group>"; };
+		3A03CF902158C4E500C49295 /* DNUnAuthorizedTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNUnAuthorizedTipsView.h; sourceTree = "<group>"; };
+		3A03CF912158C4E500C49295 /* DNFullImageCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNFullImageCheckButton.m; sourceTree = "<group>"; };
+		3A03CF922158C4E500C49295 /* DNAssetsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNAssetsViewCell.m; sourceTree = "<group>"; };
+		3A03CF932158C4E500C49295 /* JKPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPromptView.h; sourceTree = "<group>"; };
+		3A03CF942158C4E500C49295 /* DNFullImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNFullImageButton.m; sourceTree = "<group>"; };
+		3A03CF952158C4E500C49295 /* DNBadgeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNBadgeLabel.m; sourceTree = "<group>"; };
+		3A03CF962158C4E500C49295 /* DNTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNTapDetectingImageView.h; sourceTree = "<group>"; };
+		3A03CF972158C4E500C49295 /* DNBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNBrowserCell.h; sourceTree = "<group>"; };
+		3A03CF982158C4E500C49295 /* DNSendButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNSendButton.h; sourceTree = "<group>"; };
+		3A03CF992158C4E500C49295 /* DNCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNCheckButton.m; sourceTree = "<group>"; };
+		3A03CF9A2158C4E500C49295 /* DNUnAuthorizedTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNUnAuthorizedTipsView.m; sourceTree = "<group>"; };
+		3A03CF9B2158C4E500C49295 /* JKPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPromptView.m; sourceTree = "<group>"; };
+		3A03CF9C2158C4E500C49295 /* DNAssetsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNAssetsViewCell.h; sourceTree = "<group>"; };
+		3A03CF9D2158C4E500C49295 /* DNFullImageCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNFullImageCheckButton.h; sourceTree = "<group>"; };
+		3A03CF9E2158C4E500C49295 /* DNTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNTapDetectingImageView.m; sourceTree = "<group>"; };
+		3A03CF9F2158C4E500C49295 /* DNBadgeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNBadgeLabel.h; sourceTree = "<group>"; };
+		3A03CFA02158C4E500C49295 /* DNFullImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNFullImageButton.h; sourceTree = "<group>"; };
+		3A03CFA12158C4E500C49295 /* DNCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DNCheckButton.h; sourceTree = "<group>"; };
+		3A03CFA22158C4E500C49295 /* DNSendButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNSendButton.m; sourceTree = "<group>"; };
+		3A03CFA32158C4E500C49295 /* DNBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DNBrowserCell.m; sourceTree = "<group>"; };
+		3A03CFA52158C4E500C49295 /* EWTImagePicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EWTImagePicker.bundle; sourceTree = "<group>"; };
+		3A03CFA82158C4E500C49295 /* EWTMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTMediator.h; sourceTree = "<group>"; };
+		3A03CFA92158C4E500C49295 /* EWTMediator+EWTImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EWTMediator+EWTImagePicker.h"; sourceTree = "<group>"; };
+		3A03CFAA2158C4E500C49295 /* EWTMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTMediator.m; sourceTree = "<group>"; };
+		3A03CFAB2158C4E500C49295 /* EWTMediator+EWTImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EWTMediator+EWTImagePicker.m"; sourceTree = "<group>"; };
 		3A2E5D88213ADE4700363947 /* ExamTableViewCommonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamTableViewCommonCell.h; sourceTree = "<group>"; };
 		3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamTableViewCommonCell.m; sourceTree = "<group>"; };
 		3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonMidTableViewCell.h; sourceTree = "<group>"; };
@@ -332,6 +412,137 @@
 				A38C12D294370CAF7FF68E51 /* Pods_YFL_IOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A03CF6D2158C4E500C49295 /* EWTImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF6E2158C4E500C49295 /* Classes */,
+				3A03CFA42158C4E500C49295 /* Assets */,
+			);
+			path = EWTImagePicker;
+			sourceTree = "<group>";
+		};
+		3A03CF6E2158C4E500C49295 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF6F2158C4E500C49295 /* ClipViewController */,
+				3A03CF722158C4E500C49295 /* Utils */,
+				3A03CF7B2158C4E500C49295 /* DNImagePicker */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3A03CF6F2158C4E500C49295 /* ClipViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF702158C4E500C49295 /* YSHYClipViewController.m */,
+				3A03CF712158C4E500C49295 /* YSHYClipViewController.h */,
+			);
+			path = ClipViewController;
+			sourceTree = "<group>";
+		};
+		3A03CF722158C4E500C49295 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF732158C4E500C49295 /* Target_EWTImagePicker.m */,
+				3A03CF742158C4E500C49295 /* EWTImagePickerTool.m */,
+				3A03CF752158C4E500C49295 /* NSBundle+EWTImagePicker.m */,
+				3A03CF762158C4E500C49295 /* UIImage+Helper.m */,
+				3A03CF772158C4E500C49295 /* EWTImagePickerTool.h */,
+				3A03CF782158C4E500C49295 /* Target_EWTImagePicker.h */,
+				3A03CF792158C4E500C49295 /* UIImage+Helper.h */,
+				3A03CF7A2158C4E500C49295 /* NSBundle+EWTImagePicker.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3A03CF7B2158C4E500C49295 /* DNImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF7C2158C4E500C49295 /* DNAlbumTableViewController.h */,
+				3A03CF7D2158C4E500C49295 /* DNAsset.m */,
+				3A03CF7E2158C4E500C49295 /* DNImagePickerController.h */,
+				3A03CF7F2158C4E500C49295 /* DNPhotoBrowser.h */,
+				3A03CF802158C4E500C49295 /* DNImageFlowViewController.h */,
+				3A03CF812158C4E500C49295 /* DNAlbumTableViewController.m */,
+				3A03CF822158C4E500C49295 /* Extensions */,
+				3A03CF8B2158C4E500C49295 /* DNAsset.h */,
+				3A03CF8C2158C4E500C49295 /* DNImagePickerController.m */,
+				3A03CF8D2158C4E500C49295 /* DNPhotoBrowser.m */,
+				3A03CF8E2158C4E500C49295 /* DNImageFlowViewController.m */,
+				3A03CF8F2158C4E500C49295 /* Views */,
+			);
+			path = DNImagePicker;
+			sourceTree = "<group>";
+		};
+		3A03CF822158C4E500C49295 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF832158C4E500C49295 /* UIColor+Hex.m */,
+				3A03CF842158C4E500C49295 /* UIView+DNImagePicker.m */,
+				3A03CF852158C4E500C49295 /* UIViewController+DNImagePicker.m */,
+				3A03CF862158C4E500C49295 /* NSURL+DNIMagePickerUrlEqual.m */,
+				3A03CF872158C4E500C49295 /* UIColor+Hex.h */,
+				3A03CF882158C4E500C49295 /* UIView+DNImagePicker.h */,
+				3A03CF892158C4E500C49295 /* NSURL+DNIMagePickerUrlEqual.h */,
+				3A03CF8A2158C4E500C49295 /* UIViewController+DNImagePicker.h */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3A03CF8F2158C4E500C49295 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CF902158C4E500C49295 /* DNUnAuthorizedTipsView.h */,
+				3A03CF912158C4E500C49295 /* DNFullImageCheckButton.m */,
+				3A03CF922158C4E500C49295 /* DNAssetsViewCell.m */,
+				3A03CF932158C4E500C49295 /* JKPromptView.h */,
+				3A03CF942158C4E500C49295 /* DNFullImageButton.m */,
+				3A03CF952158C4E500C49295 /* DNBadgeLabel.m */,
+				3A03CF962158C4E500C49295 /* DNTapDetectingImageView.h */,
+				3A03CF972158C4E500C49295 /* DNBrowserCell.h */,
+				3A03CF982158C4E500C49295 /* DNSendButton.h */,
+				3A03CF992158C4E500C49295 /* DNCheckButton.m */,
+				3A03CF9A2158C4E500C49295 /* DNUnAuthorizedTipsView.m */,
+				3A03CF9B2158C4E500C49295 /* JKPromptView.m */,
+				3A03CF9C2158C4E500C49295 /* DNAssetsViewCell.h */,
+				3A03CF9D2158C4E500C49295 /* DNFullImageCheckButton.h */,
+				3A03CF9E2158C4E500C49295 /* DNTapDetectingImageView.m */,
+				3A03CF9F2158C4E500C49295 /* DNBadgeLabel.h */,
+				3A03CFA02158C4E500C49295 /* DNFullImageButton.h */,
+				3A03CFA12158C4E500C49295 /* DNCheckButton.h */,
+				3A03CFA22158C4E500C49295 /* DNSendButton.m */,
+				3A03CFA32158C4E500C49295 /* DNBrowserCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A03CFA42158C4E500C49295 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CFA52158C4E500C49295 /* EWTImagePicker.bundle */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		3A03CFA62158C4E500C49295 /* EWTMediator */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CFA72158C4E500C49295 /* Classes */,
+			);
+			path = EWTMediator;
+			sourceTree = "<group>";
+		};
+		3A03CFA72158C4E500C49295 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3A03CFA82158C4E500C49295 /* EWTMediator.h */,
+				3A03CFA92158C4E500C49295 /* EWTMediator+EWTImagePicker.h */,
+				3A03CFAA2158C4E500C49295 /* EWTMediator.m */,
+				3A03CFAB2158C4E500C49295 /* EWTMediator+EWTImagePicker.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		3A2E5D87213ADE2D00363947 /* View */ = {
@@ -581,6 +792,8 @@
 		3A6BA4DB21271E5A00322875 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3A03CF6D2158C4E500C49295 /* EWTImagePicker */,
+				3A03CFA62158C4E500C49295 /* EWTMediator */,
 				3A6BA4DE21271E5A00322875 /* EWTNotification.h */,
 				3A6BA4EB21271E5B00322875 /* EWTNotification.m */,
 				3A6BA4E521271E5B00322875 /* PublicMethod.h */,
@@ -900,6 +1113,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A03CFC42158C4E600C49295 /* EWTImagePicker.bundle in Resources */,
 				3A699B7C20BA650C00F7BB60 /* LaunchScreen.storyboard in Resources */,
 				3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */,
 			);
@@ -996,10 +1210,13 @@
 				8923F5CA215788E200CB98E4 /* Banner.m in Sources */,
 				3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */,
 				3A03CF272156A72A00C49295 /* PersonPasswordInCell.m in Sources */,
+				3A03CFB52158C4E600C49295 /* UIViewController+DNImagePicker.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
+				3A03CFB82158C4E600C49295 /* DNPhotoBrowser.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
 				3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */,
 				3A6BA58321271E5B00322875 /* NSDate+EWT.m in Sources */,
+				3A03CFB92158C4E600C49295 /* DNImageFlowViewController.m in Sources */,
 				3A03CF122156584300C49295 /* EducationLearnCell.m in Sources */,
 				3A5C0F532155386000BB11FB /* EducationTaskHistoryController.m in Sources */,
 				8923F5B52156455100CB98E4 /* SuggestionFeedback.m in Sources */,
@@ -1008,15 +1225,20 @@
 				3A699B8A20BA6F1000F7BB60 /* BaseViewController.m in Sources */,
 				3A699B7F20BA650C00F7BB60 /* main.m in Sources */,
 				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
+				3A03CFAD2158C4E600C49295 /* Target_EWTImagePicker.m in Sources */,
 				3A5C0F132144DD8600BB11FB /* ExamWaitingTableViewCell.m in Sources */,
+				3A03CFC62158C4E600C49295 /* EWTMediator+EWTImagePicker.m in Sources */,
 				3A5C0F2B214D6BF700BB11FB /* NewsdeliveryViewController.m in Sources */,
 				3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */,
+				3A03CFB22158C4E600C49295 /* DNAlbumTableViewController.m in Sources */,
 				3A5C0F3D214DCB9B00BB11FB /* NewsActivityTableViewCell.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
 				3A5C0F34214DC64200BB11FB /* NewsPolicyTableViewCell.m in Sources */,
+				3A03CFBB2158C4E600C49295 /* DNAssetsViewCell.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
 				3A03CF1E2156977B00C49295 /* PersonXinxiViewController.m in Sources */,
+				3A03CFC32158C4E600C49295 /* DNBrowserCell.m in Sources */,
 				3A03CF242156A5CB00C49295 /* PersonPassWordController.m in Sources */,
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
 				8923F5AF2156338500CB98E4 /* PartyMemberThinking.m in Sources */,
@@ -1025,22 +1247,32 @@
 				8923F5A82155D31700CB98E4 /* TestInterface.m in Sources */,
 				3A5C0F31214DC3E400BB11FB /* NewsPolicyViewController.m in Sources */,
 				8923F5B82156542300CB98E4 /* StudyNotes.m in Sources */,
+				3A03CFB02158C4E600C49295 /* UIImage+Helper.m in Sources */,
 				8923F5AC2155ECCD00CB98E4 /* LearningTaskModel.m in Sources */,
+				3A03CFBC2158C4E600C49295 /* DNFullImageButton.m in Sources */,
 				8923F5C4215744F500CB98E4 /* HistoryExamDetail.m in Sources */,
 				3A699B9A20BA795900F7BB60 /* Reachability.m in Sources */,
+				3A03CFB62158C4E600C49295 /* NSURL+DNIMagePickerUrlEqual.m in Sources */,
+				3A03CFBD2158C4E600C49295 /* DNBadgeLabel.m in Sources */,
 				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
 				3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */,
+				3A03CFC22158C4E600C49295 /* DNSendButton.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A5C0F4C214DE51A00BB11FB /* EducationTaskDetailController.m in Sources */,
+				3A03CFC52158C4E600C49295 /* EWTMediator.m in Sources */,
 				3A5C0F3A214DCB0500BB11FB /* NewsActivityViewController.m in Sources */,
 				3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */,
+				3A03CFB72158C4E600C49295 /* DNImagePickerController.m in Sources */,
+				3A03CFB12158C4E600C49295 /* DNAsset.m in Sources */,
 				3A5C0F1C2149657C00BB11FB /* ExamTopTitleTableViewCell.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A5C0F28214D689A00BB11FB /* NewsBannerDetailViewController.m in Sources */,
 				8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
+				3A03CFBF2158C4E600C49295 /* DNUnAuthorizedTipsView.m in Sources */,
 				3A03CF152156615400C49295 /* EducationLearnDetailCell.m in Sources */,
+				3A03CFBA2158C4E600C49295 /* DNFullImageCheckButton.m in Sources */,
 				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
 				3A03CF2121569A7F00C49295 /* XinxiTableViewCell.m in Sources */,
@@ -1052,16 +1284,22 @@
 				3A6BA57821271E5B00322875 /* EWTBaseNavigationController.m in Sources */,
 				3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */,
 				3A5C0F19214964A100BB11FB /* ExamConentViewController.m in Sources */,
+				3A03CFBE2158C4E600C49295 /* DNCheckButton.m in Sources */,
 				3A50D513212D3FD300BD2919 /* BannerScrollView.m in Sources */,
 				3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */,
+				3A03CFAC2158C4E600C49295 /* YSHYClipViewController.m in Sources */,
+				3A03CFB32158C4E600C49295 /* UIColor+Hex.m in Sources */,
 				3A5C0F102144DCEE00BB11FB /* ExamWaitingViewController.m in Sources */,
 				3A5C0F5921553D7F00BB11FB /* EducationOptionsTableCell.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
 				8923F5B2215640CB00CB98E4 /* LearningHistory.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
+				3A03CFAF2158C4E600C49295 /* NSBundle+EWTImagePicker.m in Sources */,
 				8923F5D92157DD2F00CB98E4 /* ScoreRecord.m in Sources */,
+				3A03CFC02158C4E600C49295 /* JKPromptView.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
 				8923F5C721577BC300CB98E4 /* Answers.m in Sources */,
+				3A03CFC12158C4E600C49295 /* DNTapDetectingImageView.m in Sources */,
 				3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */,
 				8923F5D3215799F800CB98E4 /* NewsDetail.m in Sources */,
 				3A5C0F46214DDCE000BB11FB /* EducationHeartLearnCell.m in Sources */,
@@ -1069,8 +1307,10 @@
 				3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */,
 				3A03CF0F2155E4CF00C49295 /* EducationLearnController.m in Sources */,
 				3A5C0F22214D414F00BB11FB /* ExamTextInViewCell.m in Sources */,
+				3A03CFAE2158C4E600C49295 /* EWTImagePickerTool.m in Sources */,
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
 				3A03CF1B215692BB00C49295 /* PersonJIfenViewController.m in Sources */,
+				3A03CFB42158C4E600C49295 /* UIView+DNImagePicker.m in Sources */,
 				3A5C0F43214DD34800BB11FB /* NewsNoticiTableViewCell.m in Sources */,
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
 				8923F5D02157966A00CB98E4 /* NewsMessage.m in Sources */,

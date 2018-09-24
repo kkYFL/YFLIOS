@@ -29,7 +29,7 @@
 -(void)initView{
     self.title = (_type == ExamViewTypeDefault)?@"待考试":@"历史考试";
     self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"view_back", @"view_back", leftButtonAction);
+    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     

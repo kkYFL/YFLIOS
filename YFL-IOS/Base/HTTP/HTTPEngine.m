@@ -8,7 +8,6 @@
 
 #import "HTTPEngine.h"
 #import "AFNetworking.h"
-#import "AFHTTPSessionManager.h"
 #import "HttpConfig.h"
 
 @interface HTTPEngine ()

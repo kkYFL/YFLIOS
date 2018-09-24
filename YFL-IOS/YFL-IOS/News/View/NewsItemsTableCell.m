@@ -136,7 +136,6 @@
     
     //huo
     UIImageView *iconImageView = [[UIImageView alloc]init];
-    [iconImageView setBackgroundColor:[UIColor whiteColor]];
     [backView addSubview:iconImageView];
     self.iconImageView = iconImageView;
     [iconImageView setContentMode:UIViewContentModeScaleToFill];

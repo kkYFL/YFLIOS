@@ -110,7 +110,7 @@
     [rightIcon setContentMode:UIViewContentModeCenter];
     [rightIcon setImage:[UIImage imageNamed:@"pingfen"]];
     [rightIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(line.mas_right).offset(45.0f);
+        make.left.equalTo(line.mas_right).offset(27.0f);
         make.centerY.equalTo(self.rightBackView);
     }];
     

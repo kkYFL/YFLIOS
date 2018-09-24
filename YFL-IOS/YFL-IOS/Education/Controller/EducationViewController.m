@@ -11,6 +11,7 @@
 #import "EducationItemsTableCell.h"
 #import "EducationOptionsController.h"
 #import "EducationLearHeartViewController.h"
+#import "EducationLearnController.h"
 
 @interface EducationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -60,7 +61,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-       // [_table registerClass:[EducationHeadTableCell class] forCellReuseIdentifier:@"topCell"];
         EducationHeadTableCell *topCell = [tableView dequeueReusableCellWithIdentifier:@"topCell"];
         return topCell;
     }
@@ -166,7 +166,9 @@
         [self.navigationController pushViewController:optionsVC animated:YES];
         
     }else if (index == 4){
-        
+        EducationLearnController *learnVC = [[EducationLearnController alloc]init];
+        learnVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:learnVC animated:YES];
     }
 }
 

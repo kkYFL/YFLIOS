@@ -27,7 +27,7 @@
 }
 
 -(void)initView{
-    self.title = @"待考试";
+    self.title = (_type == ExamViewTypeDefault)?@"待考试":@"历史考试";
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -95,7 +95,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     ExamWaitingTableViewCell *waitingExam = [tableView dequeueReusableCellWithIdentifier:@"waitingExam"];
+    if (_type == ExamViewTypeDefault) {
+        waitingExam.hideRemindLabel = NO;
+    }else{
+        waitingExam.hideRemindLabel = YES;
+    }
     return waitingExam;
     
 }

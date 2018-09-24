@@ -35,7 +35,8 @@ target 'YFL-IOS' do
   pod 'YYText'
   pod 'iCarousel'
   pod 'FSCalendar'
-
+  #pod 'JXCategoryView'
+  pod 'SPPageMenu'
   
   #ZFPlayer
   pod 'ZFPlayer', '~> 3.0'

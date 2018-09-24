@@ -8,6 +8,12 @@
 
 #import "EWTBaseViewController.h"
 
+typedef NS_ENUM(NSInteger,ExamViewType) {
+    ExamViewTypeDefault,  //考试历史
+    ExamViewTypeHistory   //等待考试
+};
+
 @interface ExamWaitingViewController : EWTBaseViewController
+@property (nonatomic, assign) ExamViewType type;
 
 @end

@@ -10,6 +10,9 @@
 #import "PersonMidTableViewCell.h"
 #import "PersonRowTableViewCell.h"
 #import "SigninRecordViewController.h"
+#import "PersonJIfenViewController.h"
+#import "PersonXinxiViewController.h"
+#import "PersonPassWordController.h"
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -124,6 +127,9 @@
         __weak typeof(self) weakSelf = self;
         midCell.selectViewBlock = ^(NSInteger viewIndex) {
             if (viewIndex == 1) {
+                PersonJIfenViewController *jifenVC = [[PersonJIfenViewController alloc]init];
+                jifenVC.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:jifenVC animated:YES];
                 
             }else if (viewIndex == 2){
                 SigninRecordViewController *signRecordVC = [[SigninRecordViewController alloc]init];
@@ -160,13 +166,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    //信息
+    if (indexPath.row == 1) {
+        PersonXinxiViewController *xinxiVC = [[PersonXinxiViewController alloc]init];
+        xinxiVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:xinxiVC animated:YES];
+    }else if (indexPath.row == 2){
+        PersonPassWordController *passVC = [[PersonPassWordController alloc]init];
+        passVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:passVC animated:YES];
+    }
 }
 
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-TAB_BAR_HEIGHT)];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-TAB_BAR_HEIGHT)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -319,6 +334,8 @@
         outButton.backgroundColor = [UIColor whiteColor];
         [outButton addTarget:self action:@selector(signOutAction:) forControlEvents:UIControlEventTouchUpInside];
         outButton.layer.masksToBounds = YES;
+        outButton.layer.borderColor = [UIColor colorWithHexString:@"#D64348"].CGColor;
+        outButton.layer.borderWidth = 0.5f;
         [outButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [outButton setTitleColor:[UIColor colorWithHexString:@"#FF0000"] forState:UIControlStateNormal];
         [outButton setTitle:@"安全退出" forState:UIControlStateNormal];
@@ -349,6 +366,16 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) NSMutableArray *viewsArr;
 @property (nonatomic, strong) UILabel *headerNumLab;
 @property (nonatomic, strong) UILabel *remindLabel1;
 @property (nonatomic, strong) UILabel *remindLabel2;
@@ -35,7 +36,8 @@
 
 -(void)initView{
     self.title = @"党员考试";
-    self.view.backgroundColor = [UIColor whiteColor];    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.viewsArr = [NSMutableArray array];
     
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.headerView;
@@ -112,7 +114,7 @@
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT)];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-TAB_BAR_HEIGHT)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -130,11 +132,12 @@
         CGFloat imageViewW = SCREEN_WIDTH;
         CGFloat imageViewH = SCREEN_WIDTH*272/375.0;
         
-        CGFloat selectImageViewMargin = 25.0f;
         CGFloat selectImageViewW = (SCREEN_WIDTH-15-25*2)/2.0;
         CGFloat selectImageViewH = 60.0f;
 
-        CGFloat headerViewH = imageViewH + 16.0 + 15.0*3;
+        CGFloat headerViewH = imageViewH + 16.0 + 30.0f;
+        
+        //
         UIView *headerView = [[UIView alloc]init];
         headerView.backgroundColor = [UIColor whiteColor];
         [headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerViewH)];
@@ -183,8 +186,9 @@
             UIButton *button = [[UIButton alloc]init];
             [button setImage:[UIImage imageNamed:@"suo_gray"] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:@"suoViewLight"] forState:UIControlStateSelected];
+            [self.viewsArr addObject:button];
             [routeView addSubview:button];
-            button.selected = YES;
+            button.selected = NO;
             [button mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(routeView);
                 make.centerX.equalTo(routeView);
@@ -205,7 +209,7 @@
         self.headerNumLab = headerNumLab;
         [self.headerNumLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(headerImageView);
-            make.centerY.equalTo(headerImageView);
+            make.centerY.equalTo(headerImageView.mas_centerY).offset(-10.f);
         }];
         
         
@@ -218,7 +222,7 @@
         [headerImageView addSubview:remindLabel1];
         self.remindLabel1 = remindLabel1;
         [self.remindLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.headerNumLab.mas_bottom).offset(-10);
+            make.top.equalTo(self.headerNumLab.mas_bottom).offset(0);
             make.centerX.equalTo(self.headerNumLab);
         }];
         
@@ -232,7 +236,7 @@
         [headerImageView addSubview:remindLabel2];
         self.remindLabel2 = remindLabel2;
         [self.remindLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.remindLabel1.mas_bottom).offset(15);
+            make.top.equalTo(_headerView.mas_centerY).offset(40.0);
             make.centerX.equalTo(self.remindLabel1);
         }];
         
@@ -251,7 +255,7 @@
         selectImageView.tag = 101;
         [selectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_headerView).offset(25.0f);
-            make.bottom.equalTo(headerImageView.mas_bottom).offset(16.0);
+            make.top.equalTo(remindLabel2.mas_bottom).offset(10.0f);
             make.height.mas_equalTo(selectImageViewH);
             make.width.mas_equalTo(selectImageViewW);
         }];
@@ -278,7 +282,7 @@
         [selectImageView2 addGestureRecognizer:tap2];
         [selectImageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_headerView).offset(25.0f+selectImageViewW+15.0f);
-            make.bottom.equalTo(headerImageView.mas_bottom).offset(16.0);
+            make.top.equalTo(remindLabel2.mas_bottom).offset(10.0f);
             make.height.mas_equalTo(selectImageViewH);
             make.width.mas_equalTo(selectImageViewW);
         }];
@@ -301,7 +305,7 @@
         paimingLabel.textAlignment = NSTextAlignmentCenter;
         [_headerView addSubview:paimingLabel];
         [paimingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(selectImageView2.mas_bottom).offset(15.0f);
+            make.top.equalTo(headerImageView.mas_bottom).offset(30.0f);
             make.centerX.equalTo(_headerView);
             make.height.mas_equalTo(15.0f);
         }];
@@ -310,7 +314,7 @@
         UIImageView *leftLineImageView = [[UIImageView alloc]init];
         [_headerView addSubview:leftLineImageView];
         [leftLineImageView setContentMode:UIViewContentModeCenter];
-        [leftLineImageView setImage:[UIImage imageNamed:@"news_line"]];
+        [leftLineImageView setImage:[UIImage imageNamed:@"Exam_line"]];
         [leftLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(paimingLabel.mas_left).offset(-15);
             make.centerY.equalTo(paimingLabel);
@@ -320,7 +324,7 @@
         UIImageView *rightLineImageView = [[UIImageView alloc]init];
         [_headerView addSubview:rightLineImageView];
         [rightLineImageView setContentMode:UIViewContentModeCenter];
-        [rightLineImageView setImage:[UIImage imageNamed:@"news_line"]];
+        [rightLineImageView setImage:[UIImage imageNamed:@"Exam_line"]];
         [rightLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(paimingLabel.mas_right).offset(15);
             make.centerY.equalTo(paimingLabel);
@@ -363,14 +367,30 @@
 
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        for (NSInteger i = 0; i<(self.viewsArr.count-2); i++) {
+            UIButton *currentBtn = self.viewsArr[i];
+            [UIView animateWithDuration:10 animations:^{
+                currentBtn.selected = YES;
+            }];
+        }
+    });
+}
+
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
     UIImageView *touchView = (UIImageView *)tap.view;
     NSInteger viewTag = touchView.tag;
     if (viewTag == 101) {
-        
+        ExamWaitingViewController *waitingVC = [[ExamWaitingViewController alloc]init];
+        waitingVC.hidesBottomBarWhenPushed = YES;
+        waitingVC.type = ExamViewTypeDefault;
+        [self.navigationController pushViewController:waitingVC animated:YES];
+
     }else if (viewTag == 102){
         ExamWaitingViewController *waitingVC = [[ExamWaitingViewController alloc]init];
         waitingVC.hidesBottomBarWhenPushed = YES;
+        waitingVC.type = ExamViewTypeHistory;
         [self.navigationController pushViewController:waitingVC animated:YES];
     }
 }

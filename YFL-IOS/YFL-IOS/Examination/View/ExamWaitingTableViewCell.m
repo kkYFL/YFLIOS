@@ -134,6 +134,15 @@
     return 15+18+17+12+15;
 }
 
+-(void)setHideRemindLabel:(BOOL)hideRemindLabel{
+    _hideRemindLabel = hideRemindLabel;
+    if (_hideRemindLabel) {
+        self.remainTimes.hidden = YES;
+    }else{
+        self.remainTimes.hidden = NO;
+    }
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

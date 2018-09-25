@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NewsItemContentView;
 
 @interface NewsItemsTableCell : UITableViewCell
-
+@property (nonatomic, strong) NewsItemContentView *item1;
+@property (nonatomic, strong) NewsItemContentView *item2;
+@property (nonatomic, strong) NewsItemContentView *item3;
+@property (nonatomic, strong) NewsItemContentView *item4;
 +(CGFloat)CellH;
 @end
 

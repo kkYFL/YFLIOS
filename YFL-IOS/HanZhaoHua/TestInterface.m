@@ -399,7 +399,7 @@ static NSString *taskId = @"1";
 //    UIImage *image = [UIImage imageNamed:@"personal_icon"];
 //    NSData *data = UIImagePNGRepresentation(image);
 //    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
-//        
+//
 //    } failure:^(NSError * _Nonnull error) {
 //        NSLog(@"%@", error);
 //    }];

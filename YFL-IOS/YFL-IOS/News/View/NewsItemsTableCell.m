@@ -15,10 +15,6 @@
 #define contentW (SCREEN_WIDTH-marginSpace*2-viewSpace)/2.0
 
 @interface NewsItemsTableCell ()
-@property (nonatomic, strong) NewsItemContentView *item1;
-@property (nonatomic, strong) NewsItemContentView *item2;
-@property (nonatomic, strong) NewsItemContentView *item3;
-@property (nonatomic, strong) NewsItemContentView *item4;
 @property (nonatomic, strong) UIView *line;
 @end
 

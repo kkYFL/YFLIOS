@@ -15,6 +15,8 @@
 #import "ICarouselViewController.h"
 #import "TestInterface.h"
 
+
+
 @interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
@@ -23,6 +25,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+     self.userToken = @"1";
+     self.userId = @"a6464fe1-6d65-4088-88f2-08272e55253f";
+     self.taskId = @"1";
+    
 
     //[self showLoginAndRegistController];
     

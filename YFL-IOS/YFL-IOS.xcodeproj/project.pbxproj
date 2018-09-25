@@ -111,6 +111,13 @@
 		3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A52129C1D000322875 /* PersonalViewController.m */; };
 		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
 		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
+		3AD47C9B215A8D3F000FBC04 /* WZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */; };
+		3AD47C9E215A8DB7000FBC04 /* DisnetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C9C215A8DB7000FBC04 /* DisnetView.m */; };
+		3AD47CA3215A8E60000FBC04 /* EWTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA1215A8E60000FBC04 /* EWTWebView.m */; };
+		3AD47CA4215A8E60000FBC04 /* EWTWebNativeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA2215A8E60000FBC04 /* EWTWebNativeBridge.m */; };
+		3AD47CAC215A8FA0000FBC04 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA6215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.m */; };
+		3AD47CAD215A8FA0000FBC04 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA7215A8F9F000FBC04 /* WKWebViewJavascriptBridge.m */; };
+		3AD47CAE215A8FA0000FBC04 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA8215A8F9F000FBC04 /* WebViewJavascriptBridge.m */; };
 		3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */; };
 		3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */; };
 		3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */; };
@@ -349,6 +356,20 @@
 		3A6BA5A82129C1E500322875 /* ExamnationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamnationViewController.m; sourceTree = "<group>"; };
 		3A6BA5AA2129C1F400322875 /* EducationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
+		3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZWebViewController.m; sourceTree = "<group>"; };
+		3AD47C9A215A8D3F000FBC04 /* WZWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZWebViewController.h; sourceTree = "<group>"; };
+		3AD47C9C215A8DB7000FBC04 /* DisnetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisnetView.m; sourceTree = "<group>"; };
+		3AD47C9D215A8DB7000FBC04 /* DisnetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisnetView.h; sourceTree = "<group>"; };
+		3AD47C9F215A8E60000FBC04 /* EWTWebNativeBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTWebNativeBridge.h; sourceTree = "<group>"; };
+		3AD47CA0215A8E60000FBC04 /* EWTWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTWebView.h; sourceTree = "<group>"; };
+		3AD47CA1215A8E60000FBC04 /* EWTWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTWebView.m; sourceTree = "<group>"; };
+		3AD47CA2215A8E60000FBC04 /* EWTWebNativeBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTWebNativeBridge.m; sourceTree = "<group>"; };
+		3AD47CA6215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
+		3AD47CA7215A8F9F000FBC04 /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		3AD47CA8215A8F9F000FBC04 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		3AD47CA9215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
+		3AD47CAA215A8F9F000FBC04 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		3AD47CAB215A8FA0000FBC04 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		3AFBC2B421417AC900D154D3 /* NewsVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVideoDetailViewController.h; sourceTree = "<group>"; };
 		3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVideoDetailViewController.m; sourceTree = "<group>"; };
 		3AFBC2B721422A3200D154D3 /* SigninRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SigninRecordViewController.h; sourceTree = "<group>"; };
@@ -756,6 +777,7 @@
 		3A6BA48721271C0B00322875 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				3AD47CA5215A8F9F000FBC04 /* WebViewJavascriptBridge */,
 				3A6BA50B21271E5B00322875 /* Category */,
 				3A6BA4F721271E5B00322875 /* Controller */,
 				3A6BA50621271E5B00322875 /* Headers */,
@@ -769,6 +791,8 @@
 		3A6BA48821271E5A00322875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AD47C9D215A8DB7000FBC04 /* DisnetView.h */,
+				3AD47C9C215A8DB7000FBC04 /* DisnetView.m */,
 				3A6BA49721271E5A00322875 /* PromptBox.m */,
 				3A6BA4BD21271E5A00322875 /* PromptBox.h */,
 			);
@@ -792,6 +816,7 @@
 		3A6BA4DB21271E5A00322875 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3AD47C98215A8D3F000FBC04 /* Web */,
 				3A03CF6D2158C4E500C49295 /* EWTImagePicker */,
 				3A03CFA62158C4E500C49295 /* EWTMediator */,
 				3A6BA4DE21271E5A00322875 /* EWTNotification.h */,
@@ -807,6 +832,10 @@
 		3A6BA4F721271E5B00322875 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3AD47C9F215A8E60000FBC04 /* EWTWebNativeBridge.h */,
+				3AD47CA2215A8E60000FBC04 /* EWTWebNativeBridge.m */,
+				3AD47CA0215A8E60000FBC04 /* EWTWebView.h */,
+				3AD47CA1215A8E60000FBC04 /* EWTWebView.m */,
 				3A6BA4F921271E5B00322875 /* EWTBaseViewController.h */,
 				3A6BA4FF21271E5B00322875 /* EWTBaseViewController.m */,
 				3A6BA50421271E5B00322875 /* EWTBaseNavigationController.m */,
@@ -993,6 +1022,28 @@
 				3A03CF232156A5CB00C49295 /* PersonPassWordController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3AD47C98215A8D3F000FBC04 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */,
+				3AD47C9A215A8D3F000FBC04 /* WZWebViewController.h */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		3AD47CA5215A8F9F000FBC04 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				3AD47CA6215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.m */,
+				3AD47CA7215A8F9F000FBC04 /* WKWebViewJavascriptBridge.m */,
+				3AD47CA8215A8F9F000FBC04 /* WebViewJavascriptBridge.m */,
+				3AD47CA9215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.h */,
+				3AD47CAA215A8F9F000FBC04 /* WebViewJavascriptBridge.h */,
+				3AD47CAB215A8FA0000FBC04 /* WKWebViewJavascriptBridge.h */,
+			);
+			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
 		8923F5A52155D2A900CB98E4 /* HanZhaoHua */ = {
@@ -1243,11 +1294,13 @@
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
 				8923F5AF2156338500CB98E4 /* PartyMemberThinking.m in Sources */,
 				3A5C0F37214DC9C600BB11FB /* NewsPolicyDetailViewController.m in Sources */,
+				3AD47CAC215A8FA0000FBC04 /* WebViewJavascriptBridgeBase.m in Sources */,
 				3A03CF182156619B00C49295 /* EducationLearnDetailController.m in Sources */,
 				8923F5A82155D31700CB98E4 /* TestInterface.m in Sources */,
 				3A5C0F31214DC3E400BB11FB /* NewsPolicyViewController.m in Sources */,
 				8923F5B82156542300CB98E4 /* StudyNotes.m in Sources */,
 				3A03CFB02158C4E600C49295 /* UIImage+Helper.m in Sources */,
+				3AD47CAD215A8FA0000FBC04 /* WKWebViewJavascriptBridge.m in Sources */,
 				8923F5AC2155ECCD00CB98E4 /* LearningTaskModel.m in Sources */,
 				3A03CFBC2158C4E600C49295 /* DNFullImageButton.m in Sources */,
 				8923F5C4215744F500CB98E4 /* HistoryExamDetail.m in Sources */,
@@ -1265,6 +1318,7 @@
 				3A03CFB72158C4E600C49295 /* DNImagePickerController.m in Sources */,
 				3A03CFB12158C4E600C49295 /* DNAsset.m in Sources */,
 				3A5C0F1C2149657C00BB11FB /* ExamTopTitleTableViewCell.m in Sources */,
+				3AD47CA3215A8E60000FBC04 /* EWTWebView.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A5C0F28214D689A00BB11FB /* NewsBannerDetailViewController.m in Sources */,
 				8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */,
@@ -1275,6 +1329,7 @@
 				3A03CFBA2158C4E600C49295 /* DNFullImageCheckButton.m in Sources */,
 				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
+				3AD47CAE215A8FA0000FBC04 /* WebViewJavascriptBridge.m in Sources */,
 				3A03CF2121569A7F00C49295 /* XinxiTableViewCell.m in Sources */,
 				3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */,
 				8923F5C12156A54B00CB98E4 /* HistoryExam.m in Sources */,
@@ -1298,6 +1353,7 @@
 				8923F5D92157DD2F00CB98E4 /* ScoreRecord.m in Sources */,
 				3A03CFC02158C4E600C49295 /* JKPromptView.m in Sources */,
 				3A6BA56321271E5B00322875 /* HTTPRequest.m in Sources */,
+				3AD47CA4215A8E60000FBC04 /* EWTWebNativeBridge.m in Sources */,
 				8923F5C721577BC300CB98E4 /* Answers.m in Sources */,
 				3A03CFC12158C4E600C49295 /* DNTapDetectingImageView.m in Sources */,
 				3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */,
@@ -1315,6 +1371,8 @@
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
 				8923F5D02157966A00CB98E4 /* NewsMessage.m in Sources */,
 				8923F5D62157A1D500CB98E4 /* UserMessage.m in Sources */,
+				3AD47C9B215A8D3F000FBC04 /* WZWebViewController.m in Sources */,
+				3AD47C9E215A8DB7000FBC04 /* DisnetView.m in Sources */,
 				3A5C0F40214DD2B000BB11FB /* NewsNoticeViewController.m in Sources */,
 				3A5C0F5621553C8D00BB11FB /* EducationOptionsController.m in Sources */,
 				3A5C0F5C2155450600BB11FB /* EducationAddOptionController.m in Sources */,

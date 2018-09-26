@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BannerScrollViewCell : UICollectionViewCell
+@property (nonatomic, strong) UILabel *contentLab;
 
 @end
 

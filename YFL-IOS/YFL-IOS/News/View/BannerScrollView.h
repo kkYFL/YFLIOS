@@ -10,5 +10,6 @@
 
 @interface BannerScrollView : UIView
 -(void)setContentData:(id)data;
+@property (nonatomic, strong) NSString *contentStr;
 @end
 

@@ -30,7 +30,8 @@
      self.userToken = @"1";
      self.userId = @"a6464fe1-6d65-4088-88f2-08272e55253f";
      self.taskId = @"1";
-    
+     self.host = @"http://47.100.247.71/protal";
+
 
     //[self showLoginAndRegistController];
     

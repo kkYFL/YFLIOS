@@ -47,6 +47,9 @@
 /** 如果你自定义了cell样式，请在实现此代理方法为你的cell填充数据以及其它一系列设置 */
 - (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view{
     BannerScrollViewCell *contentCell = (BannerScrollViewCell *)cell;
+    if (_contentStr) {
+        contentCell.contentLab.text = _contentStr;
+    }
 }
 
 -(void)setContentData:(id)data{
@@ -96,6 +99,10 @@
         }];
     }
     return _scrollView;
+}
+
+-(void)setContentStr:(NSString *)contentStr{
+    _contentStr = contentStr;
 }
 
 

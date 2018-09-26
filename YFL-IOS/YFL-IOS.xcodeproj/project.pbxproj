@@ -118,6 +118,7 @@
 		3AD47CAC215A8FA0000FBC04 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA6215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.m */; };
 		3AD47CAD215A8FA0000FBC04 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA7215A8F9F000FBC04 /* WKWebViewJavascriptBridge.m */; };
 		3AD47CAE215A8FA0000FBC04 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA8215A8F9F000FBC04 /* WebViewJavascriptBridge.m */; };
+		3AD47CB1215BD9C0000FBC04 /* NewsContentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CB0215BD9C0000FBC04 /* NewsContentViewCell.m */; };
 		3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */; };
 		3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */; };
 		3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */; };
@@ -370,6 +371,8 @@
 		3AD47CA9215A8F9F000FBC04 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
 		3AD47CAA215A8F9F000FBC04 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		3AD47CAB215A8FA0000FBC04 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		3AD47CAF215BD9C0000FBC04 /* NewsContentViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsContentViewCell.h; sourceTree = "<group>"; };
+		3AD47CB0215BD9C0000FBC04 /* NewsContentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsContentViewCell.m; sourceTree = "<group>"; };
 		3AFBC2B421417AC900D154D3 /* NewsVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVideoDetailViewController.h; sourceTree = "<group>"; };
 		3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVideoDetailViewController.m; sourceTree = "<group>"; };
 		3AFBC2B721422A3200D154D3 /* SigninRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SigninRecordViewController.h; sourceTree = "<group>"; };
@@ -656,6 +659,8 @@
 				3A5C0F3C214DCB9B00BB11FB /* NewsActivityTableViewCell.m */,
 				3A5C0F41214DD34800BB11FB /* NewsNoticiTableViewCell.h */,
 				3A5C0F42214DD34800BB11FB /* NewsNoticiTableViewCell.m */,
+				3AD47CAF215BD9C0000FBC04 /* NewsContentViewCell.h */,
+				3AD47CB0215BD9C0000FBC04 /* NewsContentViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1366,6 +1371,7 @@
 				3A03CFAE2158C4E600C49295 /* EWTImagePickerTool.m in Sources */,
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
 				3A03CF1B215692BB00C49295 /* PersonJIfenViewController.m in Sources */,
+				3AD47CB1215BD9C0000FBC04 /* NewsContentViewCell.m in Sources */,
 				3A03CFB42158C4E600C49295 /* UIView+DNImagePicker.m in Sources */,
 				3A5C0F43214DD34800BB11FB /* NewsNoticiTableViewCell.m in Sources */,
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,

@@ -11,8 +11,7 @@
 #define NewsIconH HEIGHT_SCALE*170
 
 @interface NewsContentMaxImageViewCell ()
-@property (nonatomic, strong) UILabel *cellTitleLab;
-@property (nonatomic, strong) UIImageView *iconImageView;
+
 @property (nonatomic, strong) UIImageView *playIcon;
 
 

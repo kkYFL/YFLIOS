@@ -1,19 +1,20 @@
 //
-//  NewsRightIConTableCell.m
+//  NewsContentViewCell.m
 //  YFL-IOS
 //
-//  Created by 杨丰林 on 2018/8/22.
+//  Created by 杨丰林 on 2018/9/26.
 //  Copyright © 2018年 杨丰林. All rights reserved.
 //
 
-#import "NewsRightIConTableCell.h"
+#import "NewsContentViewCell.h"
 
-@interface NewsRightIConTableCell ()
+@interface NewsContentViewCell ()
 
 @end
 
+@implementation NewsContentViewCell
 
-@implementation NewsRightIConTableCell
+
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -25,13 +26,6 @@
 
 -(void)initView{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    UIImageView *cellImageView = [[UIImageView alloc]init];
-    [cellImageView setBackgroundColor:[UIColor whiteColor]];
-    [self.contentView addSubview:cellImageView];
-    self.cellImageView = cellImageView;
-    [cellImageView setContentMode:UIViewContentModeScaleToFill];
-    [cellImageView setImage:[UIImage imageNamed:@"Pfofession_card-bg-11"]];
 
     
     UILabel *cellTitleLabel = [[UILabel alloc] init];
@@ -61,31 +55,22 @@
     [self.contentView addSubview:pinlunLabel];
     self.pinlunLabel = pinlunLabel;
     
-    
 
     
-    CGFloat imageW = (75-20)*5/3.0;
-    [self.cellImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(10);
-        make.right.equalTo(self.mas_right).offset(-12);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
-        make.width.mas_equalTo(imageW);
-    }];
-    
     [cellTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(12);
-        make.top.equalTo(cellImageView.mas_top).offset(2);
-        make.right.equalTo(cellImageView.mas_left).offset(-12);
+        make.left.equalTo(self).offset(15);
+        make.top.equalTo(self).offset(15);
+        make.right.equalTo(self.mas_right).offset(-15);
     }];
     
     [laiyunLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(12.0);
-        make.bottom.equalTo(self.cellImageView.mas_bottom).offset(0);
+        make.left.equalTo(self).offset(15.0);
+        make.bottom.equalTo(self.mas_bottom).offset(-15);
     }];
     
     [pinlunLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.laiyunLabel.mas_right).offset(20);
-        make.bottom.equalTo(self.cellImageView.mas_bottom).offset(0);
+        make.centerY.equalTo(self.laiyunLabel);
     }];
     
     
@@ -98,7 +83,6 @@
         make.right.equalTo(self.contentView);
         make.height.mas_equalTo(0.5);
     }];
-    
 }
 
 

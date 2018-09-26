@@ -212,8 +212,8 @@ static CGFloat const NAVIGATIONBAR_HEIGHT = 0;
     self.backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];
     UIButton * backItem = [UIButton buttonWithType:UIButtonTypeCustom];
     backItem.frame = CGRectMake(0, 0, 42, 44);
-    [backItem setImage:[UIImage imageNamed:@"navigaitionBar_back_normal"] forState:UIControlStateNormal];
-    [backItem setImage:[UIImage imageNamed:@"navigationBar_back_select"] forState:UIControlStateSelected];
+    [backItem setImage:[UIImage imageNamed:@"view_back"] forState:UIControlStateNormal];
+    [backItem setImage:[UIImage imageNamed:@"view_back"] forState:UIControlStateSelected];
     [backItem addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     self.backItem = backItem;
     [self.backView addSubview:backItem];
@@ -237,8 +237,8 @@ static CGFloat const NAVIGATIONBAR_HEIGHT = 0;
     if (!_backBarButtonItem) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 0, 42, 15);
-        [button setImage:[UIImage imageNamed:@"navigaitionBar_back_normal"] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"navigationBar_back_select"] forState:UIControlStateSelected];
+        [button setImage:[UIImage imageNamed:@"view_back"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"view_back"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
         _backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     }

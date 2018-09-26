@@ -10,7 +10,6 @@
 
 @interface BannerScrollViewCell ()
 //@property (nonatomic, strong) UIImageView *remindView;
-@property (nonatomic, strong) UILabel *contentLab;
 @end
 
 

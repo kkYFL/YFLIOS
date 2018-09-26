@@ -16,6 +16,7 @@
 #import "NewsBannerDetailViewController.h"
 #import "NewsVideoDetailViewController.h"
 #import "NewsPolicyViewController.h"
+#import "NewsContentViewCell.h"
 #import "NewsActivityViewController.h"
 #import "NewsNoticeViewController.h"
 #import "WZWebViewController.h"
@@ -33,7 +34,6 @@
 @property (nonatomic, strong) NSMutableArray *menuList;
 @property (nonatomic, strong) NSMutableArray *newsList;
 @property (nonatomic, strong) Banner *remindModel;
-
 @property (nonatomic, assign) NSInteger serverCount;
 
 @end
@@ -163,50 +163,80 @@
     }
     
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-    {
+{
         if (indexPath.section ==0) {
             return [NewsItemsTableCell CellH];
         }
         
-        if (indexPath.row < 3) {
+        NewsMessage *newsModel = nil;
+        if (self.newsList.count>indexPath.row) {
+            newsModel = self.newsList[indexPath.row];
+        }
+        
+        //文字加图片
+        if ([newsModel.infoType integerValue] == 1) {
             return [NewsRightIConTableCell CellH];
         }
         
-        return [NewsContentMaxImageViewCell CellH];
-    }
-    
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-    {
-        if (indexPath.section == 0) {
-            NewsItemsTableCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
-            if (self.menuList.count) {
-                InformationMenu *menuModel = self.menuList[0];
-                itemCell.item1.titleLab.text = menuModel.typeInfo;
-            }
-            if (self.menuList.count >= 2) {
-                InformationMenu *menuModel = self.menuList[1];
-                itemCell.item2.titleLab.text = menuModel.typeInfo;
-            }
-            if (self.menuList.count >= 3) {
-                InformationMenu *menuModel = self.menuList[2];
-                itemCell.item3.titleLab.text = menuModel.typeInfo;
-            }
-            if (self.menuList.count >= 4) {
-                InformationMenu *menuModel = self.menuList[3];
-                itemCell.item4.titleLab.text = menuModel.typeInfo;
-            }
-            
-            return itemCell;
+        //文本
+        if ([newsModel.infoType integerValue] == 2) {
+            return [NewsContentViewCell CellH];
         }
         
-        //[_table registerClass:[NewsRightIConTableCell class] forCellReuseIdentifier:@"rightIconCell"];
+        return [NewsContentMaxImageViewCell CellH];
+}
+    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        NewsItemsTableCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
+        if (self.menuList.count) {
+            InformationMenu *menuModel = self.menuList[0];
+            itemCell.item1.titleLab.text = menuModel.typeInfo;
+        }
+        if (self.menuList.count >= 2) {
+            InformationMenu *menuModel = self.menuList[1];
+            itemCell.item2.titleLab.text = menuModel.typeInfo;
+        }
+        if (self.menuList.count >= 3) {
+            InformationMenu *menuModel = self.menuList[2];
+            itemCell.item3.titleLab.text = menuModel.typeInfo;
+        }
+        if (self.menuList.count >= 4) {
+            InformationMenu *menuModel = self.menuList[3];
+            itemCell.item4.titleLab.text = menuModel.typeInfo;
+        }
+            
+        return itemCell;
+    }
         
-        if (indexPath.row<3) {
+        
+        NewsMessage *newsModel = nil;
+        if (self.newsList.count>indexPath.row) {
+            newsModel = self.newsList[indexPath.row];
+        }
+        
+        //文字加图片
+        if ([newsModel.infoType integerValue] == 1) {
             NewsRightIConTableCell *rightIconCell = [tableView dequeueReusableCellWithIdentifier:@"rightIconCell"];
+            rightIconCell.cellTitleLabel.text = newsModel.title;
+            NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
+            [rightIconCell.cellImageView setImage:[UIImage imageNamed:imageurl]];
             return rightIconCell;
         }
         
+        
+        //文本
+        if ([newsModel.infoType integerValue] == 2) {
+            NewsContentViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:@"contentCell"];
+            contentCell.cellTitleLabel.text = newsModel.title;
+            contentCell.laiyunLabel.text = newsModel.sourceFrom;
+            contentCell.pinlunLabel.text = [newsModel.commonNum stringValue];
+            return contentCell;
+        }
+        
 
+        //视频
         __weak typeof(self) weakSelf = self;
         NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
         MaxImageCell.selectBlock = ^(NSString *content) {
@@ -214,6 +244,9 @@
             videoVC.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:videoVC animated:YES];
         };
+        MaxImageCell.cellTitleLab.text = newsModel.title;
+        NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
+        [MaxImageCell.iconImageView setImage:[UIImage imageNamed:imageurl]];
         return MaxImageCell;
         
     }
@@ -282,7 +315,9 @@
     NSMutableArray* images = [NSMutableArray array];
     for (NSInteger i = 0; i<self.bannerList.count; i++) {
         Banner *bannerModel = self.bannerList[i];
-        [images addObject:[NSString stringWithFormat:@"%@",bannerModel.imgUrl]];
+        NSString *str = [NSString stringWithFormat:@"http://47.100.247.71/protal%@",bannerModel.imgUrl];
+        NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [images addObject:urlStr];
     }
        _scrollView.imageURLStringsGroup = images;
 }
@@ -301,8 +336,7 @@
         [_table registerClass:[NewsItemsTableCell class] forCellReuseIdentifier:@"itemCell"];
         [_table registerClass:[NewsRightIConTableCell class] forCellReuseIdentifier:@"rightIconCell"];
         [_table registerClass:[NewsContentMaxImageViewCell class] forCellReuseIdentifier:@"MaxImageCell"];
-
-        //NewsContentMaxImageViewCell
+        [_table registerClass:[NewsContentViewCell class] forCellReuseIdentifier:@"contentCell"];
         
     }
     return _table;
@@ -358,10 +392,12 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void*)context{
     NSInteger new = [[change objectForKey:@"new"] integerValue];
-    //数据结束
+    
+    //数据渲染
     if (new == 4) {
         [self setContentData:nil];
         [self.table reloadData];
+        self.remindScrollHeader.contentStr = self.remindModel.summary.length?self.remindModel.summary:@"河南县党建项目已成功上线，请大家踊跃学习";
     }
     
 }

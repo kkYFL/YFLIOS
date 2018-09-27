@@ -27,6 +27,18 @@ NS_ASSUME_NONNULL_BEGIN
 //链接类型 1:外链接 2：内链接
 @property(nonatomic, assign) NSNumber *foreignType;
 
+
+//视频url
+@property (nonatomic, copy) NSString *videoUrl;
+//title
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *sourceFrom;
+@property (nonatomic, copy) NSString *info;
+@property (nonatomic, copy) NSString *createTime;
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

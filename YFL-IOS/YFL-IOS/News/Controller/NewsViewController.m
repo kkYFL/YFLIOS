@@ -20,6 +20,7 @@
 #import "NewsActivityViewController.h"
 #import "NewsNoticeViewController.h"
 #import "WZWebViewController.h"
+#import "NewsDetailNoVideoController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 
@@ -239,11 +240,11 @@
         //视频
         __weak typeof(self) weakSelf = self;
         NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
-        MaxImageCell.selectBlock = ^(NSString *content) {
-            NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
-            videoVC.hidesBottomBarWhenPushed = YES;
-            [weakSelf.navigationController pushViewController:videoVC animated:YES];
-        };
+//        MaxImageCell.selectBlock = ^(NSString *content) {
+//            NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+//            videoVC.hidesBottomBarWhenPushed = YES;
+//            [weakSelf.navigationController pushViewController:videoVC animated:YES];
+//        };
         MaxImageCell.cellTitleLab.text = newsModel.title;
         NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
         [MaxImageCell.iconImageView setImage:[UIImage imageNamed:imageurl]];
@@ -274,6 +275,34 @@
     
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 1) {
+        NewsMessage *newsModel = nil;
+        if (self.newsList.count>indexPath.row) {
+            newsModel = self.newsList[indexPath.row];
+        }
+        
+        //文字加图片
+        if ([newsModel.infoType integerValue] == 1) {
+            NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
+            detailVc.infoId = newsModel.infoId;
+            detailVc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detailVc animated:YES];
+        //文本
+        }else if ([newsModel.infoType integerValue] == 2){
+            NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
+            detailVc.infoId = newsModel.infoId;
+            detailVc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:detailVc animated:YES];
+        //视频
+        }else if ([newsModel.infoType integerValue] == 3){
+            NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+            videoVC.hidesBottomBarWhenPushed = YES;
+            videoVC.infoId = newsModel.infoId;
+            [self.navigationController pushViewController:videoVC animated:YES];
+        }
+        
+    }
 
 }
     

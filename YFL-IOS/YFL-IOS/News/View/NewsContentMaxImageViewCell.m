@@ -59,9 +59,9 @@
     self.iconImageView = iconImageView;
     [iconImageView setContentMode:UIViewContentModeScaleToFill];
     [iconImageView setImage:[UIImage imageNamed:@"Pfofession_card-bg-2"]];
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-    iconImageView.userInteractionEnabled = YES;
-    [iconImageView addGestureRecognizer:tap1];
+//    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
+//    iconImageView.userInteractionEnabled = YES;
+//    [iconImageView addGestureRecognizer:tap1];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(15.0f);
         make.top.equalTo(self.cellTitleLab.mas_bottom).offset(10.0f);
@@ -114,11 +114,11 @@
     return textHeight;
 }
 
--(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    if (self.selectBlock) {
-        self.selectBlock(@"");
-    }
-}
+//-(void)tapGestureAction:(UITapGestureRecognizer *)tap{
+//    if (self.selectBlock) {
+//        self.selectBlock(@"");
+//    }
+//}
 
 +(CGFloat)CellH{
     NSString *content = @"美国耗资15亿，修建518米通道，鱼儿像坐滑梯一样过大坝";

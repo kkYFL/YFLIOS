@@ -7,12 +7,14 @@
 //
 
 #import "NewsVideoDetailViewController.h"
-
 #import <ZFPlayer/ZFPlayer.h>
 #import <ZFPlayer/ZFAVPlayerManager.h>
 //#import <ZFPlayer/ZFIJKPlayerManager.h>
 //#import <ZFPlayer/KSMediaPlayerManager.h>
 #import <ZFPlayer/ZFPlayerControlView.h>
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
@@ -104,6 +106,22 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 }
 
 -(void)loadData{
+    
+    // 新闻详情接口
+    // 测试结果: 未通过, 未提供测试数据, 无法测试
+        [HanZhaoHua getNewsDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId infoId:@"" informationId:self.infoId success:^(NewsDetail * _Nonnull newsDetail) {
+            NSLog(@"%@", newsDetail.userId);
+            NSLog(@"%@", newsDetail.userToken);
+            NSLog(@"%@", newsDetail.imgUrl);
+            NSLog(@"%@", newsDetail.summary);
+            NSLog(@"%@", newsDetail.foreignUrl);
+            NSLog(@"%@", newsDetail.foreignType);
+            NSLog(@"%@", newsDetail.positionNo);
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
 //
 //    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {

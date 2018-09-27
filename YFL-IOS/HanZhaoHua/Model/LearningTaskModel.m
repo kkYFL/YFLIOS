@@ -9,5 +9,15 @@
 #import "LearningTaskModel.h"
 
 @implementation LearningTaskModel
+//找未找到的Key
+- (id) valueForUndefinedKey:(NSString *)key{
+    NSLog(@"Undefined Key: %@",key);
+    return nil;
+}
+
+//设置未找到的Key
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    NSLog(@"Undefined Key: %@",key);
+}
 
 @end

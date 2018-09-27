@@ -243,13 +243,16 @@
     
     
     [[self.requestSessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, NSData * responseObject, NSError * _Nullable error) {
-        NSError *error1 = nil;
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error1];
-        NSInteger code = [[dic objectForKey:@"code"] integerValue];
-        
-        if (2000 == code) {
-            success(dic);
-        }else {
+        if (responseObject) {
+            NSError *error1 = nil;
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error1];
+            NSInteger code = [[dic objectForKey:@"code"] integerValue];
+            if (2000 == code) {
+                success(dic);
+            }else {
+                failure(error);
+            }
+        }else{
             failure(error);
         }
  

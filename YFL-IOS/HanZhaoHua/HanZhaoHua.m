@@ -255,10 +255,8 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success: (void (^)(NewsDetail *newsDetail))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getInfo"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getInfoHtml"];
     NSDictionary *paraDic = @{@"userToken":userToken,
-                              @"userId":userId,
-                              @"infoId":infoId,
                               @"informationId":informationId
                               };
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {

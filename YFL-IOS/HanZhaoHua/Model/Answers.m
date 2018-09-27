@@ -16,4 +16,11 @@
     }
 }
 
+//找未找到的Key
+- (id) valueForUndefinedKey:(NSString *)key{
+    NSLog(@"Undefined Key: %@",key);
+    return nil;
+}
+
+
 @end

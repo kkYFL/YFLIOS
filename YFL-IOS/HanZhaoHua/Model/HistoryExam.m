@@ -10,7 +10,7 @@
 
 @implementation HistoryExam
 //找未找到的Key
-- (id) valueForUndefinedKey:(NSString *)key{
+-(id)valueForUndefinedKey:(NSString *)key{
     NSLog(@"Undefined Key: %@",key);
     return nil;
 }
@@ -19,4 +19,5 @@
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     NSLog(@"Undefined Key: %@",key);
 }
+
 @end

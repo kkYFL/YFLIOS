@@ -8,13 +8,15 @@
 
 #import "ExamhomeViewController.h"
 #import "ExamConentViewController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface ExamhomeViewController ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *rouleLabel;
 @property (nonatomic, strong) UIImageView *examImageView;
 
-
+@property (nonatomic, strong) NSArray *ruleArr;
 @end
 
 @implementation ExamhomeViewController
@@ -211,6 +213,19 @@
 }
 
 -(void)loadData{
+    
+    
+    // 待考试规则
+    // 测试结果: 通过
+        [HanZhaoHua getExamRuleWithUserToken:APP_DELEGATE.userToken userId:@"69b9aa05fbfb4cd1b6c8e9ee74397101" paperId:@"b13750a0236f43e28ed31e3327f1745d" success:^(NSArray * examRule) {
+
+            self.ruleArr = examRule;
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    
+    
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
 //
 //    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {

@@ -10,7 +10,7 @@
 
 @implementation NewsMessage
 //找未找到的Key
-- (id) valueForUndefinedKey:(NSString *)key{
+- (id)valueForUndefinedKey:(NSString *)key{
     NSLog(@"Undefined Key: %@",key);
     return nil;
 }
@@ -18,6 +18,9 @@
 //设置未找到的Key
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     NSLog(@"Undefined Key: %@",key);
+    if ([key isEqualToString:@"id"]) {
+        self.ID = value;
+    }
 }
 
 @end

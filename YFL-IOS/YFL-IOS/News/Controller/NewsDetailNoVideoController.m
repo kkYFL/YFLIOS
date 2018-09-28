@@ -11,8 +11,9 @@
 #import "AppDelegate.h"
 
 
-@interface NewsDetailNoVideoController ()
-
+@interface NewsDetailNoVideoController ()<UIWebViewDelegate>
+@property (nonatomic, strong) NewsDetail *newsDetail;
+@property (nonatomic, strong) UIWebView *webView;
 @end
 
 @implementation NewsDetailNoVideoController
@@ -41,6 +42,8 @@
     // 新闻详情接口
     // 测试结果: 未通过, 未提供测试数据, 无法测试
     [HanZhaoHua getNewsDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId infoId:@"" informationId:self.infoId success:^(NewsDetail * _Nonnull newsDetail) {
+        self.newsDetail = newsDetail;
+        
         NSLog(@"%@", newsDetail.userId);
         NSLog(@"%@", newsDetail.userToken);
         NSLog(@"%@", newsDetail.imgUrl);
@@ -48,6 +51,19 @@
         NSLog(@"%@", newsDetail.foreignUrl);
         NSLog(@"%@", newsDetail.foreignType);
         NSLog(@"%@", newsDetail.positionNo);
+        
+        self.webView = [[UIWebView alloc] init];
+        self.webView.backgroundColor = [UIColor whiteColor];
+        self.webView.opaque = NO;
+        self.webView.scrollView.scrollEnabled = NO;
+        self.webView.delegate = self;
+        [self.webView loadHTMLString:self.newsDetail.info baseURL:nil];
+        [self.view addSubview:_webView];
+        [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.right.bottom.equalTo(self.view);
+        }];
+        
+        
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];

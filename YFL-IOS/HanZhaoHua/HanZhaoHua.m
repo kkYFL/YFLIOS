@@ -661,7 +661,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 +(void)getExamRuleWithUserToken: (NSString *)userToken
                          userId: (NSString *)userId
                         paperId: (NSString *)paperId
-                        success: (void (^)(HistoryExam *examRule))success
+                        success: (void (^)(NSArray *examRule))success
                         failure: (void (^)(NSError *error))failure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/examPaperDesc"];
@@ -672,10 +672,8 @@ static NSString *host = @"http://47.100.247.71/protal/";
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         NSLog(@"%@", responseObject);
         if (success) {
-            NSDictionary *dic = [responseObject objectForKey:@"data"];
-            HistoryExam * model = [[HistoryExam alloc] init];
-            [model setValuesForKeysWithDictionary:dic];
-            success(model);
+            NSArray *ruleArr = [responseObject objectForKey:@"data"];
+            success(ruleArr);
         }
     } failure:^(NSError *error) {
         if (failure) failure(error);

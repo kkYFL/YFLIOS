@@ -29,6 +29,9 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) NSArray <NSURL *>*assetURLs;
 
+
+@property (nonatomic, strong) NewsDetail *newsDetail;
+
 @end
 
 @implementation NewsVideoDetailViewController
@@ -110,6 +113,9 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     // 新闻详情接口
     // 测试结果: 未通过, 未提供测试数据, 无法测试
         [HanZhaoHua getNewsDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId infoId:@"" informationId:self.infoId success:^(NewsDetail * _Nonnull newsDetail) {
+            self.newsDetail = newsDetail;
+
+            
             NSLog(@"%@", newsDetail.userId);
             NSLog(@"%@", newsDetail.userToken);
             NSLog(@"%@", newsDetail.imgUrl);

@@ -379,7 +379,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)getExamRuleWithUserToken: (NSString *)userToken
                          userId: (NSString *)userId
                         paperId: (NSString *)paperId
-                        success: (void (^)(HistoryExam *examRule))success
+                        success: (void (^)(NSArray *examRule))success
                         failure: (void (^)(NSError *error))failure;
 
 /**

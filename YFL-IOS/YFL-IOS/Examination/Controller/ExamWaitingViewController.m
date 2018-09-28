@@ -9,7 +9,8 @@
 #import "ExamWaitingViewController.h"
 #import "ExamWaitingTableViewCell.h"
 #import "ExamhomeViewController.h"
-
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface ExamWaitingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -27,7 +28,7 @@
 }
 
 -(void)initView{
-    self.title = (_type == ExamViewTypeDefault)?@"待考试":@"历史考试";
+    self.title = (_type == ExamViewTypeDefault)?@"历史考试":@"待考试";
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -39,6 +40,28 @@
 }
 
 -(void)loadData{
+    
+    // 历史考试列表/待开始列表
+    // 测试结果: 通过
+    [HanZhaoHua getExamListWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId page:1 pageNum:10 queryType:(self.type == ExamViewTypeDefault)?@"1":@"2" success:^(NSArray * _Nonnull list) {
+            for (HistoryExam *model in list) {
+                NSLog(@"%@", model.times);
+                NSLog(@"%@", model.totalTime);
+                NSLog(@"%@", model.totalTimes);
+                NSLog(@"%@", model.paperTitle);
+                NSLog(@"%@", model.beginTime);
+                NSLog(@"%@", model.finalTime);
+                NSLog(@"%@", model.state);
+                NSLog(@"%@", model.summary);
+                NSLog(@"%@", model.examId);
+                NSLog(@"%@", model.paperId);
+            }
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    
+    
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
 //
 //    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {

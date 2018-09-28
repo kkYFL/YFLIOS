@@ -9,6 +9,8 @@
 #import "ExamnationViewController.h"
 #import "ExamWaitingViewController.h"
 #import "ExamTableViewCommonCell.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface ExamnationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
@@ -22,8 +24,8 @@
 @property (nonatomic, strong) UILabel *remindLabel2;
 @property (nonatomic, strong) UILabel *paimingLabel;
 
-
-
+@property (nonatomic, strong) TestRanking *ownerRankeModel;
+@property (nonatomic, strong) NSArray *scoreList;
 @end
 
 @implementation ExamnationViewController
@@ -48,6 +50,26 @@
 }
 
 -(void)loadData{
+    // 考试排名
+    // 测试结果: 通过
+        [HanZhaoHua testRankingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId page:1 pageNum:10 success:^(TestRanking *owner, NSArray *scoreList) {
+            NSLog(@"%@", owner.headImg);
+            NSLog(@"%@", owner.name);
+            NSLog(@"%@", owner.score);
+            for (TestRanking *model in scoreList) {
+                NSLog(@"%@", model.headImg);
+                NSLog(@"%@", model.name);
+                NSLog(@"%@", model.score);
+            }
+            
+            self.ownerRankeModel = owner;
+            self.scoreList = scoreList;
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    
+    
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
 //
 //    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {

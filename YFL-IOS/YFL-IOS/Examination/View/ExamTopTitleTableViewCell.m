@@ -10,7 +10,6 @@
 
 @interface ExamTopTitleTableViewCell ()
 @property (nonatomic, strong) UIImageView *imagView;
-@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 

@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, assign) ExamContentViewType viewType;
 @property (nonatomic, strong) NSArray *detailList;
+@property (nonatomic, strong) NSMutableDictionary *answersDic;
 
 @end
 
@@ -56,6 +57,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 -(void)initData{
     _currentIndex = 0;
+    self.answersDic = [NSMutableDictionary dictionary];
 }
 
 
@@ -67,7 +69,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 2;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,12 +83,12 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         
     }else if (indexPath.row == 1){
         if (_viewType == ExamContentViewTypeDefault) {
-            return [ExamChooseCell CellHWithModel:_currentExamModel];
+            return [ExamChooseCell CellHWithModel:_currentExamModel]+60;
         }
         
         return [ExamTextViewPutINCell CellH];
     }
-    return 44;
+    return 0.01f;;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,6 +97,19 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     if (indexPath.row == 0) {
         if (_viewType == ExamContentViewTypeDefault) {
             ExamTopTitleTableViewCell *topTitleCell = [tableView dequeueReusableCellWithIdentifier:@"topTitleCell"];
+            NSString *typeStr = @"";
+            if ([_currentExamModel.examType integerValue] == 1) {
+                typeStr = @"单选";
+            }else if ([_currentExamModel.examType integerValue] == 2){
+                typeStr = @"多选";
+            }else if ([_currentExamModel.examType integerValue] == 3){
+                typeStr = @"填空";
+            }else if ([_currentExamModel.examType integerValue] == 4){
+                typeStr = @"判断";
+            }else if ([_currentExamModel.examType integerValue] == 5){
+                typeStr = @"简答";
+            }
+            topTitleCell.titleLabel.text = [NSString stringWithFormat:@"第%ld题  %@题",(_currentIndex+1),typeStr];
             return topTitleCell;
         }
         
@@ -106,7 +121,35 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             ExamChooseCell *chooseCell = [tableView dequeueReusableCellWithIdentifier:@"chooseCell"];
             if (_currentExamModel) {chooseCell.currentExamModel = _currentExamModel; }
             chooseCell.chooseActionBlock = ^(NSInteger chooseIndex) {
+//                if (weakSelf.detailList.count ) {
+//
+//                }
                 
+                //if (_currentIndex < self.detailList.count && chooseIndex<self.detailList.count) //{
+//                    HistoryExamDetail *examDetailModel = self.detailList[_currentIndex];
+//                    for (NSInteger i=0; i<examDetailModel.answers.count; i++) {
+//                        Answers *ansModel = examDetailModel.answers[i];
+//
+//                        //单选
+//                        if ([examDetailModel.examType integerValue] == 1) {
+//                            //选择项
+//                            if (chooseIndex == i) {
+//                                ansModel.selected = @"1";
+//                            }else{
+//                                ansModel.selected = @"2";
+//                            }
+//                        //多选
+//                        }else{
+//                            //选择项
+//                            if (chooseIndex == i) {
+//                                ansModel.selected = @"1";
+//                            }
+//                        }
+//
+//
+//                    }
+//                }
+
             };
             return chooseCell;
         }
@@ -156,7 +199,8 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     // 测试结果: 通过
     [HanZhaoHua getWaitingToStartDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId paperId:self.papidID?self.papidID:@"0" success:^(NSArray * _Nonnull detailList) {
         self.detailList = detailList;
-        [self refreshViewWithData];
+        [self refreshViewWithWithIndex:_currentIndex];
+        //[self refreshViewWithData];
             NSLog(@"");
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -260,18 +304,70 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     return _footerView;
 }
 
+
+//下一题  上一题
 -(void)selectSource:(UIButton *)sender{
     NSInteger viewTag = sender.tag;
+    
+    //上一题
     if (viewTag == 101) {
-        _viewType = ExamContentViewTypeDefault;
+        //返回到第一题点击返回按钮无效
+        if (_currentIndex <= 0) {
+            return;
+        }
+        
+        //上一题
+        _currentIndex --;
+        
+        
+        
+        
+        //_viewType = ExamContentViewTypeDefault;
+        
+    //下一题
     }else if (viewTag == 102){
-        _viewType = ExamContentViewTypeTextIn;
+        //_viewType = ExamContentViewTypeTextIn;
+        //case 1
+        if (_currentIndex >= self.detailList.count) {
+            //答题结束提交答案
+            [self submitData];
+            return;
+        }
+        
+        //case 2
+        //未答题禁止进入下一题
+//        NSString *key = [NSString stringWithFormat:@"%ld",(long)_currentIndex];
+//        if (![self.answersDic objectForKey:key]) {
+//            //未答题禁止进入下一题
+//            return;
+//        }
+        BOOL hasAnswered = NO;
+        for (NSInteger i=0; i<_currentExamModel.answers.count; i++) {
+            Answers *ansModel = _currentExamModel.answers[i];
+            if ([ansModel.selected integerValue] == 1) {
+                hasAnswered = YES;
+            }
+        }
+        if (!hasAnswered) {
+            return;
+        }
+        
+        
+        
+        //case 3
+        //继续答题
+        _currentIndex++;
+        
+        [self refreshViewWithWithIndex:_currentIndex];
+
+        [self.table reloadData];
     }
     
-    [self.table reloadData];
+    
+    
 }
 
--(void)refreshViewWithData{
+-(void)refreshViewWithWithIndex:(NSInteger)index{
     if (self.detailList && self.detailList.count && self.detailList.count > _currentIndex) {
         HistoryExamDetail *examDetailModel = self.detailList[_currentIndex];
         _currentExamModel = examDetailModel;
@@ -292,6 +388,94 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 }
 
 
+-(void)submitData{
+    // 党员开始交卷
+    // 测试结果: 通过
+//    NSDictionary *paraDic = @{@"userToken":APP_DELEGATE.userToken,
+//                              @"userId":APP_DELEGATE.userId,
+//                              @"paperId":self.papidID,
+//                              @"data": @{@"userAnswer":@"",
+//                                         @"examTitle":@"",
+//                                         @"totalTimes": [[NSNumber alloc] initWithInteger:2],
+//                                         @"paperTitle":@"",
+//                                         @"examUrl":@"",
+//                                         @"examId":@"",
+//                                         @"examType":@"",
+//                                         @"summary":@"",
+//                                         @"answers":@[@{}]
+//                                         }
+//                              };
+    
+    
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [para setValue:APP_DELEGATE.userId forKey:@"userId"];
+    [para setValue:self.papidID?self.papidID:@"" forKey:@"paperId"];
+    
+    NSMutableArray *dataArr = [NSMutableArray array];
+    for (NSInteger i = 0; i<self.detailList.count; i++) {
+        HistoryExamDetail *examDetailModel = self.detailList[i];
+        NSMutableDictionary *tmpDic = [NSMutableDictionary dictionary];
+        [tmpDic setValue:examDetailModel.userAnswer?examDetailModel.userAnswer:@"" forKey:@"userAnswer"];
+        [tmpDic setValue:examDetailModel.examTitle?examDetailModel.examTitle:@"" forKey:@"examTitle"];
+        [tmpDic setValue:examDetailModel.examUrl?examDetailModel.examUrl:@"" forKey:@"examUrl"];
+        [tmpDic setValue:examDetailModel.examId?examDetailModel.examId:@"" forKey:@"examId"];
+        [tmpDic setValue:[NSNumber numberWithInteger:[examDetailModel.examType integerValue]] forKey:@"examType"];
+        [tmpDic setValue:examDetailModel.score?examDetailModel.score:@"" forKey:@"score"];
+        [tmpDic setValue:[NSNumber numberWithInteger:[examDetailModel.showOrder integerValue]] forKey:@"showOrder"];
+        [tmpDic setValue:[NSNumber numberWithInteger:[examDetailModel.titleType integerValue]] forKey:@"titleType"];
+
+        NSMutableArray *ansArr = [NSMutableArray array];
+        for (NSInteger j = 0; j<examDetailModel.answers.count; j++) {
+            Answers *ansModel = examDetailModel.answers[j];
+            NSMutableDictionary *ansDic = [NSMutableDictionary dictionary];
+            [ansDic setValue:ansModel.content forKey:@"content"];
+            [ansDic setValue:ansModel.answerId forKey:@"id"];
+            [ansDic setValue:[NSNumber numberWithInteger:[ansModel.isAnswer integerValue]] forKey:@"isAnswer"];
+            [ansDic setValue:[NSNumber numberWithInteger:[ansModel.selected integerValue]] forKey:@"selected"];
+            [ansArr addObject:ansDic];
+        }
+        [tmpDic setValue:ansArr forKey:@"answers"];
+        [dataArr addObject:tmpDic];
+        
+    }
+    
+    [para setValue:dataArr forKey:@"data"];
+    
+    
+    /*
+     content = "\U5546\U5468\U65f6\U4ee3\U7684\U827a\U672f\U6210\U5c31--\U300a\U4e2d\U56fd\U9752\U94dc\U65f6\U4ee3\U300b";
+     id = ecd1fe6fb15542caafe0e329409168d6;
+     isAnswer = 2;
+     selected = 2;
+     
+     
+     
+     //试题内容
+     //考试视频或音频链接地址
+     //考试试题ID
+     //答案列表
+     @property(nonatomic, strong) NSMutableArray *answers;
+     //试题类型【1、单选 2、多选 3、填空 4、判断 5、简答】
+     //
+     //
+     //
+     */
+    
+    
+    
+    [HanZhaoHua submitExamPaperWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSLog(@"%@", responseObject);
+        [self back];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
+-(void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     

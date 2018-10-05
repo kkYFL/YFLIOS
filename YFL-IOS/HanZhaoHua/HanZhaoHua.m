@@ -710,7 +710,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperSourceList"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/handExamPaper"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -772,6 +772,18 @@ static NSString *host = @"http://47.100.247.71/protal/";
         if (failure) failure(error);
     }];
 }
+
+
+//+(void)GetSubmitExamAnswerToServerWithParaDic: (NSDictionary *)paraDic
+//                                      success: (void (^)(NSDictionary *responseObject))success
+//                                      failure: (void (^)(NSError *error))failure{
+//    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/handExamPaper"];
+//    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+//        if (success) success(responseObject);
+//    } failure:^(NSError *error) {
+//        if (failure) failure(error);
+//    }];
+//}
 
 
 

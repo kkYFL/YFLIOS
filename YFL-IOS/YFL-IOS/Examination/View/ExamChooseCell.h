@@ -18,5 +18,6 @@
 
 @interface ExamChooseTagView : UIView
 @property (nonatomic, strong) UIImageView *cellSelectView;
+@property (nonatomic, assign) BOOL selected;
 @property (nonatomic, strong) UILabel *quetionContentLabel;
 @end

@@ -11,20 +11,6 @@
 
 @implementation HistoryExamDetail
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    if ([key isEqualToString:@"answers"]) {
-        NSArray * list = value;
-        NSMutableArray *result = [[NSMutableArray alloc] init];
-        for (NSDictionary *dic in list) {
-            Answers *model = [[Answers alloc] initWithDic:dic];
-            [result addObject:model];
-        }
-        self.answers = [[NSArray alloc] initWithArray:result];
-    }
-}
-
-
-
 -(id)initWithDic:(NSDictionary *)dic{
     self = [super init];
     if (self) {

@@ -70,8 +70,19 @@
         
         
         NSString *content = currentExamModel.examTitle;
-        self.contentLabel.text = content;
-        CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
+        NSMutableAttributedString *attri = [ExamChooseCell getAttriHeightwithString:content Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f]];
+        self.contentLabel.attributedText = attri;
+        //self.contentLabel.text = content;
+//        CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
+        CGFloat contentH = [ExamChooseCell getSpaceLabelHeightwithString:content Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30.0f]+0.5f;
+
+        
+        [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(15.0f);
+            make.top.equalTo(self).offset(15.0f);
+            make.right.equalTo(self.mas_right).offset(-15.0f);
+            make.height.mas_equalTo(contentH);
+        }];
         
         for (NSInteger i = 0; i<self.tagViewArr.count; i++) {
             ExamChooseTagView *tagView = self.tagViewArr[i];
@@ -82,6 +93,11 @@
                 Answers *ansModel = _currentExamModel.answers[i];
                 NSString *zimi = (_zimiArr.count>i)?_zimiArr[i]:@"";
                 [tagView.quetionContentLabel setText:[NSString stringWithFormat:@"%@%@",zimi,ansModel.content]];
+                if ([ansModel.selected integerValue] == 1) {
+                    tagView.selected = YES;
+                }else{
+                    tagView.selected = NO;
+                }
                 
                 CGFloat topSpace = 15+contentH+80*HEIGHT_SCALE+(25+15)*i;
                 [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -102,7 +118,7 @@
 +(CGFloat)CellHWithModel:(HistoryExamDetail *)examModel{
     if (examModel) {
         NSString *content = examModel.examTitle;
-        CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
+        CGFloat contentH = [ExamChooseCell getSpaceLabelHeightwithString:content Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30.0f]+0.5f;
         NSInteger questionCount = examModel.answers.count;
         return 15+contentH+80*HEIGHT_SCALE+25*questionCount+15*(questionCount-1)+40;
     }
@@ -110,20 +126,92 @@
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    UIImageView *touchView = (UIImageView *)tap.view;
-    NSInteger touchIndex = touchView.tag - 100;
-    for (NSInteger i = 0; i<self.tagViewArr.count; i++) {
-        ExamChooseTagView *tagView = self.tagViewArr[i];
-        if (touchIndex == i) {
-            [tagView.cellSelectView setImage:[UIImage imageNamed:@"choosen"]];
-        }else{
-            [tagView.cellSelectView setImage:[UIImage imageNamed:@"Exam_no_choose"]];
-        }
+    if (!_currentExamModel) {
+        return;
     }
     
-    if (self.chooseActionBlock) {
-        self.chooseActionBlock(touchIndex);
+    UIImageView *touchView = (UIImageView *)tap.view;
+    NSInteger touchIndex = touchView.tag - 100;
+    
+    //单选
+    if ([_currentExamModel.examType integerValue] == 1) {
+        Answers *answerModel = _currentExamModel.answers[touchIndex];
+        ExamChooseTagView *tagView = self.tagViewArr[touchIndex];
+        
+        if (tagView.selected) {
+            tagView.selected = NO;
+        }else{
+            tagView.selected = YES;
+        }
+        
+        //选中
+        if (tagView.selected) {
+            for (NSInteger i = 0; i<_currentExamModel.answers.count; i++) {
+                Answers *Model = _currentExamModel.answers[i];
+                ExamChooseTagView *tag = self.tagViewArr[i];
+                Model.selected = @"2";
+                tag.selected = NO;
+            }
+            
+            answerModel.selected = @"1";
+            tagView.selected = YES;
+            
+        }else{
+            for (NSInteger i = 0; i<_currentExamModel.answers.count; i++) {
+                Answers *Model = _currentExamModel.answers[i];
+                ExamChooseTagView *tag = self.tagViewArr[i];
+                Model.selected = @"2";
+                tag.selected = NO;
+            }
+        }
+        
+
+        
+        
+    }else{
+        Answers *answerModel = _currentExamModel.answers[touchIndex];
+        ExamChooseTagView *tagView = self.tagViewArr[touchIndex];
+        tagView.selected = !tagView.selected;
+        //选中
+        if (tagView.selected) {
+            answerModel.selected = @"1";
+        }else{
+            answerModel.selected = @"2";
+        }
+        
     }
+    
+//    for (NSInteger i = 0; i<self.tagViewArr.count; i++) {
+//        ExamChooseTagView *tagView = self.tagViewArr[i];
+//        if (touchIndex == i) {
+//            [tagView.cellSelectView setImage:[UIImage imageNamed:@"choosen"]];
+//        }else{
+//            [tagView.cellSelectView setImage:[UIImage imageNamed:@"Exam_no_choose"]];
+//        }
+//    }
+    
+    if (self.chooseActionBlock) {
+        self.chooseActionBlock(0);
+    }
+}
+
+
++(NSMutableAttributedString *)getAttriHeightwithString:(NSString *)string Speace:(CGFloat)lineSpeace withFont:(UIFont*)font{
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:string];
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpeace;
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#0C0C0C"]};
+    [attri addAttributes:dic range:NSMakeRange(0, string.length)];
+    return attri;
+}
+
++(CGFloat)getSpaceLabelHeightwithString:(NSString *)string Speace:(CGFloat)lineSpeace withFont:(UIFont*)font withWidth:(CGFloat)width {
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpeace;
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#0C0C0C"]};
+    CGSize size = [string boundingRectWithSize:CGSizeMake(width,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
+    CGFloat textHeight = size.height;
+    return textHeight;
 }
 
 
@@ -175,6 +263,15 @@
         make.centerY.equalTo(self.cellSelectView);
     }];
     
+}
+
+-(void)setSelected:(BOOL)selected{
+    _selected = selected;
+    if (_selected) {
+        [self.cellSelectView setImage:[UIImage imageNamed:@"choosen"]];
+    }else{
+        [self.cellSelectView setImage:[UIImage imageNamed:@"Exam_no_choose"]];
+    }
 }
 
 @end

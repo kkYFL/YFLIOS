@@ -439,6 +439,15 @@ NS_ASSUME_NONNULL_BEGIN
                               failure: (void (^)(NSError *error))failure;
 
 
+///**
+// 提交考试答案
+// 
+// */
+//+(void)GetSubmitExamAnswerToServerWithParaDic: (NSDictionary *)paraDic
+//                                      success: (void (^)(NSDictionary *responseObject))success
+//                                      failure: (void (^)(NSError *error))failure;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

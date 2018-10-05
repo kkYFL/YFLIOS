@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ExamTopTitleTableViewCell : UITableViewCell
+@property (nonatomic, strong) UILabel *titleLabel;
 
 +(CGFloat)CellH;
 

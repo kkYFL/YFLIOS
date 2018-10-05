@@ -379,7 +379,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)getExamRuleWithUserToken: (NSString *)userToken
                          userId: (NSString *)userId
                         paperId: (NSString *)paperId
-                        success: (void (^)(NSArray *examRule))success
+                        success: (void (^)(NSDictionary *examRule))success
                         failure: (void (^)(NSError *error))failure;
 
 /**
@@ -410,6 +410,34 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)uploadFileWithFiles: (NSData *)files
                    success: (void (^)(NSString *imgUrl))success
                    failure: (void (^)(NSError *error))failure;
+
+
+
+/**
+ 个人中心—用户信息查询接口
+
+ */
++(void)GetPersonInfoSourceWithParaDic: (NSDictionary *)paraDic
+                              success: (void (^)(NSDictionary *responseObject))success
+                              failure: (void (^)(NSError *error))failure;
+
+/**
+ 版本更新
+ 
+ */
++(void)GetAPPVersionSourceWithParaDic: (NSDictionary *)paraDic
+                              success: (void (^)(NSDictionary *responseObject))success
+                              failure: (void (^)(NSError *error))failure;
+
+
+/**
+ 欢迎页面
+
+ */
++(void)GetAPPGuidenViewImageSourceWithParaDic: (NSDictionary *)paraDic
+                              success: (void (^)(NSDictionary *responseObject))success
+                              failure: (void (^)(NSError *error))failure;
+
 
 @end
 

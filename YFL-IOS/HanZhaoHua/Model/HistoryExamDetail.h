@@ -22,16 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
 //考试试题ID
 @property(nonatomic, copy) NSString *examId;
 //答案列表
-@property(nonatomic, copy) NSArray *answers;
+@property(nonatomic, strong) NSMutableArray *answers;
 //试题类型【1、单选 2、多选 3、填空 4、判断 5、简答】
-@property(nonatomic, assign) NSNumber *examType;
+@property(nonatomic, copy) NSString *examType;
 //
-@property(nonatomic, assign) NSNumber *score;
+@property(nonatomic, copy) NSString *score;
 //
-@property(nonatomic, assign) NSNumber *showOrder;
+@property(nonatomic, copy) NSString *showOrder;
 //
-@property(nonatomic, assign) NSNumber *titleType;
+@property(nonatomic, copy) NSString *titleType;
 
+-(id)initWithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

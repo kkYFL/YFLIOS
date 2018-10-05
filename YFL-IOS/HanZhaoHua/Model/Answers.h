@@ -17,10 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 //答案内容
 @property(nonatomic, copy) NSString *content;
 //是否正确答案 1-是 2-否
-@property(nonatomic, assign) NSNumber *isAnswer;
+@property(nonatomic, copy) NSString *isAnswer;
 //
-@property(nonatomic, assign) NSNumber *selected;
+@property(nonatomic, copy) NSString *selected;
 
+-(id)initWithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

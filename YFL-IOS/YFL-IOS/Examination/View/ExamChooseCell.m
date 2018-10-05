@@ -7,15 +7,14 @@
 //
 
 #import "ExamChooseCell.h"
+#import "HistoryExamDetail.h"
+#import "Answers.h"
 
-@interface ExamChooseCell ()
+@interface ExamChooseCell (){
+    NSArray *_zimiArr;
+}
 @property (nonatomic, strong) UILabel *contentLabel;
-
-@property (nonatomic, strong) UIImageView *A;
-@property (nonatomic, strong) UIImageView *B;
-@property (nonatomic, strong) UIImageView *C;
-@property (nonatomic, strong) UIImageView *D;
-
+@property (nonatomic, strong) NSMutableArray *tagViewArr;
 
 @end
 
@@ -33,10 +32,14 @@
 -(void)initView{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    self.tagViewArr = [NSMutableArray array];
+    _zimiArr = [NSArray arrayWithObjects:@"A: ",@"B: ",@"C: ",@"D: ",@"E: ",@"F: ",@"G: ", nil];
+
+    
     
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.font = [UIFont systemFontOfSize:17.0f];
-    contentLabel.text = @"《中国共产党纪律处分条例》规定，在考试、录取工作中，有泄露试题、考场舞弊、涂改考卷、违规录取等违反有关规定行为，情节严重的，给与（ ）处分？（3分）";
+    contentLabel.text = @"";
     contentLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     contentLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:contentLabel];
@@ -48,140 +51,79 @@
         make.right.equalTo(self.mas_right).offset(-15.0f);
     }];
     
-    
-    UIImageView *A = [[UIImageView alloc]init];
-    [A setBackgroundColor:[UIColor whiteColor]];
-    [self.contentView addSubview:A];
-    self.A = A;
-    [A setContentMode:UIViewContentModeCenter];
-    [A setImage:[UIImage imageNamed:@"choosen"]];
-    A.tag = 101;
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-    A.userInteractionEnabled = YES;
-    [A addGestureRecognizer:tap1];
-    [A mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(10);
-        make.top.equalTo(self.contentLabel.mas_bottom).offset(HEIGHT_SCALE*80);
-        make.height.width.mas_equalTo(25);
-    }];
-    
-    
-    UILabel *labelA = [[UILabel alloc] init];
-    labelA.font = [UIFont systemFontOfSize:17.0f];
-    labelA.text = @"A：撤销党内职务";
-    labelA.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    labelA.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:labelA];
-    [labelA mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.A.mas_right).offset(10);
-        make.centerY.equalTo(self.A);
-    }];
-    
-    
-    
-    UIImageView *B = [[UIImageView alloc]init];
-    [B setBackgroundColor:[UIColor whiteColor]];
-    [self.contentView addSubview:B];
-    self.B = B;
-    [B setContentMode:UIViewContentModeCenter];
-    [B setImage:[UIImage imageNamed:@"choosen"]];
-    B.tag = 102;
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-    B.userInteractionEnabled = YES;
-    [B addGestureRecognizer:tap2];
-    [B mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(10);
-        make.top.equalTo(self.A.mas_bottom).offset(15);
-        make.height.width.mas_equalTo(25);
-    }];
-    
-    UILabel *labelB = [[UILabel alloc] init];
-    labelB.font = [UIFont systemFontOfSize:17.0f];
-    labelB.text = @"B：撤销党内职务";
-    labelB.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    labelB.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:labelB];
-    [labelB mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.B.mas_right).offset(10);
-        make.centerY.equalTo(self.B);
-    }];
 
-    
-    
-    
-    UIImageView *C = [[UIImageView alloc]init];
-    [C setBackgroundColor:[UIColor whiteColor]];
-    [self.contentView addSubview:C];
-    self.C = C;
-    [C setContentMode:UIViewContentModeCenter];
-    [C setImage:[UIImage imageNamed:@"choosen"]];
-    C.tag = 103;
-    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-    C.userInteractionEnabled = YES;
-    [C addGestureRecognizer:tap3];
-    [C mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(10);
-        make.top.equalTo(self.B.mas_bottom).offset(15);
-        make.height.width.mas_equalTo(25);
-    }];
-    
-    UILabel *labelC = [[UILabel alloc] init];
-    labelC.font = [UIFont systemFontOfSize:17.0f];
-    labelC.text = @"B：撤销党内职务";
-    labelC.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    labelC.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:labelC];
-    [labelC mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.C.mas_right).offset(10);
-        make.centerY.equalTo(self.C);
-    }];
-    
-    
-    
-    UIImageView *D = [[UIImageView alloc]init];
-    [D setBackgroundColor:[UIColor whiteColor]];
-    [self.contentView addSubview:D];
-    self.D = D;
-    [D setContentMode:UIViewContentModeCenter];
-    [D setImage:[UIImage imageNamed:@"choosen"]];
-    D.tag = 104;
-    UITapGestureRecognizer *tap4 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-    D.userInteractionEnabled = YES;
-    [D addGestureRecognizer:tap4];
-    [D mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(10);
-        make.top.equalTo(self.C.mas_bottom).offset(15);
-        make.height.width.mas_equalTo(25);
-    }];
-    
-    UILabel *labelD = [[UILabel alloc] init];
-    labelD.font = [UIFont systemFontOfSize:17.0f];
-    labelD.text = @"B：撤销党内职务";
-    labelD.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    labelD.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:labelD];
-    [labelD mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.D.mas_right).offset(10);
-        make.centerY.equalTo(self.D);
-    }];
-    
-    
-    
-    
-
-
-    
 }
 
-+(CGFloat)CellH{
-    NSString *content = @"《中国共产党纪律处分条例》规定，在考试、录取工作中，有泄露试题、考场舞弊、涂改考卷、违规录取等违反有关规定行为，情节严重的，给与（ ）处分？（3分）";
-    CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
-    
-    return 15+contentH+80*HEIGHT_SCALE+25*4+15*3+40;
+
+-(void)setCurrentExamModel:(HistoryExamDetail *)currentExamModel{
+    _currentExamModel = currentExamModel;
+    if (_currentExamModel && _currentExamModel.answers && _currentExamModel.answers.count) {
+        while (self.tagViewArr.count < _currentExamModel.answers.count) {
+            ExamChooseTagView *tagView = [[ExamChooseTagView alloc]init];
+            [self.contentView addSubview:tagView];
+            [self.tagViewArr addObject:tagView];
+            
+            UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
+            tagView.cellSelectView.userInteractionEnabled = YES;
+            [tagView.cellSelectView addGestureRecognizer:tap1];
+        }
+        
+        
+        NSString *content = currentExamModel.examTitle;
+        self.contentLabel.text = content;
+        CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
+        
+        for (NSInteger i = 0; i<self.tagViewArr.count; i++) {
+            ExamChooseTagView *tagView = self.tagViewArr[i];
+            if (i<_currentExamModel.answers.count) {
+                tagView.cellSelectView.hidden = NO;
+                tagView.cellSelectView.tag = 100+i;
+                
+                Answers *ansModel = _currentExamModel.answers[i];
+                NSString *zimi = (_zimiArr.count>i)?_zimiArr[i]:@"";
+                [tagView.quetionContentLabel setText:[NSString stringWithFormat:@"%@%@",zimi,ansModel.content]];
+                
+                CGFloat topSpace = 15+contentH+80*HEIGHT_SCALE+(25+15)*i;
+                [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(self).offset(0);
+                    make.top.equalTo(self.contentLabel.mas_bottom).offset(topSpace);
+                    make.height.mas_equalTo(25);
+                    make.width.mas_equalTo(SCREEN_WIDTH);
+                }];
+            }else{
+                tagView.hidden = YES;
+                tagView.cellSelectView.tag = -1;
+            }
+        }
+    }
+}
+
+
++(CGFloat)CellHWithModel:(HistoryExamDetail *)examModel{
+    if (examModel) {
+        NSString *content = examModel.examTitle;
+        CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
+        NSInteger questionCount = examModel.answers.count;
+        return 15+contentH+80*HEIGHT_SCALE+25*questionCount+15*(questionCount-1)+40;
+    }
+    return 0.01f;
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
+    UIImageView *touchView = (UIImageView *)tap.view;
+    NSInteger touchIndex = touchView.tag - 100;
+    for (NSInteger i = 0; i<self.tagViewArr.count; i++) {
+        ExamChooseTagView *tagView = self.tagViewArr[i];
+        if (touchIndex == i) {
+            [tagView.cellSelectView setImage:[UIImage imageNamed:@"choosen"]];
+        }else{
+            [tagView.cellSelectView setImage:[UIImage imageNamed:@"Exam_no_choose"]];
+        }
+    }
     
+    if (self.chooseActionBlock) {
+        self.chooseActionBlock(touchIndex);
+    }
 }
 
 
@@ -191,3 +133,52 @@
 }
 
 @end
+
+
+
+
+@implementation ExamChooseTagView
+-(instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initView];
+    }
+    return self;
+}
+
+-(void)initView{
+    self.backgroundColor = [UIColor whiteColor];
+    
+    
+    UIImageView *cellSelectView = [[UIImageView alloc]init];
+    [cellSelectView setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:cellSelectView];
+    self.cellSelectView = cellSelectView;
+    [cellSelectView setContentMode:UIViewContentModeCenter];
+    [cellSelectView setImage:[UIImage imageNamed:@"Exam_no_choose"]];
+    [cellSelectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(10);
+        make.centerY.equalTo(self);
+        make.height.width.mas_equalTo(25);
+    }];
+    
+    
+    UILabel *quetionContentLabel = [[UILabel alloc] init];
+    quetionContentLabel.font = [UIFont systemFontOfSize:17.0f];
+    quetionContentLabel.text = @"";
+    quetionContentLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    quetionContentLabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:quetionContentLabel];
+    self.quetionContentLabel = quetionContentLabel;
+    [quetionContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.cellSelectView.mas_right).offset(10);
+        make.centerY.equalTo(self.cellSelectView);
+    }];
+    
+}
+
+@end
+
+
+
+

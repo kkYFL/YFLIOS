@@ -619,8 +619,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray *list = [responseObject objectForKey:@"data"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                HistoryExam * model = [[HistoryExam alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                HistoryExam * model = [[HistoryExam alloc] initWithDic:d];
                 [result addObject:model];
             }
             success([[NSArray alloc] initWithArray:result]);
@@ -661,7 +660,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 +(void)getExamRuleWithUserToken: (NSString *)userToken
                          userId: (NSString *)userId
                         paperId: (NSString *)paperId
-                        success: (void (^)(NSArray *examRule))success
+                        success: (void (^)(NSDictionary *examRule))success
                         failure: (void (^)(NSError *error))failure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/examPaperDesc"];
@@ -672,8 +671,8 @@ static NSString *host = @"http://47.100.247.71/protal/";
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         NSLog(@"%@", responseObject);
         if (success) {
-            NSArray *ruleArr = [responseObject objectForKey:@"data"];
-            success(ruleArr);
+            NSDictionary *ruledic = [responseObject objectForKey:@"data"];
+            success(ruledic);
         }
     } failure:^(NSError *error) {
         if (failure) failure(error);
@@ -697,8 +696,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray *list = [responseObject objectForKey:@"data"];
             NSMutableArray *result = [[NSMutableArray alloc] init];
             for (NSDictionary *dic in list) {
-                HistoryExamDetail *examDetail = [[HistoryExamDetail alloc] init];
-                [examDetail setValuesForKeysWithDictionary:dic];
+                HistoryExamDetail *examDetail = [[HistoryExamDetail alloc] initWithDic:dic];
                 [result addObject:examDetail];
             }
             success([[NSArray alloc] initWithArray:result]);
@@ -739,5 +737,43 @@ static NSString *host = @"http://47.100.247.71/protal/";
         if (failure) failure(error);
     }];
 }
+
+
++(void)GetPersonInfoSourceWithParaDic: (NSDictionary *)paraDic
+                              success: (void (^)(NSDictionary *responseObject))success
+                              failure: (void (^)(NSError *error))failure{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/getUserInfo"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)GetAPPVersionSourceWithParaDic: (NSDictionary *)paraDic
+                              success: (void (^)(NSDictionary *responseObject))success
+                              failure: (void (^)(NSError *error))failure{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"version/update.do"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
+
++(void)GetAPPGuidenViewImageSourceWithParaDic: (NSDictionary *)paraDic
+                                      success: (void (^)(NSDictionary *responseObject))success
+                                      failure: (void (^)(NSError *error))failure{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"positionCtrl/welcomeImgs"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
+
+
 
 @end

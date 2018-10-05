@@ -7,7 +7,8 @@
 //
 
 #import "EWTBaseViewController.h"
+@class HistoryExam;
 
 @interface ExamhomeViewController : EWTBaseViewController
-
+@property (nonatomic, strong) HistoryExam *examModel;
 @end

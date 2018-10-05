@@ -10,17 +10,19 @@
 
 @implementation Answers
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    if ([key isEqualToString:@"id"]) {
-        self.answerId = value;
+
+-(id)initWithDic:(NSDictionary *)dic{
+    self = [super init];
+    if (self) {
+        self.answerId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"answerId"]];
+        self.content = [NSString stringWithFormat:@"%@",[dic objectForKey:@"content"]];
+        self.isAnswer = [NSString stringWithFormat:@"%@",[dic objectForKey:@"isAnswer"]];
+        self.selected = [NSString stringWithFormat:@"%@",[dic objectForKey:@"selected"]];
+
     }
+    return self;
 }
 
-//找未找到的Key
-- (id) valueForUndefinedKey:(NSString *)key{
-    NSLog(@"Undefined Key: %@",key);
-    return nil;
-}
 
 
 @end

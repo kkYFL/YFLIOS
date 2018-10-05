@@ -120,6 +120,7 @@
 		3AD47CAE215A8FA0000FBC04 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA8215A8F9F000FBC04 /* WebViewJavascriptBridge.m */; };
 		3AD47CB1215BD9C0000FBC04 /* NewsContentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CB0215BD9C0000FBC04 /* NewsContentViewCell.m */; };
 		3AD47CB4215D3409000FBC04 /* NewsDetailNoVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CB3215D3409000FBC04 /* NewsDetailNoVideoController.m */; };
+		3AD47CB72161192E000FBC04 /* ExamRuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CB62161192E000FBC04 /* ExamRuleModel.m */; };
 		3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */; };
 		3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2B821422A3200D154D3 /* SigninRecordViewController.m */; };
 		3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */; };
@@ -376,6 +377,8 @@
 		3AD47CB0215BD9C0000FBC04 /* NewsContentViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsContentViewCell.m; sourceTree = "<group>"; };
 		3AD47CB2215D3409000FBC04 /* NewsDetailNoVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsDetailNoVideoController.h; sourceTree = "<group>"; };
 		3AD47CB3215D3409000FBC04 /* NewsDetailNoVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDetailNoVideoController.m; sourceTree = "<group>"; };
+		3AD47CB52161192E000FBC04 /* ExamRuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamRuleModel.h; sourceTree = "<group>"; };
+		3AD47CB62161192E000FBC04 /* ExamRuleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamRuleModel.m; sourceTree = "<group>"; };
 		3AFBC2B421417AC900D154D3 /* NewsVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVideoDetailViewController.h; sourceTree = "<group>"; };
 		3AFBC2B521417AC900D154D3 /* NewsVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVideoDetailViewController.m; sourceTree = "<group>"; };
 		3AFBC2B721422A3200D154D3 /* SigninRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SigninRecordViewController.h; sourceTree = "<group>"; };
@@ -1101,6 +1104,8 @@
 				8923F5D52157A1D500CB98E4 /* UserMessage.m */,
 				8923F5D72157DD2F00CB98E4 /* ScoreRecord.h */,
 				8923F5D82157DD2F00CB98E4 /* ScoreRecord.m */,
+				3AD47CB52161192E000FBC04 /* ExamRuleModel.h */,
+				3AD47CB62161192E000FBC04 /* ExamRuleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1299,6 +1304,7 @@
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,
 				3A50D523212DC3C100BD2919 /* EducationItemsTableCell.m in Sources */,
 				3A03CF1E2156977B00C49295 /* PersonXinxiViewController.m in Sources */,
+				3AD47CB72161192E000FBC04 /* ExamRuleModel.m in Sources */,
 				3A03CFC32158C4E600C49295 /* DNBrowserCell.m in Sources */,
 				3A03CF242156A5CB00C49295 /* PersonPassWordController.m in Sources */,
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,

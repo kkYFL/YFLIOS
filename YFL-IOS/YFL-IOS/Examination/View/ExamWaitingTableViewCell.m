@@ -7,6 +7,7 @@
 //
 
 #import "ExamWaitingTableViewCell.h"
+#import "HistoryExam.h"
 
 @interface ExamWaitingTableViewCell ()
 @property (nonatomic, strong) UILabel *cellTitleLabel;
@@ -140,6 +141,29 @@
         self.remainTimes.hidden = YES;
     }else{
         self.remainTimes.hidden = NO;
+    }
+}
+
+-(void)setExamModel:(HistoryExam *)examModel{
+    _examModel = examModel;
+    if (_examModel) {
+        [self.cellTitleLabel setText:_examModel.paperTitle];
+        [self.timeLabel setText:[NSString stringWithFormat:@"%@到%@",_examModel.beginTime,_examModel.finalTime]];
+        self.remainTimes.text = [NSString stringWithFormat:@"剩余%ld次",([_examModel.totalTimes integerValue]-[_examModel.times integerValue])];
+        NSString *statueStr = @"";
+        if ([_examModel.state integerValue] == 1) {
+            statueStr = @"已考试";
+        }else if ([_examModel.state integerValue] == 2){
+            statueStr = @"待考试";
+        }else if ([_examModel.state integerValue] == 3){
+            statueStr = @"已完成";
+        }
+        self.examLabel.text = statueStr;
+        
+        /*
+         //考试状态：1-已考试 2-待考试 3-已完成
+
+         */
     }
 }
 

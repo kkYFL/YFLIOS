@@ -1,15 +1,14 @@
 //
-//  HistoryExam.m
+//  ExamRuleModel.m
 //  YFL-IOS
 //
-//  Created by 韩兆华 on 2018/9/23.
+//  Created by 杨丰林 on 2018/9/30.
 //  Copyright © 2018年 杨丰林. All rights reserved.
 //
 
-#import "HistoryExam.h"
+#import "ExamRuleModel.h"
 
-@implementation HistoryExam
-
+@implementation ExamRuleModel
 -(id)initWithDic:(NSDictionary *)dic{
     self = [super init];
     if (self) {
@@ -23,9 +22,15 @@
         self.examId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"examId"]];
         self.paperId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"paperId"]];
 
+        self.rules = [NSMutableArray array];
+        if ([dic objectForKey:@"rules"] && [[dic objectForKey:@"rules"] isKindOfClass:[NSArray class]]) {
+            self.rules = (NSArray *)[dic objectForKey:@"rules"];
+        }
+        
     }
     return self;
 }
+
 
 
 

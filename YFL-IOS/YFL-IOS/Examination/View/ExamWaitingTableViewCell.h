@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class HistoryExam;
 @interface ExamWaitingTableViewCell : UITableViewCell
 +(CGFloat)CellH;
 @property (nonatomic, assign) BOOL hideRemindLabel;
-
+@property (nonatomic, strong) HistoryExam *examModel;
 @end

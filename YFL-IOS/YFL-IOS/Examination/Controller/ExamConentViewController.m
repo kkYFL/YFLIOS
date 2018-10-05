@@ -11,16 +11,23 @@
 #import "ExamChooseCell.h"
 #import "ExamTextViewPutINCell.h"
 #import "ExamTextInViewCell.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+
 
 typedef NS_ENUM(NSInteger,ExamContentViewType) {
     ExamContentViewTypeDefault,
     ExamContentViewTypeTextIn
 };
 
-@interface ExamConentViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ExamConentViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    HistoryExamDetail *_currentExamModel;
+    NSInteger _currentIndex;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, assign) ExamContentViewType viewType;
+@property (nonatomic, strong) NSArray *detailList;
 
 @end
 
@@ -31,6 +38,8 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     [super viewDidLoad];
     
     [self initView];
+    
+    [self initData];
     
     [self loadData];
 }
@@ -43,13 +52,14 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     
     
     [self.view addSubview:self.table];
-    
+}
 
+-(void)initData{
+    _currentIndex = 0;
 }
 
 
 #pragma mark - UITableView Delegate And Datasource
-//UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -71,7 +81,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         
     }else if (indexPath.row == 1){
         if (_viewType == ExamContentViewTypeDefault) {
-            return [ExamChooseCell CellH];
+            return [ExamChooseCell CellHWithModel:_currentExamModel];
         }
         
         return [ExamTextViewPutINCell CellH];
@@ -81,6 +91,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak typeof(self) weakSelf = self;
     if (indexPath.row == 0) {
         if (_viewType == ExamContentViewTypeDefault) {
             ExamTopTitleTableViewCell *topTitleCell = [tableView dequeueReusableCellWithIdentifier:@"topTitleCell"];
@@ -93,6 +104,10 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     }else if (indexPath.row == 1){
         if (_viewType == ExamContentViewTypeDefault) {
             ExamChooseCell *chooseCell = [tableView dequeueReusableCellWithIdentifier:@"chooseCell"];
+            if (_currentExamModel) {chooseCell.currentExamModel = _currentExamModel; }
+            chooseCell.chooseActionBlock = ^(NSInteger chooseIndex) {
+                
+            };
             return chooseCell;
         }
         
@@ -136,6 +151,21 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 }
 
 -(void)loadData{
+    
+    // 待开始详情
+    // 测试结果: 通过
+    [HanZhaoHua getWaitingToStartDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId paperId:self.papidID?self.papidID:@"0" success:^(NSArray * _Nonnull detailList) {
+        self.detailList = detailList;
+        [self refreshViewWithData];
+            NSLog(@"");
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    
+
+    
+    
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
 //
 //    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
@@ -239,6 +269,26 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     }
     
     [self.table reloadData];
+}
+
+-(void)refreshViewWithData{
+    if (self.detailList && self.detailList.count && self.detailList.count > _currentIndex) {
+        HistoryExamDetail *examDetailModel = self.detailList[_currentIndex];
+        _currentExamModel = examDetailModel;
+        /*
+         //试题类型【1、单选 2、多选 3、填空 4、判断 5、简答】
+         @property(nonatomic, assign) NSNumber *examType;
+         */
+        //单选 多选
+        if ([_currentExamModel.examType integerValue] == 1 || [_currentExamModel.examType integerValue] == 2) {
+            _viewType = ExamContentViewTypeDefault;
+        //简答
+        }else{
+            _viewType = ExamContentViewTypeTextIn;
+        }
+        
+        [self.table reloadData];
+    }
 }
 
 

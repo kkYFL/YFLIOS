@@ -1,17 +1,14 @@
 //
-//  HistoryExam.h
+//  ExamRuleModel.h
 //  YFL-IOS
 //
-//  Created by 韩兆华 on 2018/9/23.
+//  Created by 杨丰林 on 2018/9/30.
 //  Copyright © 2018年 杨丰林. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface HistoryExam : NSObject
-
+@interface ExamRuleModel : NSObject
 //已考试次数
 @property(nonatomic, copy) NSString *times;
 //允许考试次数
@@ -32,8 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *examId;
 //考试试卷id
 @property(nonatomic, copy) NSString *paperId;
+//规则数组
+@property (nonatomic, copy) NSMutableArray *rules;
 
 -(id)initWithDic:(NSDictionary *)dic;
-@end
 
-NS_ASSUME_NONNULL_END
+@end

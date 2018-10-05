@@ -14,7 +14,7 @@
 
 @interface ExamWaitingViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
-
+@property (nonatomic, strong) NSArray *list;
 @end
 
 @implementation ExamWaitingViewController
@@ -35,8 +35,6 @@
     
     
     [self.view addSubview:self.table];
-    
-
 }
 
 -(void)loadData{
@@ -56,6 +54,9 @@
                 NSLog(@"%@", model.examId);
                 NSLog(@"%@", model.paperId);
             }
+        self.list = list;
+        
+        [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
         }];
@@ -108,7 +109,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.list?self.list.count:0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,14 +126,22 @@
     }else{
         waitingExam.hideRemindLabel = YES;
     }
+    if (self.list && self.list.count > indexPath.row) {
+        HistoryExam *examModel = self.list[indexPath.row];
+        waitingExam.examModel = examModel;
+    }
     return waitingExam;
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ExamhomeViewController *examHomeVC = [[ExamhomeViewController alloc]init];
-    [self.navigationController pushViewController:examHomeVC animated:YES];
+    if (self.list && self.list.count > indexPath.row) {
+        HistoryExam *examModel = self.list[indexPath.row];
+        ExamhomeViewController *examHomeVC = [[ExamhomeViewController alloc]init];
+        examHomeVC.examModel = examModel;
+        [self.navigationController pushViewController:examHomeVC animated:YES];
+    }
 }
 
 #pragma mark - 懒加载

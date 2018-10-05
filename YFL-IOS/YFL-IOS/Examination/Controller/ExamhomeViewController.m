@@ -10,13 +10,22 @@
 #import "ExamConentViewController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "ExamRuleModel.h"
+#import "HistoryExam.h"
 
 @interface ExamhomeViewController ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *rouleLabel;
 @property (nonatomic, strong) UIImageView *examImageView;
 
-@property (nonatomic, strong) NSArray *ruleArr;
+//rules
+@property (nonatomic, strong) UILabel *label1;
+@property (nonatomic, strong) UILabel *label2;
+@property (nonatomic, strong) UILabel *label3;
+@property (nonatomic, strong) UILabel *label4;
+
+
+@property (nonatomic, strong) ExamRuleModel *ruleDic;
 @end
 
 @implementation ExamhomeViewController
@@ -86,6 +95,7 @@
         label1.text = @"考试时间一共120分钟，到时间自动提交试卷；";
         label1.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
         label1.textAlignment = NSTextAlignmentLeft;
+        self.label1 = label1;
         [self.view addSubview:label1];
         [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(ImageView1.mas_right).offset(11);
@@ -113,6 +123,7 @@
         label2.text = @"本次考试20道选择题，每题3分；10道判断题，每题1分，6道简答题，每题5分；一共100分。";
         label2.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
         label2.textAlignment = NSTextAlignmentLeft;
+        self.label2 = label2;
         [self.view addSubview:label2];
         [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(ImageView2.mas_right).offset(11);
@@ -140,6 +151,7 @@
         label3.text = @"考试最迟时间为2018-07-20，越期为0分；";
         label3.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
         label3.textAlignment = NSTextAlignmentLeft;
+        self.label3 = label3;
         [self.view addSubview:label3];
         [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(ImageView3.mas_right).offset(11);
@@ -167,6 +179,7 @@
         label4.text = @"考试最多有2次机会，如果全部放弃则视为0分处理；";
         label4.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
         label4.textAlignment = NSTextAlignmentLeft;
+        self.label4 = label4;
         [self.view addSubview:label4];
         [label4 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(ImageView4.mas_right).offset(11);
@@ -214,12 +227,15 @@
 
 -(void)loadData{
     
-    
     // 待考试规则
     // 测试结果: 通过
-        [HanZhaoHua getExamRuleWithUserToken:APP_DELEGATE.userToken userId:@"69b9aa05fbfb4cd1b6c8e9ee74397101" paperId:@"b13750a0236f43e28ed31e3327f1745d" success:^(NSArray * examRule) {
+    //69b9aa05fbfb4cd1b6c8e9ee74397101
+    //b13750a0236f43e28ed31e3327f1745d
+        [HanZhaoHua getExamRuleWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId paperId:self.examModel.paperId success:^(NSDictionary * examRule) {
 
-            self.ruleArr = examRule;
+            self.ruleDic = [[ExamRuleModel alloc]initWithDic:examRule];
+            
+            [self refreshView];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
         }];
@@ -280,9 +296,30 @@
     
 }
 
+-(void)refreshView{
+    if (self.ruleDic && self.ruleDic.rules.count) {
+        [self.titleLabel setText:self.ruleDic.paperTitle];
+        
+        [self.label1 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[0]]];
+        if (self.ruleDic.rules.count > 1) {
+            [self.label2 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[1]]];
+        }
+        if (self.ruleDic.rules.count > 2) {
+            [self.label2 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[2]]];
+        }
+        if (self.ruleDic.rules.count > 3) {
+            [self.label2 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[3]]];
+        }
+    }
+}
+
 -(void)examAction:(UITapGestureRecognizer *)tap{
-    ExamConentViewController *examVC = [[ExamConentViewController alloc]init];
-    [self.navigationController pushViewController:examVC animated:YES];
+    if (self.ruleDic && ![NSString isBlankString:self.ruleDic.examId]) {
+        ExamConentViewController *examVC = [[ExamConentViewController alloc]init];
+        examVC.papidID = self.ruleDic.paperId;
+        [self.navigationController pushViewController:examVC animated:YES];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,5 +9,5 @@
 #import "EWTBaseViewController.h"
 
 @interface ExamConentViewController : EWTBaseViewController
-
+@property (nonatomic, strong) NSString *papidID;
 @end

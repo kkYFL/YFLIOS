@@ -7,6 +7,7 @@
 //
 
 #import "EducationJianjieCell.h"
+#import "LearningTaskModel.h"
 
 @interface EducationJianjieCell ()
 @property (nonatomic, strong) UILabel *mingchengLabel;
@@ -125,6 +126,13 @@
     return 4*(15+14)+15.0f+H+60;
 }
 
++(CGFloat)CellHWithModel:(LearningTaskModel *)model{
+    NSString *content = [NSString stringWithFormat:@"%@%@",@"任务简介：",model.taskSummary];
+    NSMutableAttributedString *attri = [EducationJianjieCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f]];
+    CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f];
+    return 4*(15+14)+15.0f+H+60;
+}
+
 +(NSMutableAttributedString *)getAttriHeightwithString:(NSString *)string Speace:(CGFloat)lineSpeace withFont:(UIFont*)font{
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:string];
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
@@ -143,6 +151,39 @@
     return textHeight;
 }
 
+-(void)setModel:(LearningTaskModel *)model{
+    _model = model;
+    if (_model) {
+        //任务类型 1 文字 2 视频 3 音频 4 图片
+
+        self.mingchengLabel.text = [NSString stringWithFormat:@"任务名称:%@",_model.taskTitle];
+        NSString *taskTypeStr = @"";
+        if ([_model.taskType integerValue] == 1) {
+            taskTypeStr = @"文字";
+        }else if ([_model.taskType integerValue] == 2){
+            taskTypeStr = @"视频";
+        }else if ([_model.taskType integerValue] == 3){
+            taskTypeStr = @"音频";
+        }else if ([_model.taskType integerValue] == 4){
+            taskTypeStr = @"图片";
+        }
+        
+        self.leixingLabel.text = [NSString stringWithFormat:@"任务类别：%@",taskTypeStr];
+        self.learnTimeLabel.text = [NSString stringWithFormat:@"学习时长：%@分钟",_model.learnTime];
+        self.createTimeLabel.text = [NSString stringWithFormat:@"创建时间：%@",_model.createTime];
+        NSString *content = [NSString stringWithFormat:@"%@%@",@"任务简介：",_model.taskSummary];
+        NSMutableAttributedString *attri = [EducationJianjieCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f]];
+        self.jianjieLabel.attributedText = attri;
+        CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f];
+        [self.jianjieLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(15.0f);
+            make.top.equalTo(self.createTimeLabel.mas_bottom).offset(15.0f);
+            make.right.equalTo(self.mas_right).offset(-15.0f);
+            make.height.mas_equalTo(H);
+        }];
+    }
+
+}
 
 
 

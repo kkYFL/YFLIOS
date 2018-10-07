@@ -16,7 +16,9 @@
 #import "AppDelegate.h"
 #import "LearningTaskModel.h"
 #import "EducationJianjieCell.h"
-
+#import "EducationXinshegnViewCell.h"
+#import "UIView+CLSetRect.h"
+#import "CLInputToolbar.h"
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
@@ -36,6 +38,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 @property (nonatomic, strong) UIButton *button;
 @property (nonatomic, strong) UIButton *button1;
+@property (nonatomic, strong) UIView *footerView;
+
+
+@property (nonatomic, strong) CLInputToolbar *inputToolbar;
+@property (nonatomic, strong) UIView *maskView;
+
 
 @property (nonatomic, strong) NSMutableArray *PartyMemberThinkingArr;
 
@@ -59,13 +67,13 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     
+    [self.view addSubview:self.footerView];
     [self.view addSubview:self.table];
     
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push" style:UIBarButtonItemStylePlain target:self action:@selector(pushNewVC)];
     [self.view addSubview:self.containerView];
-    
     [self.containerView addSubview:self.playBtn];
 
     
@@ -176,7 +184,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
             }
             
             self.PartyMemberThinkingArr = [NSMutableArray arrayWithArray:listArray];
-            [self.table reloadData];
+            //[self.table reloadData];
             
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -201,25 +209,23 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (selectIndex == 1) {
-        return [EducationJianjieCell CellH];
+        return [EducationJianjieCell CellHWithModel:self.model];
     }
-    return 44;
+    
+    return [EducationXinshegnViewCell CellH];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (selectIndex == 1) {
         EducationJianjieCell *JianjieCell = [tableView dequeueReusableCellWithIdentifier:@"JianjieCell"];
+        JianjieCell.model = self.model;
         return JianjieCell;
     }
     
-    
-    static NSString *identify = @"cellIdentify";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
-    }
-    return cell;
+    EducationXinshegnViewCell *xishengCell = [tableView dequeueReusableCellWithIdentifier:@"xishengCell"];
+    return xishengCell;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -231,7 +237,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 -(UITableView *)table{
     if(!_table){
         CGFloat h = SCREEN_WIDTH*9/16.0;
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, h+56, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-h-56)];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, h+56, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-EWTTabbar_SafeBottomMargin-h-56-50)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -240,6 +246,9 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         [self.view addSubview:_table];
         
         [_table registerClass:[EducationJianjieCell class] forCellReuseIdentifier:@"JianjieCell"];
+        //
+        [_table registerClass:[EducationXinshegnViewCell class] forCellReuseIdentifier:@"xishengCell"];
+
     }
     return _table;
 }
@@ -408,6 +417,73 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     return _itemsView;
 }
 
+-(UIView *)footerView{
+    if (!_footerView) {
+        UIView *footerView = [[UIView alloc]init];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"#B2B2B2"];
+        [footerView setFrame:CGRectMake(0, self.view.bounds.size.height-EWTTabbar_SafeBottomMargin-50, SCREEN_WIDTH, 50)];
+        [self.view addSubview:footerView];
+        _footerView = footerView;
+        [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view).offset(0);
+            make.right.equalTo(self.view.mas_right).offset(0);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-EWTTabbar_SafeBottomMargin);
+            make.height.mas_equalTo(50.0f);
+        }];
+        
+        
+        UIImageView *footerTouch = [[UIImageView alloc]init];
+        [footerTouch setBackgroundColor:[UIColor whiteColor]];
+        [_footerView addSubview:footerTouch];
+        footerTouch.layer.masksToBounds = YES;
+        footerTouch.layer.cornerRadius = 15.0f;
+        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textInputAction:)];
+        footerTouch.userInteractionEnabled = YES;
+        [footerTouch addGestureRecognizer:tap1];
+        [footerTouch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_footerView).offset(15.0f);
+            make.top.equalTo(_footerView).offset(8.0f);
+            make.right.equalTo(_footerView.mas_right).offset(-8.0f);
+            make.bottom.equalTo(_footerView.mas_bottom).offset(-8.0f);
+        }];
+
+        UILabel *remindLabel = [[UILabel alloc] init];
+        remindLabel.font = [UIFont systemFontOfSize:14.0f];
+        remindLabel.text = @"我的想法";
+        remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
+        remindLabel.textAlignment = NSTextAlignmentLeft;
+        [footerTouch addSubview:remindLabel];
+        [remindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(footerTouch).offset(18.0f);
+            make.centerY.equalTo(footerTouch);
+        }];
+    }
+    return _footerView;
+}
+
+-(void)setTextViewToolbar {
+    
+    self.maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(BlankTextViewtapActions:)];
+    [self.maskView addGestureRecognizer:tap];
+    [self.view addSubview:self.maskView];
+    self.maskView.hidden = YES;
+    self.inputToolbar = [[CLInputToolbar alloc] init];
+    self.inputToolbar.textViewMaxLine = 3;
+    self.inputToolbar.fontSize = 18;
+    self.inputToolbar.placeholder = @"请输入...";
+    __weak __typeof(self) weakSelf = self;
+    [self.inputToolbar inputToolbarSendText:^(NSString *text) {
+        __typeof(&*weakSelf) strongSelf = weakSelf;
+        //[strongSelf.btn setTitle:text forState:UIControlStateNormal];
+        // 清空输入框文字
+        [strongSelf.inputToolbar bounceToolbar];
+        strongSelf.maskView.hidden = YES;
+    }];
+    [self.maskView addSubview:self.inputToolbar];
+}
+
 
 #pragma mark - 无网络加载数据
 - (void)refreshNet{
@@ -419,14 +495,28 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)textInputAction:(UITapGestureRecognizer *)tap{
+    self.maskView.hidden = NO;
+    [self.inputToolbar popToolbar];
+}
+
+-(void)BlankTextViewtapActions:(UITapGestureRecognizer *)tap {
+    [self.inputToolbar bounceToolbar];
+    self.maskView.hidden = YES;
+}
+
 -(void)itemSelect:(UIButton *)sender{
     if (sender.tag == 101) {
         self.button.selected = YES;
         self.button1.selected = NO;
+        selectIndex = 1;
     }else if (sender.tag == 102){
         self.button.selected = NO;
         self.button1.selected = YES;
+        selectIndex = 2;
     }
+    
+    [self.table reloadData];
 }
 
 #pragma mark - 右侧按钮

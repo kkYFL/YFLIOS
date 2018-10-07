@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EducationXinshegnViewCell : UITableViewCell
-
++(CGFloat)CellH;
 @end

@@ -111,9 +111,11 @@
 		3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A52129C1D000322875 /* PersonalViewController.m */; };
 		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
 		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
+		3AC06C89216A99B800D4A61F /* CLInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC06C87216A99B800D4A61F /* CLInputToolbar.m */; };
 		3AC71E412169C05900A84E0E /* SignMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E402169C05900A84E0E /* SignMoel.m */; };
 		3AC71E44216A3D0500A84E0E /* EducationJianjieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E43216A3D0500A84E0E /* EducationJianjieCell.m */; };
 		3AC71E47216A42A700A84E0E /* EducationXinshegnViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E46216A42A700A84E0E /* EducationXinshegnViewCell.m */; };
+		3AC71E4D216A962700A84E0E /* UIView+CLSetRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E4C216A962600A84E0E /* UIView+CLSetRect.m */; };
 		3AD47C9B215A8D3F000FBC04 /* WZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */; };
 		3AD47C9E215A8DB7000FBC04 /* DisnetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C9C215A8DB7000FBC04 /* DisnetView.m */; };
 		3AD47CA3215A8E60000FBC04 /* EWTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA1215A8E60000FBC04 /* EWTWebView.m */; };
@@ -362,12 +364,16 @@
 		3A6BA5A82129C1E500322875 /* ExamnationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamnationViewController.m; sourceTree = "<group>"; };
 		3A6BA5AA2129C1F400322875 /* EducationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
+		3AC06C87216A99B800D4A61F /* CLInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLInputToolbar.m; sourceTree = "<group>"; };
+		3AC06C88216A99B800D4A61F /* CLInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLInputToolbar.h; sourceTree = "<group>"; };
 		3AC71E3F2169C05900A84E0E /* SignMoel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignMoel.h; sourceTree = "<group>"; };
 		3AC71E402169C05900A84E0E /* SignMoel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignMoel.m; sourceTree = "<group>"; };
 		3AC71E42216A3D0500A84E0E /* EducationJianjieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationJianjieCell.h; sourceTree = "<group>"; };
 		3AC71E43216A3D0500A84E0E /* EducationJianjieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationJianjieCell.m; sourceTree = "<group>"; };
 		3AC71E45216A42A700A84E0E /* EducationXinshegnViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationXinshegnViewCell.h; sourceTree = "<group>"; };
 		3AC71E46216A42A700A84E0E /* EducationXinshegnViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationXinshegnViewCell.m; sourceTree = "<group>"; };
+		3AC71E4B216A962600A84E0E /* UIView+CLSetRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+CLSetRect.h"; sourceTree = "<group>"; };
+		3AC71E4C216A962600A84E0E /* UIView+CLSetRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+CLSetRect.m"; sourceTree = "<group>"; };
 		3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZWebViewController.m; sourceTree = "<group>"; };
 		3AD47C9A215A8D3F000FBC04 /* WZWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZWebViewController.h; sourceTree = "<group>"; };
 		3AD47C9C215A8DB7000FBC04 /* DisnetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisnetView.m; sourceTree = "<group>"; };
@@ -840,6 +846,7 @@
 		3A6BA4DB21271E5A00322875 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3AC06C86216A99B800D4A61F /* TextView */,
 				3AD47C98215A8D3F000FBC04 /* Web */,
 				3A03CF6D2158C4E500C49295 /* EWTImagePicker */,
 				3A03CFA62158C4E500C49295 /* EWTMediator */,
@@ -882,6 +889,8 @@
 		3A6BA50B21271E5B00322875 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				3AC71E4B216A962600A84E0E /* UIView+CLSetRect.h */,
+				3AC71E4C216A962600A84E0E /* UIView+CLSetRect.m */,
 				3A6BA52221271E5B00322875 /* CategoryHeader.h */,
 				3A6BA52621271E5B00322875 /* UIColor+EWT.h */,
 				3A6BA51621271E5B00322875 /* UIColor+EWT.m */,
@@ -1048,6 +1057,15 @@
 				3A03CF232156A5CB00C49295 /* PersonPassWordController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3AC06C86216A99B800D4A61F /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				3AC06C87216A99B800D4A61F /* CLInputToolbar.m */,
+				3AC06C88216A99B800D4A61F /* CLInputToolbar.h */,
+			);
+			path = TextView;
 			sourceTree = "<group>";
 		};
 		3AD47C98215A8D3F000FBC04 /* Web */ = {
@@ -1293,6 +1311,7 @@
 				3AC71E44216A3D0500A84E0E /* EducationJianjieCell.m in Sources */,
 				3A03CF272156A72A00C49295 /* PersonPasswordInCell.m in Sources */,
 				3A03CFB52158C4E600C49295 /* UIViewController+DNImagePicker.m in Sources */,
+				3AC71E4D216A962700A84E0E /* UIView+CLSetRect.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
 				3A03CFB82158C4E600C49295 /* DNPhotoBrowser.m in Sources */,
 				3A6BA57621271E5B00322875 /* EWTBaseViewController.m in Sources */,
@@ -1354,6 +1373,7 @@
 				3AD47CA3215A8E60000FBC04 /* EWTWebView.m in Sources */,
 				3A6BA56421271E5B00322875 /* EWTHttpServer.m in Sources */,
 				3A5C0F28214D689A00BB11FB /* NewsBannerDetailViewController.m in Sources */,
+				3AC06C89216A99B800D4A61F /* CLInputToolbar.m in Sources */,
 				8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,

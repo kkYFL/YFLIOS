@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class LearningTaskModel;
 @interface EducationJianjieCell : UITableViewCell
-+(CGFloat)CellH;
+@property (nonatomic, strong) LearningTaskModel *model;
++(CGFloat)CellHWithModel:(LearningTaskModel *)model;
 @end

@@ -8,10 +8,18 @@
 
 #import "NewsNoticeViewController.h"
 #import "NewsNoticiTableViewCell.h"
+#import "InformationMenu.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+#import "NewsDetailNoVideoController.h"
+#import "NewsVideoDetailViewController.h"
+
 
 @interface NewsNoticeViewController ()<UITableViewDelegate,UITableViewDataSource
 >
 @property (nonatomic, strong) UITableView *table;
+@property (nonatomic, strong) NSMutableArray *newsList;
+
 
 @end
 
@@ -71,6 +79,30 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    // 新闻列表接口
+    // 测试结果: 通过
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
+        for (NewsMessage *news in newsList) {
+            NSLog(@"%@", news.browsingNum);
+            NSLog(@"%@", news.clickNum);
+            NSLog(@"%@", news.commonNum);
+            NSLog(@"%@", news.imgUrl);
+            NSLog(@"%@", news.infoId);
+            NSLog(@"%@", news.infoType);
+            NSLog(@"%@", news.shortInfo);
+            NSLog(@"%@", news.sourceFrom);
+            NSLog(@"%@", news.title);
+            NSLog(@"%@", news.types);
+        }
+        self.newsList = [NSMutableArray arrayWithArray:newsList];
+        //        self.serverCount ++;
+        
+        [self.table reloadData];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        //self.serverCount ++;
+    }];
 }
 
 
@@ -82,7 +114,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.newsList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,13 +126,43 @@
 {
 
     NewsNoticiTableViewCell *noticeCell = [tableView dequeueReusableCellWithIdentifier:@"noticeCell"];
+    if (self.newsList.count>indexPath.row) {
+        NewsMessage *newsModel = self.newsList[indexPath.row];
+        [noticeCell.cellTitleLabel setText:newsModel.title];
+        [noticeCell.fromLabel setText:newsModel.sourceFrom];
+        [noticeCell.timeLabel setText:newsModel.createTime];
+    }
     return noticeCell;
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NewsMessage *newsModel = nil;
+    if (self.newsList.count>indexPath.row) {
+        newsModel = self.newsList[indexPath.row];
+    }else{
+        return;
+    }
+    //文字加图片
+    if ([newsModel.infoType integerValue] == 1) {
+        NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
+        detailVc.infoId = newsModel.ID;
+        detailVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVc animated:YES];
+        //文本
+    }else if ([newsModel.infoType integerValue] == 2){
+        NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
+        detailVc.infoId = newsModel.ID;
+        detailVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVc animated:YES];
+        //视频
+    }else if ([newsModel.infoType integerValue] == 3){
+        NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+        videoVC.hidesBottomBarWhenPushed = YES;
+        videoVC.infoId = newsModel.ID;
+        [self.navigationController pushViewController:videoVC animated:YES];
+    }
 }
 
 #pragma mark - 懒加载

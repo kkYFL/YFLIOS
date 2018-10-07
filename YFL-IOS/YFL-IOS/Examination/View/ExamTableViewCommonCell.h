@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class TestRanking;
 @interface ExamTableViewCommonCell : UITableViewCell
-
+@property (nonatomic, strong)  TestRanking *rankModel;
 +(CGFloat)CellH;
 
 @end

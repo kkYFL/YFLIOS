@@ -10,7 +10,6 @@
 
 @interface NewsPolicyTableViewCell ()
 @property (nonatomic, strong) UIImageView *leftImageView;
-@property (nonatomic, strong) UILabel *cellContent;
 
 @end
 

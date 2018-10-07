@@ -166,8 +166,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray *list = [responseObject objectForKey:@"data"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                Banner * model = [[Banner alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                Banner * model = [[Banner alloc] initWithDic:d];
                 [result addObject:model];
             }
             success([[NSArray alloc] initWithArray:result]);
@@ -189,8 +188,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
-            Banner * model = [[Banner alloc] init];
-            [model setValuesForKeysWithDictionary:dic];
+            Banner * model = [[Banner alloc] initWithDic:dic];
             success(model);
         }
     } failure:^(NSError *error) {
@@ -209,8 +207,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray *list = [responseObject objectForKey:@"data"];
             NSMutableArray *result = [[NSMutableArray alloc] init];
             for (NSDictionary *dic in list) {
-                InformationMenu *menu = [[InformationMenu alloc] init];
-                [menu setValuesForKeysWithDictionary:dic];
+                InformationMenu *menu = [[InformationMenu alloc] initWithDic:dic];
                 [result addObject:menu];
             }
             success(result);

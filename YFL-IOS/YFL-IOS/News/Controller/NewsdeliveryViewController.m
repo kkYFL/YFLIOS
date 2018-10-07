@@ -10,6 +10,11 @@
 #import "NewsRightIConTableCell.h"
 #import "NewsContentMaxImageViewCell.h"
 #import "NewsVideoDetailViewController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+#import "InformationMenu.h"
+#import "NewsContentViewCell.h"
+#import "NewsDetailNoVideoController.h"
 
 
 @interface NewsdeliveryViewController ()<UITableViewDelegate,UITableViewDataSource
@@ -17,6 +22,8 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *searchView;
 @property (nonatomic, strong) UITextField *cellTextfield;
+@property (nonatomic, strong) NSMutableArray *newsList;
+
 @end
 
 @implementation NewsdeliveryViewController
@@ -75,6 +82,30 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    // 新闻列表接口
+    // 测试结果: 通过
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
+        for (NewsMessage *news in newsList) {
+            NSLog(@"%@", news.browsingNum);
+            NSLog(@"%@", news.clickNum);
+            NSLog(@"%@", news.commonNum);
+            NSLog(@"%@", news.imgUrl);
+            NSLog(@"%@", news.infoId);
+            NSLog(@"%@", news.infoType);
+            NSLog(@"%@", news.shortInfo);
+            NSLog(@"%@", news.sourceFrom);
+            NSLog(@"%@", news.title);
+            NSLog(@"%@", news.types);
+        }
+        self.newsList = [NSMutableArray arrayWithArray:newsList];
+//        self.serverCount ++;
+        
+        [self.table reloadData];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        //self.serverCount ++;
+    }];
 }
 
 
@@ -86,39 +117,120 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.newsList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < 3) {
+    
+    NewsMessage *newsModel = nil;
+    if (self.newsList.count>indexPath.row) {
+        newsModel = self.newsList[indexPath.row];
+    }
+    
+    //文字加图片
+    if ([newsModel.infoType integerValue] == 1) {
         return [NewsRightIConTableCell CellH];
     }
+    
+    //文本
+    if ([newsModel.infoType integerValue] == 2) {
+        return [NewsContentViewCell CellH];
+    }
+    
     return [NewsContentMaxImageViewCell CellH];
+//    if (indexPath.row < 3) {
+//        return [NewsRightIConTableCell CellH];
+//    }
+//    return [NewsContentMaxImageViewCell CellH];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row<3) {
+    
+    NewsMessage *newsModel = nil;
+    if (self.newsList.count>indexPath.row) {
+        newsModel = self.newsList[indexPath.row];
+    }
+    
+    //文字加图片
+    if ([newsModel.infoType integerValue] == 1) {
         NewsRightIConTableCell *rightIconCell = [tableView dequeueReusableCellWithIdentifier:@"rightIconCell"];
+        rightIconCell.cellTitleLabel.text = newsModel.title;
+        NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
+        [rightIconCell.cellImageView setImage:[UIImage imageNamed:imageurl]];
         return rightIconCell;
     }
     
     
+    //文本
+    if ([newsModel.infoType integerValue] == 2) {
+        NewsContentViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:@"contentCell"];
+        contentCell.cellTitleLabel.text = newsModel.title;
+        contentCell.laiyunLabel.text = newsModel.sourceFrom;
+        contentCell.pinlunLabel.text = [newsModel.commonNum stringValue];
+        return contentCell;
+    }
+    
+    
+    //视频
     __weak typeof(self) weakSelf = self;
     NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
-    MaxImageCell.selectBlock = ^(NSString *content) {
-        NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
-        videoVC.hidesBottomBarWhenPushed = YES;
-        [weakSelf.navigationController pushViewController:videoVC animated:YES];
-    };
+    //        MaxImageCell.selectBlock = ^(NSString *content) {
+    //            NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+    //            videoVC.hidesBottomBarWhenPushed = YES;
+    //            [weakSelf.navigationController pushViewController:videoVC animated:YES];
+    //        };
+    MaxImageCell.cellTitleLab.text = newsModel.title;
+    NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
+    [MaxImageCell.iconImageView setImage:[UIImage imageNamed:imageurl]];
     return MaxImageCell;
+    
+    
+    
+    
+//    if (indexPath.row<3) {
+//        NewsRightIConTableCell *rightIconCell = [tableView dequeueReusableCellWithIdentifier:@"rightIconCell"];
+//        return rightIconCell;
+//    }
+//
+//
+//    __weak typeof(self) weakSelf = self;
+//    NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
+//    MaxImageCell.selectBlock = ^(NSString *content) {
+//        NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+//        videoVC.hidesBottomBarWhenPushed = YES;
+//        [weakSelf.navigationController pushViewController:videoVC animated:YES];
+//    };
+//    return MaxImageCell;
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NewsMessage *newsModel = nil;
+    if (self.newsList.count>indexPath.row) {
+        newsModel = self.newsList[indexPath.row];
+    }
+    //文字加图片
+    if ([newsModel.infoType integerValue] == 1) {
+        NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
+        detailVc.infoId = newsModel.ID;
+        detailVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVc animated:YES];
+        //文本
+    }else if ([newsModel.infoType integerValue] == 2){
+        NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
+        detailVc.infoId = newsModel.ID;
+        detailVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVc animated:YES];
+        //视频
+    }else if ([newsModel.infoType integerValue] == 3){
+        NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
+        videoVC.hidesBottomBarWhenPushed = YES;
+        videoVC.infoId = newsModel.ID;
+        [self.navigationController pushViewController:videoVC animated:YES];
+    }
 }
 
 #pragma mark - 懒加载
@@ -134,7 +246,8 @@
         
         [_table registerClass:[NewsRightIConTableCell class] forCellReuseIdentifier:@"rightIconCell"];
         [_table registerClass:[NewsContentMaxImageViewCell class] forCellReuseIdentifier:@"MaxImageCell"];
-        
+        [_table registerClass:[NewsContentViewCell class] forCellReuseIdentifier:@"contentCell"];
+
     }
     return _table;
 }

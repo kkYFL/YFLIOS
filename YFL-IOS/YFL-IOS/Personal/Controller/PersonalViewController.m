@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *descibeLabel;
 @property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, assign) NSInteger serverCount;
 
 
 @end
@@ -34,6 +35,8 @@
     [super viewDidLoad];
     
     [self initView];
+    
+    [self initData];
     
     [self loadData];
 }
@@ -47,6 +50,13 @@
     self.table.tableHeaderView = self.headerView;
     
 
+    [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    
+    
+}
+
+-(void)initData{
+    self.serverCount = 0;
 }
 
 -(void)loadData{
@@ -102,18 +112,35 @@
     // 测试结果: 通过
         [HanZhaoHua getUserCurrentScoreWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSNumber * _Nonnull score) {
             NSLog(@"%@", score);
+            self.serverCount ++;
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
+            self.serverCount ++;
         }];
     
-
     
-    [self refreshViewWithData];
+    // 用户签到日历
+    // 测试结果: 接口通过, 但是无有效数据返回
+    NSDate *newDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:newDate];
+    NSInteger year = [dateComponent year];
+    NSInteger month = [dateComponent month];
+    [HanZhaoHua getUserSignInRecordWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId year:year month:month success:^(NSDictionary * _Nonnull responseObject) {
+        NSLog(@"%@", responseObject);
+        self.serverCount ++;
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        self.serverCount ++;
+    }];
+    
 }
 
 
 #pragma mark - 无网络加载数据
 - (void)refreshNet{
+    [self initData];
     [self loadData];
 }
 
@@ -421,9 +448,24 @@
 
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void*)context{
+    NSInteger new = [[change objectForKey:@"new"] integerValue];
+    
+    //数据渲染
+    if (new == 2) {
+        [self refreshViewWithData];
+        [self.table reloadData];
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
+}
+
+-(void)dealloc{
+    [self removeObserver:self forKeyPath:@"serverCount"];
 }
 
 

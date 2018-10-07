@@ -64,6 +64,8 @@
             
             self.ownerRankeModel = owner;
             self.scoreList = scoreList;
+            
+            [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
         }];
@@ -116,7 +118,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.scoreList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,6 +129,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ExamTableViewCommonCell *CommonCell = [tableView dequeueReusableCellWithIdentifier:@"CommonCell"];
+    if (self.scoreList.count > indexPath.row) {
+        TestRanking *rankModel = self.scoreList[indexPath.row];
+        CommonCell.rankModel = rankModel;
+    }
     return CommonCell;
 }
 

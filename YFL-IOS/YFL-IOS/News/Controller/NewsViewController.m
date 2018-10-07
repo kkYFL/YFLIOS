@@ -314,12 +314,20 @@
 //    bannerNewsVC.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:bannerNewsVC animated:YES];
     
+    if (self.bannerList.count > index) {
+        WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
+        Banner *bannerModel = self.bannerList[index];
+        wzweb.titleVC               =  @"详情";
+        wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host,bannerModel.foreignUrl];
+        wzweb.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:wzweb animated:YES];
+    }
     
-    WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
-    wzweb.titleVC               =  @"详情";
-    wzweb.webUrl = [NSString stringWithFormat:@"%@", @"http://www.baidu.com"];
-    wzweb.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:wzweb animated:YES];
+//    WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
+//    wzweb.titleVC               =  @"详情";
+//    wzweb.webUrl = [NSString stringWithFormat:@"%@", @"http://www.baidu.com"];
+//    wzweb.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:wzweb animated:YES];
     
     
     
@@ -437,17 +445,25 @@
     NSInteger index = [[notiDic objectForKey:@"index"] integerValue];
     if (index == 1) {
         NewsdeliveryViewController *deliveryVC = [[NewsdeliveryViewController alloc]init];
+        InformationMenu *menmodel = self.menuList[0];
+        deliveryVC.menuModel = menmodel;
         deliveryVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:deliveryVC animated:YES];
     }else if (index == 2){
         NewsPolicyViewController *policyVC = [[NewsPolicyViewController alloc]init];
         policyVC.hidesBottomBarWhenPushed = YES;
+        InformationMenu *menmodel = self.menuList[1];
+        policyVC.menuModel = menmodel;
         [self.navigationController pushViewController:policyVC animated:YES];
     }else if (index == 4){
+        InformationMenu *menmodel = self.menuList[3];
         NewsActivityViewController *acitivityVC = [[NewsActivityViewController alloc]init];
+        acitivityVC.menuModel = menmodel;
         [self.navigationController pushViewController:acitivityVC animated:YES];
     }else if (index == 3){
+        InformationMenu *menmodel = self.menuList[2];
         NewsNoticeViewController *noticeVC = [[NewsNoticeViewController alloc]init];
+        noticeVC.menuModel = menmodel;
         [self.navigationController pushViewController:noticeVC animated:YES];
     }
 }

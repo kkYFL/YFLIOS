@@ -17,12 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 //菜单内容
 @property(nonatomic, copy) NSString *typeInfo;
 //菜单id
-@property(nonatomic, assign) NSNumber *menuId;
+@property(nonatomic, copy) NSString *menuId;
 //未知
-@property(nonatomic, assign) NSNumber *appPositon;
+@property(nonatomic, copy) NSString *appPositon;
 //菜单名称
 @property(nonatomic, copy) NSString *typeName;
 
+-(id)initWithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

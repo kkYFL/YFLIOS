@@ -9,9 +9,6 @@
 #import "NewsNoticiTableViewCell.h"
 
 @interface NewsNoticiTableViewCell ()
-@property (nonatomic, strong) UILabel *cellTitleLabel;
-@property (nonatomic, strong) UILabel *fromLabel;
-@property (nonatomic, strong) UILabel *timeLabel;
 
 
 @end

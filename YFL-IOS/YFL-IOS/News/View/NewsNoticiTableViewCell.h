@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsNoticiTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) UILabel *cellTitleLabel;
+@property (nonatomic, strong) UILabel *fromLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 +(CGFloat)CellH;
 
 @end

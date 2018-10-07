@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class NewsMessage;
 
 @interface NewsActivityTableViewCell : UITableViewCell
-+(CGFloat)CellH;
+@property (nonatomic, strong) NewsMessage *messModel;
++(CGFloat)CellHWithMoel:(NewsMessage *)newModel;
 @end

@@ -7,13 +7,14 @@
 //
 
 #import "NewsActivityTableViewCell.h"
+#import "NewsMessage.h"
 
 @interface NewsActivityTableViewCell ()
 @property (nonatomic, strong) UIImageView *icon;
 @property (nonatomic, strong) UILabel *cellTitle1;
+@property (nonatomic, strong) UILabel *time;
 @property (nonatomic, strong) UILabel *cellTitle2;
 @property (nonatomic, strong) UILabel *contentLabel;
-
 @end
 
 @implementation NewsActivityTableViewCell
@@ -64,6 +65,7 @@
     time.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     time.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:time];
+    self.time = time;
     [time mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-16);
         make.centerY.equalTo(icon);
@@ -148,15 +150,51 @@
 }
 
 
-+(CGFloat)CellH{
-    NSString *title2 = @"如果你无法简洁的表达你的想法，那只说明你还不够了解它。";
-    CGFloat title2H = [NewsActivityTableViewCell getSpaceLabelHeightwithString:title2 Speace:3 withFont:[UIFont systemFontOfSize:16.0f] withWidth:(SCREEN_WIDTH-32)]+0.5;
-    
-    NSString *content = @"推动新旧动能转换，做大做强新兴产业集群，改造提升传统产业情况。实施重大短板装备专项工程，发展工业互联网平台情况。进一步完善中央财政科研项目资金管理等政策的若干意见落实情况...";
-    CGFloat contentH = [NewsActivityTableViewCell getSpaceLabelHeightwithString:content Speace:3 withFont:[UIFont systemFontOfSize:11.0f] withWidth:(SCREEN_WIDTH-32)]+0.5;
-    
-    
-    return 10+40+10+title2H+10+contentH+14;
++(CGFloat)CellHWithMoel:(NewsMessage *)newModel{
+    if (newModel) {
+        NSString *title2 = newModel.title;
+        CGFloat title2H = [NewsActivityTableViewCell getSpaceLabelHeightwithString:title2 Speace:3 withFont:[UIFont systemFontOfSize:16.0f] withWidth:(SCREEN_WIDTH-32)]+0.5;
+        
+        NSString *content = newModel.shortInfo;
+        CGFloat contentH = [NewsActivityTableViewCell getSpaceLabelHeightwithString:content Speace:3 withFont:[UIFont systemFontOfSize:11.0f] withWidth:(SCREEN_WIDTH-32)]+0.5;
+        
+        
+        return 10+40+10+title2H+10+contentH+14;
+    }
+    return 0.01f;
+}
+
+
+
+-(void)setMessModel:(NewsMessage *)messModel{
+    _messModel = messModel;
+    if (_messModel) {
+        [self.icon sd_setImageWithURL:[NSURL URLWithString:_messModel.userPic]];
+        [self.cellTitle1 setText:_messModel.userDepartment];
+        [self.time setText:_messModel.createTime];
+        
+        
+        NSString *title2 = _messModel.title;
+        self.cellTitle2.attributedText = [NewsActivityTableViewCell getAttriHeightwithString:title2 Speace:3 withFont:[UIFont systemFontOfSize:16.0f] textColor:[UIColor colorWithHexString:@"#0C0C0C"]];
+        CGFloat title2H = [NewsActivityTableViewCell getSpaceLabelHeightwithString:title2 Speace:3 withFont:[UIFont systemFontOfSize:16.0f] withWidth:(SCREEN_WIDTH-32)]+0.5;
+        [self.cellTitle2 mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.icon);
+            make.top.equalTo(self.icon.mas_bottom).offset(10);
+            make.right.equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(title2H);
+        }];
+        
+        
+        NSString *content = _messModel.shortInfo;
+        self.contentLabel.attributedText = [NewsActivityTableViewCell getAttriHeightwithString:content Speace:3 withFont:[UIFont systemFontOfSize:11.0f] textColor:[UIColor colorWithHexString:@"#9C9C9C"]];
+        CGFloat contentH = [NewsActivityTableViewCell getSpaceLabelHeightwithString:content Speace:3 withFont:[UIFont systemFontOfSize:11.0f] withWidth:(SCREEN_WIDTH-32)]+0.5;
+        [self.contentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.icon);
+            make.top.equalTo(self.cellTitle2.mas_bottom).offset(10);
+            make.right.equalTo(self.mas_right).offset(-16);
+            make.height.mas_equalTo(contentH);
+        }];
+    }
 }
 
 

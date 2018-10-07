@@ -19,9 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 //简介
 @property(nonatomic, copy) NSString *summary;
 //链接类型 1:外链接 2：内链接
-@property(nonatomic, assign) NSNumber *foreignType;
+@property(nonatomic, copy) NSString *foreignType;
 //链接地址
 @property(nonatomic, copy) NSString *foreignUrl;
+
+-(id)initWithDic:(NSDictionary *)dic;
 
 @end
 

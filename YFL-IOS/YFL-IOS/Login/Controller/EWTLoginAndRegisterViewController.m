@@ -261,7 +261,7 @@
     
     // 用户登录
     // 测试结果: 通过
-    [HanZhaoHua loginWithUsername:APP_DELEGATE.userName password:@"000000" success:^(UserMessage * _Nonnull user) {
+    [HanZhaoHua loginWithUsername:APP_DELEGATE.userName password:APP_DELEGATE.password success:^(UserMessage * _Nonnull user) {
         NSLog(@"%@", user);
         APP_DELEGATE.userModel = user;
         [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];

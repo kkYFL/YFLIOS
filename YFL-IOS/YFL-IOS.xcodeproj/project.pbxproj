@@ -111,6 +111,7 @@
 		3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A52129C1D000322875 /* PersonalViewController.m */; };
 		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
 		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
+		3AC71E412169C05900A84E0E /* SignMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E402169C05900A84E0E /* SignMoel.m */; };
 		3AD47C9B215A8D3F000FBC04 /* WZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */; };
 		3AD47C9E215A8DB7000FBC04 /* DisnetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C9C215A8DB7000FBC04 /* DisnetView.m */; };
 		3AD47CA3215A8E60000FBC04 /* EWTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA1215A8E60000FBC04 /* EWTWebView.m */; };
@@ -359,6 +360,8 @@
 		3A6BA5A82129C1E500322875 /* ExamnationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamnationViewController.m; sourceTree = "<group>"; };
 		3A6BA5AA2129C1F400322875 /* EducationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
+		3AC71E3F2169C05900A84E0E /* SignMoel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignMoel.h; sourceTree = "<group>"; };
+		3AC71E402169C05900A84E0E /* SignMoel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignMoel.m; sourceTree = "<group>"; };
 		3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZWebViewController.m; sourceTree = "<group>"; };
 		3AD47C9A215A8D3F000FBC04 /* WZWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZWebViewController.h; sourceTree = "<group>"; };
 		3AD47C9C215A8DB7000FBC04 /* DisnetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisnetView.m; sourceTree = "<group>"; };
@@ -1106,6 +1109,8 @@
 				8923F5D82157DD2F00CB98E4 /* ScoreRecord.m */,
 				3AD47CB52161192E000FBC04 /* ExamRuleModel.h */,
 				3AD47CB62161192E000FBC04 /* ExamRuleModel.m */,
+				3AC71E3F2169C05900A84E0E /* SignMoel.h */,
+				3AC71E402169C05900A84E0E /* SignMoel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1374,6 +1379,7 @@
 				8923F5C721577BC300CB98E4 /* Answers.m in Sources */,
 				3A03CFC12158C4E600C49295 /* DNTapDetectingImageView.m in Sources */,
 				3A6BA5A32129C1BA00322875 /* NewsViewController.m in Sources */,
+				3AC71E412169C05900A84E0E /* SignMoel.m in Sources */,
 				8923F5D3215799F800CB98E4 /* NewsDetail.m in Sources */,
 				3A5C0F46214DDCE000BB11FB /* EducationHeartLearnCell.m in Sources */,
 				3A6BA57D21271E5B00322875 /* NSString+EWT.m in Sources */,

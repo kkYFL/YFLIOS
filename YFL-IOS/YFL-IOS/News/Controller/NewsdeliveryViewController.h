@@ -7,7 +7,7 @@
 //
 
 #import "EWTBaseViewController.h"
-
+@class InformationMenu;
 @interface NewsdeliveryViewController : EWTBaseViewController
-
+@property (nonatomic, strong) InformationMenu *menuModel;
 @end

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsPolicyTableViewCell : UITableViewCell
+@property (nonatomic, strong) UILabel *cellContent;
 +(CGFloat)CellH;
 @end

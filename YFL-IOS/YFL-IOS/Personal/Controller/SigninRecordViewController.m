@@ -10,6 +10,7 @@
 #import "DIYCalendarCell.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "SignMoel.h"
 
 #define kViolet [UIColor colorWithRed:170/255.0 green:114/255.0 blue:219/255.0 alpha:1.0]
 //NS_ASSUME_NONNULL_BEGIN
@@ -27,13 +28,14 @@
 @property (strong, nonatomic) NSDateFormatter *dateFormatter1;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter2;
 
-@property (strong, nonatomic) NSDictionary *fillSelectionColors;
-@property (strong, nonatomic) NSDictionary *fillDefaultColors;
-@property (strong, nonatomic) NSDictionary *borderDefaultColors;
-@property (strong, nonatomic) NSDictionary *borderSelectionColors;
+//@property (strong, nonatomic) NSDictionary *fillSelectionColors;
+//@property (strong, nonatomic) NSDictionary *fillDefaultColors;
+//@property (strong, nonatomic) NSDictionary *borderDefaultColors;
+//@property (strong, nonatomic) NSDictionary *borderSelectionColors;
 
-@property (strong, nonatomic) NSArray *datesWithEvent;
-@property (strong, nonatomic) NSArray *datesWithMultipleEvents;
+//@property (strong, nonatomic) NSArray *datesWithEvent;
+//@property (strong, nonatomic) NSArray *datesWithMultipleEvents;
+@property (nonatomic, strong) SignMoel *signModel;
 
 
 @property (weak, nonatomic) UIButton *previousButton;
@@ -48,68 +50,68 @@
     if (self) {
         self.title = @"FSCalendar";
         
-        self.fillDefaultColors = @{@"2015/10/08":[UIColor purpleColor],
-                                   @"2015/10/06":[UIColor greenColor],
-                                   @"2015/10/18":[UIColor cyanColor],
-                                   @"2015/10/22":[UIColor yellowColor],
-                                   @"2015/11/08":[UIColor purpleColor],
-                                   @"2015/11/06":[UIColor greenColor],
-                                   @"2015/11/18":[UIColor cyanColor],
-                                   @"2015/11/22":[UIColor yellowColor],
-                                   @"2015/12/08":[UIColor purpleColor],
-                                   @"2015/12/06":[UIColor greenColor],
-                                   @"2015/12/18":[UIColor cyanColor],
-                                   @"2015/12/22":[UIColor magentaColor]};
+//        self.fillDefaultColors = @{@"2015/10/08":[UIColor purpleColor],
+//                                   @"2015/10/06":[UIColor greenColor],
+//                                   @"2015/10/18":[UIColor cyanColor],
+//                                   @"2015/10/22":[UIColor yellowColor],
+//                                   @"2015/11/08":[UIColor purpleColor],
+//                                   @"2015/11/06":[UIColor greenColor],
+//                                   @"2015/11/18":[UIColor cyanColor],
+//                                   @"2015/11/22":[UIColor yellowColor],
+//                                   @"2015/12/08":[UIColor purpleColor],
+//                                   @"2015/12/06":[UIColor greenColor],
+//                                   @"2015/12/18":[UIColor cyanColor],
+//                                   @"2015/12/22":[UIColor magentaColor]};
+//
+//        self.fillSelectionColors = @{@"2015/10/08":[UIColor greenColor],
+//                                     @"2015/10/06":[UIColor purpleColor],
+//                                     @"2015/10/17":[UIColor grayColor],
+//                                     @"2015/10/21":[UIColor cyanColor],
+//                                     @"2015/11/08":[UIColor greenColor],
+//                                     @"2015/11/06":[UIColor purpleColor],
+//                                     @"2015/11/17":[UIColor grayColor],
+//                                     @"2015/11/21":[UIColor cyanColor],
+//                                     @"2015/12/08":[UIColor greenColor],
+//                                     @"2015/12/06":[UIColor purpleColor],
+//                                     @"2015/12/17":[UIColor grayColor],
+//                                     @"2015/12/21":[UIColor cyanColor]};
+//
+//        self.borderDefaultColors = @{@"2015/10/08":[UIColor brownColor],
+//                                     @"2015/10/17":[UIColor magentaColor],
+//                                     @"2015/10/21":FSCalendarStandardSelectionColor,
+//                                     @"2015/10/25":[UIColor blackColor],
+//                                     @"2015/11/08":[UIColor brownColor],
+//                                     @"2015/11/17":[UIColor magentaColor],
+//                                     @"2015/11/21":FSCalendarStandardSelectionColor,
+//                                     @"2015/11/25":[UIColor blackColor],
+//                                     @"2015/12/08":[UIColor brownColor],
+//                                     @"2015/12/17":[UIColor magentaColor],
+//                                     @"2015/12/21":FSCalendarStandardSelectionColor,
+//                                     @"2015/12/25":[UIColor blackColor]};
+//
+//        self.borderSelectionColors = @{@"2015/10/08":[UIColor redColor],
+//                                       @"2015/10/17":[UIColor purpleColor],
+//                                       @"2015/10/21":FSCalendarStandardSelectionColor,
+//                                       @"2015/10/25":FSCalendarStandardTodayColor,
+//                                       @"2015/11/08":[UIColor redColor],
+//                                       @"2015/11/17":[UIColor purpleColor],
+//                                       @"2015/11/21":FSCalendarStandardSelectionColor,
+//                                       @"2015/11/25":FSCalendarStandardTodayColor,
+//                                       @"2015/12/08":[UIColor redColor],
+//                                       @"2015/12/17":[UIColor purpleColor],
+//                                       @"2015/12/21":FSCalendarStandardSelectionColor,
+//                                       @"2015/12/25":FSCalendarStandardTodayColor};
         
-        self.fillSelectionColors = @{@"2015/10/08":[UIColor greenColor],
-                                     @"2015/10/06":[UIColor purpleColor],
-                                     @"2015/10/17":[UIColor grayColor],
-                                     @"2015/10/21":[UIColor cyanColor],
-                                     @"2015/11/08":[UIColor greenColor],
-                                     @"2015/11/06":[UIColor purpleColor],
-                                     @"2015/11/17":[UIColor grayColor],
-                                     @"2015/11/21":[UIColor cyanColor],
-                                     @"2015/12/08":[UIColor greenColor],
-                                     @"2015/12/06":[UIColor purpleColor],
-                                     @"2015/12/17":[UIColor grayColor],
-                                     @"2015/12/21":[UIColor cyanColor]};
         
-        self.borderDefaultColors = @{@"2015/10/08":[UIColor brownColor],
-                                     @"2015/10/17":[UIColor magentaColor],
-                                     @"2015/10/21":FSCalendarStandardSelectionColor,
-                                     @"2015/10/25":[UIColor blackColor],
-                                     @"2015/11/08":[UIColor brownColor],
-                                     @"2015/11/17":[UIColor magentaColor],
-                                     @"2015/11/21":FSCalendarStandardSelectionColor,
-                                     @"2015/11/25":[UIColor blackColor],
-                                     @"2015/12/08":[UIColor brownColor],
-                                     @"2015/12/17":[UIColor magentaColor],
-                                     @"2015/12/21":FSCalendarStandardSelectionColor,
-                                     @"2015/12/25":[UIColor blackColor]};
-        
-        self.borderSelectionColors = @{@"2015/10/08":[UIColor redColor],
-                                       @"2015/10/17":[UIColor purpleColor],
-                                       @"2015/10/21":FSCalendarStandardSelectionColor,
-                                       @"2015/10/25":FSCalendarStandardTodayColor,
-                                       @"2015/11/08":[UIColor redColor],
-                                       @"2015/11/17":[UIColor purpleColor],
-                                       @"2015/11/21":FSCalendarStandardSelectionColor,
-                                       @"2015/11/25":FSCalendarStandardTodayColor,
-                                       @"2015/12/08":[UIColor redColor],
-                                       @"2015/12/17":[UIColor purpleColor],
-                                       @"2015/12/21":FSCalendarStandardSelectionColor,
-                                       @"2015/12/25":FSCalendarStandardTodayColor};
-        
-        
-        self.datesWithEvent = @[@"2015-10-03",
-                                @"2015-10-06",
-                                @"2015-10-12",
-                                @"2015-10-25"];
-        
-        self.datesWithMultipleEvents = @[@"2015-10-08",
-                                         @"2015-10-16",
-                                         @"2015-10-20",
-                                         @"2015-10-28"];
+//        self.datesWithEvent = @[@"2015-10-03",
+//                                @"2015-10-06",
+//                                @"2015-10-12",
+//                                @"2015-10-25"];
+//
+//        self.datesWithMultipleEvents = @[@"2015-10-08",
+//                                         @"2015-10-16",
+//                                         @"2015-10-20",
+//                                         @"2015-10-28"];
         
         
         self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -150,8 +152,14 @@
     [self.view addSubview:calendar];
     self.calendar = calendar;
     
+    
+    //默认显示上一个月
     //[calendar setCurrentPage:[self.dateFormatter1 dateFromString:@"2018/8/01"] animated:NO];
-    [calendar setCurrentPage:[NSDate date] animated:NO];
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+    NSDate *monthagoData = [self getPriousorLaterDateFromDate:currentDate withMonth:-1];
+    [calendar setCurrentPage:monthagoData animated:NO];
     
     
     
@@ -194,8 +202,6 @@
     //self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
-    
-    
 }
 
 -(void)loadData{
@@ -237,18 +243,57 @@
     
     // 用户签到日历
     // 测试结果: 接口通过, 但是无有效数据返回
-    NSDate *newDate = [NSDate date];
+//    NSDate *newDate = [NSDate date];
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth;
+//    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:newDate];
+//    NSInteger year = [dateComponent year];
+//    NSInteger month = [dateComponent month];
+//
+//        [HanZhaoHua getUserSignInRecordWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId year:year month:month success:^(NSDictionary * _Nonnull responseObject) {
+//            NSLog(@"%@", responseObject);
+//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+//            self.signModel = [[SignMoel alloc]initWithDic:dataDic];
+//            if (self.signModel) {
+//                NSDate *severData = [self refreshCalandarWithYear:[self.signModel.year integerValue] Month:[self.signModel.month integerValue]];
+//                [_calendar setCurrentPage:severData animated:NO];
+//            }
+//
+//
+//        } failure:^(NSError * _Nonnull error) {
+//            NSLog(@"%@", error);
+//        }];
+    
+    [self getCalendarDataWithDate:[NSDate date]];
+}
+
+
+-(void)getCalendarDataWithDate:(NSDate *)date{
+    // 用户签到日历
+    // 测试结果: 接口通过, 但是无有效数据返回
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth;
-    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:newDate];
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
     NSInteger year = [dateComponent year];
     NSInteger month = [dateComponent month];
     
-        [HanZhaoHua getUserSignInRecordWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId year:year month:month success:^(NSDictionary * _Nonnull responseObject) {
-            NSLog(@"%@", responseObject);
-        } failure:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error);
-        }];
+    [HanZhaoHua getUserSignInRecordWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId year:year month:month success:^(NSDictionary * _Nonnull responseObject) {
+        NSLog(@"%@", responseObject);
+        NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+        self.signModel = [[SignMoel alloc]initWithDic:dataDic];
+        if (self.signModel) {
+            //NSDate *severData = [self refreshCalandarWithYear:[self.signModel.year integerValue] Month:[self.signModel.month integerValue]];
+            [self.calendar setCurrentPage:date animated:YES];
+            [self.signNumLabel setText:[NSString stringWithFormat:@"今日签到人数：%@",self.signModel.todayTotalNum]];
+            [self.hasOnDay setText:[NSString stringWithFormat:@"%@",self.signModel.totalSignIn]];
+            [self.hasOnDayRight setText:[NSString stringWithFormat:@"%@",self.signModel.continueSignIn]];
+        }else{
+            [self.calendar setCurrentPage:[NSDate date] animated:NO];
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 
@@ -430,12 +475,17 @@
     
     
     DIYCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:@"cell" forDate:date atMonthPosition:monthPosition];
-    if ([@[@4,@5,@6,@7,@9,@10,@11,@12,@13,@14,@15,@16,@17] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
+    if (self.signModel && self.signModel.signDatArr.count && [self.signModel.signDatArr containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
         cell.signType = DIYDataTypeNoSign;
     }else{
         cell.signType = DIYDataTypeDefault;
-        
     }
+//    if ([@[@4,@5,@6,@7,@9,@10,@11,@12,@13,@14,@15,@16,@17] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
+//        cell.signType = DIYDataTypeNoSign;
+//    }else{
+//        cell.signType = DIYDataTypeDefault;
+//
+//    }
     return cell;
 }
 
@@ -467,16 +517,25 @@
 
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance fillDefaultColorForDate:(NSDate *)date
 {
-    
-    if ([@[@4,@5,@6,@7,@9,@10,@11,@12,@13,@14,@15,@16,@17] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
+
+    if (self.signModel && self.signModel.signDatArr.count && [self.signModel.signDatArr containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
         return [UIColor colorWithRed:250/255.0 green:125/255.0 blue:69/255.0 alpha:1.0];
-    }else if([@[@17] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]){
-        return [UIColor colorWithRed:249/255.0 green:205/255.0 blue:86/255.0 alpha:1.0];
-    }else if([@[@1,@2,@3,@8] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]){
+    }else{
         return [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1.0];
     }
-    
     return nil;
+
+
+//
+//    if ([@[@4,@5,@6,@7,@9,@10,@11,@12,@13,@14,@15,@16,@17] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
+//        return [UIColor colorWithRed:250/255.0 green:125/255.0 blue:69/255.0 alpha:1.0];
+//    }else if([@[@17] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]){
+//        return [UIColor colorWithRed:249/255.0 green:205/255.0 blue:86/255.0 alpha:1.0];
+//    }else if([@[@1,@2,@3,@8] containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]){
+//        return [UIColor colorWithRed:221/255.0 green:221/255.0 blue:221/255.0 alpha:1.0];
+//    }
+    
+//    return nil;
     
     //    return [UIColor redColor];
     //
@@ -529,15 +588,47 @@
 {
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *previousMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
-    [self.calendar setCurrentPage:previousMonth animated:YES];
+    //[self.calendar setCurrentPage:previousMonth animated:YES];
+    [self getCalendarDataWithDate:previousMonth];
+
 }
 
 - (void)nextClicked:(id)sender
 {
     NSDate *currentMonth = self.calendar.currentPage;
     NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
-    [self.calendar setCurrentPage:nextMonth animated:YES];
+    //[self.calendar setCurrentPage:nextMonth animated:YES];
+    
+    [self getCalendarDataWithDate:nextMonth];
 }
+
+-(NSDate *)refreshCalandarWithYear:(NSInteger)year Month:(NSInteger)month{
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents* comp2 = [[NSDateComponents alloc]
+                               init];
+    // 设置各时间字段的数值
+    comp2.year = year;
+    comp2.month = month;
+    comp2.day = 1;
+    comp2.hour = 10;
+    comp2.minute = 00;
+    // 通过NSDateComponents所包含的时间字段的数值来恢复NSDate对象
+    NSDate *date = [gregorian dateFromComponents:comp2];
+    return date;
+}
+
+-(NSDate *)getPriousorLaterDateFromDate:(NSDate *)date withMonth:(int)month{
+    NSDateComponents *comps = [[NSDateComponents alloc]init];
+    [comps setMonth:month];
+    NSCalendar *calender = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *mDate = [calender dateByAddingComponents:comps toDate:date options:0];
+    return mDate;
+    
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {

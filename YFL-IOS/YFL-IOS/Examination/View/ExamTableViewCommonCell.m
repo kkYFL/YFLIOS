@@ -7,6 +7,8 @@
 //
 
 #import "ExamTableViewCommonCell.h"
+#import "TestRanking.h"
+#import "AppDelegate.h"
 
 @interface ExamTableViewCommonCell ()
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -96,6 +98,15 @@
     return 60.0f;
 }
 
+-(void)setRankModel:(TestRanking *)rankModel{
+    _rankModel = rankModel;
+    if (_rankModel) {
+        [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_rankModel.headImg]]];
+        [self.nameLabel setText:_rankModel.name];
+        [self.numLabel setText:[NSString stringWithFormat:@"%@分",_rankModel.score]];
+
+    }
+}
 
 
 

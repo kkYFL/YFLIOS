@@ -12,9 +12,14 @@
 #import "EducationOptionsController.h"
 #import "EducationLearHeartViewController.h"
 #import "EducationLearnController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface EducationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
+@property (nonatomic, strong) NSMutableArray *bannerList;
+@property (nonatomic, assign) NSInteger *serverCount;
+
 @end
 
 @implementation EducationViewController
@@ -25,7 +30,13 @@
     
     [self initView];
     
+    [self initData];
+    
     [self loadData];
+}
+
+-(void)initData{
+    self.serverCount = 0;
 }
 
 -(void)initView{
@@ -128,6 +139,25 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    
+    // banner接口   positionType:@"MPOS_1"
+    // 热区菜单接口  positionType:@"MPOS_4"
+    // 测试结果: 通过
+    [HanZhaoHua getInformationBannerWithUserToken:APP_DELEGATE.userToken positionType:@"SPOS_3" success:^(NSArray * _Nonnull bannerList) {
+        for (Banner *model in bannerList) {
+            NSLog(@"%@", model.imgUrl);
+            NSLog(@"%@", model.positionNo);
+            NSLog(@"%@", model.summary);
+            NSLog(@"%@", model.foreignUrl);
+            NSLog(@"%@", model.foreignType);
+        }
+        self.bannerList = [NSMutableArray arrayWithArray:bannerList];
+        self.serverCount ++;
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        self.serverCount ++;
+    }];
 }
 
 

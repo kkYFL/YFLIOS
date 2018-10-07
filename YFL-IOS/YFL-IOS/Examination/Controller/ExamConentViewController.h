@@ -7,7 +7,8 @@
 //
 
 #import "EWTBaseViewController.h"
+@class ExamRuleModel;
 
 @interface ExamConentViewController : EWTBaseViewController
-@property (nonatomic, strong) NSString *papidID;
+@property (nonatomic, strong) ExamRuleModel *ruleDic;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 static NSString *host = @"http://47.100.247.71/protal/";
 

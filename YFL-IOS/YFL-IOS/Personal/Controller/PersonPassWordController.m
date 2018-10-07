@@ -8,6 +8,8 @@
 
 #import "PersonPassWordController.h"
 #import "PersonPasswordInCell.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface PersonPassWordController ()<UITableViewDelegate,UITableViewDataSource
 >
@@ -188,8 +190,20 @@
 }
 
 -(void)submitPassword:(UIButton *)sender{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"密码修改成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
+    
+    // 修改密码
+    // 测试结果: 通过
+        [HanZhaoHua changePasswordWithUserId:APP_DELEGATE.userId oldPwd:@"000000" password:@"123456" success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+            if ([[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] isEqualToString:@"2000"]) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"密码修改成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
 }
 
 #pragma mark - 右侧按钮

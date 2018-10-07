@@ -48,7 +48,7 @@
 
 -(void)textChange
 {
-    _nextVCButton.enabled = ((_passwordField.text.length>5) && (_phoneAndIDField.text.length>0));
+    _nextVCButton.enabled = ((_passwordField.text.length>0) && (_phoneAndIDField.text.length>0));
 }
 
 - (void)configUI {

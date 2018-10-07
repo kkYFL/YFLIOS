@@ -34,11 +34,11 @@ static NSString *taskId = @"1";
     
     // 个人信息
     // 测试结果: 通过
-    [HanZhaoHua changePersonalInformationWithUserId:userId headImg:@"" motto:@"hehe" success:^(NSDictionary * _Nonnull responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
+//    [HanZhaoHua changePersonalInformationWithUserId:userId headImg:@"" motto:@"hehe" success:^(NSDictionary * _Nonnull responseObject) {
+//        NSLog(@"%@", responseObject);
+//    } failure:^(NSError * _Nonnull error) {
+//        NSLog(@"%@", error);
+//    }];
     
     // 用户当前积分
     // 测试结果: 通过

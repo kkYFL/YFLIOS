@@ -8,6 +8,8 @@
 
 #import "SigninRecordViewController.h"
 #import "DIYCalendarCell.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 #define kViolet [UIColor colorWithRed:170/255.0 green:114/255.0 blue:219/255.0 alpha:1.0]
 //NS_ASSUME_NONNULL_BEGIN
@@ -231,6 +233,22 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    
+    // 用户签到日历
+    // 测试结果: 接口通过, 但是无有效数据返回
+    NSDate *newDate = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:newDate];
+    NSInteger year = [dateComponent year];
+    NSInteger month = [dateComponent month];
+    
+        [HanZhaoHua getUserSignInRecordWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId year:year month:month success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
 }
 
 
@@ -249,6 +267,7 @@
         [_headerView addSubview:backView];
         [backView setContentMode:UIViewContentModeScaleToFill];
         [backView setImage:[UIImage imageNamed:@"login-bg"]];
+        backView.userInteractionEnabled = YES;
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.bottom.equalTo(headerView);
         }];
@@ -363,7 +382,15 @@
     [self loadData];
 }
 
+//签到
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
+    // 签到接口
+    // 测试结果: 通过
+        [HanZhaoHua signInWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
     
 }
 

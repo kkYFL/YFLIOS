@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UserMessage.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -17,7 +17,9 @@
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *taskId;
 @property (nonatomic, strong) NSString *host;
-
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) UserMessage *userModel;
+@property (nonatomic, strong) NSString *password;
 @end
 
 

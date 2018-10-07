@@ -11,10 +11,11 @@
 //#import "UserCenterHTTPEngineGuide.h"
 #import "PublicMethod.h"
 #import "HTTPEngineGuide.h"
-
-
+#import "HanZhaoHua.h"
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
+#import "AppDelegate.h"
+#import "UserMessage.h"
 
 
 @interface EWTLoginAndRegisterViewController ()<UIAlertViewDelegate>
@@ -258,9 +259,15 @@
 #pragma mark 登录
 - (void)doLogin{
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
-    
-    
+    // 用户登录
+    // 测试结果: 通过
+    [HanZhaoHua loginWithUsername:APP_DELEGATE.userName password:@"000000" success:^(UserMessage * _Nonnull user) {
+        NSLog(@"%@", user);
+        APP_DELEGATE.userModel = user;
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
 
     
     // 获取服务器Date
@@ -466,29 +473,29 @@
     
     
     
-    
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-    [HTTPEngineGuide MYLessonListSourceWithType:1 Page:1 PageNum:1 Success:^(NSDictionary *responseObject) {
-        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-
-        if ([code isEqualToString:@"200"]) {
-
-            // 数据加载完成
-            [[PromptBox sharedBox] removeLoadingView];
-            //
-            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-
-
-        }else{
-            //数据刷新
-            [[PromptBox sharedBox] removeLoadingView];
-
-            //[[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-
-        }
-    } failure:^(NSError *error) {
-        [[PromptBox sharedBox] removeLoadingView];
-    }];
+//
+//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+//    [HTTPEngineGuide MYLessonListSourceWithType:1 Page:1 PageNum:1 Success:^(NSDictionary *responseObject) {
+//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+//
+//        if ([code isEqualToString:@"200"]) {
+//
+//            // 数据加载完成
+//            [[PromptBox sharedBox] removeLoadingView];
+//            //
+//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+//
+//
+//        }else{
+//            //数据刷新
+//            [[PromptBox sharedBox] removeLoadingView];
+//
+//            //[[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
+//
+//        }
+//    } failure:^(NSError *error) {
+//        [[PromptBox sharedBox] removeLoadingView];
+//    }];
     
     
 //    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getData"];

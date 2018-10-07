@@ -7,6 +7,8 @@
 //
 
 #import "PersonJIfenViewController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface PersonJIfenViewController ()
 @property (nonatomic, strong) UIImageView *icon1;
@@ -124,6 +126,23 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    
+    // 积分列表
+    // 测试结果: 接口通过, 但是无数据返回
+        [HanZhaoHua getScoreListWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSArray * _Nonnull scoreList) {
+            for (ScoreRecord *score in scoreList) {
+                NSLog(@"%@", score.expireTime);
+                NSLog(@"%@", score.getTime);
+                NSLog(@"%@", score.scoreId);
+                NSLog(@"%@", score.remark);
+                NSLog(@"%@", score.score);
+                NSLog(@"%@", score.source);
+                NSLog(@"%@", score.pmId);
+            }
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
 }
 
 

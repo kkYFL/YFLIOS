@@ -9,6 +9,8 @@
 #import "PersonXinxiViewController.h"
 #import "XinxiTableViewCell.h"
 #import "EWTMediator+EWTImagePicker.h"
+#import "AppDelegate.h"
+#import "HanZhaoHua.h"
 
 #define kMaxCount 4
 
@@ -36,7 +38,14 @@
     self.title = @"个人信息";
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
-    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 30, 30);
+    [button setTitle:@"保存" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(rightButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = buttonItem;
     
     
     [self.view addSubview:self.table];
@@ -107,16 +116,21 @@
     XinxiTableViewCell *xinxiCell = [tableView dequeueReusableCellWithIdentifier:@"xinxiCell"];
     if (indexPath.section == 0) {
         xinxiCell.type = XinxiCellTypeWithIconAndRow;
-        xinxiCell.cellTitleLabel.text = @"安全头像";
+        xinxiCell.cellTitleLabel.text = @"用户头像";        
+        NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,APP_DELEGATE.userModel.headImg];
+        [xinxiCell.headerIcon sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
+        //    [self.iconImageView setImage:[UIImage imageNamed:@"exam_header"]];
+        
+        
     }else if (indexPath.section == 1){
         NSString *titleStr = @"";
         NSString *contentStr = @"";
         if (indexPath.row ==0) {
             titleStr = @"用户名";
-            contentStr = @"tuzi123";
+            contentStr = APP_DELEGATE.userName;
         }else if (indexPath.row ==1){
             titleStr = @"手机号码";
-            contentStr = @"182****1963";
+            contentStr = APP_DELEGATE.userModel.userName;
         }else if (indexPath.row ==2){
             titleStr = @"实名认证";
             contentStr = @"*架兔(**************5546)";
@@ -127,10 +141,11 @@
     }else if (indexPath.section == 2){
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = @"我的座右铭";
-        xinxiCell.cellContentLabel.text = @"谁说蓝色代表悲伤，你看看天空和海洋";
+        xinxiCell.cellContentLabel.text = APP_DELEGATE.userModel.motto;
     }else if (indexPath.section == 3){
-        xinxiCell.type = XinxiCellTypeWithJustRow;
+        xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = @"我的地址";
+        xinxiCell.cellContentLabel.text = APP_DELEGATE.userModel.pmAddress;
     }
     
     return xinxiCell;
@@ -262,7 +277,16 @@
 
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
-    
+    // 个人信息
+    // 测试结果: 通过
+        [HanZhaoHua changePersonalInformationWithUserId:APP_DELEGATE.userId headImg:@"" motto:@"hijjokplpoppkookokokehe" success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+
 }
 
 

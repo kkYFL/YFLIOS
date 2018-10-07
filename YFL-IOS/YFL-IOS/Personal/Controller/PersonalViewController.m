@@ -13,11 +13,16 @@
 #import "PersonJIfenViewController.h"
 #import "PersonXinxiViewController.h"
 #import "PersonPassWordController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *descibeLabel;
 @property (nonatomic, strong) UIView *footerView;
 
 
@@ -79,6 +84,31 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    /**
+     个人中心—用户信息查询接口
+     
+     */
+//    NSMutableDictionary  *para = [NSMutableDictionary dictionary];
+//    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+//    [para setValue:APP_DELEGATE.userId forKey:@"userId"];
+//    [HanZhaoHua GetPersonInfoSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+//        NSLog(@"");
+//    } failure:^(NSError * _Nonnull error) {
+//
+//    }];
+    
+    // 用户当前积分
+    // 测试结果: 通过
+        [HanZhaoHua getUserCurrentScoreWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSNumber * _Nonnull score) {
+            NSLog(@"%@", score);
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+
+    
+    [self refreshViewWithData];
 }
 
 
@@ -86,6 +116,8 @@
 - (void)refreshNet{
     [self loadData];
 }
+
+
 
 #pragma mark - 返回
 - (void)leftButtonAction{
@@ -197,6 +229,14 @@
     return _table;
 }
 
+-(void)refreshViewWithData{
+    NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,APP_DELEGATE.userModel.headImg];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
+//    [self.iconImageView setImage:[UIImage imageNamed:@"exam_header"]];
+    [self.nameLabel setText:APP_DELEGATE.userModel.userName];
+    [self.descibeLabel setText:APP_DELEGATE.userModel.motto];
+}
+
 -(UIView *)headerView{
     if(!_headerView){
         CGFloat topSpace = 25.0f;
@@ -233,6 +273,7 @@
         [iconImageView setImage:[UIImage imageNamed:@"exam_header"]];
         iconImageView.layer.masksToBounds = YES;
         iconImageView.layer.cornerRadius = iconWH/2.0;
+        self.iconImageView = iconImageView;
         [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(settingImageView.mas_bottom).offset(0);
             make.centerX.equalTo(_headerView);
@@ -269,13 +310,16 @@
         
         UILabel *descibeLabel = [[UILabel alloc] init];
         descibeLabel.font = [UIFont systemFontOfSize:14.0f];
+        descibeLabel.numberOfLines = 0;
         descibeLabel.text = @"谁说蓝色代表悲伤，你看看天空和海洋";
         descibeLabel.textColor = [UIColor whiteColor];
         descibeLabel.textAlignment = NSTextAlignmentCenter;
         [_headerView addSubview:descibeLabel];
+        self.descibeLabel = descibeLabel;
         [descibeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(cameraImageView.mas_bottom);
             make.centerX.equalTo(_headerView);
+            make.width.mas_equalTo(SCREEN_WIDTH-30.0);
             make.height.mas_equalTo(describeLabelH);
         }];
         

@@ -13,6 +13,7 @@
 #import "ExamTextInViewCell.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "ExamRuleModel.h"
 
 
 typedef NS_ENUM(NSInteger,ExamContentViewType) {
@@ -20,7 +21,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     ExamContentViewTypeTextIn
 };
 
-@interface ExamConentViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface ExamConentViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>{
     HistoryExamDetail *_currentExamModel;
     NSInteger _currentIndex;
 }
@@ -197,7 +198,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     
     // 待开始详情
     // 测试结果: 通过
-    [HanZhaoHua getWaitingToStartDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId paperId:self.papidID?self.papidID:@"0" success:^(NSArray * _Nonnull detailList) {
+    [HanZhaoHua getWaitingToStartDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId paperId:(self.ruleDic.paperId)?self.ruleDic.paperId:@"0" success:^(NSArray * _Nonnull detailList) {
         self.detailList = detailList;
         [self refreshViewWithWithIndex:_currentIndex];
         //[self refreshViewWithData];
@@ -254,8 +255,9 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 #pragma mark - 返回
 - (void)leftButtonAction{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您好，您还有1次答题的机会,是否确定放弃本次答题？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+    }
 
 -(UIView *)footerView{
     if (!_footerView) {
@@ -410,7 +412,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     NSMutableDictionary *para = [NSMutableDictionary dictionary];
     [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
     [para setValue:APP_DELEGATE.userId forKey:@"userId"];
-    [para setValue:self.papidID?self.papidID:@"" forKey:@"paperId"];
+    [para setValue:(self.ruleDic.paperId)?self.ruleDic.paperId:@"" forKey:@"paperId"];
     
     NSMutableArray *dataArr = [NSMutableArray array];
     for (NSInteger i = 0; i<self.detailList.count; i++) {
@@ -470,6 +472,12 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

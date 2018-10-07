@@ -10,7 +10,6 @@
 
 @interface XinxiTableViewCell ()
 @property (nonatomic, strong) UIImageView *rowImageView;
-@property (nonatomic, strong) UIImageView *headerIcon;
 
 @end
 
@@ -131,6 +130,7 @@
         self.cellContentLabel.hidden = NO;
         [self.cellContentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.mas_right).offset(-15);
+            make.left.equalTo(self.cellTitleLabel.mas_right).offset(20);
             make.centerY.equalTo(self);
         }];
     }

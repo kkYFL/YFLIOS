@@ -136,6 +136,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_type == ExamViewTypeDefault) {
+        return;
+    }
+    
     if (self.list && self.list.count > indexPath.row) {
         HistoryExam *examModel = self.list[indexPath.row];
         ExamhomeViewController *examHomeVC = [[ExamhomeViewController alloc]init];

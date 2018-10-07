@@ -170,31 +170,8 @@ static NSString *taskId = @"1";
     //    }];
     
     
-    // 学习任务列表
-    // 测试结果: 通过
-    //    [HanZhaoHua getLearningTaskListWithUserId:@"1" type:1 page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
-    //        // 下拉刷新, 原数据源数组数据清空, 存储最新数据
-    //        // 上拉加载更多, 原数据源数组后拼接
-    //        for (LearningTaskModel *item in listArray) {
-    //            NSLog(@"%@", item.taskId);
-    //        }
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 获取党员心声
-    // 测试结果: 通过
-    //    [HanZhaoHua getPartyMemberThinkingWithUserToken:@"1" userId:@"1" taskId:@"1" page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
-    //        for (PartyMemberThinking *model in listArray) {
-    //            NSLog(@"%@", model.pmName);
-    //            NSLog(@"%@", model.headImg);
-    //            NSLog(@"%@", model.ssDepartment);
-    //            NSLog(@"%@", model.commentInfo);
-    //            NSLog(@"%@", model.createTime);
-    //        }
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
+
+
     
     // 评论提交
     // 测试结果: 通过
@@ -216,18 +193,7 @@ static NSString *taskId = @"1";
     //        NSLog(@"%@", error);
     //    }];
     
-    // 获取学习痕迹列表
-    // 测试结果: 通过
-    //    [HanZhaoHua getLearningHistoryWithUserToken:userToken userId:userId taskId:taskId success:^(NSNumber * _Nonnull totalLearnTime, NSArray * _Nonnull list) {
-    //        NSLog(@"%@", totalLearnTime);
-    //        for (LearningHistory *model in list) {
-    //            NSLog(@"%@", model.learnTime);
-    //            NSLog(@"%@", model.startTime);
-    //            NSLog(@"%@", model.endTime);
-    //        }
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
+
     
     // 获取意见反馈列表
     // 测试结果: 通过
@@ -394,10 +360,23 @@ static NSString *taskId = @"1";
 //        NSLog(@"%@", error);
 //    }];
     
-    // 文件上传
-    // 测试结果:
-//    UIImage *image = [UIImage imageNamed:@"personal_icon"];
+//    // 文件上传
+//     //测试结果:
+//    UIImage *image = [UIImage imageNamed:@"uploadTest"];
 //    NSData *data = UIImagePNGRepresentation(image);
+//    
+//    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
+//        
+//    } failure:^(NSError * _Nonnull error) {
+//        
+//    }];
+    
+//    [HanZhaoHua uploadFileWithFiles:data UploadFileName:@"uploadTest.png" success:^(NSString * _Nonnull imgUrl) {
+//
+//    } failure:^(NSError * _Nonnull error) {
+//
+//    }];
+    
 //    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
 //
 //    } failure:^(NSError * _Nonnull error) {

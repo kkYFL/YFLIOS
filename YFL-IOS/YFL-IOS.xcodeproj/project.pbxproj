@@ -112,6 +112,8 @@
 		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
 		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
 		3AC71E412169C05900A84E0E /* SignMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E402169C05900A84E0E /* SignMoel.m */; };
+		3AC71E44216A3D0500A84E0E /* EducationJianjieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E43216A3D0500A84E0E /* EducationJianjieCell.m */; };
+		3AC71E47216A42A700A84E0E /* EducationXinshegnViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC71E46216A42A700A84E0E /* EducationXinshegnViewCell.m */; };
 		3AD47C9B215A8D3F000FBC04 /* WZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */; };
 		3AD47C9E215A8DB7000FBC04 /* DisnetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47C9C215A8DB7000FBC04 /* DisnetView.m */; };
 		3AD47CA3215A8E60000FBC04 /* EWTWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD47CA1215A8E60000FBC04 /* EWTWebView.m */; };
@@ -362,6 +364,10 @@
 		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
 		3AC71E3F2169C05900A84E0E /* SignMoel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignMoel.h; sourceTree = "<group>"; };
 		3AC71E402169C05900A84E0E /* SignMoel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignMoel.m; sourceTree = "<group>"; };
+		3AC71E42216A3D0500A84E0E /* EducationJianjieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationJianjieCell.h; sourceTree = "<group>"; };
+		3AC71E43216A3D0500A84E0E /* EducationJianjieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationJianjieCell.m; sourceTree = "<group>"; };
+		3AC71E45216A42A700A84E0E /* EducationXinshegnViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationXinshegnViewCell.h; sourceTree = "<group>"; };
+		3AC71E46216A42A700A84E0E /* EducationXinshegnViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationXinshegnViewCell.m; sourceTree = "<group>"; };
 		3AD47C99215A8D3F000FBC04 /* WZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZWebViewController.m; sourceTree = "<group>"; };
 		3AD47C9A215A8D3F000FBC04 /* WZWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZWebViewController.h; sourceTree = "<group>"; };
 		3AD47C9C215A8DB7000FBC04 /* DisnetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisnetView.m; sourceTree = "<group>"; };
@@ -689,6 +695,10 @@
 				3A03CF132156615300C49295 /* EducationLearnDetailCell.h */,
 				3A03CF142156615400C49295 /* EducationLearnDetailCell.m */,
 				3A03CF112156584300C49295 /* EducationLearnCell.m */,
+				3AC71E42216A3D0500A84E0E /* EducationJianjieCell.h */,
+				3AC71E43216A3D0500A84E0E /* EducationJianjieCell.m */,
+				3AC71E45216A42A700A84E0E /* EducationXinshegnViewCell.h */,
+				3AC71E46216A42A700A84E0E /* EducationXinshegnViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1280,6 +1290,7 @@
 				3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */,
 				8923F5CA215788E200CB98E4 /* Banner.m in Sources */,
 				3A5C0F49214DE10F00BB11FB /* EducationLearHeartViewController.m in Sources */,
+				3AC71E44216A3D0500A84E0E /* EducationJianjieCell.m in Sources */,
 				3A03CF272156A72A00C49295 /* PersonPasswordInCell.m in Sources */,
 				3A03CFB52158C4E600C49295 /* UIViewController+DNImagePicker.m in Sources */,
 				3A6BA57021271E5B00322875 /* YFKeychainUUID.m in Sources */,
@@ -1330,6 +1341,7 @@
 				3A03CFBD2158C4E600C49295 /* DNBadgeLabel.m in Sources */,
 				3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */,
 				3A5C0F502152840500BB11FB /* HTTPEngineGuide.m in Sources */,
+				3AC71E47216A42A700A84E0E /* EducationXinshegnViewCell.m in Sources */,
 				3A03CFC22158C4E600C49295 /* DNSendButton.m in Sources */,
 				3A50D519212D4BD400BD2919 /* NewsItemsTableCell.m in Sources */,
 				3A5C0F4C214DE51A00BB11FB /* EducationTaskDetailController.m in Sources */,

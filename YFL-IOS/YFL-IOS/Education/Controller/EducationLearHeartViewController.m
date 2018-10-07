@@ -10,12 +10,15 @@
 #import "EducationHeartLearnCell.h"
 #import "EducationTaskDetailController.h"
 #import "EducationTaskHistoryController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface EducationLearHeartViewController ()<UITableViewDelegate,UITableViewDataSource
 >
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *itemsView;
-
+@property (nonatomic, strong) NSMutableArray *learnListArr;
+@property (nonatomic, strong) NSMutableArray *historyLearnListArr;
 
 @end
 
@@ -25,6 +28,8 @@
     [super viewDidLoad];
     
     [self initView];
+    
+    [self initData];
     
     [self loadData];
 }
@@ -38,6 +43,11 @@
     
     [self.view addSubview:self.table];
     
+}
+
+-(void)initData{
+    self.learnListArr = [NSMutableArray array];
+    self.historyLearnListArr = [NSMutableArray array];
 }
 
 -(void)loadData{
@@ -75,6 +85,72 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    // 获取服务器时间
+    // 测试结果: 通过
+        [HanZhaoHua getServerTimeWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSDictionary * _Nonnull responseObject) {
+            NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+            if ([code isEqualToString:@"2000"]) {
+                NSNumber *time = [responseObject objectForKey:@"data"];
+                NSLog(@"%@", time);
+            } else {
+                NSLog(@"处理错误");
+            }
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    // 学习任务
+    if (self.type == MYEducationViewTypeDefault) {
+        // 学习任务列表
+        // 测试结果: 通过
+            [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:1 page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
+                // 下拉刷新, 原数据源数组数据清空, 存储最新数据
+                // 上拉加载更多, 原数据源数组后拼接
+                for (LearningTaskModel *item in listArray) {
+                    NSLog(@"%@", item.taskId);
+                }
+                
+                self.learnListArr = [NSMutableArray arrayWithArray:listArray];
+                
+                [self.table reloadData];
+            } failure:^(NSError * _Nonnull error) {
+                NSLog(@"%@", error);
+            }];
+
+    }else{
+        // 获取学习痕迹列表
+        // 测试结果: 通过
+//            [HanZhaoHua getLearningHistoryWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:APP_DELEGATE.taskId success:^(NSNumber * _Nonnull totalLearnTime, NSArray * _Nonnull list) {
+//                NSLog(@"%@", totalLearnTime);
+//                for (LearningHistory *model in list) {
+//                    NSLog(@"%@", model.learnTime);
+//                    NSLog(@"%@", model.startTime);
+//                    NSLog(@"%@", model.endTime);
+//                }
+//
+//                self.historyLearnListArr = [NSMutableArray arrayWithArray:list];
+//            } failure:^(NSError * _Nonnull error) {
+//                NSLog(@"%@", error);
+//            }];
+        
+        
+        // 学习任务列表
+        // 测试结果: 通过
+        [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:2 page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
+            // 下拉刷新, 原数据源数组数据清空, 存储最新数据
+            // 上拉加载更多, 原数据源数组后拼接
+            for (LearningTaskModel *item in listArray) {
+                NSLog(@"%@", item.taskId);
+            }
+            
+            self.learnListArr = [NSMutableArray arrayWithArray:listArray];
+            
+            [self.table reloadData];
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    }
 }
 
 
@@ -87,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.learnListArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,6 +174,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EducationHeartLearnCell *heartCell = [tableView dequeueReusableCellWithIdentifier:@"heartCell"];
+    if (self.learnListArr.count > indexPath.row) {
+        LearningTaskModel *model = self.learnListArr[indexPath.row];
+        heartCell.learnModel = model;
+    }
+
+//    if (self.type == MYEducationViewTypeDefault) {
+//        if (self.learnListArr.count > indexPath.row) {
+//            LearningTaskModel *model = self.learnListArr[indexPath.row];
+//
+//        }
+//    }else{
+//        if (self.historyLearnListArr.count > indexPath.row) {
+//            LearningHistory *model = self.historyLearnListArr[indexPath.row];
+//
+//        }
+//    }
     return heartCell;
     
 }
@@ -107,6 +199,10 @@
     
     if (self.type == MYEducationViewTypeDefault) {
         EducationTaskDetailController *detailVC = [[EducationTaskDetailController alloc]init];
+        if (self.learnListArr.count > indexPath.row) {
+            LearningTaskModel *model = self.learnListArr[indexPath.row];
+            detailVC.model = model;
+        }
         [self.navigationController pushViewController:detailVC animated:YES];
     }else{
         EducationTaskHistoryController *hisoryVC = [[EducationTaskHistoryController alloc]init];

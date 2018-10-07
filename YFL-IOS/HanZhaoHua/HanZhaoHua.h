@@ -407,8 +407,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @method         文件上传
  *  @param          files 二进制数据
  */
-+(void)uploadFileWithFiles: (NSData *)files
-                   success: (void (^)(NSString *imgUrl))success
++(void)uploadFileWithFiles: (NSData *)files success: (void (^)(NSString *imgUrl))success
                    failure: (void (^)(NSError *error))failure;
 
 

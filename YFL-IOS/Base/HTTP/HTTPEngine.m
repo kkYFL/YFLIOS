@@ -204,7 +204,7 @@
     [self.requestSessionManager POST:url parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         [formData appendPartWithFileData:data
-                                    name:@"File"
+                                    name:@"files"
                                 fileName:fileName
                                 mimeType:type];
     } progress:^(NSProgress * _Nonnull uploadProgress) {

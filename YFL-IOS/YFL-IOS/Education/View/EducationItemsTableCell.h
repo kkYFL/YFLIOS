@@ -10,7 +10,7 @@
 
 @interface EducationItemsTableCell : UITableViewCell
 +(CGFloat)CellH;
-
+@property (nonatomic, strong) NSArray *dataArr;
 @end
 
 @interface EducationItemContentView : UIView

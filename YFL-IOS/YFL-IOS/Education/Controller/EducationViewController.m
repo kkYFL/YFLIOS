@@ -18,7 +18,8 @@
 @interface EducationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *bannerList;
-@property (nonatomic, assign) NSInteger *serverCount;
+@property (nonatomic, assign) NSInteger serverCount;
+@property (nonatomic, strong) Banner *videoModel;
 
 @end
 
@@ -46,7 +47,9 @@
     [self.view addSubview:self.table];
     
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemsSelectAction:) name:KNotificationEducationItemsSelect object:nil];;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemsSelectAction:) name:KNotificationEducationItemsSelect object:nil];
+    [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    
 }
 
 
@@ -64,7 +67,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return [EducationHeadTableCell CellH];
+        return [EducationHeadTableCell CellHWithModel:self.videoModel];
     }
     return [EducationItemsTableCell CellH];
 }
@@ -73,10 +76,12 @@
 {
     if (indexPath.row == 0) {
         EducationHeadTableCell *topCell = [tableView dequeueReusableCellWithIdentifier:@"topCell"];
+        topCell.videoModel = self.videoModel;
         return topCell;
     }
     
     EducationItemsTableCell *ItemsCell = [tableView dequeueReusableCellWithIdentifier:@"ItemsCell"];
+    ItemsCell.dataArr = self.bannerList;
     return ItemsCell;
 
 }
@@ -141,10 +146,25 @@
 //     }];
     
     
+    //教育视频接口
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
     // 测试结果: 通过
     [HanZhaoHua getInformationBannerWithUserToken:APP_DELEGATE.userToken positionType:@"SPOS_3" success:^(NSArray * _Nonnull bannerList) {
+        if (bannerList && bannerList.count) {
+            self.videoModel = self.bannerList[0];
+        }
+        self.serverCount ++;
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        self.serverCount ++;
+    }];
+    
+    
+    // banner接口   positionType:@"MPOS_1"
+    // 热区菜单接口  positionType:@"MPOS_4"
+    // 测试结果: 通过
+    [HanZhaoHua getInformationBannerWithUserToken:APP_DELEGATE.userToken positionType:@"MPOS_4" success:^(NSArray * _Nonnull bannerList) {
         for (Banner *model in bannerList) {
             NSLog(@"%@", model.imgUrl);
             NSLog(@"%@", model.positionNo);
@@ -158,6 +178,9 @@
         NSLog(@"%@", error);
         self.serverCount ++;
     }];
+    
+    
+    
 }
 
 
@@ -202,6 +225,19 @@
     }
 }
 
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void*)context{
+    NSInteger new = [[change objectForKey:@"new"] integerValue];
+    
+    //数据渲染
+    if (new == 2) {
+        
+        [self.table reloadData];
+        
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
@@ -209,6 +245,7 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self removeObserver:self forKeyPath:@"serverCount"];
 }
 
 

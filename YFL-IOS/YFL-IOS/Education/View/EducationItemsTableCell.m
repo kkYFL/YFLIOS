@@ -7,6 +7,8 @@
 //
 
 #import "EducationItemsTableCell.h"
+#import "Banner.h"
+#import "AppDelegate.h"
 
 #define itemMarginSpace 20
 #define itemViewSpace 25
@@ -127,7 +129,28 @@
     return 25*2+18+itemViewH*2+itemViewSpace+25;
 }
 
-
+-(void)setDataArr:(NSArray *)dataArr{
+    _dataArr = dataArr;
+    if (_dataArr && _dataArr.count) {
+        //Banner
+        for (NSInteger i = 0; i<_dataArr.count; i++) {
+            Banner *bannerModel = _dataArr[i];
+            if (i == 0) {
+                self.item1.titleLabel.text = bannerModel.positionName;
+                [self.item1.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+            }else if (i ==1){
+                self.item2.titleLabel.text = bannerModel.positionName;
+                [self.item2.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+            }else if (i == 2){
+                self.item3.titleLabel.text = bannerModel.positionName;
+                [self.item3.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+            }else if (i == 3){
+                self.item4.titleLabel.text = bannerModel.positionName;
+                [self.item4.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+            }
+        }
+    }
+}
 
 
 
@@ -199,6 +222,7 @@
     }];
 
 }
+
 
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{

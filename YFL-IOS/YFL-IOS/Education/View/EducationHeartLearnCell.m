@@ -7,6 +7,10 @@
 //
 
 #import "EducationHeartLearnCell.h"
+#import "LearningTaskModel.h"
+#import "LearningHistory.h"
+#import "AppDelegate.h"
+
 
 #define iconW WIDTH_SCALE*121
 #define iconH HEIGHT_SCALE*91
@@ -14,6 +18,11 @@
 @interface EducationHeartLearnCell ()
 @property (nonatomic, strong) UIImageView *icon;
 @property (nonatomic, strong) UILabel *cellTitle;
+@property (nonatomic, strong) UILabel *seeNum;
+@property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UIButton *button;
+
+
 @end
 
 @implementation EducationHeartLearnCell
@@ -74,6 +83,7 @@
     seeNum.text = @"96631条";
     seeNum.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     seeNum.textAlignment = NSTextAlignmentLeft;
+    self.seeNum = seeNum;
     [self.contentView addSubview:seeNum];
     [seeNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(seeimage.mas_right).offset(6);
@@ -98,6 +108,7 @@
     timeLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     timeLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:timeLabel];
+    self.timeLabel = timeLabel;
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(timeimage.mas_right).offset(6);
         make.centerY.equalTo(seeimage);
@@ -111,6 +122,7 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.layer.cornerRadius = 4.0f;
     [button setTitle:@"未学习" forState:UIControlStateNormal];
+    self.button = button;
     [self.contentView addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-15.0f);
@@ -135,6 +147,54 @@
 
 +(CGFloat)CellH{
     return 30+iconH;
+}
+
+-(void)setHistroyModel:(LearningHistory *)histroyModel{
+    _histroyModel = histroyModel;
+    if (_histroyModel) {
+       
+//        [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_learnModel.taskThumb]]];
+//        [self.timeLabel setText:_learnModel.taskTitle];
+//        self.seeNum.text = [NSString stringWithFormat:@"%@条",_learnModel.nowNum];
+//        self.timeLabel.text = [NSString stringWithFormat:@"%@学时",_learnModel.learnTime];
+//        if ([_learnModel.nowState integerValue] == 1) {
+//            [self.button setTitle:@"未学习" forState:UIControlStateNormal];
+//        }else if ([_learnModel.nowState integerValue] == 2){
+//            [self.button setTitle:@"学习中" forState:UIControlStateNormal];
+//        }else if ([_learnModel.nowState integerValue] == 3){
+//            [self.button setTitle:@"已学习" forState:UIControlStateNormal];
+//        }
+    }
+}
+
+
+-(void)setLearnModel:(LearningTaskModel *)learnModel{
+    _learnModel = learnModel;
+    if (_learnModel) {
+/*
+ 
+ @property (nonatomic, strong) UIImageView *icon;
+ @property (nonatomic, strong) UILabel *cellTitle;
+ @property (nonatomic, strong) UILabel *seeNum;
+ @property (nonatomic, strong) UILabel *timeLabel;*/
+        
+        
+        [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_learnModel.taskThumb]]];
+        [self.timeLabel setText:_learnModel.taskTitle];
+        self.seeNum.text = [NSString stringWithFormat:@"%@条",_learnModel.nowNum];
+        self.timeLabel.text = [NSString stringWithFormat:@"%@学时",_learnModel.learnTime];
+        if ([_learnModel.nowState integerValue] == 1) {
+            [self.button setTitle:@"未学习" forState:UIControlStateNormal];
+        }else if ([_learnModel.nowState integerValue] == 2){
+            [self.button setTitle:@"学习中" forState:UIControlStateNormal];
+        }else if ([_learnModel.nowState integerValue] == 3){
+            [self.button setTitle:@"已学习" forState:UIControlStateNormal];
+        }
+        
+        
+        //学习状态 1：未学习 2：学习中 3：已学习
+        
+    }
 }
 
 

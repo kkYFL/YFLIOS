@@ -163,13 +163,22 @@ static NSString *host = @"http://47.100.247.71/protal/";
                               };
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) {
-            NSArray *list = [responseObject objectForKey:@"data"];
-            NSMutableArray * result = [[NSMutableArray alloc] init];
-            for (NSDictionary * d in list) {
-                Banner * model = [[Banner alloc] initWithDic:d];
+            if ([responseObject objectForKey:@"data"] && [[responseObject objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *list = [responseObject objectForKey:@"data"];
+                NSMutableArray * result = [[NSMutableArray alloc] init];
+                for (NSDictionary * d in list) {
+                    Banner * model = [[Banner alloc] initWithDic:d];
+                    [result addObject:model];
+                }
+                success([[NSArray alloc] initWithArray:result]);
+            }else{
+                NSDictionary *tmpDic = [responseObject objectForKey:@"data"];
+                NSMutableArray * result = [[NSMutableArray alloc] init];
+                Banner * model = [[Banner alloc] initWithDic:tmpDic];
                 [result addObject:model];
+                success([[NSArray alloc] initWithArray:result]);
             }
-            success([[NSArray alloc] initWithArray:result]);
+
         }
     } failure:^(NSError *error) {
         if (failure) failure(error);
@@ -716,18 +725,20 @@ static NSString *host = @"http://47.100.247.71/protal/";
     }];
 }
 
-+(void)uploadFileWithFiles: (NSData *)files
-                   success: (void (^)(NSString *imgUrl))success
++(void)uploadFileWithFiles: (NSData *)files success: (void (^)(NSString *imgUrl))success
                    failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"file/upload.do"];
-    [[HTTPEngine sharedEngine] uploadData:files url:urlStr fileName:@"测试" mimeType:@"image/png" success:^(NSDictionary *responseObject) {
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host, @"/file/upload.do"];
+    NSString *fileName = [NSString stringWithFormat:@"%@.png",[PublicMethod currentTimeInterval]];
+    [[HTTPEngine sharedEngine] uploadData:files url:urlStr fileName:fileName mimeType:@"image/png" success:^(NSDictionary *responseObject) {
         NSLog(@"%@", responseObject);
         if (success) {
-            NSArray *list = [responseObject objectForKey:@"data"];
             NSString * imgUrl = @"";
-            for (NSDictionary *dic in list) {
-                imgUrl = [dic objectForKey:@"imgUrl"];
+            if ([responseObject objectForKey:@"data"] && [[responseObject objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *list = [responseObject objectForKey:@"data"];
+                for (NSDictionary *dic in list) {
+                    imgUrl = [dic objectForKey:@"imgUrl"];
+                }
             }
             success(imgUrl);
         }

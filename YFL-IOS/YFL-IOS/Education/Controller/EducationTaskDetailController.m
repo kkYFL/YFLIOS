@@ -12,11 +12,18 @@
 //#import <ZFPlayer/ZFIJKPlayerManager.h>
 //#import <ZFPlayer/KSMediaPlayerManager.h>
 #import <ZFPlayer/ZFPlayerControlView.h>
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+#import "LearningTaskModel.h"
+#import "EducationJianjieCell.h"
+
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
 
-@interface EducationTaskDetailController ()<UITableViewDelegate,UITableViewDataSource>
+@interface EducationTaskDetailController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger selectIndex;
+}
 @property (nonatomic, strong) UITableView *table;
 
 @property (nonatomic, strong) ZFPlayerController *player;
@@ -30,6 +37,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 @property (nonatomic, strong) UIButton *button;
 @property (nonatomic, strong) UIButton *button1;
 
+@property (nonatomic, strong) NSMutableArray *PartyMemberThinkingArr;
+
 @end
 
 @implementation EducationTaskDetailController
@@ -38,6 +47,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     [super viewDidLoad];
     
     [self initView];
+    
+    [self initData];
     
     [self loadData];
 }
@@ -48,7 +59,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     
-    // [self.view addSubview:self.table];
+    [self.view addSubview:self.table];
     
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -110,6 +121,10 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 }
 
 
+-(void)initData{
+    selectIndex = 1;
+}
+
 
 -(void)loadData{
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
@@ -146,6 +161,26 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    
+    
+    // 获取党员心声
+    // 测试结果: 通过
+        [HanZhaoHua getPartyMemberThinkingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:APP_DELEGATE.taskId page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
+            for (PartyMemberThinking *model in listArray) {
+                NSLog(@"%@", model.pmName);
+                NSLog(@"%@", model.headImg);
+                NSLog(@"%@", model.ssDepartment);
+                NSLog(@"%@", model.commentInfo);
+                NSLog(@"%@", model.createTime);
+            }
+            
+            self.PartyMemberThinkingArr = [NSMutableArray arrayWithArray:listArray];
+            [self.table reloadData];
+            
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
 }
 
 
@@ -157,16 +192,28 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (selectIndex == 1) {
+        return 1;
+    }
     return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (selectIndex == 1) {
+        return [EducationJianjieCell CellH];
+    }
     return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (selectIndex == 1) {
+        EducationJianjieCell *JianjieCell = [tableView dequeueReusableCellWithIdentifier:@"JianjieCell"];
+        return JianjieCell;
+    }
+    
+    
     static NSString *identify = @"cellIdentify";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     if (!cell) {
@@ -183,7 +230,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT)];
+        CGFloat h = SCREEN_WIDTH*9/16.0;
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, h+56, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-h-56)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -191,7 +239,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         _table.dataSource = self;
         [self.view addSubview:_table];
         
-        //[_table registerClass:[CareerProfessionjingduCell class] forCellReuseIdentifier:@"CareerjindguCell"];
+        [_table registerClass:[EducationJianjieCell class] forCellReuseIdentifier:@"JianjieCell"];
     }
     return _table;
 }

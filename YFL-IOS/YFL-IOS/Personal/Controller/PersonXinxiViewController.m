@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "HanZhaoHua.h"
 
-#define kMaxCount 4
+#define kMaxCount 1
 
 
 @interface PersonXinxiViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate
@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UIActionSheet *getPhotosSheet;
 /** 已选图片集合 */
 @property (nonatomic, strong) NSMutableArray *images;
+
+@property (nonatomic, strong) NSString *userServerPic;
 @end
 
 @implementation PersonXinxiViewController
@@ -205,6 +207,10 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex)
     {
+            if (self.images.count) {
+                [self.images removeAllObjects];
+            }
+            
         case 0:  //打开照相机拍照
             [self takePhotos];
             break;
@@ -232,6 +238,8 @@
             // 将图片添加到数组中
             [weakSelf.images addObject:originalImg];
         }
+        
+        [self uploadImageToServer];
         //[weakSelf showImagesView];
     }];
 }
@@ -246,6 +254,8 @@
                 [[PromptBox sharedBox] showTextPromptBoxWithText:msg onView:weakSelf.view];
                 [weakSelf.images removeObjectsInRange:NSMakeRange(kMaxCount, (weakSelf.images.count - kMaxCount))];
             }
+            
+            [self uploadImageToServer];
             //[weakSelf showImagesView];
         }
     }];
@@ -286,6 +296,27 @@
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
         }];
+
+}
+
+-(void)uploadImageToServer{
+    // 文件上传
+    //测试结果:
+    if (self.images.count) {
+       [[PromptBox sharedBox] showLoadingWithText:@"上传中..." onView:self.view];
+
+        UIImage *image = self.images[0];
+        NSData *data = UIImagePNGRepresentation(image);
+        
+        [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
+            [[PromptBox sharedBox] removeLoadingView];
+            APP_DELEGATE.userModel.headImg = imgUrl;
+            [self.table reloadData];
+            
+        } failure:^(NSError * _Nonnull error) {
+            [[PromptBox sharedBox] removeLoadingView];
+        }];
+    }
 
 }
 

@@ -32,17 +32,17 @@
      self.taskId = @"1";
      self.host = @"http://47.100.247.71/protal";
      self.userName = @"15606811521";
-    self.password = @"123456";
+     self.password = @"123456";
     
     
     [self showLoginAndRegistController];
-    
+
     //[self tabBarViewInit];
 //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
     
-    [TestInterface test];
+    //[TestInterface test];
     return YES;
 }
 

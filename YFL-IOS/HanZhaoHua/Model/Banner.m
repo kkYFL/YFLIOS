@@ -19,6 +19,9 @@
         self.summary = [NSString stringWithFormat:@"%@",[dic objectForKey:@"summary"]];
         self.foreignType = [NSString stringWithFormat:@"%@",[dic objectForKey:@"foreignType"]];
         self.foreignUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"foreignUrl"]];
+        self.positionName = [NSString stringWithFormat:@"%@",[dic objectForKey:@"positionName"]];
+        self.positionType = [NSString stringWithFormat:@"%@",[dic objectForKey:@"positionType"]];
+        self.viewOrder = [NSString stringWithFormat:@"%@",[dic objectForKey:@"viewOrder"]];
 
     }
     return self;

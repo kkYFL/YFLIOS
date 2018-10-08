@@ -14,7 +14,7 @@
 #import "EWTLoginAndRegisterViewController.h"
 #import "ICarouselViewController.h"
 #import "TestInterface.h"
-
+#import "GuideViewController.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -35,7 +35,9 @@
      self.password = @"123456";
     
     
-    [self showLoginAndRegistController];
+    //[self showLoginAndRegistController];
+    
+    [self guidenView];
 
     //[self tabBarViewInit];
 //
@@ -175,12 +177,32 @@
     nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor redColor]};
     nav.navigationBar.translucent = NO;
     
-    if (!self.window) {
-        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        [self.window setBackgroundColor:[UIColor whiteColor]];
-    }
+
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+}
+
+-(UIWindow *)window{
+    if (!_window) {
+        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [_window setBackgroundColor:[UIColor whiteColor]];
+    }
+    return _window;
+}
+
+-(void)guidenView{
+    GuideViewController *vc = [[GuideViewController alloc]init];
+    vc.videoOrImageType = imageTpye;
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+}
+
++ (BOOL)isHasShowGuidenVersion {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"hasGuiden"]) {
+        return YES;
+    }
+    return NO;
 }
 
 

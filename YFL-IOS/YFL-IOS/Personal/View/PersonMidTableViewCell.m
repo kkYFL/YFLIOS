@@ -11,7 +11,7 @@
 @interface PersonMidTableViewCell ()
 @property (nonatomic, strong) UIImageView *leftBackView;
 @property (nonatomic, strong) UIImageView *rightBackView;
-
+@property (nonatomic, strong) UILabel *jifenNum;
 
 @end
 
@@ -87,6 +87,7 @@
     jifenNum.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     jifenNum.textAlignment = NSTextAlignmentLeft;
     [self.leftBackView addSubview:jifenNum];
+    self.jifenNum = jifenNum;
     [jifenNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(leftIcon.mas_right).offset(10);
         make.bottom.equalTo(leftIcon.mas_centerY).offset(-5);
@@ -167,6 +168,14 @@
         if (self.selectViewBlock) {
             self.selectViewBlock(2);
         }
+    }
+}
+
+-(void)setScore:(NSInteger)score{
+    _score = score;
+    if (_score) {
+        self.jifenNum.text = [NSString stringWithFormat:@"积分%ld",_score];
+
     }
 }
 

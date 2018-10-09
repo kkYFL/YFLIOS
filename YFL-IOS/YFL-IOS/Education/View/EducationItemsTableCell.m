@@ -196,11 +196,11 @@
     UIImageView *icon = [[UIImageView alloc]init];
     [backView addSubview:icon];
     self.icon = icon;
-    [icon setContentMode:UIViewContentModeCenter];
+    [icon setContentMode:UIViewContentModeScaleToFill];
     [icon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(backView.mas_right).offset(-15);
         make.centerY.equalTo(backView);
-        make.height.width.mas_equalTo(40);
+        make.height.width.mas_equalTo(40*HEIGHT_SCALE);
     }];
     
     
@@ -209,14 +209,14 @@
     titleLabel.font = [UIFont systemFontOfSize:18.0f];
     titleLabel.text = @"学习任务";
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.textAlignment = NSTextAlignmentRight;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
     [backView addSubview:titleLabel];
     self.titleLabel = titleLabel;
     
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(backView).offset(20);
-        make.right.equalTo(icon.mas_left).offset(-12);
+        make.left.equalTo(backView).offset(0);
+        make.right.equalTo(icon.mas_left).offset(0);
         make.centerY.equalTo(backView.mas_centerY);
         make.height.mas_equalTo(20);
     }];

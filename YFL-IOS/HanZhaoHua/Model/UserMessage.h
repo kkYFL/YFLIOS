@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 //
 @property(nonatomic, copy) NSString *applyNum;
 //
-@property(nonatomic, assign) NSNumber *applyState;
+@property(nonatomic, copy) NSString *applyState;
 //
 @property(nonatomic, copy) NSString *bgImg;
 //
@@ -24,15 +24,15 @@ NS_ASSUME_NONNULL_BEGIN
 //头像地址
 @property(nonatomic, copy) NSString *headImg;
 //
-@property(nonatomic, assign) NSNumber *createMan;
+@property(nonatomic, copy) NSString *createMan;
 //创建时间
 @property(nonatomic, copy) NSString *createTime;
 //用户id
-@property(nonatomic, assign) NSNumber *userId;
+@property(nonatomic, copy) NSString *userId;
 //
-@property(nonatomic, assign) NSNumber *integral;
+@property(nonatomic, copy) NSString *integral;
 //
-@property(nonatomic, assign) NSNumber *modifyMan;
+@property(nonatomic, copy) NSString *modifyMan;
 //
 @property(nonatomic, copy) NSString *modifyTime;
 //
@@ -42,29 +42,31 @@ NS_ASSUME_NONNULL_BEGIN
 //
 @property(nonatomic, copy) NSString *pmAddress;
 //创建时间
-@property(nonatomic, assign) NSNumber *pmAge;
+@property(nonatomic, copy) NSString *pmAge;
 //
 @property(nonatomic, copy) NSString *pmEnterTime;
 //
-@property(nonatomic, assign) NSNumber *pmIdcard;
+@property(nonatomic, copy) NSString *pmIdcard;
 //
 @property(nonatomic, copy) NSString *pmName;
 //
 @property(nonatomic, copy) NSString *pmNum;
 //
-@property(nonatomic, assign) NSNumber *pmSex;
+@property(nonatomic, copy) NSString *pmSex;
 //
 @property(nonatomic, copy) NSString *remark;
 //
 @property(nonatomic, copy) NSString *ssDepartment;
 //
-@property(nonatomic, assign) NSNumber *state;
+@property(nonatomic, copy) NSString *state;
 //
 @property(nonatomic, copy) NSString *userName;
 //
 @property(nonatomic, copy) NSString *userPass;
 //
-@property(nonatomic, assign) NSNumber *userToken;
+@property(nonatomic, copy) NSString *userToken;
+
+-(id)initWithDic:(NSDictionary *)dic;
 
 @end
 

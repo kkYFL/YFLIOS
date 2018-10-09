@@ -25,8 +25,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
-            UserMessage *user = [[UserMessage alloc] init];
-            [user setValuesForKeysWithDictionary:dic];
+            UserMessage *user = [[UserMessage alloc] initWithDic:dic];
             success(user);
         }
     } failure:^(NSError *error) {

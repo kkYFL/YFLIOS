@@ -16,20 +16,24 @@
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 #import "MBProgressHUD+Toast.h"
-
+#import "SignMoel.h"
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *_filePath;//地址
     NSString *_info;    //更新说明
+    
+    NSInteger _score;
 }
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *signLabel;
 @property (nonatomic, strong) UILabel *descibeLabel;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, assign) NSInteger serverCount;
-
+@property (nonatomic, strong) UserMessage *userModel;
+@property (nonatomic, strong) SignMoel *signModel;
 
 @end
 
@@ -39,6 +43,8 @@
     [super viewDidLoad];
     
     [self initView];
+    
+    [self refershHeader];
 
 }
 
@@ -56,6 +62,7 @@
 
 -(void)initData{
     self.serverCount = 0;
+    _score = 0;
 }
 
 
@@ -74,60 +81,34 @@
 
 
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//    
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//        
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//            
-//            [<#tableName#> reloadData];
-//        }
-//        
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//        
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//     
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
     
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
     /**
      个人中心—用户信息查询接口
      
      */
-//    NSMutableDictionary  *para = [NSMutableDictionary dictionary];
-//    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
-//    [para setValue:APP_DELEGATE.userId forKey:@"userId"];
-//    [HanZhaoHua GetPersonInfoSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
-//        NSLog(@"");
-//    } failure:^(NSError * _Nonnull error) {
-//
-//    }];
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-
+    NSMutableDictionary  *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [para setValue:APP_DELEGATE.userId forKey:@"userId"];
+    [HanZhaoHua GetPersonInfoSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+            self.userModel = [[UserMessage alloc]initWithDic:dataDic];
+        }
+        NSLog(@"");
+        self.serverCount ++;
+    } failure:^(NSError * _Nonnull error) {
+        self.serverCount ++;
+    }];
+    
+    
     
     // 用户当前积分
     // 测试结果: 通过
         [HanZhaoHua getUserCurrentScoreWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSNumber * _Nonnull score) {
             NSLog(@"%@", score);
+            _score = [score integerValue];
             self.serverCount ++;
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -145,6 +126,9 @@
     NSInteger month = [dateComponent month];
     [HanZhaoHua getUserSignInRecordWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId year:year month:month success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
+        NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+        self.signModel = [[SignMoel alloc]initWithDic:dataDic];
+
         self.serverCount ++;
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
@@ -277,6 +261,7 @@
     
     if(indexPath.row == 0){
         PersonMidTableViewCell *midCell = [tableView dequeueReusableCellWithIdentifier:@"midCell"];
+        midCell.score = _score;
         __weak typeof(self) weakSelf = self;
         midCell.selectViewBlock = ^(NSInteger viewIndex) {
             if (viewIndex == 1) {
@@ -285,9 +270,8 @@
                 [weakSelf.navigationController pushViewController:jifenVC animated:YES];
                 
             }else if (viewIndex == 2){
-                SigninRecordViewController *signRecordVC = [[SigninRecordViewController alloc]init];
-                signRecordVC.hidesBottomBarWhenPushed  = YES;
-                [weakSelf.navigationController pushViewController:signRecordVC animated:YES];
+
+                
             }
         };
         return midCell;
@@ -357,12 +341,16 @@
 }
 
 -(void)refreshViewWithData{
-    NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,APP_DELEGATE.userModel.headImg];
+    NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,self.userModel.headImg];
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
-//    [self.iconImageView setImage:[UIImage imageNamed:@"exam_header"]];
-    [self.nameLabel setText:APP_DELEGATE.userModel.userName];
-    [self.descibeLabel setText:APP_DELEGATE.userModel.motto];
+    [self.nameLabel setText:self.userModel.pmName];
+    [self.descibeLabel setText:self.userModel.motto];
+    
+    if (self.signModel) {        
+        self.signLabel.text = [NSString stringWithFormat:@"已签到%@天，请继续保持呦！",self.signModel.totalSignIn];
+    }
 }
+
 
 -(UIView *)headerView{
     if(!_headerView){
@@ -486,6 +474,7 @@
         signLabel.textColor = [UIColor whiteColor];
         signLabel.textAlignment = NSTextAlignmentLeft;
         [bottonView addSubview:signLabel];
+        self.signLabel = signLabel;
         [signLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(signButton.mas_right).offset(16.0f);
             make.centerY.equalTo(signButton);
@@ -530,7 +519,9 @@
 }
 
 -(void)sign:(UIButton *)sender{
-    
+    SigninRecordViewController *signRecordVC = [[SigninRecordViewController alloc]init];
+    signRecordVC.hidesBottomBarWhenPushed  = YES;
+    [self.navigationController pushViewController:signRecordVC animated:YES];
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
@@ -552,7 +543,7 @@
     NSInteger new = [[change objectForKey:@"new"] integerValue];
     
     //数据渲染
-    if (new == 2) {
+    if (new == 3) {
         [[PromptBox sharedBox] removeLoadingView];
         [self.table.mj_header endRefreshing];
         

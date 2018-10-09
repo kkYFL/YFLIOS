@@ -103,6 +103,8 @@
             
             self.ownerRankeModel = owner;
             
+            [self resetViewWithData];
+            
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -111,42 +113,6 @@
             [self.table.mj_header endRefreshing];
         }];
     
-    
-    
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
 }
 
 
@@ -172,6 +138,7 @@
 }
 
 -(void)refershHeader{
+    [self resetView];
     [self initData];
     [self loadData];
 }
@@ -234,7 +201,6 @@
         CGFloat imageViewH = SCREEN_WIDTH*272/375.0;
         
         CGFloat selectImageViewW = (SCREEN_WIDTH-15-25*2)/2.0;
-        CGFloat selectImageViewH = 60.0f;
 
         CGFloat headerViewH = imageViewH + 16.0 + 30.0f;
         
@@ -289,6 +255,7 @@
             [button setImage:[UIImage imageNamed:@"suo_gray"] forState:UIControlStateNormal];
             [button setImage:[UIImage imageNamed:@"suoViewLight"] forState:UIControlStateSelected];
             [self.viewsArr addObject:button];
+            //button.enabled = NO;
             [routeView addSubview:button];
             button.selected = NO;
             [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -304,7 +271,7 @@
         //num
         UILabel *headerNumLab= [[UILabel alloc] init];
         headerNumLab.font = [UIFont boldSystemFontOfSize:60];
-        headerNumLab.text = @"85";
+        headerNumLab.text = @"0";
         headerNumLab.textColor = [UIColor whiteColor];
         headerNumLab.textAlignment = NSTextAlignmentCenter;
         [headerImageView addSubview:headerNumLab];
@@ -407,6 +374,7 @@
         [headerBottonView setContentMode:UIViewContentModeScaleToFill];
         [headerBottonView setImage:[UIImage imageNamed:@"Exam_header_botton"]];
         [headerBottonView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(remindLabel2.mas_bottom).offset(10.0f);
             make.left.equalTo(_headerImageView);
             make.right.equalTo(_headerImageView);
             make.bottom.equalTo(_headerImageView);
@@ -446,11 +414,39 @@
             make.centerY.equalTo(paimingLabel);
         }];
 
-
     }
     return _headerView;
 }
 
+-(void)resetView{
+    for (NSInteger i = 0; i<self.viewsArr.count; i++) {
+        UIButton *currentBtn = self.viewsArr[i];
+        currentBtn.selected = NO;
+    }
+}
+
+-(void)resetViewWithData{
+    if (self.ownerRankeModel) {
+        NSInteger score = [self.ownerRankeModel.score integerValue];
+        if (score > 100) {
+            score = 100;
+        }
+        score = 80;
+        NSInteger num = score/5;
+        
+        if (num >0) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                for (NSInteger i = 0; i<num; i++) {
+                    UIButton *currentBtn = self.viewsArr[i];
+                    [UIView animateWithDuration:10 animations:^{
+                        currentBtn.selected = YES;
+                    }];
+                }
+            });
+        }
+
+    }
+}
 
 
 #pragma mark - 无网络加载数据
@@ -471,28 +467,9 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-//    UIView *routeView = [self.headerImageView viewWithTag:100];
-////    CGFloat angle = (45 / 60.0) * M_PI / 180.0;
-////    routeView.transform = CGAffineTransformRotate(routeView.transform, angle);
-//
-//    CGFloat imageViewW = SCREEN_WIDTH;
-//    CGFloat imageViewH = SCREEN_WIDTH*272/375.0;
-//    CGFloat routeViewW = 15.0;
-//    CGFloat routeViewH = 200.0;
-    
-
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        for (NSInteger i = 0; i<(self.viewsArr.count-2); i++) {
-            UIButton *currentBtn = self.viewsArr[i];
-            [UIView animateWithDuration:10 animations:^{
-                currentBtn.selected = YES;
-            }];
-        }
-    });
-}
+
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
     UIImageView *touchView = (UIImageView *)tap.view;
@@ -510,6 +487,7 @@
         [self.navigationController pushViewController:waitingVC animated:YES];
     }
 }
+
 
 
 - (void)didReceiveMemoryWarning {

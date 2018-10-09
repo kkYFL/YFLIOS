@@ -278,36 +278,29 @@
     
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-     @property (nonatomic, strong) UILabel *titleLab;
-     @property (nonatomic, strong) UILabel *contentLab;
-     @property (nonatomic, strong) UIImageView *iconImageView;
-     
-     //图片地址
-     @property(nonatomic, copy) NSString *imgUrl;
-     //菜单内容
-     @property(nonatomic, copy) NSString *typeInfo;
-     //菜单id
-     @property(nonatomic, copy) NSString *menuId;
-     //未知
-     @property(nonatomic, copy) NSString *appPositon;
-     //菜单名称
-     @property(nonatomic, copy) NSString *typeName;
-     */
+
     if (indexPath.section == 0) {
         NewsItemsTableCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
         if (self.menuList.count) {
             InformationMenu *menuModel = self.menuList[0];
             itemCell.item1.titleLab.text = menuModel.typeName;
             itemCell.item1.contentLab.text = menuModel.typeInfo;
-            [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            if ([menuModel.imgUrl hasPrefix:@"http"]) {
+                [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            }else{
+                [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+            }
 
         }
         if (self.menuList.count >= 2) {
             InformationMenu *menuModel = self.menuList[1];
             itemCell.item2.titleLab.text = menuModel.typeName;
             itemCell.item2.contentLab.text = menuModel.typeInfo;
-            [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            if ([menuModel.imgUrl hasPrefix:@"http"]) {
+                [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            }else{
+                [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+            }
         }
         
         if (self.menuList.count >= 3) {
@@ -315,12 +308,21 @@
             itemCell.item3.titleLab.text = menuModel.typeName;
             itemCell.item3.contentLab.text = menuModel.typeInfo;
             [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            if ([menuModel.imgUrl hasPrefix:@"http"]) {
+                [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            }else{
+                [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+            }
         }
         if (self.menuList.count >= 4) {
             InformationMenu *menuModel = self.menuList[3];
             itemCell.item4.titleLab.text = menuModel.typeName;
             itemCell.item4.contentLab.text = menuModel.typeInfo;
-            [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            if ([menuModel.imgUrl hasPrefix:@"http"]) {
+                [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+            }else{
+                [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+            }
         }
             
         return itemCell;

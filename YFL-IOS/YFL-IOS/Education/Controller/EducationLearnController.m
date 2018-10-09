@@ -9,11 +9,16 @@
 #import "EducationLearnController.h"
 #import "EducationLearnCell.h"
 #import "EducationLearnDetailController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+
 
 #define pageMenueH 44.0
 
 @interface EducationLearnController ()<UITableViewDelegate,UITableViewDataSource
->
+>{
+    NSInteger selectIndex;
+}
 @property (nonatomic, strong) UITableView *table;
 
 
@@ -22,7 +27,7 @@
 @property (nonatomic, strong) UIButton *button1;
 @property (nonatomic, strong) UIView *tracker;
 
-
+@property (nonatomic, strong) NSMutableArray *studyNotesArr;
 
 @end
 
@@ -31,9 +36,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initData];
+    
     [self initView];
     
     [self loadData];
+}
+
+-(void)initData{
+    selectIndex = 1;
 }
 
 -(void)initView{
@@ -83,7 +94,56 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    
+    
+    // 获取学习心得列表
+    // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
+    NSString *type = (selectIndex == 1)?@"1":@"2";
+    [HanZhaoHua getStudyNotesWithUserId:APP_DELEGATE.userId taskId:nil queryType:type page:1 pageNum:10 success:^(NSArray * _Nonnull list) {
+        for (StudyNotes *model in list) {
+            NSLog(@"%@", model.clickNum);
+            NSLog(@"%@", model.notesId);
+            NSLog(@"%@", model.taskTitle);
+            NSLog(@"%@", model.pmName);
+            NSLog(@"%@", model.createTime);
+            NSLog(@"%@", model.learnContent);
+        }
+
+        self.studyNotesArr = [NSMutableArray arrayWithArray:list];
+        
+        [self.table reloadData];
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+
+    
+    
+
+    
+    // 心得评论
+    // 测试结果: 通过
+    //    [HanZhaoHua commentStudyNotesWithUserId:userId notesId:@"1" commentInfo:@"测试" success:^(NSDictionary * _Nonnull responseObject) {
+    //        NSLog(@"%@", responseObject);
+    //    } failure:^(NSError * _Nonnull error) {
+    //        NSLog(@"%@", error);
+    //    }];
+    
+    
+
 }
+
+-(void)addCommentxinDeSourceWithContent:(NSString *)content{
+    // 学习心得
+    // 测试结果: 通过
+        [HanZhaoHua submitStudyNotesWithUserId:APP_DELEGATE.userId taskId:nil learnContent:content success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+}
+
 
 
 #pragma mark - UITableView Delegate And Datasource
@@ -94,26 +154,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.studyNotesArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [EducationLearnCell CellHWithContent:@"适应新时代，新任务，新要求，扎扎实实干好本职工作，解决实际问题。"];
+    if (self.studyNotesArr.count > indexPath.row) {
+        StudyNotes *model = self.studyNotesArr[indexPath.row];
+        return [EducationLearnCell CellHWithContent:model.learnContent];
+    }
+
+    return 0.01f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EducationLearnCell *learnCell = [tableView dequeueReusableCellWithIdentifier:@"learnCell"];
+    if (self.studyNotesArr.count > indexPath.row) {
+        StudyNotes *model = self.studyNotesArr[indexPath.row];
+        learnCell.model = model;
+    }
     return learnCell;
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EducationLearnDetailController *detailVC = [[EducationLearnDetailController alloc]init];
-    detailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    if (self.studyNotesArr.count > indexPath.row) {
+        StudyNotes *model = self.studyNotesArr[indexPath.row];
+        EducationLearnDetailController *detailVC = [[EducationLearnDetailController alloc]init];
+        detailVC.model = model;
+        detailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
 
 #pragma mark - 懒加载
@@ -226,6 +299,7 @@
                 make.centerX.equalTo(self.button);
             }];
         }];
+
     }else if (viewTag == 2){
         
         self.button.selected = NO;
@@ -236,14 +310,25 @@
             make.height.mas_equalTo(2);
             make.centerX.equalTo(self.button1);
         }];
+
+    }
+    
+    if (selectIndex != viewTag) {
+        selectIndex = viewTag;
+        [self loadData];
     }
 }
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //[self addCommentxinDeSourceWithContent:@"自觉性是指个体自觉自愿地执行或自主自愿地追求整体长远目标任务的程度。就其产生过程来讲，个体的自觉性是在信念基础上"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
 
 
 @end

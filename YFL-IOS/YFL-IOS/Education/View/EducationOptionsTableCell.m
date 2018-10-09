@@ -7,6 +7,7 @@
 //
 
 #import "EducationOptionsTableCell.h"
+#import "SuggestionFeedback.h"
 
 @interface EducationOptionsTableCell ()
 @property (nonatomic, strong) UILabel *cellTitle;
@@ -123,6 +124,32 @@
         make.right.equalTo(self);
         make.height.mas_equalTo(0.5f);
     }];
+}
+
+-(void)setFeedBackModel:(SuggestionFeedback *)feedBackModel{
+    _feedBackModel = feedBackModel;
+    if (_feedBackModel) {
+        self.cellTitle.text = _feedBackModel.title;
+        self.cellContent.text = _feedBackModel.createTime;
+
+        if ([_feedBackModel.answerState integerValue] == 1) {
+            self.statuslabel.text = @"解决中";
+        }else{
+            self.statuslabel.text = @"已处理";
+        }
+        self.solveLabel.hidden = YES;
+
+        
+        
+        
+//        for (SuggestionFeedback *model in list) {
+//            NSLog(@"%@", model.answerState);
+//            NSLog(@"%@", model.createTime);
+//            NSLog(@"%@", model.problemInfo);
+//            NSLog(@"%@", model.title);
+//            NSLog(@"%@", model.answer);
+//        }
+    }
 }
 
 +(CGFloat)CellH{

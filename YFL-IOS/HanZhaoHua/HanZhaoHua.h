@@ -275,8 +275,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param          page 第几页
  *  @param          pageNum 每页条数
  */
+
 +(void)getStudyNotesWithUserId: (NSString *)userId
                         taskId: (NSString *)taskId
+                     queryType: (NSString *)queryType
                           page: (NSInteger)page
                        pageNum: (NSInteger)pageNum
                        success: (void (^)(NSArray *list))success

@@ -19,7 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 //结束时间
 @property(nonatomic, copy) NSString *endTime;
 //本次学习时长
-@property(nonatomic, assign) NSNumber *learnTime;
+@property(nonatomic, copy) NSString *learnTime;
+
+-(id)initWithDic:(NSDictionary *)dic;
 
 @end
 

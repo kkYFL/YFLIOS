@@ -12,6 +12,7 @@
 #import "EducationOptionsController.h"
 #import "EducationLearHeartViewController.h"
 #import "EducationLearnController.h"
+#import "EducationTaskDetailController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 
@@ -204,6 +205,7 @@
     NSDictionary *userInfo = noti.userInfo;
     NSInteger index = [[userInfo objectForKey:@"index"] integerValue];
     if (index == 1) {
+
         EducationLearHeartViewController *heartVC = [[EducationLearHeartViewController alloc]init];
         heartVC.type = MYEducationViewTypeDefault;
         heartVC.hidesBottomBarWhenPushed = YES;
@@ -231,9 +233,7 @@
     
     //数据渲染
     if (new == 2) {
-        
         [self.table reloadData];
-        
     }
     
 }

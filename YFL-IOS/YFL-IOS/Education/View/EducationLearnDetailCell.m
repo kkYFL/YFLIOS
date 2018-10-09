@@ -7,6 +7,8 @@
 //
 
 #import "EducationLearnDetailCell.h"
+#import "StudyNotes.h"
+#import "PartyMemberThinking.h"
 
 @interface EducationLearnDetailCell ()
 @property (nonatomic, strong) UIImageView *cellIcon;
@@ -20,6 +22,10 @@
 @property (nonatomic, strong) UIImageView *bottonZan;
 @property (nonatomic, strong) UIImageView *rowImageView;
 @property (nonatomic, strong) UIView *line;
+
+@property (nonatomic, assign) LearnDetailType type;
+@property (nonatomic, strong) StudyNotes *model;
+@property (nonatomic, strong) PartyMemberThinking *thModel;
 @end
 
 @implementation EducationLearnDetailCell
@@ -149,23 +155,10 @@
         make.right.equalTo(self.contentView);
         make.height.mas_equalTo(0.5);
     }];
-    
-    
-    //
+
     
 }
 
-
--(void)setType:(LearnDetailType)type{
-    _type = type;
-    if (_type == LearnDetailTypeDefault) {
-        self.bottonZan.hidden = NO;
-        self.zanNum.hidden = NO;
-    }else{
-        self.bottonZan.hidden = YES;
-        self.zanNum.hidden = YES;
-    }
-}
 
 +(CGFloat)CellHWithContent:(NSString *)content Type:(LearnDetailType)type{
     if (type == LearnDetailTypeDefault) {
@@ -180,7 +173,66 @@
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
+    if (_model.notesId) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"xindeAddZanActionNoti" object:nil userInfo:@{@"notesId":_model.notesId}];
+    }
+}
+
+
+-(void)setType:(LearnDetailType)type Model:(StudyNotes *)model{
+    _type = type;
+    _model = model;
     
+    if (_type == LearnDetailTypeDefault) {
+        self.bottonZan.hidden = NO;
+        self.zanNum.hidden = NO;
+    }else{
+        self.bottonZan.hidden = YES;
+        self.zanNum.hidden = YES;
+    }
+    
+    if (_model) {
+        self.cellTitle.text = _model.taskTitle;
+        self.address.text = _model.pmName;
+        self.timerLabel.text = _model.createTime;
+        self.cellContent.text = _model.learnContent;
+        self.zanNum.text = [_model.clickNum stringValue];
+        
+    }
+}
+
+-(void)setType2:(LearnDetailType)type Model:(PartyMemberThinking *)model{
+    _type = type;
+    _thModel = model;
+    
+    if (_type == LearnDetailTypeDefault) {
+        self.bottonZan.hidden = NO;
+        self.zanNum.hidden = NO;
+    }else{
+        self.bottonZan.hidden = YES;
+        self.zanNum.hidden = YES;
+    }
+    
+    if (_thModel) {
+        self.cellTitle.text = _thModel.pmName;
+        self.address.text = _thModel.ssDepartment;
+        self.timerLabel.text = _thModel.createTime;
+        self.cellContent.text = _thModel.commentInfo;
+        [self.cellIcon sd_setImageWithURL:[NSURL URLWithString:_thModel.headImg] placeholderImage:[UIImage imageNamed:@"exam_header"]];
+    }
+    
+    /*
+     //用户姓名
+     @property(nonatomic, copy) NSString *pmName;
+     //党员头像
+     @property(nonatomic, copy) NSString *headImg;
+     //部门
+     @property(nonatomic, copy) NSString *ssDepartment;
+     //评论内容
+     @property(nonatomic, copy) NSString *commentInfo;
+     //评论时间
+     @property(nonatomic, copy) NSString *createTime;
+     */
 }
 
 

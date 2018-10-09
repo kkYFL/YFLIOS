@@ -69,7 +69,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.table];
-    
+    [self setTextViewToolbar];
+
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push" style:UIBarButtonItemStylePlain target:self action:@selector(pushNewVC)];
@@ -174,7 +175,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     // 获取党员心声
     // 测试结果: 通过
-        [HanZhaoHua getPartyMemberThinkingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:APP_DELEGATE.taskId page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
+        [HanZhaoHua getPartyMemberThinkingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
             for (PartyMemberThinking *model in listArray) {
                 NSLog(@"%@", model.pmName);
                 NSLog(@"%@", model.headImg);
@@ -192,6 +193,60 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 }
 
 
+-(void)takeCommentToServerWithCommentStr:(NSString *)comment{
+    // 评论提交
+    // 测试结果: 通过
+    if ([NSString isBlankString:comment]) { return;    }
+    
+        [HanZhaoHua submitCommentsWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId commentInfo:comment success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+            [[PromptBox sharedBox] showPromptBoxWithText:@"评论发表成功！" onView:self.view hideTime:2 y:0];
+            
+            [self loadData];
+
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+            [[PromptBox sharedBox] showPromptBoxWithText:@"评论发表失败！" onView:self.view hideTime:2 y:0];
+
+        }];
+    
+}
+
+-(void)getServerTime{
+    // 获取服务器时间
+    // 测试结果: 通过
+    [HanZhaoHua getServerTimeWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSDictionary * _Nonnull responseObject) {
+        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
+        if ([code isEqualToString:@"2000"]) {
+            NSNumber *time = [responseObject objectForKey:@"data"];
+            NSLog(@"%@", time);
+        } else {
+            NSLog(@"处理错误");
+        }
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
+-(void)saveLearnHistory{
+    // 保存学习痕迹
+    // 测试结果: 通过
+        NSDate * date = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+        NSString *currentTime = [formatter stringFromDate:date];
+        [HanZhaoHua saveLearningTracesWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId startDate:currentTime success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+    
+    
+}
+
+
 #pragma mark - UITableView Delegate And Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -203,7 +258,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     if (selectIndex == 1) {
         return 1;
     }
-    return 10;
+    return self.PartyMemberThinkingArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -223,7 +278,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         return JianjieCell;
     }
     
+    
     EducationXinshegnViewCell *xishengCell = [tableView dequeueReusableCellWithIdentifier:@"xishengCell"];
+    if (self.PartyMemberThinkingArr.count > indexPath.row) {
+        PartyMemberThinking *thindModel = self.PartyMemberThinkingArr[indexPath.row];
+        xishengCell.thindModel = thindModel;
+    }
     return xishengCell;
 
 }
@@ -256,11 +316,14 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //self.player.viewControllerDisappear = NO;
+    [self getServerTime];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //self.player.viewControllerDisappear = YES;
+    [self saveLearnHistory];
+
 }
 
 - (void)viewWillLayoutSubviews {
@@ -470,8 +533,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     [self.view addSubview:self.maskView];
     self.maskView.hidden = YES;
     self.inputToolbar = [[CLInputToolbar alloc] init];
-    self.inputToolbar.textViewMaxLine = 3;
-    self.inputToolbar.fontSize = 18;
+    self.inputToolbar.textViewMaxLine = 1;
+    self.inputToolbar.fontSize = 13;
     self.inputToolbar.placeholder = @"请输入...";
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {
@@ -480,6 +543,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         // 清空输入框文字
         [strongSelf.inputToolbar bounceToolbar];
         strongSelf.maskView.hidden = YES;
+        
+        [strongSelf takeCommentToServerWithCommentStr:text];
     }];
     [self.maskView addSubview:self.inputToolbar];
 }
@@ -523,6 +588,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 -(void)rightButtonAction{
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

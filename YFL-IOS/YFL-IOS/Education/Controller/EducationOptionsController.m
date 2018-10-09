@@ -10,11 +10,13 @@
 #import "EducationOptionsTableCell.h"
 #import "EducationAddOptionController.h"
 #import "EducationDetailController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 @interface EducationOptionsController ()<UITableViewDelegate,UITableViewDataSource
 >
 @property (nonatomic, strong) UITableView *table;
-
+@property (nonatomic, strong) NSArray *feedbackArr;
 @end
 
 @implementation EducationOptionsController
@@ -35,6 +37,8 @@
     
     
     [self.view addSubview:self.table];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList:) name:@"feedBackViewRfershList" object:nil];;
     
 }
 
@@ -73,6 +77,28 @@
 //         [[PromptBox sharedBox] removeLoadingView];
 //         [self showDisnetView];
 //     }];
+    
+    
+    
+    // 获取意见反馈列表
+    // 测试结果: 通过
+        [HanZhaoHua getSuggestionFeedbackWithPage:1 pageNum:10 success:^(NSArray * _Nonnull list) {
+            for (SuggestionFeedback *model in list) {
+                NSLog(@"%@", model.answerState);
+                NSLog(@"%@", model.createTime);
+                NSLog(@"%@", model.problemInfo);
+                NSLog(@"%@", model.title);
+                NSLog(@"%@", model.answer);
+            }
+            
+            self.feedbackArr = list;
+            
+            [self.table reloadData];
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    
+
 }
 
 
@@ -85,7 +111,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.feedbackArr.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,6 +122,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EducationOptionsTableCell *optionsCell = [tableView dequeueReusableCellWithIdentifier:@"optionsCell"];
+    if (self.feedbackArr.count > indexPath.row) {
+        SuggestionFeedback *model = self.feedbackArr[indexPath.row];
+        optionsCell.feedBackModel = model;
+    }
     return optionsCell;
 }
 
@@ -139,8 +169,17 @@
     [self.navigationController pushViewController:addVC animated:YES];
 }
 
+#pragma mark - 通知
+-(void)refreshList:(NSNotification *)noti{
+    [self loadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];;
 }
 
 

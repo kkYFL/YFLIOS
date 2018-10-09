@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 //评论时间
 @property(nonatomic, copy) NSString *createTime;
 
+-(id)initWithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

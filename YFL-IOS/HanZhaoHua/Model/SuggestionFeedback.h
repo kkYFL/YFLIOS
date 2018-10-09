@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SuggestionFeedback : NSObject
 
 //处理状态； 1：解决中 2：已处理
-@property(nonatomic, assign) NSNumber *answerState;
+@property(nonatomic, copy) NSString *answerState;
 //反馈时间(时间戳)
 @property(nonatomic, copy) NSString *createTime;
 //问题描述
@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 //回复信息
 @property(nonatomic, copy) NSString *answer;
 
+-(id)initWithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

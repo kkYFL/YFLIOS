@@ -37,7 +37,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.frame = CGRectMake(0,CLscreenHeight, CLscreenWidth, 70);
+        self.frame = CGRectMake(0,CLscreenHeight, CLscreenWidth, 80);
         [self initView];
         [self addNotification];
     }
@@ -47,11 +47,11 @@
     self.backgroundColor = [UIColor whiteColor];
     //顶部线条
     self.topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.CLwidth, 0.5)];
-    self.topLine.backgroundColor = RGBACOLOR(0, 0, 0, 0.2);
+    self.topLine.backgroundColor = [UIColor colorWithHexString:@"#9C9C9C"];
     [self addSubview:self.topLine];
     //底部线条
     self.bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.CLheight - 0.5, self.CLwidth, 0.5)];
-    self.bottomLine.backgroundColor = RGBACOLOR(0, 0, 0, 0.2);
+    self.bottomLine.backgroundColor = [UIColor colorWithHexString:@"#9C9C9C"];
     [self addSubview:self.bottomLine];
     
     
@@ -59,25 +59,28 @@
     UILabel *topLabel = [[UILabel alloc] init];
     topLabel.font = [UIFont systemFontOfSize:14.0f];
     topLabel.text = @"留下你的心声，带给别人更多启发，这也是学习！";
-    topLabel.textColor = [UIColor blackColor];
-    topLabel.textAlignment = NSTextAlignmentLeft;
+    topLabel.textColor = [UIColor colorWithHexString:@"#179EE8"];
     [self addSubview:topLabel];
     self.topLabel = topLabel;
-    [self.topLabel setFrame:CGRectMake(10, 5, self.CLwidth-10, 15.0f)];
+    [self.topLabel setFrame:CGRectMake(15, 15, self.CLwidth-15, 15.0f)];
     
     //边框
     self.edgeLineView = [[UIView alloc]init];
-    self.edgeLineView.CLwidth = self.CLwidth - 50 - 30;
-    self.edgeLineView.CLleft = 10;
-    self.edgeLineView.layer.cornerRadius = 5;
-    self.edgeLineView.layer.borderColor = RGBACOLOR(0, 0, 0, 0.5).CGColor;
-    self.edgeLineView.layer.borderWidth = 1;
+    //self.edgeLineView.CLwidth = self.CLwidth - 50 - 30;
+    [self.edgeLineView setFrame:CGRectMake(15, 40, self.CLwidth - 50 - 45, 30)];
+    //self.edgeLineView.CLleft = 10;
+    self.edgeLineView.layer.cornerRadius = 5.0f;
+    self.edgeLineView.layer.borderColor = [UIColor colorWithHexString:@"#9C9C9C"].CGColor;
+    self.edgeLineView.layer.borderWidth = 1.0f;
     self.edgeLineView.layer.masksToBounds = YES;
     [self addSubview:self.edgeLineView];
+    
+    
     //输入框
     self.textView = [[UITextView alloc] init];;
-    self.textView.CLwidth = self.CLwidth - 50 - 46;
-    self.textView.CLleft = 18;
+    //self.textView.CLwidth = self.CLwidth - 50 - 46;
+    //self.textView.CLleft = 18;
+    [self.textView setFrame:CGRectMake(25, 45, self.CLwidth - 50 - 45-10, 20)];
     self.textView.enablesReturnKeyAutomatically = YES;
     self.textView.delegate = self;
     self.textView.layoutManager.allowsNonContiguousLayout = NO;
@@ -85,41 +88,47 @@
     self.textView.textContainerInset = UIEdgeInsetsZero;
     self.textView.textContainer.lineFragmentPadding = 0;
     [self addSubview:self.textView];
+    
+    
     //占位文字
     self.placeholderLabel = [[UILabel alloc] init];
-    self.placeholderLabel.CLwidth = self.textView.CLwidth - 10;
-    self.placeholderLabel.textColor = RGBACOLOR(0, 0, 0, 0.5);
-    self.placeholderLabel.CLleft = 23;
+    self.placeholderLabel.textAlignment = NSTextAlignmentLeft;
+    //self.placeholderLabel.CLwidth = self.textView.CLwidth - 10;
+    self.placeholderLabel.textColor = [UIColor colorWithHexString:@"#888888"];
+    //self.placeholderLabel.CLleft = 23;
     [self addSubview:self.placeholderLabel];
+    [self.placeholderLabel setFrame:CGRectMake(25, 45, self.CLwidth - 50 - 45-10-10, 20)];
+    
+    
     //发送按钮
-    self.sendButton = [[UIButton alloc] initWithFrame:CGRectMake(self.CLwidth - 50 - 10, self.CLheight - 30 - 10, 50, 30)];
-    [self.sendButton.layer setBorderWidth:1.0];
+    self.sendButton = [[UIButton alloc] initWithFrame:CGRectMake(self.CLwidth - 50 - 15, 40, 50, 30)];
+    [self.sendButton.layer setBorderWidth:1.0f];
     [self.sendButton.layer setCornerRadius:5.0];
-    self.sendButton.layer.borderColor = RGBACOLOR(0, 0, 0, 0.5).CGColor;
+    self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"#9C9C9C"].CGColor;
     self.sendButton.enabled = NO;
-    self.sendButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    self.sendButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
-    [self.sendButton setTitleColor:RGBACOLOR(0, 0, 0, 0.2) forState:UIControlStateNormal];
+    [self.sendButton setTitleColor:[UIColor colorWithHexString:@"#888888"] forState:UIControlStateNormal];
     [self.sendButton addTarget:self action:@selector(didClicksendButton) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.sendButton];
     self.fontSize = 20;
     self.textViewMaxLine = 3;
 }
+
 // 添加通知
 -(void)addNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
+
 -(void)setFontSize:(CGFloat)fontSize{
     _fontSize = fontSize;
-    if (!fontSize || _fontSize < 20) {
-        _fontSize = 20;
-    }
+
     self.textView.font = [UIFont systemFontOfSize:_fontSize];
     self.placeholderLabel.font = self.textView.font;
-    CGFloat lineH = self.textView.font.lineHeight;
-    self.CLheight = ceil(lineH) + 10 + 10+20;
-    self.textView.CLheight = lineH;
+//    CGFloat lineH = self.textView.font.lineHeight;
+//    self.CLheight = ceil(lineH) + 10 + 10+20;
+//    self.textView.CLheight = lineH;
 }
 - (void)setTextViewMaxLine:(NSInteger)textViewMaxLine {
     _textViewMaxLine = textViewMaxLine;
@@ -138,37 +147,44 @@
     _keyboardHeight = keyboardFrame.size.height;
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
-        self.CLy = keyboardFrame.origin.y - self.CLheight;
+        self.CLbottom = CLscreenHeight-_keyboardHeight-self.CLheight;
     }];
 }
+
+
 - (void)keyboardWillHidden:(NSNotification *)notification {
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
         self.CLy = CLscreenHeight;
     }];
 }
+
 #pragma mark UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
     self.placeholderLabel.hidden = textView.text.length;
     if (textView.text.length == 0) {
         self.sendButton.enabled = NO;
-        [self.sendButton setTitleColor:RGBACOLOR(0, 0, 0, 0.2) forState:UIControlStateNormal];
+        [self.sendButton setTitleColor:[UIColor colorWithHexString:@"#888888"] forState:UIControlStateNormal];
     }else{
         self.sendButton.enabled = YES;
-        [self.sendButton setTitleColor:RGBACOLOR(0, 0, 0, 1.0) forState:UIControlStateNormal];
+        [self.sendButton setTitleColor:[UIColor colorWithHexString:@"#179EE8"] forState:UIControlStateNormal];
     }
-    CGFloat contentSizeH = textView.contentSize.height;
-    CGFloat lineH = textView.font.lineHeight;
-    CGFloat maxTextViewHeight = ceil(lineH * self.textViewMaxLine + textView.textContainerInset.top + textView.textContainerInset.bottom);
-    if (contentSizeH <= maxTextViewHeight) {
-        textView.CLheight = contentSizeH;
-    }else{
-        textView.CLheight = maxTextViewHeight;
-    }
-    self.CLheight = ceil(textView.CLheight) + 10 + 10+20;
-    self.CLbottom = CLscreenHeight - _keyboardHeight;
+    
+//    CGFloat contentSizeH = textView.contentSize.height;
+//    CGFloat lineH = textView.font.lineHeight;
+//    CGFloat maxTextViewHeight = ceil(lineH * self.textViewMaxLine + textView.textContainerInset.top + textView.textContainerInset.bottom);
+//    if (contentSizeH <= maxTextViewHeight) {
+//        textView.CLheight = contentSizeH;
+//    }else{
+//        textView.CLheight = maxTextViewHeight;
+//    }
+    
+    //self.CLheight = ceil(textView.CLheight) + 10 + 10+20;
+    
+    //self.CLbottom = CLscreenHeight - _keyboardHeight-self.CLheight;
     [textView scrollRangeToVisible:NSMakeRange(textView.selectedRange.location, 1)];
 }
+
 // 发送按钮
 -(void)didClicksendButton {
     if (self.inputTextBlock) {
@@ -191,14 +207,14 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
 
-    CGFloat r1 = 20.0/(self.textView.CLheight+10+10+15+5)*0.5;
-    self.edgeLineView.CLheight = self.textView.CLheight + 10;
-    self.textView.CLcenterY = self.CLheight * (0.5+r1);
-    self.placeholderLabel.CLheight = self.textView.CLheight;
-    self.placeholderLabel.CLcenterY = self.CLheight * (0.5+r1);
-    self.sendButton.CLcenterY = self.CLheight * (0.5+r1);
-    self.edgeLineView.CLcenterY = self.CLheight * (0.5+r1);
-    self.bottomLine.CLy = self.CLheight - 0.5;
+//    CGFloat r1 = 20.0/(self.textView.CLheight+10+10+15+5)*0.5;
+//    self.edgeLineView.CLheight = self.textView.CLheight + 10;
+//    self.textView.CLcenterY = self.CLheight * (0.5+r1);
+//    self.placeholderLabel.CLheight = self.textView.CLheight;
+//    self.placeholderLabel.CLcenterY = self.CLheight * (0.5+r1);
+//    self.sendButton.CLcenterY = self.CLheight * (0.5+r1);
+//    self.edgeLineView.CLcenterY = self.CLheight * (0.5+r1);
+//    self.bottomLine.CLy = self.CLheight - 0.5;
 }
 
 - (void)dealloc{

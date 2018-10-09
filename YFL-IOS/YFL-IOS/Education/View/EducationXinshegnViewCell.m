@@ -7,6 +7,8 @@
 //
 
 #import "EducationXinshegnViewCell.h"
+#import "PartyMemberThinking.h"
+#import "AppDelegate.h"
 
 @interface EducationXinshegnViewCell ()
 @property (nonatomic, strong) UIImageView *cellIcon;
@@ -113,11 +115,31 @@
         make.left.equalTo(self.contentView).offset(0);
         make.bottom.equalTo(self.contentView);
         make.right.equalTo(self.contentView);
-        make.height.mas_equalTo(1.0);
+        make.height.mas_equalTo(0.5f);
     }];
     
     
 }
+
+-(void)setThindModel:(PartyMemberThinking *)thindModel{
+    _thindModel = thindModel;
+    if (_thindModel) {
+        //    for (PartyMemberThinking *model in listArray) {
+        //        NSLog(@"%@", model.pmName);
+        //        NSLog(@"%@", model.headImg);
+        //        NSLog(@"%@", model.ssDepartment);
+        //        NSLog(@"%@", model.commentInfo);
+        //        NSLog(@"%@", model.createTime);
+        //    }
+        
+        [self.cellIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_thindModel.headImg]]];
+        self.cellTitle.text = _thindModel.pmName;
+        self.addressLabel.text = _thindModel.ssDepartment;
+        self.cellContent.text = _thindModel.commentInfo;
+
+    }
+}
+
 
 +(CGFloat)CellH{
     return 60+15+15;

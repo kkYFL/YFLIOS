@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class StudyNotes;
 @interface EducationLearnCell : UITableViewCell
 +(CGFloat)CellHWithContent:(NSString *)content;
+@property (nonatomic, strong) StudyNotes *model;
 @end

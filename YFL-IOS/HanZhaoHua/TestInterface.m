@@ -173,103 +173,10 @@ static NSString *taskId = @"1";
 
 
     
-    // 评论提交
-    // 测试结果: 通过
-    //    [HanZhaoHua submitCommentsWithUserToken:@"1" userId:@"1" taskId:@"1" commentInfo:@"测试" success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 保存学习痕迹
-    // 测试结果: 通过
-    //    NSDate * date = [NSDate date];
-    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-    //    NSString *currentTime = [formatter stringFromDate:date];
-    //    [HanZhaoHua saveLearningTracesWithUserToken:userToken userId:userId taskId:taskId startDate:currentTime success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
 
-    
-    // 获取意见反馈列表
-    // 测试结果: 通过
-    //    [HanZhaoHua getSuggestionFeedbackWithPage:1 pageNum:10 success:^(NSArray * _Nonnull list) {
-    //        for (SuggestionFeedback *model in list) {
-    //            NSLog(@"%@", model.answerState);
-    //            NSLog(@"%@", model.createTime);
-    //            NSLog(@"%@", model.problemInfo);
-    //            NSLog(@"%@", model.title);
-    //            NSLog(@"%@", model.answer);
-    //        }
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 意见反馈
-    // 测试结果: 通过
-    //    [HanZhaoHua suggestionFeedbackWithUserId:userId title:@"测试" problemInfo:@"测试" success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 获取学习心得列表
-    // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
-    //    [HanZhaoHua getStudyNotesWithUserId:userId taskId:taskId page:1 pageNum:10 success:^(NSArray * _Nonnull list) {
-    //        for (StudyNotes *model in list) {
-    //            NSLog(@"%@", model.clickNum);
-    //            NSLog(@"%@", model.notesId);
-    //            NSLog(@"%@", model.taskTitle);
-    //            NSLog(@"%@", model.pmName);
-    //            NSLog(@"%@", model.createTime);
-    //            NSLog(@"%@", model.learnContent);
-    //        }
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 学习心得
-    // 测试结果: 通过
-    //    [HanZhaoHua submitStudyNotesWithUserId:userId taskId:taskId learnContent:@"测试" success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 心得评论
-    // 测试结果: 通过
-    //    [HanZhaoHua commentStudyNotesWithUserId:userId notesId:@"1" commentInfo:@"测试" success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    
-    // 心得点赞
-    // 测试结果: 通过
-    //    [HanZhaoHua likeStudyNotesWithNotesId:@"1" success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    // 获取心得评论列表
-    // 测试结果: 通过
-    //    [HanZhaoHua getNotesCommentListWithNotesId:@"1" page:1 pageNum:10 success:^(NSArray * _Nonnull list) {
-    //        for (PartyMemberThinking *model in list) {
-    //            NSLog(@"%@", model.pmName);
-    //            NSLog(@"%@", model.headImg);
-    //            NSLog(@"%@", model.ssDepartment);
-    //            NSLog(@"%@", model.commentInfo);
-    //            NSLog(@"%@", model.createTime);
-    //        }
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
+
+
+
     
     // 考试排名
     // 测试结果: 通过

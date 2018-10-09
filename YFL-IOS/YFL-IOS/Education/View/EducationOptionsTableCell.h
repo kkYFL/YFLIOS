@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SuggestionFeedback;
 
 @interface EducationOptionsTableCell : UITableViewCell
+@property (nonatomic, strong) SuggestionFeedback *feedBackModel;
 +(CGFloat)CellH;
 @end

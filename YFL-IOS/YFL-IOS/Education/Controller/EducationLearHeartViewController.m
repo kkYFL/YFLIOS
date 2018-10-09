@@ -86,19 +86,7 @@
 //         [self showDisnetView];
 //     }];
     
-    // 获取服务器时间
-    // 测试结果: 通过
-        [HanZhaoHua getServerTimeWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSDictionary * _Nonnull responseObject) {
-            NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-            if ([code isEqualToString:@"2000"]) {
-                NSNumber *time = [responseObject objectForKey:@"data"];
-                NSLog(@"%@", time);
-            } else {
-                NSLog(@"处理错误");
-            }
-        } failure:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error);
-        }];
+
     
     // 学习任务
     if (self.type == MYEducationViewTypeDefault) {
@@ -119,33 +107,18 @@
             }];
 
     }else{
-        // 获取学习痕迹列表
-        // 测试结果: 通过
-//            [HanZhaoHua getLearningHistoryWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:APP_DELEGATE.taskId success:^(NSNumber * _Nonnull totalLearnTime, NSArray * _Nonnull list) {
-//                NSLog(@"%@", totalLearnTime);
-//                for (LearningHistory *model in list) {
-//                    NSLog(@"%@", model.learnTime);
-//                    NSLog(@"%@", model.startTime);
-//                    NSLog(@"%@", model.endTime);
-//                }
-//
-//                self.historyLearnListArr = [NSMutableArray arrayWithArray:list];
-//            } failure:^(NSError * _Nonnull error) {
-//                NSLog(@"%@", error);
-//            }];
         
-        
-        // 学习任务列表
-        // 测试结果: 通过
+//        // 学习任务列表
+//        // 测试结果: 通过
         [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:2 page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
             // 下拉刷新, 原数据源数组数据清空, 存储最新数据
             // 上拉加载更多, 原数据源数组后拼接
             for (LearningTaskModel *item in listArray) {
                 NSLog(@"%@", item.taskId);
             }
-            
+
             self.learnListArr = [NSMutableArray arrayWithArray:listArray];
-            
+
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -179,17 +152,12 @@
         heartCell.learnModel = model;
     }
 
-//    if (self.type == MYEducationViewTypeDefault) {
-//        if (self.learnListArr.count > indexPath.row) {
-//            LearningTaskModel *model = self.learnListArr[indexPath.row];
-//
-//        }
-//    }else{
-//        if (self.historyLearnListArr.count > indexPath.row) {
-//            LearningHistory *model = self.historyLearnListArr[indexPath.row];
-//
-//        }
-//    }
+    if (self.type == MYEducationViewTypeDefault) {
+
+    }else{
+
+    }
+    
     return heartCell;
     
 }
@@ -205,7 +173,12 @@
         }
         [self.navigationController pushViewController:detailVC animated:YES];
     }else{
+        
         EducationTaskHistoryController *hisoryVC = [[EducationTaskHistoryController alloc]init];
+        if (self.learnListArr.count > indexPath.row) {
+            LearningTaskModel *model = self.learnListArr[indexPath.row];
+            hisoryVC.model = model;
+        }
         [self.navigationController pushViewController:hisoryVC animated:YES];
     }
 }
@@ -245,7 +218,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

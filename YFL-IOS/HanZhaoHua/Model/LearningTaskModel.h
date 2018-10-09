@@ -27,16 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 //任务内容
 @property(nonatomic, copy) NSString *taskContent;
 //任务类型 1 文字 2 视频 3 音频 4 图片
-@property(nonatomic, assign) NSNumber *taskType;
+@property(nonatomic, copy) NSString *taskType;
 //学习状态 1：未学习 2：学习中 3：已学习
-@property(nonatomic, assign) NSNumber *nowState;
+@property(nonatomic, copy) NSString *nowState;
 //学习时长（分钟）
-@property(nonatomic, assign) NSNumber *learnTime;
+@property(nonatomic, copy) NSString *learnTime;
 //创建时间
-@property(nonatomic, assign) NSNumber *createTime;
+@property(nonatomic, copy) NSString *createTime;
 //查看数量
-@property(nonatomic, assign) NSNumber *nowNum;
+@property(nonatomic, copy) NSString *nowNum;
 
+-(id)initWithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

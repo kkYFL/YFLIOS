@@ -37,9 +37,9 @@
     
     //[self showLoginAndRegistController];
     
-    [self guidenView];
+    //[self guidenView];
 
-    //[self tabBarViewInit];
+    [self tabBarViewInit];
 //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];

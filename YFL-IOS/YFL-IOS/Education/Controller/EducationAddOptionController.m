@@ -7,6 +7,8 @@
 //
 
 #import "EducationAddOptionController.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
 
 #define contentH HEIGHT_SCALE*240
 
@@ -233,7 +235,19 @@
 }
 
 -(void)selectSource:(UIButton *)sender{
+    if (!self.topicTextfield.text.length || !self.contentTextView.text.length) {
+        [[PromptBox sharedBox] showPromptBoxWithText:@"请输入你的反馈信息" onView:self.view hideTime:2 y:0];
+        return;
+    }
     
+    // 意见反馈
+    // 测试结果: 通过
+        [HanZhaoHua suggestionFeedbackWithUserId:APP_DELEGATE.userId title:self.topicTextfield.text problemInfo:self.contentTextView.text success:^(NSDictionary * _Nonnull responseObject) {
+            NSLog(@"%@", responseObject);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"feedBackViewRfershList" object:nil];
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

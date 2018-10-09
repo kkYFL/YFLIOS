@@ -313,8 +313,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray * list = [dic objectForKey:@"list"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                LearningTaskModel * model = [[LearningTaskModel alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                LearningTaskModel * model = [[LearningTaskModel alloc] initWithDic:d];
                 [result addObject:model];
             }
             success([[NSArray alloc] initWithArray:result]);
@@ -344,8 +343,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray *list = [responseObject objectForKey:@"data"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                PartyMemberThinking * model = [[PartyMemberThinking alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                PartyMemberThinking * model = [[PartyMemberThinking alloc] initWithDic:d];
                 [result addObject:model];
             }
             success([[NSArray alloc] initWithArray:result]);
@@ -413,8 +411,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSNumber *totalLearnTime = [dic objectForKey:@"totalLearnTime"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                LearningHistory * model = [[LearningHistory alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                LearningHistory * model = [[LearningHistory alloc] initWithDic:d];
                 [result addObject:model];
             }
             success(totalLearnTime, [[NSArray alloc] initWithArray:result]);
@@ -438,8 +435,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
             NSArray *list = [responseObject objectForKey:@"data"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                SuggestionFeedback * model = [[SuggestionFeedback alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                SuggestionFeedback * model = [[SuggestionFeedback alloc] initWithDic:d];
                 [result addObject:model];
             }
             success([[NSArray alloc] initWithArray:result]);
@@ -469,6 +465,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 +(void)getStudyNotesWithUserId: (NSString *)userId
                         taskId: (NSString *)taskId
+                         queryType: (NSString *)queryType
                           page: (NSInteger)page
                        pageNum: (NSInteger)pageNum
                        success: (void (^)(NSArray *list))success
@@ -476,7 +473,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/getNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
-                              @"taskId":taskId,
+                              @"queryType":queryType,
                               @"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]
                               };
@@ -504,7 +501,6 @@ static NSString *host = @"http://47.100.247.71/protal/";
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/addNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
-                              @"taskId":taskId,
                               @"learnContent":learnContent
                               };
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
@@ -537,7 +533,9 @@ static NSString *host = @"http://47.100.247.71/protal/";
                          failure: (void (^)(NSError *error))failure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/fabulous"];
-    NSDictionary *paraDic = @{@"notesId":notesId};
+    NSDictionary *paraDic = @{@"notesId":notesId,
+                              @"userId":APP_DELEGATE.userId
+                              };
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -559,11 +557,11 @@ static NSString *host = @"http://47.100.247.71/protal/";
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         NSLog(@"%@", responseObject);
         if (success) {
-            NSArray *list = [responseObject objectForKey:@"data"];
+            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+            NSArray *list = [dataDic objectForKey:@"list"];
             NSMutableArray * result = [[NSMutableArray alloc] init];
             for (NSDictionary * d in list) {
-                PartyMemberThinking * model = [[PartyMemberThinking alloc] init];
-                [model setValuesForKeysWithDictionary:d];
+                PartyMemberThinking * model = [[PartyMemberThinking alloc] initWithDic:d];
                 [result addObject:model];
             }
             success([[NSArray alloc] initWithArray:result]);

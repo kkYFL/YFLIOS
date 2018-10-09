@@ -128,8 +128,7 @@
 
 +(CGFloat)CellHWithModel:(LearningTaskModel *)model{
     NSString *content = [NSString stringWithFormat:@"%@%@",@"任务简介：",model.taskSummary];
-    NSMutableAttributedString *attri = [EducationJianjieCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f]];
-    CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f];
+    CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f]+0.5f;
     return 4*(15+14)+15.0f+H+60;
 }
 
@@ -174,12 +173,11 @@
         NSString *content = [NSString stringWithFormat:@"%@%@",@"任务简介：",_model.taskSummary];
         NSMutableAttributedString *attri = [EducationJianjieCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f]];
         self.jianjieLabel.attributedText = attri;
-        CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f];
+        //CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f];
         [self.jianjieLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(15.0f);
             make.top.equalTo(self.createTimeLabel.mas_bottom).offset(15.0f);
             make.right.equalTo(self.mas_right).offset(-15.0f);
-            make.height.mas_equalTo(H);
         }];
     }
 

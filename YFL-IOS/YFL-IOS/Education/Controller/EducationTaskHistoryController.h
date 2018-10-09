@@ -7,7 +7,8 @@
 //
 
 #import "EWTBaseViewController.h"
-
+@class LearningTaskModel;
 @interface EducationTaskHistoryController : EWTBaseViewController
+@property (nonatomic, strong) LearningTaskModel *model;
 
 @end

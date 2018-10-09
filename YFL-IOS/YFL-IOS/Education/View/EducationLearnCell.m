@@ -7,6 +7,7 @@
 //
 
 #import "EducationLearnCell.h"
+#import "StudyNotes.h"
 
 @interface EducationLearnCell ()
 @property (nonatomic, strong) UIImageView *cellIcon;
@@ -132,8 +133,7 @@
         make.right.equalTo(zanNum.mas_left).offset(-6);
         make.centerY.equalTo(zanNum);
     }];
-    
-    
+
     
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
@@ -157,6 +157,22 @@
 }
 
 
+-(void)setModel:(StudyNotes *)model{
+    _model = model;
+    if (_model) {
+        self.cellTitle.text = _model.taskTitle;
+        self.address.text = _model.pmName;
+        self.timerLabel.text = _model.createTime;
+        self.cellContent.text = _model.learnContent;
+        self.zanNum.text = [_model.clickNum stringValue];
+        
+        if ([_model.clickNum integerValue] > 0) {
+            [self.rowImageView setImage:[UIImage imageNamed:@"zan_light"]];
+        }else{
+            [self.rowImageView setImage:[UIImage imageNamed:@"zan_gray"]];
+        }
+    }
+}
 
 
 

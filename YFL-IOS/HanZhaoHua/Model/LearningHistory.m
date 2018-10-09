@@ -9,14 +9,15 @@
 #import "LearningHistory.h"
 
 @implementation LearningHistory
-//找未找到的Key
-- (id) valueForUndefinedKey:(NSString *)key{
-    NSLog(@"Undefined Key: %@",key);
-    return nil;
+-(id)initWithDic:(NSDictionary *)dic{
+    self = [super init];
+    if (self) {
+        self.startTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"startTime"]];
+        self.endTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"endTime"]];
+        self.learnTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"learnTime"]];
+
+    }
+    return self;
 }
 
-//设置未找到的Key
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
-    NSLog(@"Undefined Key: %@",key);
-}
 @end

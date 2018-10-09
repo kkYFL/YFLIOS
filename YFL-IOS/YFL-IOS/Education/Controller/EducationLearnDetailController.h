@@ -7,7 +7,7 @@
 //
 
 #import "EWTBaseViewController.h"
-
+@class StudyNotes;
 @interface EducationLearnDetailController : EWTBaseViewController
-
+@property (nonatomic, strong) StudyNotes *model;
 @end

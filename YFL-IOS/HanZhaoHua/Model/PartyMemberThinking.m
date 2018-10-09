@@ -9,14 +9,30 @@
 #import "PartyMemberThinking.h"
 
 @implementation PartyMemberThinking
-//找未找到的Key
-- (id) valueForUndefinedKey:(NSString *)key{
-    NSLog(@"Undefined Key: %@",key);
-    return nil;
-}
 
-//设置未找到的Key
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
-    NSLog(@"Undefined Key: %@",key);
+
+-(id)initWithDic:(NSDictionary *)dic{
+    self = [super init];
+    if (self) {
+        self.pmName = [NSString stringWithFormat:@"%@",[dic objectForKey:@"pmName"]];
+        self.headImg = [NSString stringWithFormat:@"%@",[dic objectForKey:@"headImg"]];
+        self.ssDepartment = [NSString stringWithFormat:@"%@",[dic objectForKey:@"ssDepartment"]];
+        self.commentInfo = [NSString stringWithFormat:@"%@",[dic objectForKey:@"commentInfo"]];
+        self.createTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"createTime"]];
+
+    }
+    return self;
 }
+/*
+ //用户姓名
+ @property(nonatomic, copy) NSString *;
+ //党员头像
+ @property(nonatomic, copy) NSString *;
+ //部门
+ @property(nonatomic, copy) NSString *;
+ //评论内容
+ @property(nonatomic, copy) NSString *;
+ //评论时间
+ @property(nonatomic, copy) NSString *;
+ */
 @end

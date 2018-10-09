@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PartyMemberThinking;
 @interface EducationXinshegnViewCell : UITableViewCell
+@property (nonatomic, strong) PartyMemberThinking *thindModel;
 +(CGFloat)CellH;
 @end

@@ -12,10 +12,19 @@
 //#import <ZFPlayer/ZFIJKPlayerManager.h>
 //#import <ZFPlayer/KSMediaPlayerManager.h>
 #import <ZFPlayer/ZFPlayerControlView.h>
+#import "EducationJianjieCell.h"
+#import "EducationXinshegnViewCell.h"
+#import "LearningTaskModel.h"
+#import "HanZhaoHua.h"
+#import "AppDelegate.h"
+#import "LearHistroyListiViewCell.h"
+
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
-@interface EducationTaskHistoryController ()<UITableViewDelegate,UITableViewDataSource>
+@interface EducationTaskHistoryController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger selectIndex;
+}
 @property (nonatomic, strong) UITableView *table;
 
 @property (nonatomic, strong) ZFPlayerController *player;
@@ -31,6 +40,11 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 @property (nonatomic, strong) UIButton *button2;
 
 
+@property (nonatomic, strong) NSMutableArray *PartyMemberThinkingArr;
+@property (nonatomic, strong) NSMutableArray *historyLearnListArr;
+@property (nonatomic, assign) NSInteger serverCount;
+
+
 @end
 
 @implementation EducationTaskHistoryController
@@ -40,7 +54,14 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     [self initView];
     
+    [self initData];
+    
     [self loadData];
+}
+
+-(void)initData{
+    selectIndex = 1;
+    self.serverCount = 0;
 }
 
 -(void)initView{
@@ -145,6 +166,50 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     //         [[PromptBox sharedBox] removeLoadingView];
     //         [self showDisnetView];
     //     }];
+    
+    self.serverCount = 0;
+    
+    // 获取学习痕迹列表
+    // 测试结果: 通过
+            [HanZhaoHua getLearningHistoryWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId success:^(NSNumber * _Nonnull totalLearnTime, NSArray * _Nonnull list) {
+                    NSLog(@"%@", totalLearnTime);
+                    for (LearningHistory *model in list) {
+                        NSLog(@"%@", model.learnTime);
+                        NSLog(@"%@", model.startTime);
+                        NSLog(@"%@", model.endTime);
+                    }
+    
+                    self.historyLearnListArr = [NSMutableArray arrayWithArray:list];
+                
+                self.serverCount ++;
+                } failure:^(NSError * _Nonnull error) {
+                    NSLog(@"%@", error);
+                    
+                    self.serverCount ++;
+                }];
+    
+    
+    
+    // 获取党员心声
+    // 测试结果: 通过
+    [HanZhaoHua getPartyMemberThinkingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
+        for (PartyMemberThinking *model in listArray) {
+            NSLog(@"%@", model.pmName);
+            NSLog(@"%@", model.headImg);
+            NSLog(@"%@", model.ssDepartment);
+            NSLog(@"%@", model.commentInfo);
+            NSLog(@"%@", model.createTime);
+        }
+        
+        self.PartyMemberThinkingArr = [NSMutableArray arrayWithArray:listArray];
+        //[self.table reloadData];
+        self.serverCount ++;
+        
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        self.serverCount ++;
+    }];
+    
 }
 
 
@@ -156,21 +221,55 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    NSInteger rowCount = 0;
+    if (selectIndex == 1) {
+        rowCount = self.historyLearnListArr.count;
+    }else if (selectIndex == 2){
+        rowCount = 1;
+    }else if (selectIndex == 3){
+        rowCount = self.PartyMemberThinkingArr.count;
+    }
+    return rowCount;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    CGFloat rowH = 0.01f;
+    if (selectIndex == 1) {
+        rowH = [LearHistroyListiViewCell CellH];
+    }else if (selectIndex == 2){
+        rowH = [EducationJianjieCell CellHWithModel:self.model];
+    }else if (selectIndex == 3){
+        rowH = [EducationXinshegnViewCell CellH];
+    }
+    return rowH;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identify = @"cellIdentify";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
+    UITableViewCell *cell = nil;
+    if (selectIndex == 1) {
+        LearHistroyListiViewCell *historyListCell = [tableView dequeueReusableCellWithIdentifier:@"historyListCell"];
+        if (self.historyLearnListArr.count > indexPath.row) {
+            LearningHistory *model = self.historyLearnListArr[indexPath.row];
+            historyListCell.historyModel = model;
+        }
+        return historyListCell;
+
+    }else if (selectIndex == 2){
+        EducationJianjieCell *JianjieCell = [tableView dequeueReusableCellWithIdentifier:@"JianjieCell"];
+        JianjieCell.model = self.model;
+        cell = JianjieCell;
+        
+    }else if (selectIndex == 3){
+        EducationXinshegnViewCell *xishengCell = [tableView dequeueReusableCellWithIdentifier:@"xishengCell"];
+        if (self.PartyMemberThinkingArr.count > indexPath.row) {
+            PartyMemberThinking *thindModel = self.PartyMemberThinkingArr[indexPath.row];
+            xishengCell.thindModel = thindModel;
+        }
+        cell = xishengCell;
     }
+    
     return cell;
 }
 
@@ -182,7 +281,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT)];
+        CGFloat w = CGRectGetWidth(self.view.frame);
+        CGFloat h = w*9/16;
+        CGFloat itemH = 44;
+
+        
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, h+itemH, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-h-itemH-EWTTabbar_SafeBottomMargin)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -190,7 +294,9 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         _table.dataSource = self;
         [self.view addSubview:_table];
         
-        //[_table registerClass:[CareerProfessionjingduCell class] forCellReuseIdentifier:@"CareerjindguCell"];
+        [_table registerClass:[LearHistroyListiViewCell class] forCellReuseIdentifier:@"historyListCell"];
+        [_table registerClass:[EducationJianjieCell class] forCellReuseIdentifier:@"JianjieCell"];
+        [_table registerClass:[EducationXinshegnViewCell class] forCellReuseIdentifier:@"xishengCell"];
     }
     return _table;
 }
@@ -381,18 +487,32 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)setServerCount:(NSInteger )serverCount{
+    _serverCount = serverCount;
+    if (_serverCount == 2) {
+        [self.table reloadData];
+    }
+}
+
 -(void)itemSelect:(UIButton *)sender{
     if (sender.tag == 101) {
         self.button.selected = YES;
         self.button1.selected = self.button2.selected = NO;
+        selectIndex = 1;
     }else if (sender.tag == 102){
         self.button1.selected = YES;
         self.button.selected = self.button2.selected = NO;
+        selectIndex = 2;
     }else if (sender.tag == 103){
         self.button2.selected = YES;
         self.button.selected = self.button1.selected = NO;
+        selectIndex = 3;
     }
+    
+    [self.table reloadData];
 }
+
+
 
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{

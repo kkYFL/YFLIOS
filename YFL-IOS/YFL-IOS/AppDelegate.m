@@ -15,10 +15,11 @@
 #import "ICarouselViewController.h"
 #import "TestInterface.h"
 #import "GuideViewController.h"
+#import "GuidenModel.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
-
+@property (nonatomic, strong) NSMutableArray *guidenViewArr;
 @end
 
 @implementation AppDelegate
@@ -37,9 +38,9 @@
     
     //[self showLoginAndRegistController];
     
-    //[self guidenView];
+    [self guidenView];
 
-    [self tabBarViewInit];
+    //[self tabBarViewInit];
 //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
@@ -204,6 +205,7 @@
     }
     return NO;
 }
+
 
 
 @end

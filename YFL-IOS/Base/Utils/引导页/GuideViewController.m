@@ -10,13 +10,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 #import "RYPageControl.h"
-
+#import "HanZhaoHua.h"
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 int lastindex = 0;
 
-#define ImageCount 4//图片张数
+
 @interface GuideViewController ()<UIScrollViewDelegate>{
     
     AVPlayer        *avPlayer1;
@@ -32,9 +32,11 @@ int lastindex = 0;
     
     RYPageControl *_pageControl;
     BOOL _isOpenGuide;
+    NSInteger pageCount;
 }
 @property (nonatomic,strong) UIScrollView *scroll;
 @property (strong,nonatomic) UIScrollView *scrollView;
+@property (nonatomic, strong) NSMutableArray *remoteImageArr;
 
 @end
 
@@ -43,7 +45,13 @@ int lastindex = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
+    pageCount = 4;
     
+    [self guidenViewSource];
+}
+
+-(void)setViewWithData{
     if (self.videoOrImageType == videoTpye) {
         [self videoTypeBuilding];
     } else {
@@ -85,10 +93,10 @@ int lastindex = 0;
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.view addSubview:self.scrollView];
     //
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * ImageCount, 0);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * self.remoteImageArr.count, 0);
     //
     
-    for (int i = 0; i < ImageCount; i++) {
+    for (int i = 0; i < self.remoteImageArr.count; i++) {
         // 主图片
         UIImageView *mainImage = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         mainImage.userInteractionEnabled = YES;
@@ -107,13 +115,44 @@ int lastindex = 0;
 //            mainImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"ios_5.7.0_1%d",i]];
 //        }
         
-        mainImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]];
+        [mainImage sd_setImageWithURL:[NSURL URLWithString:self.remoteImageArr[i]] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]]];
         
-        if (i == ImageCount - 1) {
+        if (i == (self.remoteImageArr.count - 1)) {
             UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(kipBtnClicked)];
             [mainImage addGestureRecognizer:gesture];
         }
     }
+}
+
+-(void)guidenViewSource{
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:@"HNX_GUIDE" forKey:@"config"];
+    
+    self.remoteImageArr = [NSMutableArray array];
+    [HanZhaoHua GetAPPGuidenViewImageSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSArray *arr = [responseObject objectForKey:@"data"];
+        if (arr && [arr isKindOfClass:[NSArray class]]) {
+            for (NSInteger i = 0; i<arr.count; i++) {
+                NSDictionary *objDic = arr[i];
+                NSString *imgUrl = [NSString stringWithFormat:@"%@",[objDic objectForKey:@"imgUrl"]];
+                if (![NSString isBlankString:imgUrl]) {
+                    [self.remoteImageArr addObject:imgUrl];
+                }
+            }
+        }
+        
+        if (self.remoteImageArr.count) {
+            [self setViewWithData];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+        }
+        
+
+    } failure:^(NSError * _Nonnull error) {
+        //进入注册页面
+
+     [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+    }];
 }
 
 - (void)videoTypeBuilding {
@@ -210,7 +249,7 @@ int lastindex = 0;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.scrollView.contentOffset.x > SCREEN_WIDTH * (ImageCount - 1) + 10) {
+    if (self.scrollView.contentOffset.x > SCREEN_WIDTH * (self.remoteImageArr.count - 1) + 10) {
         if (!_isOpenGuide) {
             _isOpenGuide = YES;
             [self kipBtnClicked];

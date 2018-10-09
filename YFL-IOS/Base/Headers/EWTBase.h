@@ -19,7 +19,8 @@
 #import "EWTBaseNavigationController.h"
 #import "HTTPEngine.h"
 #import "MJRefresh.h"
-
+#import "MJBachFooter.h"
+#import "MJRefershHeader.h"
 #import "YYModel.h"
 
 

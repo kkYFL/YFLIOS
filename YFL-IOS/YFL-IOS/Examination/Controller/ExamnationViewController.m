@@ -12,7 +12,10 @@
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 
-@interface ExamnationViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ExamnationViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger _pageIndex;
+    BOOL hasloadAll;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -25,7 +28,7 @@
 @property (nonatomic, strong) UILabel *paimingLabel;
 
 @property (nonatomic, strong) TestRanking *ownerRankeModel;
-@property (nonatomic, strong) NSArray *scoreList;
+@property (nonatomic, strong) NSMutableArray *scoreList;
 @end
 
 @implementation ExamnationViewController
@@ -35,24 +38,33 @@
     
     [self initView];
     
-    [self loadData];
+    [self refershHeader];
+    
 }
 
 -(void)initView{
     self.title = @"党员考试";
     self.view.backgroundColor = [UIColor whiteColor];
     self.viewsArr = [NSMutableArray array];
-    
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.headerView;
     
-
+    [self initRefresh];
 }
 
+-(void)initData{
+    _pageIndex = 1;
+    hasloadAll = NO;
+    self.scoreList = [NSMutableArray array];
+}
+
+
 -(void)loadData{
+     [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
     // 考试排名
     // 测试结果: 通过
-        [HanZhaoHua testRankingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId page:1 pageNum:10 success:^(TestRanking *owner, NSArray *scoreList) {
+        [HanZhaoHua testRankingWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId page:_pageIndex pageNum:10 success:^(TestRanking *owner, NSArray *scoreList) {
             NSLog(@"%@", owner.headImg);
             NSLog(@"%@", owner.name);
             NSLog(@"%@", owner.score);
@@ -62,12 +74,41 @@
                 NSLog(@"%@", model.score);
             }
             
+            [[PromptBox sharedBox] removeLoadingView];
+            //
+            if (_pageIndex == 1) {
+                [self.table.mj_header endRefreshing];
+                if (scoreList.count < 10) {
+                    hasloadAll = YES;
+                    [self.table.mj_footer endRefreshingWithNoMoreData];
+                }else{
+                    [self.table.mj_footer endRefreshing];
+                }
+
+                self.scoreList = [NSMutableArray arrayWithArray:scoreList];
+                
+           //loadMore
+            }else{
+                [self.table.mj_header endRefreshing];
+                if (scoreList.count < 10) {
+                    hasloadAll = YES;
+                    [self.table.mj_footer endRefreshingWithNoMoreData];
+                }else{
+                    [self.table.mj_footer endRefreshing];
+                }
+                
+                [self.scoreList addObjectsFromArray:scoreList];
+                
+            }
+            
             self.ownerRankeModel = owner;
-            self.scoreList = scoreList;
             
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_footer endRefreshing];
+            [self.table.mj_header endRefreshing];
         }];
     
     
@@ -107,6 +148,36 @@
 //         [self showDisnetView];
 //     }];
 }
+
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasloadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    
+    [self loadData];
+
+}
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
+
+
+
 
 
 

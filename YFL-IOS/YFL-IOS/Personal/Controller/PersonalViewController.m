@@ -15,9 +15,13 @@
 #import "PersonPassWordController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "MBProgressHUD+Toast.h"
 
 
-@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSString *_filePath;//地址
+    NSString *_info;    //更新说明
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -35,29 +39,39 @@
     [super viewDidLoad];
     
     [self initView];
-    
-    [self initData];
-    
-    [self loadData];
+
 }
 
 -(void)initView{
     self.title = @"个人中心";
     self.view.backgroundColor = [UIColor whiteColor];
 
-    
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.headerView;
     
-
+    [self initRefresh];
+    
     [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    
-    
 }
 
 -(void)initData{
     self.serverCount = 0;
 }
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    //self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
+
 
 -(void)loadData{
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
@@ -107,6 +121,8 @@
 //    } failure:^(NSError * _Nonnull error) {
 //
 //    }];
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
     
     // 用户当前积分
     // 测试结果: 通过
@@ -134,6 +150,84 @@
         NSLog(@"%@", error);
         self.serverCount ++;
     }];
+    
+    
+    [self appVersionCheck];
+    
+}
+
+-(void)appVersionCheck{
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [para setValue:@"2" forKey:@"appType"];
+    
+    [HanZhaoHua GetAPPVersionSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+        
+        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+            
+            NSInteger isForceUpdate = [[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForceUpdate"]] integerValue];
+            _filePath = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"filePath"]];
+            _info = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"info"]];
+            
+            //强制更新
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"版本更新"
+                                                                           message:_info
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"立即升级" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
+                                                                      
+                                                                  }];
+            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault
+                                                                 handler:^(UIAlertAction * action) {
+                                                                     
+                                                                 }];
+            
+            UIAlertAction* exitAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * action) {
+                                                                   [UIView animateWithDuration:1.0f animations:^{
+                                                                   } completion:^(BOOL finished) {
+                                                                       exit(0);
+                                                                   }];
+                                                               }];
+            
+            
+            
+            
+            if (isForceUpdate == 1) {
+                [alert addAction:defaultAction];
+                [alert addAction:exitAction];
+            }else{
+                [alert addAction:defaultAction];
+                [alert addAction:cancelAction];
+            }
+            
+            [self.navigationController presentViewController:alert animated:YES completion:nil];
+        }
+
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+
+-(void)gotoUPdateViersion{
+    //测试使用
+    
+#ifdef DEBUG
+    NSString *tmpstr = @"https://itunes.apple.com/us/app/%E5%8D%96%E5%A5%BD%E8%BD%A6%E7%89%A9%E6%B5%81/id1212731400?ls=1&mt=8";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tmpstr]];
+#else
+#endif
+
+    
+    if (!_filePath.length) {
+        [MBProgressHUD toastMessage:@"暂无更新信息" ToView:self.view];
+        return;    }
+      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
     
 }
 
@@ -212,7 +306,11 @@
     }else if (indexPath.row == 3){
         rowCell.cellTitleLabel.text = @"版本更新";
         rowCell.cellContentLabel.text = @"有新版本需要更新呦";
-        rowCell.cellNewImageView.hidden = NO;
+        if (![NSString isBlankString:_filePath]) {
+            rowCell.cellNewImageView.hidden = NO;
+        }else{
+            rowCell.cellNewImageView.hidden = YES;
+        }
     }else{
         rowCell.cellTitleLabel.text = @"关于";
         rowCell.cellContentLabel.text = @"";
@@ -234,6 +332,8 @@
         PersonPassWordController *passVC = [[PersonPassWordController alloc]init];
         passVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:passVC animated:YES];
+    }else if (indexPath.row == 3){
+        [self gotoUPdateViersion];
     }
 }
 
@@ -453,6 +553,9 @@
     
     //数据渲染
     if (new == 2) {
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        
         [self refreshViewWithData];
         [self.table reloadData];
     }

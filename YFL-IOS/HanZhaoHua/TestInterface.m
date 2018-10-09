@@ -267,28 +267,8 @@ static NSString *taskId = @"1";
 //        NSLog(@"%@", error);
 //    }];
     
-//    // 文件上传
-//     //测试结果:
-//    UIImage *image = [UIImage imageNamed:@"uploadTest"];
-//    NSData *data = UIImagePNGRepresentation(image);
-//    
-//    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
-//        
-//    } failure:^(NSError * _Nonnull error) {
-//        
-//    }];
-    
-//    [HanZhaoHua uploadFileWithFiles:data UploadFileName:@"uploadTest.png" success:^(NSString * _Nonnull imgUrl) {
-//
-//    } failure:^(NSError * _Nonnull error) {
-//
-//    }];
-    
-//    [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
-//
-//    } failure:^(NSError * _Nonnull error) {
-//        NSLog(@"%@", error);
-//    }];
+
+
     
 }
 

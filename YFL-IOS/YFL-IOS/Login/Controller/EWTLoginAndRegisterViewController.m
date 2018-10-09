@@ -70,7 +70,7 @@
     [headerViewBg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.view);
-        make.height.mas_equalTo(200*HEIGHT_SCALE);
+        make.height.mas_equalTo(210*HEIGHT_SCALE+NAVIGATION_BAR_HEIGHT);
     }];
     
     
@@ -95,13 +95,13 @@
     
     
     UIImageView *iconImageView = [[UIImageView alloc]init];
-    [iconImageView setBackgroundColor:[UIColor whiteColor]];
     [headerViewBg addSubview:iconImageView];
-    [iconImageView setContentMode:UIViewContentModeCenter];
+    [iconImageView setContentMode:UIViewContentModeScaleAspectFit];
     [iconImageView setImage:[UIImage imageNamed:@"LOGO"]];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(headerViewBg);
         make.centerY.equalTo(headerViewBg.mas_centerY).offset(NAVIGATION_BAR_HEIGHT/2.0);
+        make.height.width.mas_equalTo(HEIGHT_SCALE*120);
     }];
 
     

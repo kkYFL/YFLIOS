@@ -23,10 +23,14 @@
 #import "NewsDetailNoVideoController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "MJRefresh.h"
 
 #define SDViewH 150
 
-@interface NewsViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>
+@interface NewsViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>{
+    NSInteger _pageIndex;
+    BOOL hasLoadAll;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) SDCycleScrollView *scrollView;
 @property (nonatomic, strong) BannerScrollView *remindScrollHeader;
@@ -46,16 +50,43 @@
 
     [self initView];
     
+    [self refershHeader];
+}
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasLoadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    [self loadMoreData];
+}
+
+-(void)refershHeader{
     [self initData];
-    
     [self loadData];
 }
+
+
+
     
 -(void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"党员资讯";
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.scrollView;
+    
+    [self initRefresh];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemsSelectAction:) name:KNotificationNewsItemsSelect object:nil];
     [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
@@ -66,10 +97,13 @@
     self.menuList = [NSMutableArray array];
     self.newsList = [NSMutableArray array];
     self.serverCount = 0;
+    _pageIndex = 1;
+    hasLoadAll = NO;
 }
 
 
 -(void)loadData{
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
     // 测试结果: 通过
@@ -142,12 +176,68 @@
                 NSLog(@"%@", news.types);
             }
             self.newsList = [NSMutableArray arrayWithArray:newsList];
+            
+            if (newsList.count < 10) {
+                hasLoadAll = YES;
+            }
+            
             self.serverCount ++;
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
             self.serverCount ++;
         }];
     
+    
+}
+
+-(void)loadMoreData{
+    
+    /*
+     [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+     [[PromptBox sharedBox] removeLoadingView];
+     [self.table.mj_footer endRefreshing];
+     [self.table.mj_header endRefreshing];
+     */
+    
+    // 新闻列表接口
+    // 测试结果: 通过
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull newsList) {
+        
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_footer endRefreshing];
+        [self.table.mj_header endRefreshing];
+        
+        
+        for (NewsMessage *news in newsList) {
+            NSLog(@"%@", news.browsingNum);
+            NSLog(@"%@", news.clickNum);
+            NSLog(@"%@", news.commonNum);
+            NSLog(@"%@", news.imgUrl);
+            NSLog(@"%@", news.infoId);
+            NSLog(@"%@", news.infoType);
+            NSLog(@"%@", news.shortInfo);
+            NSLog(@"%@", news.sourceFrom);
+            NSLog(@"%@", news.title);
+            NSLog(@"%@", news.types);
+        }
+        
+        if (newsList.count) {
+            [self.newsList addObjectsFromArray:newsList];
+            [self.table reloadData];
+        }
+        
+        if (newsList.count < 10) {
+            hasLoadAll = YES;
+        }
+        
+
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_footer endRefreshing];
+        [self.table.mj_header endRefreshing];
+    }];
     
 }
 
@@ -432,6 +522,15 @@
     
     //数据渲染
     if (new == 4) {
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        if (hasLoadAll) {
+            [self.table.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.table.mj_footer endRefreshing];
+        }
+        
+        
         [self setContentData:nil];
         [self.table reloadData];
         self.remindScrollHeader.contentStr = self.remindModel.summary.length?self.remindModel.summary:@"河南县党建项目已成功上线，请大家踊跃学习";

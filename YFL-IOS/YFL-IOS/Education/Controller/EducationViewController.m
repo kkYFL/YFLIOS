@@ -31,10 +31,6 @@
     [super viewDidLoad];
     
     [self initView];
-    
-    [self initData];
-    
-    [self loadData];
 }
 
 -(void)initData{
@@ -44,13 +40,11 @@
 -(void)initView{
     self.title = @"党员教育";
     self.view.backgroundColor = [UIColor whiteColor];    
-    
     [self.view addSubview:self.table];
     
+    [self initRefresh];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemsSelectAction:) name:KNotificationEducationItemsSelect object:nil];
-    [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    
 }
 
 
@@ -110,42 +104,28 @@
     return _table;
 }
 
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+//    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+//    self.table.mj_footer = footer;
+//    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
+
+
+
+
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
-    
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
     
     //教育视频接口
     // banner接口   positionType:@"MPOS_1"
@@ -187,8 +167,8 @@
 
 #pragma mark - 无网络加载数据
 - (void)refreshNet{
-    [self loadData];
-}
+    [self initData];
+    [self loadData];}
 
 #pragma mark - 返回
 - (void)leftButtonAction{
@@ -228,14 +208,14 @@
 }
 
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void*)context{
-    NSInteger new = [[change objectForKey:@"new"] integerValue];
-    
-    //数据渲染
-    if (new == 2) {
+-(void)setServerCount:(NSInteger)serverCount{
+    _serverCount = serverCount;
+    if (_serverCount == 2) {
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        
         [self.table reloadData];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -245,7 +225,6 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self removeObserver:self forKeyPath:@"serverCount"];
 }
 
 

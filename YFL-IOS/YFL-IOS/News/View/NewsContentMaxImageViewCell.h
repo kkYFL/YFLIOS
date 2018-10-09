@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NewsContentMaxImageViewCell : UITableViewCell
-@property (nonatomic, strong) UILabel *cellTitleLab;
 @property (nonatomic, strong) UIImageView *iconImageView;
-+(CGFloat)CellH;
+@property (nonatomic, strong) NSString *content;
++(CGFloat)CellHWithContent:(NSString *)content;
 @property (nonatomic, copy) void (^selectBlock) (NSString *content);
 
 @end

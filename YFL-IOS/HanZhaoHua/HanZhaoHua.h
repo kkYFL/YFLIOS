@@ -145,6 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)getNewsListWithUserToken: (NSString *)userToken
                         typesId: (NSString *)typesId
+                          Title: (NSString *)title
                            page: (NSInteger)page
                         pageNum: (NSInteger)pageNum
                         success: (void (^)(NSArray *newsList))success

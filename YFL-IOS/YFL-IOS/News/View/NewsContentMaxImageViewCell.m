@@ -11,7 +11,7 @@
 #define NewsIconH HEIGHT_SCALE*170
 
 @interface NewsContentMaxImageViewCell ()
-
+@property (nonatomic, strong) UILabel *cellTitleLab;
 @property (nonatomic, strong) UIImageView *playIcon;
 
 
@@ -40,15 +40,11 @@
     [self.contentView addSubview:cellTitleLab];
     self.cellTitleLab = cellTitleLab;
     
-    NSString *content = @"美国耗资15亿，修建518米通道，鱼儿像坐滑梯一样过大坝";
-    CGFloat contentH = [NewsContentMaxImageViewCell getSpaceLabelHeightwithString:content Speace:4.0 withFont:[UIFont boldSystemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30]+0.5;
-    self.cellTitleLab.attributedText = [NewsContentMaxImageViewCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont boldSystemFontOfSize:17.0f]];
     
     [self.cellTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(15.0f);
         make.top.equalTo(self).offset(15.0f);
         make.right.equalTo(self.mas_right).offset(-15.0f);
-        make.height.mas_equalTo(contentH);
     }];
     
     
@@ -114,18 +110,21 @@
     return textHeight;
 }
 
-//-(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-//    if (self.selectBlock) {
-//        self.selectBlock(@"");
-//    }
-//}
 
-+(CGFloat)CellH{
-    NSString *content = @"美国耗资15亿，修建518米通道，鱼儿像坐滑梯一样过大坝";
-    CGFloat contentH = [NewsContentMaxImageViewCell getSpaceLabelHeightwithString:content Speace:4.0 withFont:[UIFont boldSystemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30]+0.5;
-    return NewsIconH+contentH+15*2+10;
-    
-    //return 44.0f;
+
+-(void)setContent:(NSString *)content{
+    _content = content;
+    if (_content) {
+        self.cellTitleLab.attributedText = [NewsContentMaxImageViewCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont boldSystemFontOfSize:17.0f]];
+    }
+}
+
++(CGFloat)CellHWithContent:(NSString *)content{
+    if (content.length) {
+        CGFloat contentH = [NewsContentMaxImageViewCell getSpaceLabelHeightwithString:content Speace:4.0 withFont:[UIFont boldSystemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30]+0.5;
+        return NewsIconH+contentH+15*2+10;
+    }
+    return 0.01f;
 }
 
 

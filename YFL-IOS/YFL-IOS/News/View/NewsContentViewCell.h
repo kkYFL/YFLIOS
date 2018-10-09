@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsMessage.h"
 
 @interface NewsContentViewCell : UITableViewCell
-@property (nonatomic, strong) UILabel *cellTitleLabel;
-@property (nonatomic, strong) UILabel *laiyunLabel;
-@property (nonatomic, strong) UILabel *pinlunLabel;
-+(CGFloat)CellH;
+@property (nonatomic, strong) NewsMessage *newsModel;
++(CGFloat)CellHWithModel:(NewsMessage *)model;
 @end

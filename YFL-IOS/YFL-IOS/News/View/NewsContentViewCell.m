@@ -9,6 +9,9 @@
 #import "NewsContentViewCell.h"
 
 @interface NewsContentViewCell ()
+@property (nonatomic, strong) UILabel *cellTitleLabel;
+@property (nonatomic, strong) UILabel *laiyunLabel;
+@property (nonatomic, strong) UILabel *pinlunLabel;
 
 @end
 
@@ -30,7 +33,7 @@
     
     UILabel *cellTitleLabel = [[UILabel alloc] init];
     cellTitleLabel.font = [UIFont boldSystemFontOfSize:17.0f];
-    cellTitleLabel.numberOfLines = 2;
+    cellTitleLabel.numberOfLines = 0;
     cellTitleLabel.text = @"北京清热暴晒继续 周末或有雷阵雨热度不减！北京清热暴晒继续 周末或有雷阵雨热度不减！北京清热暴晒继续 周末或有雷阵雨热度不减！北京清热暴晒继续 周末或有雷阵雨热度不减！";
     cellTitleLabel.textColor = [UIColor colorWithHexString:@"#2A333A"];
     cellTitleLabel.textAlignment = NSTextAlignmentLeft;
@@ -86,8 +89,42 @@
 }
 
 
-+(CGFloat)CellH{
-    return 75.0f;
+
+-(void)setNewsModel:(NewsMessage *)newsModel{
+    _newsModel = newsModel;
+    if (_newsModel) {
+        NSMutableAttributedString *attri = [NewsContentViewCell getAttriHeightwithString:_newsModel.title Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f]];
+        self.cellTitleLabel.attributedText = attri;
+        self.laiyunLabel.text = _newsModel.sourceFrom;
+        self.pinlunLabel.text = [NSString stringWithFormat:@"%@评论",[_newsModel.commonNum stringValue]];
+    }
+}
+
++(CGFloat)CellHWithModel:(NewsMessage *)model{
+    if (model) {
+        NSString *title = model.title;
+        CGFloat titleH = [NewsContentViewCell getSpaceLabelHeightwithString:title Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30]+0.5f;
+        return 15+titleH+15+12+15;
+    }
+    return 0.01f;
+}
+
++(NSMutableAttributedString *)getAttriHeightwithString:(NSString *)string Speace:(CGFloat)lineSpeace withFont:(UIFont*)font{
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc]initWithString:string];
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpeace;
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#2A333A"]};
+    [attri addAttributes:dic range:NSMakeRange(0, string.length)];
+    return attri;
+}
+
++(CGFloat)getSpaceLabelHeightwithString:(NSString *)string Speace:(CGFloat)lineSpeace withFont:(UIFont*)font withWidth:(CGFloat)width {
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpeace;
+    NSDictionary *dic = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle, NSForegroundColorAttributeName:[UIColor colorWithHexString:@"#A7ACB9"]};
+    CGSize size = [string boundingRectWithSize:CGSizeMake(width,MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
+    CGFloat textHeight = size.height;
+    return textHeight;
 }
 
 

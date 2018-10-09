@@ -162,30 +162,29 @@
     
     // 新闻列表接口
     // 测试结果: 通过
-        [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
-            for (NewsMessage *news in newsList) {
-                NSLog(@"%@", news.browsingNum);
-                NSLog(@"%@", news.clickNum);
-                NSLog(@"%@", news.commonNum);
-                NSLog(@"%@", news.imgUrl);
-                NSLog(@"%@", news.infoId);
-                NSLog(@"%@", news.infoType);
-                NSLog(@"%@", news.shortInfo);
-                NSLog(@"%@", news.sourceFrom);
-                NSLog(@"%@", news.title);
-                NSLog(@"%@", news.types);
-            }
-            self.newsList = [NSMutableArray arrayWithArray:newsList];
-            
-            if (newsList.count < 10) {
-                hasLoadAll = YES;
-            }
-            
-            self.serverCount ++;
-        } failure:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error);
-            self.serverCount ++;
-        }];
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" Title:@"" page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
+        for (NewsMessage *news in newsList) {
+            NSLog(@"%@", news.browsingNum);
+            NSLog(@"%@", news.clickNum);
+            NSLog(@"%@", news.commonNum);
+            NSLog(@"%@", news.imgUrl);
+            NSLog(@"%@", news.infoId);
+            NSLog(@"%@", news.infoType);
+            NSLog(@"%@", news.shortInfo);
+            NSLog(@"%@", news.sourceFrom);
+            NSLog(@"%@", news.title);
+            NSLog(@"%@", news.types);
+        }
+        self.newsList = [NSMutableArray arrayWithArray:newsList];
+        
+        if (newsList.count < 10) {
+            hasLoadAll = YES;
+        }
+        
+        self.serverCount ++;
+    } failure:^(NSError * _Nonnull error) {
+        self.serverCount ++;
+    }];
     
     
 }
@@ -202,7 +201,7 @@
     // 新闻列表接口
     // 测试结果: 通过
     [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull newsList) {
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" Title:@"" page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull newsList) {
         
         [[PromptBox sharedBox] removeLoadingView];
         [self.table.mj_footer endRefreshing];
@@ -271,31 +270,57 @@
         
         //文本
         if ([newsModel.infoType integerValue] == 2) {
-            return [NewsContentViewCell CellH];
+            return [NewsContentViewCell CellHWithModel:newsModel];
         }
         
-        return [NewsContentMaxImageViewCell CellH];
+        return [NewsContentMaxImageViewCell CellHWithContent:newsModel.title];
 }
     
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
+     @property (nonatomic, strong) UILabel *titleLab;
+     @property (nonatomic, strong) UILabel *contentLab;
+     @property (nonatomic, strong) UIImageView *iconImageView;
+     
+     //图片地址
+     @property(nonatomic, copy) NSString *imgUrl;
+     //菜单内容
+     @property(nonatomic, copy) NSString *typeInfo;
+     //菜单id
+     @property(nonatomic, copy) NSString *menuId;
+     //未知
+     @property(nonatomic, copy) NSString *appPositon;
+     //菜单名称
+     @property(nonatomic, copy) NSString *typeName;
+     */
     if (indexPath.section == 0) {
         NewsItemsTableCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
         if (self.menuList.count) {
             InformationMenu *menuModel = self.menuList[0];
-            itemCell.item1.titleLab.text = menuModel.typeInfo;
+            itemCell.item1.titleLab.text = menuModel.typeName;
+            itemCell.item1.contentLab.text = menuModel.typeInfo;
+            [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
+
         }
         if (self.menuList.count >= 2) {
             InformationMenu *menuModel = self.menuList[1];
-            itemCell.item2.titleLab.text = menuModel.typeInfo;
+            itemCell.item2.titleLab.text = menuModel.typeName;
+            itemCell.item2.contentLab.text = menuModel.typeInfo;
+            [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
         }
+        
         if (self.menuList.count >= 3) {
             InformationMenu *menuModel = self.menuList[2];
-            itemCell.item3.titleLab.text = menuModel.typeInfo;
+            itemCell.item3.titleLab.text = menuModel.typeName;
+            itemCell.item3.contentLab.text = menuModel.typeInfo;
+            [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
         }
         if (self.menuList.count >= 4) {
             InformationMenu *menuModel = self.menuList[3];
-            itemCell.item4.titleLab.text = menuModel.typeInfo;
+            itemCell.item4.titleLab.text = menuModel.typeName;
+            itemCell.item4.contentLab.text = menuModel.typeInfo;
+            [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
         }
             
         return itemCell;
@@ -320,9 +345,7 @@
         //文本
         if ([newsModel.infoType integerValue] == 2) {
             NewsContentViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:@"contentCell"];
-            contentCell.cellTitleLabel.text = newsModel.title;
-            contentCell.laiyunLabel.text = newsModel.sourceFrom;
-            contentCell.pinlunLabel.text = [newsModel.commonNum stringValue];
+            contentCell.newsModel = newsModel;
             return contentCell;
         }
         
@@ -330,12 +353,7 @@
         //视频
         __weak typeof(self) weakSelf = self;
         NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
-//        MaxImageCell.selectBlock = ^(NSString *content) {
-//            NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
-//            videoVC.hidesBottomBarWhenPushed = YES;
-//            [weakSelf.navigationController pushViewController:videoVC animated:YES];
-//        };
-        MaxImageCell.cellTitleLab.text = newsModel.title;
+        MaxImageCell.content = newsModel.title;
         NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
         [MaxImageCell.iconImageView setImage:[UIImage imageNamed:imageurl]];
         return MaxImageCell;
@@ -543,27 +561,37 @@
     NSDictionary *notiDic = noti.userInfo;
     NSInteger index = [[notiDic objectForKey:@"index"] integerValue];
     if (index == 1) {
+        if (!self.menuList.count) {
+            return;
+        }
         NewsdeliveryViewController *deliveryVC = [[NewsdeliveryViewController alloc]init];
         InformationMenu *menmodel = self.menuList[0];
         deliveryVC.menuModel = menmodel;
         deliveryVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:deliveryVC animated:YES];
     }else if (index == 2){
-        NewsPolicyViewController *policyVC = [[NewsPolicyViewController alloc]init];
-        policyVC.hidesBottomBarWhenPushed = YES;
-        InformationMenu *menmodel = self.menuList[1];
-        policyVC.menuModel = menmodel;
-        [self.navigationController pushViewController:policyVC animated:YES];
+        if (self.menuList.count >1) {
+            NewsPolicyViewController *policyVC = [[NewsPolicyViewController alloc]init];
+            policyVC.hidesBottomBarWhenPushed = YES;
+            InformationMenu *menmodel = self.menuList[1];
+            policyVC.menuModel = menmodel;
+            [self.navigationController pushViewController:policyVC animated:YES];
+        }
     }else if (index == 4){
-        InformationMenu *menmodel = self.menuList[3];
-        NewsActivityViewController *acitivityVC = [[NewsActivityViewController alloc]init];
-        acitivityVC.menuModel = menmodel;
-        [self.navigationController pushViewController:acitivityVC animated:YES];
+        if (self.menuList.count > 3) {
+            InformationMenu *menmodel = self.menuList[3];
+            NewsActivityViewController *acitivityVC = [[NewsActivityViewController alloc]init];
+            acitivityVC.menuModel = menmodel;
+            [self.navigationController pushViewController:acitivityVC animated:YES];
+        }
+
     }else if (index == 3){
-        InformationMenu *menmodel = self.menuList[2];
-        NewsNoticeViewController *noticeVC = [[NewsNoticeViewController alloc]init];
-        noticeVC.menuModel = menmodel;
-        [self.navigationController pushViewController:noticeVC animated:YES];
+        if (self.menuList.count > 2) {
+            InformationMenu *menmodel = self.menuList[2];
+            NewsNoticeViewController *noticeVC = [[NewsNoticeViewController alloc]init];
+            noticeVC.menuModel = menmodel;
+            [self.navigationController pushViewController:noticeVC animated:YES];
+        }
     }
 }
 

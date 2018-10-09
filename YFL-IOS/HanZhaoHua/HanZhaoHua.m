@@ -228,17 +228,29 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 +(void)getNewsListWithUserToken: (NSString *)userToken
                         typesId: (NSString *)typesId
+                          Title: (NSString *)title
                            page: (NSInteger)page
                         pageNum: (NSInteger)pageNum
                         success: (void (^)(NSArray *newsList))success
                         failure: (void (^)(NSError *error))failure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getData"];
-    NSDictionary *paraDic = @{@"userToken":userToken,
-                              @"typesId":typesId,
-                              @"page":[NSNumber numberWithInteger:page],
-                              @"pageSize":[NSNumber numberWithInteger:pageNum]
-                              };
+    NSDictionary *paraDic = nil;
+    if (title && title.length) {
+                     paraDic = @{@"userToken":userToken,
+                                  @"typesId":typesId,
+                                  @"title":title,
+                                  @"page":[NSNumber numberWithInteger:page],
+                                  @"pageSize":[NSNumber numberWithInteger:pageNum]
+                                  };
+    }else{
+                     paraDic = @{@"userToken":userToken,
+                                  @"typesId":typesId,
+                                  @"page":[NSNumber numberWithInteger:page],
+                                  @"pageSize":[NSNumber numberWithInteger:pageNum]
+                                  };
+    }
+
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) {
             NSArray *list = [responseObject objectForKey:@"data"];

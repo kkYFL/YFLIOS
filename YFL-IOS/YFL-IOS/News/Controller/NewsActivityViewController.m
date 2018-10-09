@@ -16,7 +16,10 @@
 
 
 @interface NewsActivityViewController ()<UITableViewDelegate,UITableViewDataSource
->
+>{
+    NSInteger _pageIndex;
+    BOOL hasLoadAll;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *newsList;
 
@@ -29,7 +32,7 @@
     
     [self initView];
     
-    [self loadData];
+    [self refershHeader];
 }
 
 -(void)initView{
@@ -40,48 +43,21 @@
     
     
     [self.view addSubview:self.table];
-    
+    [self initRefresh];
+}
+
+-(void)initData{
+    _pageIndex = 1;
+    hasLoadAll = NO;
+    self.newsList = [NSMutableArray array];
 }
 
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
-    
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
     // 新闻列表接口
     // 测试结果: 通过
-    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId Title:@"" page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
         for (NewsMessage *news in newsList) {
             NSLog(@"%@", news.browsingNum);
             NSLog(@"%@", news.clickNum);
@@ -94,15 +70,59 @@
             NSLog(@"%@", news.title);
             NSLog(@"%@", news.types);
         }
-        self.newsList = [NSMutableArray arrayWithArray:newsList];
-        //        self.serverCount ++;
+        
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        if (newsList.count < 10) {
+            [self.table.mj_footer endRefreshingWithNoMoreData];
+            hasLoadAll = YES;
+        }else{
+            [self.table.mj_footer endRefreshing];
+        }
+
+        if (_pageIndex == 1) {
+            self.newsList = [NSMutableArray arrayWithArray:newsList];
+        }else{
+            [self.newsList addObjectsFromArray:newsList];
+        }
         
         [self.table reloadData];
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
-        //self.serverCount ++;
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_footer endRefreshing];
+        [self.table.mj_header endRefreshing];
+        
     }];
 }
+
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasLoadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    [self loadData];
+}
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
+
+
+
 
 
 #pragma mark - UITableView Delegate And Datasource

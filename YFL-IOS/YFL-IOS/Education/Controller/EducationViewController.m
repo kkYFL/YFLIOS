@@ -109,9 +109,7 @@
 - (void)initRefresh{
     MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
     self.table.mj_header = header;
-//    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
-//    self.table.mj_footer = footer;
-//    self.table.mj_footer.automaticallyChangeAlpha = YES;
+
 }
 
 

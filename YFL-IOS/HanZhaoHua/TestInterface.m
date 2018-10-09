@@ -122,24 +122,7 @@ static NSString *taskId = @"1";
 //        NSLog(@"%@", error);
 //    }];
     
-    // 新闻列表接口
-    // 测试结果: 通过
-//    [HanZhaoHua getNewsListWithUserToken:userToken typesId:@"0" page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
-//        for (NewsMessage *news in newsList) {
-//            NSLog(@"%@", news.browsingNum);
-//            NSLog(@"%@", news.clickNum);
-//            NSLog(@"%@", news.commonNum);
-//            NSLog(@"%@", news.imgUrl);
-//            NSLog(@"%@", news.infoId);
-//            NSLog(@"%@", news.infoType);
-//            NSLog(@"%@", news.shortInfo);
-//            NSLog(@"%@", news.sourceFrom);
-//            NSLog(@"%@", news.title);
-//            NSLog(@"%@", news.types);
-//        }
-//    } failure:^(NSError * _Nonnull error) {
-//        NSLog(@"%@", error);
-//    }];
+
     
     // 新闻详情接口
     // 测试结果: 未通过, 未提供测试数据, 无法测试

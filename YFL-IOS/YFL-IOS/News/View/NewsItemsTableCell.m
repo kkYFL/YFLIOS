@@ -151,7 +151,7 @@
         make.top.equalTo(self.backView).offset(5);
         make.right.equalTo(self.backView.mas_right).offset(-10);
         make.bottom.equalTo(self.backView.mas_bottom).offset(-5);
-        
+        make.width.mas_equalTo(50);
     }];
     
     [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {

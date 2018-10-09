@@ -13,6 +13,7 @@
 //#import <ZFPlayer/ZFIJKPlayerManager.h>
 //#import <ZFPlayer/KSMediaPlayerManager.h>
 #import <ZFPlayer/ZFPlayerControlView.h>
+#import "AppDelegate.h"
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
@@ -25,9 +26,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 @property (nonatomic, strong) ZFPlayerController *player;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) ZFPlayerControlView *controlView;
+@property (nonatomic, strong) UIImageView *backImageView;
 @property (nonatomic, strong) UIButton *playBtn;
-@property (nonatomic, strong) UIButton *changeBtn;
-@property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) NSArray <NSURL *>*assetURLs;
 @end
 
@@ -47,10 +47,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     
     [self.contentView addSubview:self.containerView];
+    [self.containerView addSubview:self.backImageView];
     [self.containerView addSubview:self.playBtn];
     CGFloat topImageViewH = 0.5*SCREEN_WIDTH;
     self.containerView.frame = CGRectMake(0, 0, SCREEN_WIDTH,topImageViewH);
-    
+    self.backImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH,topImageViewH);
+
     
     ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
     //    KSMediaPlayerManager *playerManager = [[KSMediaPlayerManager alloc] init];
@@ -92,7 +94,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 //                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/5_6d3243c354755b781f6cc80f60756ee5.mp4"],
 //                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-movideo/11233547_ac127ce9e993877dce0eebceaa04d6c2_593d93a619b0.mp4"]];
     
-    self.player.assetURLs = self.assetURLs;
+    //self.player.assetURLs = self.assetURLs;
     
     
     
@@ -182,26 +184,32 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     _videoModel = videoModel;
     if (_videoModel) {
         [self.cellContentLabel setText:_videoModel.summary];
-        if (_videoModel.foreignUrl.length) {
-            self.assetURLs = [NSArray arrayWithObjects:_videoModel.foreignUrl, nil];
-            self.player.assetURLs = self.assetURLs;
+        
+        if (![NSString isBlankString:_videoModel.foreignUrl]) {
+            
+            if ([_videoModel.foreignUrl hasPrefix:@"http"]) {
+                self.assetURLs = [NSArray arrayWithObjects:[NSURL URLWithString:_videoModel.foreignUrl], nil];
+                self.player.assetURLs = self.assetURLs;
+            }else{
+                self.assetURLs = [NSArray arrayWithObjects:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_videoModel.foreignUrl]], nil];
+                self.player.assetURLs = self.assetURLs;
+            }
+            
+            
         }else{
-            self.assetURLs = [NSArray array];
+            self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4"]];
             self.player.assetURLs = self.assetURLs;
+        }
+        
+        
+        if ([_videoModel.imgUrl hasPrefix:@"http"]) {
+            [self.backImageView sd_setImageWithURL:[NSURL URLWithString:_videoModel.imgUrl]];
+        }else{
+            [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_videoModel.imgUrl]]];
         }
     }
 }
 
-
-
-
--(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    if (!self.assetURLs.count) {
-        return;
-    }
-    [self.player playTheIndex:0];
-    [self.controlView showTitle:@"视频标题" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
-}
 
 - (UIButton *)playBtn {
     if (!_playBtn) {
@@ -213,14 +221,17 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 }
 
 - (void)playClick:(UIButton *)sender {
+    if (!self.assetURLs.count) {
+        return;
+    }
     [self.player playTheIndex:0];
-    [self.controlView showTitle:@"视频标题" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
+    [self.controlView showTitle:@"" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
 }
 
 - (UIView *)containerView {
     if (!_containerView) {
         _containerView = [UIView new];
-        _containerView.backgroundColor = [UIColor purpleColor];
+        _containerView.backgroundColor = [UIColor whiteColor];
     }
     return _containerView;
 }
@@ -232,6 +243,16 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         //_controlView.fastViewAnimated = YES;
     }
     return _controlView;
+}
+
+-(UIImageView *)backImageView{
+    if (!_backImageView) {
+        UIImageView *backImageView = [[UIImageView alloc]init];
+        [backImageView setBackgroundColor:[UIColor colorWithRed:178/255.0 green:178/255.0 blue:178/255.0 alpha:0.5]];
+        _backImageView = backImageView;
+        _backImageView.userInteractionEnabled = YES;
+    }
+    return _backImageView;
 }
 
 

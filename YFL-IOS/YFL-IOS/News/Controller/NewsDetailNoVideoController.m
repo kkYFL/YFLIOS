@@ -29,7 +29,7 @@
 -(void)initView{
     self.title = @"详情";
     self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
+    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     
@@ -55,8 +55,9 @@
         self.webView = [[UIWebView alloc] init];
         self.webView.backgroundColor = [UIColor whiteColor];
         self.webView.opaque = NO;
-        self.webView.scrollView.scrollEnabled = NO;
+        self.webView.scrollView.scrollEnabled = YES;
         self.webView.delegate = self;
+        self.webView.scrollView.delegate = self;
         [self.webView loadHTMLString:self.newsDetail.info baseURL:nil];
         [self.view addSubview:_webView];
         [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,6 +109,12 @@
 #pragma mark - 无网络加载数据
 - (void)refreshNet{
     [self loadData];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    // 让webview的内容一直居中显示
+    //禁止左右滑动左右
+    scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
 }
 
 #pragma mark - 返回

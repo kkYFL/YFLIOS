@@ -18,7 +18,10 @@
 #import "NewsDetailNoVideoController.h"
 #import "NewsVideoDetailViewController.h"
 
-@interface NewsPolicyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
+@interface NewsPolicyViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>{
+    NSInteger _pageIndex;
+    BOOL hasloadAll;
+}
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) SDCycleScrollView *scrollView;
@@ -36,9 +39,7 @@
     
     [self initView];
     
-    [self initData];
-    
-    [self loadData];
+    [self refershHeader];
 }
 
 -(void)initView{
@@ -50,8 +51,8 @@
     
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.scrollView;
+    [self initRefresh];
     [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-
 
 }
 
@@ -59,46 +60,12 @@
     self.bannerList = [NSMutableArray array];
     self.newsList = [NSMutableArray array];
     self.serverCount = 0;
+    _pageIndex = 1;
+    hasloadAll = NO;
 }
 
 -(void)loadData{
-    //[self setContentData:nil];
-
-    
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
     
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
@@ -122,7 +89,7 @@
     
     // 新闻列表接口
     // 测试结果: 通过
-    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId Title:@"" page:1 pageNum:10 success:^(NSArray * _Nonnull newsList) {
         for (NewsMessage *news in newsList) {
             NSLog(@"%@", news.browsingNum);
             NSLog(@"%@", news.clickNum);
@@ -148,6 +115,70 @@
     }];
 }
 
+-(void)loadMoreData{
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
+    // 新闻列表接口
+    // 测试结果: 通过
+    [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:self.menuModel.menuId Title:@"" page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull newsList) {
+        for (NewsMessage *news in newsList) {
+            NSLog(@"%@", news.browsingNum);
+            NSLog(@"%@", news.clickNum);
+            NSLog(@"%@", news.commonNum);
+            NSLog(@"%@", news.imgUrl);
+            NSLog(@"%@", news.infoId);
+            NSLog(@"%@", news.infoType);
+            NSLog(@"%@", news.shortInfo);
+            NSLog(@"%@", news.sourceFrom);
+            NSLog(@"%@", news.title);
+            NSLog(@"%@", news.types);
+        }
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        if (newsList.count < 10) {
+            [self.table.mj_footer endRefreshingWithNoMoreData];
+            hasloadAll = YES;
+        }else{
+            [self.table.mj_footer endRefreshing];
+        }
+        
+
+        
+        [self.newsList addObjectsFromArray:newsList];
+        
+        [self.table reloadData];
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_footer endRefreshing];
+        [self.table.mj_header endRefreshing];
+    }];
+}
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasloadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    [self loadMoreData];
+}
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
 
 
 #pragma mark - UITableView Delegate And Datasource
@@ -230,26 +261,10 @@
 
 -(void)setContentData:(id)data{
     
-    //    if ([data isKindOfClass:[EWTBannerModule class]]) {
-    //
-//    NSMutableArray* images = [NSMutableArray array];
-//    for (NSInteger i = 0; i<5; i++) {
-//        [images addObject:[NSString stringWithFormat:@"Pfofession_card-bg-%d",i+1]];
-//    }
-    //
-    //        _model = [(EWTBannerModule*)data copy];
-    //
-    //        for (EWTBannerItem* item in _model.bannerArray) {
-    //
-    //            [images addObject:item.imageUrl];
-    //        }
-    //_scrollView.imageURLStringsGroup = images;
-    //    }
-    
     NSMutableArray* images = [NSMutableArray array];
     for (NSInteger i = 0; i<self.bannerList.count; i++) {
         Banner *bannerModel = self.bannerList[i];
-        NSString *str = [NSString stringWithFormat:@"http://47.100.247.71/protal%@",bannerModel.imgUrl];
+        NSString *str = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl];
         NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [images addObject:urlStr];
     }
@@ -267,10 +282,6 @@
 
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-    //    NewsBannerDetailViewController *bannerNewsVC = [[NewsBannerDetailViewController alloc]init];
-    //    bannerNewsVC.hidesBottomBarWhenPushed = YES;
-    //    [self.navigationController pushViewController:bannerNewsVC animated:YES];
-    
     if (self.bannerList.count > index) {
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
@@ -280,24 +291,6 @@
         [self.navigationController pushViewController:wzweb animated:YES];
     }
 
-    
-    
-    
-    //    EWTBannerItem* item = _model.bannerArray[index];
-    //
-    //    NSDictionary* dict = nil;
-    //
-    //    if (item.oldItem) {
-    //
-    //        dict = @{@"PicUrl":item.oldItem.imageUrl,@"RedirectType":item.oldItem.redirectType,@"LinkUrl":item.oldItem.linkUrl,@"Title":item.oldItem.title,@"index":@(index)};
-    //    }
-    //
-    //    if (self.delegate && [self.delegate respondsToSelector:@selector(moduleCell:routerInfo:userInfo:)]) {
-    //
-    //        [self.delegate moduleCell:self routerInfo:item.router userInfo:dict];
-    //    }
-    
-    
 }
 
 #pragma mark - 无网络加载数据
@@ -321,6 +314,14 @@
     
     //数据渲染
     if (new == 2) {
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        if (self.newsList.count < 10) {
+            [self.table.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.table.mj_footer endRefreshing];
+        }
+        
         [self setContentData:nil];
         [self.table reloadData];
     }

@@ -22,6 +22,7 @@
 #import "MJBachFooter.h"
 #import "MJRefershHeader.h"
 #import "YYModel.h"
+#import "MBProgressHUD+Toast.h"
 
 
 #define gbk CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000)

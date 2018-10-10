@@ -84,9 +84,10 @@
     self.textView = [[UITextView alloc] init];;
     //self.textView.CLwidth = self.CLwidth - 50 - 46;
     //self.textView.CLleft = 18;
-    [self.textView setFrame:CGRectMake(25, 45, self.CLwidth - 50 - 45-10, 20)];
-    self.textView.enablesReturnKeyAutomatically = YES;
+    [self.textView setFrame:CGRectMake(25, 45, self.CLwidth - 50 - 45-10-10, 20)];
+    //self.textView.enablesReturnKeyAutomatically = YES;
     self.textView.delegate = self;
+    self.textView.returnKeyType = UIReturnKeyDone;
     self.textView.layoutManager.allowsNonContiguousLayout = NO;
     self.textView.scrollsToTop = NO;
     self.textView.textContainerInset = UIEdgeInsetsZero;
@@ -210,6 +211,16 @@
     
     //self.CLbottom = CLscreenHeight - _keyboardHeight-self.CLheight;
     //[textView scrollRangeToVisible:NSMakeRange(textView.selectedRange.location, 1)];
+}
+
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+ replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [self.textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 // 发送按钮

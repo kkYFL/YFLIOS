@@ -14,7 +14,10 @@
 #import "AppDelegate.h"
 
 @interface EducationLearHeartViewController ()<UITableViewDelegate,UITableViewDataSource
->
+>{
+    NSInteger _pageIndex;
+    BOOL hasLoadAll;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *itemsView;
 @property (nonatomic, strong) NSMutableArray *learnListArr;
@@ -29,9 +32,7 @@
     
     [self initView];
     
-    [self initData];
-    
-    [self loadData];
+    [self refershHeader];
 }
 
 -(void)initView{
@@ -43,11 +44,15 @@
     
     [self.view addSubview:self.table];
     
+    [self initRefresh];
+    
 }
 
 -(void)initData{
     self.learnListArr = [NSMutableArray array];
     self.historyLearnListArr = [NSMutableArray array];
+    _pageIndex = 1;
+    hasLoadAll = NO;
 }
 
 -(void)loadData{
@@ -86,20 +91,32 @@
 //         [self showDisnetView];
 //     }];
     
-
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
     
     // 学习任务
     if (self.type == MYEducationViewTypeDefault) {
         // 学习任务列表
         // 测试结果: 通过
-            [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:1 page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
-                // 下拉刷新, 原数据源数组数据清空, 存储最新数据
-                // 上拉加载更多, 原数据源数组后拼接
+            [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:1 page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull listArray) {
+
                 for (LearningTaskModel *item in listArray) {
                     NSLog(@"%@", item.taskId);
                 }
                 
-                self.learnListArr = [NSMutableArray arrayWithArray:listArray];
+                [[PromptBox sharedBox] removeLoadingView];
+                [self.table.mj_header endRefreshing];
+                if (listArray.count<10) {
+                    [self.table.mj_footer endRefreshingWithNoMoreData];
+                    hasLoadAll = YES;
+                }else{
+                    [self.table.mj_footer endRefreshing];
+                }
+                if (_pageIndex == 1) {
+                    self.learnListArr = [NSMutableArray arrayWithArray:listArray];
+                }else{
+                    [self.learnListArr addObjectsFromArray:listArray];
+                }
+                
                 
                 [self.table reloadData];
             } failure:^(NSError * _Nonnull error) {
@@ -110,21 +127,63 @@
         
 //        // 学习任务列表
 //        // 测试结果: 通过
-        [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:2 page:1 pageNum:10 success:^(NSArray * _Nonnull listArray) {
-            // 下拉刷新, 原数据源数组数据清空, 存储最新数据
-            // 上拉加载更多, 原数据源数组后拼接
+        [HanZhaoHua getLearningTaskListWithUserId:APP_DELEGATE.userId type:2 page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull listArray) {
+
             for (LearningTaskModel *item in listArray) {
                 NSLog(@"%@", item.taskId);
             }
-
-            self.learnListArr = [NSMutableArray arrayWithArray:listArray];
-
+            
+            
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_header endRefreshing];
+            if (listArray.count<10) {
+                [self.table.mj_footer endRefreshingWithNoMoreData];
+                hasLoadAll = YES;
+            }else{
+                [self.table.mj_footer endRefreshing];
+            }
+            if (_pageIndex == 1) {
+                self.learnListArr = [NSMutableArray arrayWithArray:listArray];
+            }else{
+                [self.learnListArr addObjectsFromArray:listArray];
+            }
+            
+            
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error);
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_footer endRefreshing];
+            [self.table.mj_header endRefreshing];
         }];
     }
 }
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasLoadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    
+    _pageIndex++;
+    [self loadData];
+}
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
+
+
 
 
 

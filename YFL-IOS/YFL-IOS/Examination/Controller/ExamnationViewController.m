@@ -431,7 +431,7 @@
         if (score > 100) {
             score = 100;
         }
-        score = 80;
+
         NSInteger num = score/5;
         
         if (num >0) {

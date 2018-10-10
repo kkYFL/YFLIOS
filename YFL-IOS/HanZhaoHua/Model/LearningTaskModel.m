@@ -24,7 +24,9 @@
         self.learnTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"learnTime"]];
         self.createTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"createTime"]];
         self.nowNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nowNum"]];
-        
+        //vedioUrl
+        self.vedioUrl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"vedioUrl"]];
+
     }
     return self;
 }

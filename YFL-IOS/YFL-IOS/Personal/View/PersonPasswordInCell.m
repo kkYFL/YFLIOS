@@ -51,7 +51,7 @@
     //内容对齐方式
     cellTextfield.textAlignment = NSTextAlignmentLeft;
     //设置键盘的样式
-    cellTextfield.keyboardType = UIKeyboardTypeNumberPad;
+    cellTextfield.keyboardType = UIKeyboardTypeDefault;
     //return键变成什么键
     cellTextfield.returnKeyType =UIReturnKeyDone;
     self.textfield = cellTextfield;

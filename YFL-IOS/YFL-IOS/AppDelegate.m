@@ -20,6 +20,7 @@
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *guidenViewArr;
+@property (nonatomic, strong) UIImageView *storyBoardView;
 @end
 
 @implementation AppDelegate
@@ -35,12 +36,17 @@
      self.userName = @"15606811521";
      self.password = @"123456";
     
+    [self tabBarViewInit];
+
+    //启动图
+    [self screenViewCreate];
+
+    
     
     //[self showLoginAndRegistController];
     
     //[self guidenView];
 
-    [self tabBarViewInit];
 //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
@@ -205,6 +211,52 @@
     }
     return NO;
 }
+
+
+-(void)ScreenViewSource{
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:@"HNX_SCREEN" forKey:@"config"];
+    
+    [HanZhaoHua GetAPPGuidenViewImageSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSArray *arr = [responseObject objectForKey:@"data"];
+        if (arr && [arr isKindOfClass:[NSArray class]] && arr.count) {
+            NSDictionary *tmpDic = arr[0];
+            NSString *urlStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"imgUrl"]];
+            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,urlStr]];
+            [self.storyBoardView sd_setImageWithURL:imageUrl];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.storyBoardView removeFromSuperview];
+            });
+
+        }else{
+            [self.storyBoardView removeFromSuperview];
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        [self.storyBoardView removeFromSuperview];
+    }];
+}
+
+
+-(void)screenViewCreate{
+    self.storyBoardView.backgroundColor = [UIColor whiteColor];
+    [self.window addSubview:self.storyBoardView];
+    [self ScreenViewSource];
+}
+
+
+-(UIImageView *)storyBoardView{
+    if (!_storyBoardView) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
+        UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"LaunchScreen"];
+        UIImageView *screenImageView = [[UIImageView alloc]initWithFrame:vc.view.bounds];
+        [vc.view addSubview:screenImageView];
+        _storyBoardView = screenImageView;
+    }
+    return _storyBoardView;
+}
+
 
 
 

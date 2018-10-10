@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger,XinxiCellType) {
 @interface XinxiTableViewCell : UITableViewCell
 +(CGFloat)CellH;
 @property (nonatomic, strong) UILabel *cellTitleLabel;
-@property (nonatomic, strong) UILabel *cellContentLabel;
+@property (nonatomic, strong) UITextField *cellContentLabel;
 @property (nonatomic, strong) UIImageView *headerIcon;
 @property (nonatomic, strong) UIImageView *cellNewImageView;
 @property (nonatomic, assign) XinxiCellType type;

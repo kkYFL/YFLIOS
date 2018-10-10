@@ -94,17 +94,31 @@
 //        make.right.equalTo(rowImageView.mas_left).offset(-5);
 //        make.centerY.equalTo(self);
 //    }];
-    UILabel *cellContentLabel = [[UILabel alloc] init];
-    cellContentLabel.font = [UIFont systemFontOfSize:14.0f];
-    cellContentLabel.text = @"";
-    cellContentLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    cellContentLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:cellContentLabel];
-    self.cellContentLabel = cellContentLabel;
-    [cellContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    
+    
+    UITextField *cellTextfield = [[UITextField alloc]init];
+    //设置边框样式，只有设置了才会显示边框样式
+    cellTextfield.borderStyle = UITextBorderStyleNone;
+    //设置输入框内容的字体样式和大小
+    cellTextfield.font = [UIFont systemFontOfSize:14.0f];
+    //设置字体颜色
+    cellTextfield.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    //内容对齐方式
+    cellTextfield.textAlignment = NSTextAlignmentRight;
+    //设置键盘的样式
+    cellTextfield.keyboardType = UIKeyboardTypeDefault;
+    //return键变成什么键
+    cellTextfield.returnKeyType =UIReturnKeyDone;
+    self.cellContentLabel = cellTextfield;
+    [self.contentView addSubview:cellTextfield];
+    [self.cellContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(rowImageView.mas_left).offset(-5);
+        make.left.equalTo(self.cellTitleLabel.mas_right).offset(10.0f);
+        make.height.mas_equalTo(20);
         make.centerY.equalTo(self);
     }];
+
     
     
     UIView *bottonLine = [[UIView alloc]init];

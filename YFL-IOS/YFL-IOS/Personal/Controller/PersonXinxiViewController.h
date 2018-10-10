@@ -7,7 +7,8 @@
 //
 
 #import "EWTBaseViewController.h"
-
+@class UserMessage;
 @interface PersonXinxiViewController : EWTBaseViewController
+@property (nonatomic, strong) UserMessage *userModel;
 
 @end

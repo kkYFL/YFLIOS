@@ -145,6 +145,10 @@
     return headerView;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
@@ -191,7 +195,7 @@
 
 #pragma mark - 通知
 -(void)textfieldChangeContent:(NSNotification *)noti{
-    UITextField *currrentTextfield = (UITextField *)noti;
+    UITextField *currrentTextfield = (UITextField *)noti.object;
     if (currrentTextfield.tag == 100) {
         inputPass1 = currrentTextfield.text;
     }else if (currrentTextfield.tag == 101){
@@ -199,6 +203,11 @@
     }else if (currrentTextfield.tag == 102){
         inputPass3 = currrentTextfield.text;
     }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return YES;
 }
 
 

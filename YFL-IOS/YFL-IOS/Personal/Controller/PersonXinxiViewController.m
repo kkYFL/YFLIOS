@@ -11,12 +11,21 @@
 #import "EWTMediator+EWTImagePicker.h"
 #import "AppDelegate.h"
 #import "HanZhaoHua.h"
+#import "UserMessage.h"
 
 #define kMaxCount 1
 
 
-@interface PersonXinxiViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate
->
+@interface PersonXinxiViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIActionSheetDelegate
+>{
+    BOOL allowEdting;
+    
+    NSString *nameInputStr;
+    NSString *phoneInputStr;
+    NSString *renzhengInputStr;
+    NSString *mottoInputStr;
+    NSString *addressInputStr;
+}
 @property (nonatomic, strong) UITableView *table;
 /** 获取图片方式选择器 */
 @property (nonatomic, strong) UIActionSheet *getPhotosSheet;
@@ -24,6 +33,9 @@
 @property (nonatomic, strong) NSMutableArray *images;
 
 @property (nonatomic, strong) NSString *userServerPic;
+
+@property (nonatomic, strong) UIButton *righBtn;
+
 @end
 
 @implementation PersonXinxiViewController
@@ -32,6 +44,8 @@
     [super viewDidLoad];
     
     [self initView];
+    
+    [self initData];
     
     [self loadData];
 }
@@ -43,16 +57,21 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 30, 30);
-    [button setTitle:@"保存" forState:UIControlStateNormal];
+    [button setTitle:@"修改" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(rightButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    self.righBtn = button;
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = buttonItem;
     
     
     [self.view addSubview:self.table];
     
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textContentDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+}
 
+-(void)initData{
+    allowEdting = NO;
 }
 
 -(void)loadData{
@@ -116,12 +135,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XinxiTableViewCell *xinxiCell = [tableView dequeueReusableCellWithIdentifier:@"xinxiCell"];
+    xinxiCell.cellContentLabel.delegate = self;
+    
+    
     if (indexPath.section == 0) {
         xinxiCell.type = XinxiCellTypeWithIconAndRow;
-        xinxiCell.cellTitleLabel.text = @"用户头像";        
-        NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,APP_DELEGATE.userModel.headImg];
-        [xinxiCell.headerIcon sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
-        //    [self.iconImageView setImage:[UIImage imageNamed:@"exam_header"]];
+        xinxiCell.cellTitleLabel.text = @"用户头像";
+        
+        NSString *headimageUrl = @"";
+        if ([self.userModel.headImg hasPrefix:@"http"]) {
+            headimageUrl = self.userModel.headImg;
+        }else{
+            headimageUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,self.userModel.headImg];
+        }
+        [xinxiCell.headerIcon sd_setImageWithURL:[NSURL URLWithString:headimageUrl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
         
         
     }else if (indexPath.section == 1){
@@ -129,13 +156,19 @@
         NSString *contentStr = @"";
         if (indexPath.row ==0) {
             titleStr = @"用户名";
-            contentStr = APP_DELEGATE.userName;
+            contentStr = self.userModel.pmName;
+            xinxiCell.cellContentLabel.tag = 101;
         }else if (indexPath.row ==1){
             titleStr = @"手机号码";
-            contentStr = APP_DELEGATE.userModel.userName;
+            contentStr = self.userModel.userName;
+            xinxiCell.cellContentLabel.tag = 102;
         }else if (indexPath.row ==2){
             titleStr = @"实名认证";
-            contentStr = @"*架兔(**************5546)";
+            contentStr = self.userModel.pmIdcard;
+            xinxiCell.cellContentLabel.tag = 103;
+        }
+        if ([NSString isBlankString:contentStr]) {
+            contentStr = @"";
         }
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = titleStr;
@@ -143,11 +176,13 @@
     }else if (indexPath.section == 2){
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = @"我的座右铭";
-        xinxiCell.cellContentLabel.text = APP_DELEGATE.userModel.motto;
+        xinxiCell.cellContentLabel.tag = 104;
+        xinxiCell.cellContentLabel.text = [NSString isBlankString:self.userModel.motto]?@"":self.userModel.motto;
     }else if (indexPath.section == 3){
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = @"我的地址";
-        xinxiCell.cellContentLabel.text = APP_DELEGATE.userModel.pmAddress;
+        xinxiCell.cellContentLabel.text = [NSString isBlankString:self.userModel.pmAddress]?@"":self.userModel.pmAddress;
+        xinxiCell.cellContentLabel.tag = 105;
     }
     
     return xinxiCell;
@@ -185,6 +220,11 @@
     return headerView;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+
+
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
@@ -207,15 +247,14 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex)
     {
-            if (self.images.count) {
-                [self.images removeAllObjects];
-            }
-            
+
         case 0:  //打开照相机拍照
+            
             [self takePhotos];
             break;
             
         case 1:  //打开本地相册
+            
             [self getLocalPhotos];
             break;
     }
@@ -223,6 +262,10 @@
 
 -(void)takePhotos {
     __weak typeof(self) weakSelf = self;
+    
+    if (self.images.count) {
+        [self.images removeAllObjects];
+    }
     
     [EWTMediator EWTImagePicker_getImageFromCameraWithController:self authorityType:SystemAuthorityVideo allowCrop:NO completion:^(NSArray<UIImage *> *images) {
         UIImage* originalImg = [images firstObject];
@@ -237,6 +280,12 @@
             originalImg = [UIImage imageWithData:compressedImgData];
             // 将图片添加到数组中
             [weakSelf.images addObject:originalImg];
+            
+            
+            UIImage *imageOrigin = weakSelf.images[0];
+            UIImage *imageNew = [weakSelf imageWithOriginalImage:imageOrigin andScaledSize:CGSizeMake(60, 60)];
+            [self.images removeAllObjects];
+            [self.images addObject:imageNew];
         }
         
         [self uploadImageToServer];
@@ -246,15 +295,18 @@
 
 -(void)getLocalPhotos {
     __weak typeof(self) weakSelf = self;
+    
+    if (self.images.count) {
+        [self.images removeAllObjects];
+    }
+    
     [EWTMediator EWTImagePicker_getImageFromLibraryWithController:self maxNum:kMaxCount allowCrop:YES completion:^(NSArray<UIImage *> *images) {
         if (images && images.count > 0) {
             [weakSelf.images addObjectsFromArray:images];
-            if (weakSelf.images.count > kMaxCount) {
-                NSString* msg = [NSString stringWithFormat:@"最多添加%zd张照片",kMaxCount];
-                [[PromptBox sharedBox] showTextPromptBoxWithText:msg onView:weakSelf.view];
-                [weakSelf.images removeObjectsInRange:NSMakeRange(kMaxCount, (weakSelf.images.count - kMaxCount))];
-            }
-            
+            UIImage *imageOrigin = weakSelf.images[0];
+            UIImage *imageNew = [weakSelf imageWithOriginalImage:imageOrigin andScaledSize:CGSizeMake(60, 60)];
+            [self.images removeAllObjects];
+            [self.images addObject:imageNew];
             [self uploadImageToServer];
             //[weakSelf showImagesView];
         }
@@ -287,17 +339,47 @@
 
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
-    // 个人信息
-    // 测试结果: 通过
-        [HanZhaoHua changePersonalInformationWithUserId:APP_DELEGATE.userId headImg:@"" motto:@"hijjokplpoppkookokokehe" success:^(NSDictionary * _Nonnull responseObject) {
-            NSLog(@"%@", responseObject);
-            
-            [self.navigationController popViewControllerAnimated:YES];
-        } failure:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error);
-        }];
+    if (!allowEdting) {
+        [self.righBtn setTitle:@"保存" forState:UIControlStateNormal];
+        allowEdting = YES;
+        
+        NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:1];
+        XinxiTableViewCell *cell = [self.table cellForRowAtIndexPath:index];
+        if (cell) {
+            [cell.cellContentLabel becomeFirstResponder];
+        }
+        
+    }else{
+        [self.righBtn setTitle:@"修改" forState:UIControlStateNormal];
+        allowEdting = NO;
+        
+        [self savePersonSource];
+    }
 
 }
+
+-(void)savePersonSource{
+    if ([NSString isBlankString:mottoInputStr]) {
+        [MBProgressHUD toastMessage:@"请输入新的座右铭" ToView:self.view];
+        return;
+    }
+    
+    // 个人信息
+    // 测试结果: 通过
+    [HanZhaoHua changePersonalInformationWithUserId:APP_DELEGATE.userId headImg:@"" motto:mottoInputStr success:^(NSDictionary * _Nonnull responseObject) {
+        NSLog(@"%@", responseObject);
+        
+        [MBProgressHUD toastMessage:@"数据保存成功" ToView:self.view];
+        
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonViewSourceNoti" object:nil];
+
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        [MBProgressHUD toastMessage:@"数据保存失败" ToView:self.view];
+
+    }];
+}
+
 
 -(void)uploadImageToServer{
     // 文件上传
@@ -310,16 +392,48 @@
         
         [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
             [[PromptBox sharedBox] removeLoadingView];
-            APP_DELEGATE.userModel.headImg = imgUrl;
+            
+            [MBProgressHUD toastMessage:@"图片上传成功" ToView:self.view];
+
+            self.userModel.headImg = imgUrl;
             [self.table reloadData];
             
         } failure:^(NSError * _Nonnull error) {
             [[PromptBox sharedBox] removeLoadingView];
+            [MBProgressHUD toastMessage:@"图片上传失败" ToView:self.view];
         }];
     }
 
 }
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if (allowEdting) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.view endEditing:YES];
+    return YES;
+}
+
+-(void)textContentDidChange:(NSNotification *)noti{
+    UITextField *currentTextfield = (UITextField *)noti.object;
+    if (currentTextfield.tag == 101) {
+        nameInputStr = currentTextfield.text;
+    }else if (currentTextfield.tag == 102){
+        phoneInputStr = currentTextfield.text;
+    }else if (currentTextfield.tag == 103){
+        renzhengInputStr = currentTextfield.text;
+    }else if (currentTextfield.tag == 104){
+        mottoInputStr = currentTextfield.text;
+    }else if (currentTextfield.tag == 105){
+        addressInputStr = currentTextfield.text;
+    }
+}
 
 - (NSMutableArray *)images {
     if (!_images) {
@@ -331,7 +445,21 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
 
+-(UIImage *)imageWithOriginalImage:(UIImage *)originalImage andScaledSize:(CGSize)imageNewSize{
+    UIGraphicsBeginImageContext(imageNewSize);
+    [originalImage drawInRect:CGRectMake(0, 0, imageNewSize.width, imageNewSize.height)];
+    UIImage *imageNew = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageNew;
+}
+
+
+
+
+-(void)dealloc{
+       [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

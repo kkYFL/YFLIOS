@@ -96,20 +96,21 @@
         //
         NSString *dateStr = _historyModel.startTime;
         NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];//创建一个日期格式化器
-        dateFormatter.dateFormat=@"yyyy-mm-dd hh:mm:ss";//指定转date得日期格式化形式
+        dateFormatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";//指定转date得日期格式化形式
         NSDate *learDate = [dateFormatter dateFromString:dateStr];
-        dateFormatter.dateFormat=@"yyyy-MM-dd";//指定转date得日期格式化形式
+        dateFormatter.dateFormat=@"yyyy-MM-dd HH:mm";//指定转date得日期格式化形式
         NSString *dateNewStr = [dateFormatter stringFromDate:learDate];
         self.leftLabel.text = dateNewStr;
 
+        
 
         //
-        dateFormatter.dateFormat=@"yyyy-mm-dd hh:mm:ss";//指定转date得日期格式化形式
+        dateFormatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";//指定转date得日期格式化形式
         NSString *startTimeStr = _historyModel.startTime;
         NSString *startEndStr = _historyModel.endTime;
         NSDate *startDate = [dateFormatter dateFromString:startTimeStr];
         NSDate *endDate = [dateFormatter dateFromString:startEndStr];
-        dateFormatter.dateFormat=@"hh:mm";//指定转date得日期格式化形式
+        dateFormatter.dateFormat=@"HH:mm";//指定转date得日期格式化形式
         NSString *startNewsStr = [dateFormatter stringFromDate:startDate];
         NSString *endNewStr = [dateFormatter stringFromDate:endDate];
         self.midLabel.text = [NSString stringWithFormat:@"%@ - %@",startNewsStr,endNewStr];

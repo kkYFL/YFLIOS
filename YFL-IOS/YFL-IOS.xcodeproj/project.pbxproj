@@ -49,6 +49,9 @@
 		3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */; };
 		3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D97213C264D00363947 /* ICarouselViewController.m */; };
 		3A2E5D9B213C26FC00363947 /* EWTICarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D9A213C26FC00363947 /* EWTICarousel.m */; };
+		3A3A0432216E5520003D29F2 /* StoryboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3A0431216E5520003D29F2 /* StoryboardViewController.m */; };
+		3A3A0435216E6401003D29F2 /* PersonJifenListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3A0434216E6401003D29F2 /* PersonJifenListController.m */; };
+		3A3A0438216E653F003D29F2 /* JifenListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3A0437216E653F003D29F2 /* JifenListTableViewCell.m */; };
 		3A3AA578212C12A600FE8CC0 /* EWTLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */; };
 		3A3AA579212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3AA577212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.m */; };
 		3A3B4902213E399F000D8BF0 /* EWTiCarouselPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3B4901213E399F000D8BF0 /* EWTiCarouselPageControl.m */; };
@@ -243,6 +246,12 @@
 		3A2E5D99213C26FC00363947 /* EWTICarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EWTICarousel.h; sourceTree = "<group>"; };
 		3A2E5D9A213C26FC00363947 /* EWTICarousel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EWTICarousel.m; sourceTree = "<group>"; };
 		3A2E5D9E213D7C5A00363947 /* sss.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sss.jpg; sourceTree = "<group>"; };
+		3A3A0430216E5520003D29F2 /* StoryboardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoryboardViewController.h; sourceTree = "<group>"; };
+		3A3A0431216E5520003D29F2 /* StoryboardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoryboardViewController.m; sourceTree = "<group>"; };
+		3A3A0433216E6401003D29F2 /* PersonJifenListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonJifenListController.h; sourceTree = "<group>"; };
+		3A3A0434216E6401003D29F2 /* PersonJifenListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonJifenListController.m; sourceTree = "<group>"; };
+		3A3A0436216E653F003D29F2 /* JifenListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JifenListTableViewCell.h; sourceTree = "<group>"; };
+		3A3A0437216E653F003D29F2 /* JifenListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JifenListTableViewCell.m; sourceTree = "<group>"; };
 		3A3AA573212C12A600FE8CC0 /* EWTLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginView.h; sourceTree = "<group>"; };
 		3A3AA574212C12A600FE8CC0 /* EWTLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTLoginView.m; sourceTree = "<group>"; };
 		3A3AA576212C12A600FE8CC0 /* EWTLoginAndRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EWTLoginAndRegisterViewController.h; sourceTree = "<group>"; };
@@ -650,6 +659,8 @@
 				3A03CF2021569A7F00C49295 /* XinxiTableViewCell.m */,
 				3A03CF252156A72A00C49295 /* PersonPasswordInCell.h */,
 				3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */,
+				3A3A0436216E653F003D29F2 /* JifenListTableViewCell.h */,
+				3A3A0437216E653F003D29F2 /* JifenListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -794,6 +805,8 @@
 				3A2E5D9A213C26FC00363947 /* EWTICarousel.m */,
 				3A3B4900213E399F000D8BF0 /* EWTiCarouselPageControl.h */,
 				3A3B4901213E399F000D8BF0 /* EWTiCarouselPageControl.m */,
+				3A3A0430216E5520003D29F2 /* StoryboardViewController.h */,
+				3A3A0431216E5520003D29F2 /* StoryboardViewController.m */,
 			);
 			path = "YFL-IOS";
 			sourceTree = "<group>";
@@ -1091,6 +1104,8 @@
 				3A03CF1D2156977B00C49295 /* PersonXinxiViewController.m */,
 				3A03CF222156A5CB00C49295 /* PersonPassWordController.h */,
 				3A03CF232156A5CB00C49295 /* PersonPassWordController.m */,
+				3A3A0433216E6401003D29F2 /* PersonJifenListController.h */,
+				3A3A0434216E6401003D29F2 /* PersonJifenListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1227,7 +1242,6 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
-				693AD8068B5193A4BE6E37AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1285,21 +1299,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		693AD8068B5193A4BE6E37AC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9F10B425799630A608E22B9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1382,6 +1381,7 @@
 				3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */,
 				3A5C0F162144E46D00BB11FB /* ExamhomeViewController.m in Sources */,
 				3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */,
+				3A3A0432216E5520003D29F2 /* StoryboardViewController.m in Sources */,
 				3A5C0F2E214D6D4C00BB11FB /* NewsContentMaxImageViewCell.m in Sources */,
 				3A699B7420BA650C00F7BB60 /* ViewController.m in Sources */,
 				8923F5BE2156A08100CB98E4 /* TestRanking.m in Sources */,
@@ -1412,6 +1412,7 @@
 				3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */,
 				3A03CFAD2158C4E600C49295 /* Target_EWTImagePicker.m in Sources */,
 				3A5C0F132144DD8600BB11FB /* ExamWaitingTableViewCell.m in Sources */,
+				3A3A0435216E6401003D29F2 /* PersonJifenListController.m in Sources */,
 				3A03CFC62158C4E600C49295 /* EWTMediator+EWTImagePicker.m in Sources */,
 				3A5C0F2B214D6BF700BB11FB /* NewsdeliveryViewController.m in Sources */,
 				3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */,
@@ -1459,6 +1460,7 @@
 				3A5C0F28214D689A00BB11FB /* NewsBannerDetailViewController.m in Sources */,
 				3AC06C89216A99B800D4A61F /* CLInputToolbar.m in Sources */,
 				3AB19238216B84DE006C5666 /* RYPageControl.m in Sources */,
+				3A3A0438216E653F003D29F2 /* JifenListTableViewCell.m in Sources */,
 				8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
@@ -1646,7 +1648,6 @@
 			baseConfigurationReference = 5EB40DFF6E7AD059A22AC421 /* Pods-YFL-IOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;
@@ -1667,7 +1668,6 @@
 			baseConfigurationReference = D3BEF8B22C59C8A77C6F432D /* Pods-YFL-IOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KK5694975F;

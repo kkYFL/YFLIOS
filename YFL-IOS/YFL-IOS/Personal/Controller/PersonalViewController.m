@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 #import "MBProgressHUD+Toast.h"
 #import "SignMoel.h"
+#import "PersonJifenListController.h"
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *_filePath;//地址
@@ -58,6 +59,7 @@
     [self initRefresh];
     
     [self addObserver:self forKeyPath:@"serverCount" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(freshPersonViewSource:) name:@"RefreshPersonViewSourceNoti" object:nil];
 }
 
 -(void)initData{
@@ -270,8 +272,9 @@
                 [weakSelf.navigationController pushViewController:jifenVC animated:YES];
                 
             }else if (viewIndex == 2){
-
-                
+                PersonJifenListController *jifenListVC = [[PersonJifenListController alloc] init];
+                jifenListVC.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:jifenListVC animated:YES];
             }
         };
         return midCell;
@@ -311,6 +314,7 @@
     if (indexPath.row == 1) {
         PersonXinxiViewController *xinxiVC = [[PersonXinxiViewController alloc]init];
         xinxiVC.hidesBottomBarWhenPushed = YES;
+        xinxiVC.userModel = self.userModel;
         [self.navigationController pushViewController:xinxiVC animated:YES];
     }else if (indexPath.row == 2){
         PersonPassWordController *passVC = [[PersonPassWordController alloc]init];
@@ -553,6 +557,10 @@
     
 }
 
+-(void)freshPersonViewSource:(NSNotification *)noti{
+    [self refershHeader];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
@@ -560,6 +568,7 @@
 
 -(void)dealloc{
     [self removeObserver:self forKeyPath:@"serverCount"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

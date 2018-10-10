@@ -12,7 +12,7 @@
 
 #define contentH HEIGHT_SCALE*240
 
-@interface EducationAddOptionController ()<UITextViewDelegate>
+@interface EducationAddOptionController ()<UITextViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UILabel *contentTitle;
 @property (nonatomic, strong) UITextField *topicTextfield;
 @property (nonatomic, strong) UITextView *contentTextView;
@@ -86,6 +86,10 @@
         make.height.mas_equalTo(40.0f);
     }];
     
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewConentChange:) name:UITextViewTextDidChangeNotification object:nil];
+
+    
 }
 
 -(void)loadData{
@@ -157,6 +161,7 @@
         cellTextfield.keyboardType = UIKeyboardTypeDefault;
         //return键变成什么键
         cellTextfield.returnKeyType =UIReturnKeyDone;
+        cellTextfield.delegate = self;
         _topicTextfield = cellTextfield;
         [self.view addSubview:_topicTextfield];
     }
@@ -172,6 +177,7 @@
         textView.layer.borderColor = [UIColor colorWithHexString:@"#9C9C9C"].CGColor;
         [self.view addSubview:textView];
         textView.delegate = self;
+        textView.returnKeyType = UIReturnKeyDone;
         _contentTextView = textView;
         
         
@@ -180,7 +186,7 @@
         placeHolderView.text = @"您的宝贵意见，就是我们进步的源泉";
         placeHolderView.textColor = [UIColor colorWithHexString:@"#888888"];
         placeHolderView.textAlignment = NSTextAlignmentLeft;
-        [_contentTextView addSubview:placeHolderView];
+        [self.view addSubview:placeHolderView];
         self.placeHolderView = placeHolderView;
 
     }
@@ -254,8 +260,38 @@
     [self.view endEditing:YES];
 }
 
+#pragma mark - 通知
+-(void)textViewConentChange:(NSNotification *)noti{
+    UITextView *currentobj = (UITextView *)noti.object;
+    if (currentobj.text.length) {
+        self.placeHolderView.hidden = YES;
+    }else{
+        self.placeHolderView.hidden = NO;
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range
+ replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+       [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

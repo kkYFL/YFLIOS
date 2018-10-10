@@ -11,7 +11,9 @@
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
-@interface CLInputToolbar ()<UITextViewDelegate>
+@interface CLInputToolbar ()<UITextViewDelegate>{
+    CGFloat fatherViewH;
+}
 /**文本输入框*/
 @property (nonatomic, strong) UITextView *textView;
 /**边框*/
@@ -31,21 +33,23 @@
 /**发送回调*/
 @property (nonatomic, copy) inputTextBlock inputTextBlock;
 
+
 @end
 
 @implementation CLInputToolbar
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.frame = CGRectMake(0,CLscreenHeight, CLscreenWidth, 80);
+        self.frame = CGRectMake(0,frame.size.height, CLscreenWidth, 80);
+        fatherViewH = frame.size.height;
         [self initView];
         [self addNotification];
     }
     return self;
 }
 -(void)initView {
-    self.backgroundColor = [UIColor whiteColor];
     //顶部线条
+    self.backgroundColor = [UIColor whiteColor];
     self.topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.CLwidth, 0.5)];
     self.topLine.backgroundColor = [UIColor colorWithHexString:@"#9C9C9C"];
     [self addSubview:self.topLine];
@@ -147,15 +151,38 @@
     _keyboardHeight = keyboardFrame.size.height;
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
-        self.CLbottom = CLscreenHeight-_keyboardHeight-self.CLheight;
+        self.CLy = fatherViewH - _keyboardHeight- 80-NAVIGATION_BAR_HEIGHT;
     }];
+    
+    
+    /** 键盘完全弹出时间 */
+//    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] intValue];
+//
+//    /** 动画趋势 */
+//    int curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] intValue];
+//
+//    /** 动画执行完毕frame */
+//    CGRect keyboard_frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//
+//    /** 获取键盘y值 */
+//    CGFloat keyboard_y = keyboard_frame.origin.y;
+//
+//    /** view上平移的值 */
+//    CGFloat offset = SCREEN_HEIGHT - keyboard_y;
+//
+//    /** 执行动画  */
+//    [UIView animateWithDuration:duration animations:^{
+//
+//        [UIView setAnimationCurve:curve];
+//        self.transform = CGAffineTransformMakeTranslation(0, -offset);
+//    }];
 }
 
 
 - (void)keyboardWillHidden:(NSNotification *)notification {
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:duration animations:^{
-        self.CLy = CLscreenHeight;
+        self.CLy = fatherViewH;
     }];
 }
 
@@ -182,7 +209,7 @@
     //self.CLheight = ceil(textView.CLheight) + 10 + 10+20;
     
     //self.CLbottom = CLscreenHeight - _keyboardHeight-self.CLheight;
-    [textView scrollRangeToVisible:NSMakeRange(textView.selectedRange.location, 1)];
+    //[textView scrollRangeToVisible:NSMakeRange(textView.selectedRange.location, 1)];
 }
 
 // 发送按钮

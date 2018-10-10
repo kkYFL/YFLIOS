@@ -83,6 +83,17 @@
 
     
     
+//    UILabel *cellContentLabel = [[UILabel alloc] init];
+//    cellContentLabel.font = [UIFont systemFontOfSize:14.0f];
+//    cellContentLabel.text = @"";
+//    cellContentLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+//    cellContentLabel.textAlignment = NSTextAlignmentRight;
+//    [self.contentView addSubview:cellContentLabel];
+//    self.cellContentLabel = cellContentLabel;
+//    [cellContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(rowImageView.mas_left).offset(-5);
+//        make.centerY.equalTo(self);
+//    }];
     UILabel *cellContentLabel = [[UILabel alloc] init];
     cellContentLabel.font = [UIFont systemFontOfSize:14.0f];
     cellContentLabel.text = @"";

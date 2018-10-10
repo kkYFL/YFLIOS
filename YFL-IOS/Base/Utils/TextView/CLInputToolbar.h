@@ -19,6 +19,9 @@ typedef void(^inputTextBlock)(NSString *text);
 /**占位文字*/
 @property (nonatomic, copy) NSString *placeholder;
 
+@property (nonatomic, assign) CGFloat *fatherViewH;
+
+
 /**收回键盘*/
 -(void)bounceToolbar;
 /**弹出键盘*/

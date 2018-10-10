@@ -11,8 +11,12 @@
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 
-@interface PersonPassWordController ()<UITableViewDelegate,UITableViewDataSource
->
+@interface PersonPassWordController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource
+>{
+    NSString *inputPass1;
+    NSString *inputPass2;
+    NSString *inputPass3;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *footerView;
 
@@ -35,6 +39,8 @@
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction);
                                 
     [self.view addSubview:self.table];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textfieldChangeContent:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 -(void)loadData{
@@ -111,14 +117,18 @@
     NSString *placholder = @"";
     if (indexPath.section == 0) {
         placholder = @"请输入当前密码";
+        passwordCell.textfield.tag = 100;
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
+            passwordCell.textfield.tag = 101;
             placholder = @"请输入新密码";
         }else if (indexPath.row == 1){
+            passwordCell.textfield.tag = 102;
             placholder = @"请确认新密码";
         }
     }
     passwordCell.textfield.placeholder = placholder;
+    passwordCell.textfield.delegate = self;
    return passwordCell;
 }
 
@@ -179,6 +189,19 @@
     return _footerView;
 }
 
+#pragma mark - 通知
+-(void)textfieldChangeContent:(NSNotification *)noti{
+    UITextField *currrentTextfield = (UITextField *)noti;
+    if (currrentTextfield.tag == 100) {
+        inputPass1 = currrentTextfield.text;
+    }else if (currrentTextfield.tag == 101){
+        inputPass2 = currrentTextfield.text;
+    }else if (currrentTextfield.tag == 102){
+        inputPass3 = currrentTextfield.text;
+    }
+}
+
+
 #pragma mark - 无网络加载数据
 - (void)refreshNet{
     [self loadData];
@@ -191,17 +214,30 @@
 
 -(void)submitPassword:(UIButton *)sender{
     
+    if ([NSString isBlankString:inputPass1] || [NSString isBlankString:inputPass2] || [NSString isBlankString:inputPass3]) {
+        [MBProgressHUD toastMessage:@"请输入需要的信息" ToView:self.view];
+        return;
+    }
+    
+    if (![inputPass2 isEqualToString:inputPass3]) {
+        [MBProgressHUD toastMessage:@"2次输入的新密码不一致" ToView:self.view];
+        return;
+    }
+    
     // 修改密码
     // 测试结果: 通过
-        [HanZhaoHua changePasswordWithUserId:APP_DELEGATE.userId oldPwd:@"000000" password:@"123456" success:^(NSDictionary * _Nonnull responseObject) {
+        [HanZhaoHua changePasswordWithUserId:APP_DELEGATE.userId oldPwd:inputPass1 password:inputPass2 success:^(NSDictionary * _Nonnull responseObject) {
             NSLog(@"%@", responseObject);
             if ([[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] isEqualToString:@"2000"]) {
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"密码修改成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
+            }else{
+                [MBProgressHUD toastMessage:@"密码修改失败" ToView:self.view];
             }
             
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
+            [MBProgressHUD toastMessage:@"密码修改失败" ToView:self.view];
         }];
     
 }
@@ -213,6 +249,10 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

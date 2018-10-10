@@ -69,13 +69,13 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.table];
-    [self setTextViewToolbar];
 
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push" style:UIBarButtonItemStylePlain target:self action:@selector(pushNewVC)];
     [self.view addSubview:self.containerView];
     [self.containerView addSubview:self.playBtn];
+    [self setTextViewToolbar];
 
     
     ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
@@ -532,7 +532,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     [self.maskView addGestureRecognizer:tap];
     [self.view addSubview:self.maskView];
     self.maskView.hidden = YES;
-    self.inputToolbar = [[CLInputToolbar alloc] init];
+    self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
     self.inputToolbar.placeholder = @"请输入...";

@@ -10,11 +10,20 @@
 #import "EducationLearnDetailCell.h"
 #import "StudyNotes.h"
 #import "HanZhaoHua.h"
+#import "CLInputToolbar.h"
+#import "AppDelegate.h"
 
 @interface EducationLearnDetailController ()<UITableViewDelegate,UITableViewDataSource
->
+>{
+    NSInteger _pageIndex;
+    BOOL hasloadAll;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *commentListArr;
+
+@property (nonatomic, strong) CLInputToolbar *inputToolbar;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *footerView;
 @end
 
 @implementation EducationLearnDetailController
@@ -24,7 +33,7 @@
     
     [self initView];
     
-    [self loadData];
+    [self refershHeader];
 }
 
 -(void)initView{
@@ -35,50 +44,26 @@
     
     
     [self.view addSubview:self.table];
+    [self initRefresh];
+    [self.view addSubview:self.footerView];
+    [self setTextViewToolbar];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addZanAction:) name:@"xindeAddZanActionNoti" object:nil];
     
 }
 
+-(void)initData{
+    _pageIndex = 1;
+    self.commentListArr = [NSMutableArray array];
+    hasloadAll = NO;
+}
+
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
-    
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
     // 获取心得评论列表
     // 测试结果: 通过
-        [HanZhaoHua getNotesCommentListWithNotesId:self.model.notesId page:1 pageNum:10 success:^(NSArray * _Nonnull list) {
+        [HanZhaoHua getNotesCommentListWithNotesId:self.model.notesId page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull list) {
             for (PartyMemberThinking *model in list) {
                 NSLog(@"%@", model.pmName);
                 NSLog(@"%@", model.headImg);
@@ -87,14 +72,60 @@
                 NSLog(@"%@", model.createTime);
             }
             
-            self.commentListArr = [NSMutableArray arrayWithArray:list];
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_header endRefreshing];
+            if (list.count <10) {
+                [self.table.mj_footer endRefreshingWithNoMoreData];
+                hasloadAll = YES;
+            }else{
+                [self.table.mj_footer endRefreshing];
+            }
+            
+            if (_pageIndex == 1) {
+                self.commentListArr = [NSMutableArray arrayWithArray:list];
+            }else{
+                [self.commentListArr addObjectsFromArray:list];
+            }
+            
             
             [self.table reloadData];
             
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_footer endRefreshing];
+            [self.table.mj_header endRefreshing];
         }];
 }
+
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasloadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    [self loadData];
+}
+
+-(void)refershHeader{
+    [self initData];
+    
+    [self loadData];
+}
+
+
+
 
 
 #pragma mark - UITableView Delegate And Datasource
@@ -129,13 +160,6 @@
         return detailCell;
     }
     
-//    for (PartyMemberThinking *model in list) {
-//        NSLog(@"%@", model.pmName);
-//        NSLog(@"%@", model.headImg);
-//        NSLog(@"%@", model.ssDepartment);
-//        NSLog(@"%@", model.commentInfo);
-//        NSLog(@"%@", model.createTime);
-//    }
 
     EducationLearnDetailCell *detailCell = [tableView dequeueReusableCellWithIdentifier:@"detailCell"];
     if (self.commentListArr.count > indexPath.row) {
@@ -186,6 +210,10 @@
     
 }
 
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+
 -(UIView *)headerViewWithIcon:(NSString *)icon Title:(NSString *)title{
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = [UIColor whiteColor];
@@ -219,7 +247,7 @@
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT)];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-50)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -273,6 +301,113 @@
         NSLog(@"%@", error);
     }];
 }
+
+-(UIView *)footerView{
+    if (!_footerView) {
+        UIView *footerView = [[UIView alloc]init];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"#B2B2B2"];
+        [footerView setFrame:CGRectMake(0, self.view.bounds.size.height-EWTTabbar_SafeBottomMargin-50, SCREEN_WIDTH, 50)];
+        [self.view addSubview:footerView];
+        _footerView = footerView;
+        [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view).offset(0);
+            make.right.equalTo(self.view.mas_right).offset(0);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-EWTTabbar_SafeBottomMargin);
+            make.height.mas_equalTo(50.0f);
+        }];
+        
+        
+        UIImageView *footerTouch = [[UIImageView alloc]init];
+        [footerTouch setBackgroundColor:[UIColor whiteColor]];
+        [_footerView addSubview:footerTouch];
+        footerTouch.layer.masksToBounds = YES;
+        footerTouch.layer.cornerRadius = 15.0f;
+        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textInputAction:)];
+        footerTouch.userInteractionEnabled = YES;
+        [footerTouch addGestureRecognizer:tap1];
+        [footerTouch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_footerView).offset(15.0f);
+            make.top.equalTo(_footerView).offset(8.0f);
+            make.right.equalTo(_footerView.mas_right).offset(-8.0f);
+            make.bottom.equalTo(_footerView.mas_bottom).offset(-8.0f);
+        }];
+        
+        UILabel *remindLabel = [[UILabel alloc] init];
+        remindLabel.font = [UIFont systemFontOfSize:14.0f];
+        remindLabel.text = @"我的想法";
+        remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
+        remindLabel.textAlignment = NSTextAlignmentLeft;
+        [footerTouch addSubview:remindLabel];
+        [remindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(footerTouch).offset(18.0f);
+            make.centerY.equalTo(footerTouch);
+        }];
+    }
+    return _footerView;
+}
+
+
+-(void)setTextViewToolbar {
+    
+    self.maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(BlankTextViewtapActions:)];
+    [self.maskView addGestureRecognizer:tap];
+    [self.view addSubview:self.maskView];
+    self.maskView.hidden = YES;
+    self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
+    self.inputToolbar.textViewMaxLine = 1;
+    self.inputToolbar.fontSize = 13;
+    self.inputToolbar.placeholder = @"请输入...";
+    __weak __typeof(self) weakSelf = self;
+    [self.inputToolbar inputToolbarSendText:^(NSString *text) {
+        __typeof(&*weakSelf) strongSelf = weakSelf;
+        //[strongSelf.btn setTitle:text forState:UIControlStateNormal];
+        // 清空输入框文字
+        [strongSelf.inputToolbar bounceToolbar];
+        strongSelf.maskView.hidden = YES;
+        
+        [strongSelf addNotesCommentWithNotesID:self.model.notesId Comment:text];
+    }];
+    [self.maskView addSubview:self.inputToolbar];
+}
+
+
+-(void)textInputAction:(UITapGestureRecognizer *)tap{
+    self.maskView.hidden = NO;
+    [self.inputToolbar popToolbar];
+}
+
+-(void)BlankTextViewtapActions:(UITapGestureRecognizer *)tap {
+    [self.inputToolbar bounceToolbar];
+    self.maskView.hidden = YES;
+}
+
+
+-(void)addNotesCommentWithNotesID:(NSString *)notesId Comment:(NSString *)content{
+    // 心得评论
+    // 测试结果: 通过
+    [HanZhaoHua commentStudyNotesWithUserId:APP_DELEGATE.userId notesId:notesId commentInfo:content success:^(NSDictionary * _Nonnull responseObject) {
+        NSLog(@"%@", responseObject);
+        NSString *code = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]];
+        if ([code isEqualToString:@"2000"]) {
+            [MBProgressHUD toastMessage:@"发表评论成功" ToView:self.view];
+            
+            [self refershHeader];
+        }else{
+            [MBProgressHUD toastMessage:@"发表评论失败" ToView:self.view];
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+        [MBProgressHUD toastMessage:@"发表评论失败" ToView:self.view];
+    }];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

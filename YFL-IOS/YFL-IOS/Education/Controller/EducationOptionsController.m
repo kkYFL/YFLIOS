@@ -14,9 +14,12 @@
 #import "AppDelegate.h"
 
 @interface EducationOptionsController ()<UITableViewDelegate,UITableViewDataSource
->
+>{
+    NSInteger _pageIndex;
+    BOOL hasLoadAll;
+}
 @property (nonatomic, strong) UITableView *table;
-@property (nonatomic, strong) NSArray *feedbackArr;
+@property (nonatomic, strong) NSMutableArray *feedbackArr;
 @end
 
 @implementation EducationOptionsController
@@ -26,7 +29,7 @@
     
     [self initView];
     
-    [self loadData];
+    [self refershHeader];
 }
 
 -(void)initView{
@@ -37,52 +40,25 @@
     
     
     [self.view addSubview:self.table];
+    [self initRefresh];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList:) name:@"feedBackViewRfershList" object:nil];;
     
 }
 
+-(void)initData{
+    _pageIndex = 1;
+    hasLoadAll = NO;
+    self.feedbackArr = [NSMutableArray array];
+}
+
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
     
-    
-    
+
     // 获取意见反馈列表
     // 测试结果: 通过
-        [HanZhaoHua getSuggestionFeedbackWithPage:1 pageNum:10 success:^(NSArray * _Nonnull list) {
+        [HanZhaoHua getSuggestionFeedbackWithPage:_pageIndex pageNum:10 success:^(NSArray * _Nonnull list) {
             for (SuggestionFeedback *model in list) {
                 NSLog(@"%@", model.answerState);
                 NSLog(@"%@", model.createTime);
@@ -91,11 +67,28 @@
                 NSLog(@"%@", model.answer);
             }
             
-            self.feedbackArr = list;
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_header endRefreshing];
+            if (list.count < 10) {
+                [self.table.mj_footer endRefreshingWithNoMoreData];
+                hasLoadAll = YES;
+            }else{
+                [self.table.mj_footer endRefreshing];
+            }
+            
+            if (_pageIndex == 1) {
+                self.feedbackArr = [NSMutableArray arrayWithArray:list];
+            }else{
+                [self.feedbackArr addObjectsFromArray:list];
+            }
+            
             
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
+            [[PromptBox sharedBox] removeLoadingView];
+            [self.table.mj_footer endRefreshing];
+            [self.table.mj_header endRefreshing];
         }];
     
 
@@ -151,6 +144,34 @@
     }
     return _table;
 }
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasLoadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    [self loadData];
+}
+
+-(void)refershHeader{
+    [self initData];
+    
+    [self loadData];
+}
+
+
+
 
 
 #pragma mark - 无网络加载数据

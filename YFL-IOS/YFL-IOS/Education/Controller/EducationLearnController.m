@@ -11,7 +11,8 @@
 #import "EducationLearnDetailController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
-
+#import "CLInputToolbar.h"
+#import "MBProgressHUD+Toast.h"
 
 #define pageMenueH 44.0
 
@@ -28,6 +29,10 @@
 @property (nonatomic, strong) UIView *tracker;
 
 @property (nonatomic, strong) NSMutableArray *studyNotesArr;
+
+@property (nonatomic, strong) CLInputToolbar *inputToolbar;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *footerView;
 
 @end
 
@@ -56,46 +61,11 @@
     [self.view addSubview:self.itemsView];
     
     [self.view addSubview:self.table];
-    
+    [self.view addSubview:self.footerView];
+    [self setTextViewToolbar];
 }
 
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
-    
-    
     
     // 获取学习心得列表
     // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
@@ -118,29 +88,23 @@
         
     }];
 
-    
-    
-
-    
-    // 心得评论
-    // 测试结果: 通过
-    //    [HanZhaoHua commentStudyNotesWithUserId:userId notesId:@"1" commentInfo:@"测试" success:^(NSDictionary * _Nonnull responseObject) {
-    //        NSLog(@"%@", responseObject);
-    //    } failure:^(NSError * _Nonnull error) {
-    //        NSLog(@"%@", error);
-    //    }];
-    
-    
 
 }
+
+
 
 -(void)addCommentxinDeSourceWithContent:(NSString *)content{
     // 学习心得
     // 测试结果: 通过
         [HanZhaoHua submitStudyNotesWithUserId:APP_DELEGATE.userId taskId:nil learnContent:content success:^(NSDictionary * _Nonnull responseObject) {
+            [MBProgressHUD toastMessage:@"发表心得成功" ToView:self.view];
+
             NSLog(@"%@", responseObject);
+        
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
+            [MBProgressHUD toastMessage:@"发表心得失败" ToView:self.view];
+
         }];
 }
 
@@ -187,6 +151,10 @@
         detailVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailVC animated:YES];
     }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - 懒加载
@@ -324,11 +292,94 @@
     //[self addCommentxinDeSourceWithContent:@"自觉性是指个体自觉自愿地执行或自主自愿地追求整体长远目标任务的程度。就其产生过程来讲，个体的自觉性是在信念基础上"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+-(UIView *)footerView{
+    if (!_footerView) {
+        UIView *footerView = [[UIView alloc]init];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"#B2B2B2"];
+        [footerView setFrame:CGRectMake(0, self.view.bounds.size.height-EWTTabbar_SafeBottomMargin-50, SCREEN_WIDTH, 50)];
+        [self.view addSubview:footerView];
+        _footerView = footerView;
+        [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view).offset(0);
+            make.right.equalTo(self.view.mas_right).offset(0);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-EWTTabbar_SafeBottomMargin);
+            make.height.mas_equalTo(50.0f);
+        }];
+        
+        
+        UIImageView *footerTouch = [[UIImageView alloc]init];
+        [footerTouch setBackgroundColor:[UIColor whiteColor]];
+        [_footerView addSubview:footerTouch];
+        footerTouch.layer.masksToBounds = YES;
+        footerTouch.layer.cornerRadius = 15.0f;
+        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(textInputAction:)];
+        footerTouch.userInteractionEnabled = YES;
+        [footerTouch addGestureRecognizer:tap1];
+        [footerTouch mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_footerView).offset(15.0f);
+            make.top.equalTo(_footerView).offset(8.0f);
+            make.right.equalTo(_footerView.mas_right).offset(-8.0f);
+            make.bottom.equalTo(_footerView.mas_bottom).offset(-8.0f);
+        }];
+        
+        UILabel *remindLabel = [[UILabel alloc] init];
+        remindLabel.font = [UIFont systemFontOfSize:14.0f];
+        remindLabel.text = @"我的想法";
+        remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
+        remindLabel.textAlignment = NSTextAlignmentLeft;
+        [footerTouch addSubview:remindLabel];
+        [remindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(footerTouch).offset(18.0f);
+            make.centerY.equalTo(footerTouch);
+        }];
+    }
+    return _footerView;
 }
 
 
+-(void)setTextViewToolbar {
+    
+    self.maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(BlankTextViewtapActions:)];
+    [self.maskView addGestureRecognizer:tap];
+    [self.view addSubview:self.maskView];
+    self.maskView.hidden = YES;
+    self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
+    self.inputToolbar.textViewMaxLine = 1;
+    self.inputToolbar.fontSize = 13;
+    self.inputToolbar.placeholder = @"请输入...";
+    __weak __typeof(self) weakSelf = self;
+    [self.inputToolbar inputToolbarSendText:^(NSString *text) {
+        __typeof(&*weakSelf) strongSelf = weakSelf;
+        //[strongSelf.btn setTitle:text forState:UIControlStateNormal];
+        // 清空输入框文字
+        [strongSelf.inputToolbar bounceToolbar];
+        strongSelf.maskView.hidden = YES;
+        
+        [strongSelf addCommentxinDeSourceWithContent:text];
+    }];
+    [self.maskView addSubview:self.inputToolbar];
+}
+
+-(void)textInputAction:(UITapGestureRecognizer *)tap{
+    self.maskView.hidden = NO;
+    [self.inputToolbar popToolbar];
+}
+
+-(void)BlankTextViewtapActions:(UITapGestureRecognizer *)tap {
+    [self.inputToolbar bounceToolbar];
+    self.maskView.hidden = YES;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
 
 
 @end

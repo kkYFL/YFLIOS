@@ -135,7 +135,9 @@
     [backView addSubview:iconImageView];
     self.iconImageView = iconImageView;
     [iconImageView setContentMode:UIViewContentModeScaleToFill];
-    [iconImageView setImage:[UIImage imageNamed:@"huo"]];
+    iconImageView.layer.masksToBounds = YES;
+    iconImageView.layer.cornerRadius = 25.0f;
+    
     //
 //    <#name#>.layer.masksToBounds = YES;
 //    <#name#>.layer.cornerRadius = <#cornerRadius#>;

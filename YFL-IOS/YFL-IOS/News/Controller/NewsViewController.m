@@ -107,7 +107,7 @@
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
     // 测试结果: 通过
-        [HanZhaoHua getInformationBannerWithUserToken:APP_DELEGATE.userToken positionType:@"MPOS_4" success:^(NSArray * _Nonnull bannerList) {
+        [HanZhaoHua getInformationBannerWithUserToken:APP_DELEGATE.userToken positionType:@"MPOS_1" success:^(NSArray * _Nonnull bannerList) {
             for (Banner *model in bannerList) {
                 NSLog(@"%@", model.imgUrl);
                 NSLog(@"%@", model.positionNo);
@@ -126,7 +126,7 @@
     // 小喇叭接口   positionType:@"SPOS_2"
     // 教育视频接口  positionType:@"SPOS_3"
     // 测试结果: 通过
-        [HanZhaoHua getInformationMessageWithUserToken:APP_DELEGATE.userToken positionType:@"SPOS_3" success:^(Banner * _Nonnull message) {
+        [HanZhaoHua getInformationMessageWithUserToken:APP_DELEGATE.userToken positionType:@"SPOS_2" success:^(Banner * _Nonnull message) {
             NSLog(@"%@", message.imgUrl);
             NSLog(@"%@", message.positionNo);
             NSLog(@"%@", message.summary);
@@ -288,7 +288,7 @@
             if ([menuModel.imgUrl hasPrefix:@"http"]) {
                 [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
             }else{
-                [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+                [itemCell.item1.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,menuModel.imgUrl]] placeholderImage:nil];
             }
 
         }
@@ -299,7 +299,7 @@
             if ([menuModel.imgUrl hasPrefix:@"http"]) {
                 [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
             }else{
-                [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+                [itemCell.item2.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,menuModel.imgUrl]] placeholderImage:nil];
             }
         }
         
@@ -311,7 +311,7 @@
             if ([menuModel.imgUrl hasPrefix:@"http"]) {
                 [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
             }else{
-                [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+                [itemCell.item3.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,menuModel.imgUrl]] placeholderImage:nil];
             }
         }
         if (self.menuList.count >= 4) {
@@ -321,7 +321,7 @@
             if ([menuModel.imgUrl hasPrefix:@"http"]) {
                 [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:menuModel.imgUrl] placeholderImage:nil];
             }else{
-                [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,menuModel.imgUrl]] placeholderImage:nil];
+                [itemCell.item4.iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,menuModel.imgUrl]] placeholderImage:nil];
             }
         }
             
@@ -338,8 +338,8 @@
         if ([newsModel.infoType integerValue] == 1) {
             NewsRightIConTableCell *rightIconCell = [tableView dequeueReusableCellWithIdentifier:@"rightIconCell"];
             rightIconCell.cellTitleLabel.text = newsModel.title;
-            NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
-            [rightIconCell.cellImageView setImage:[UIImage imageNamed:imageurl]];
+            NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsModel.imgUrl];
+            [rightIconCell.cellImageView sd_setImageWithURL:[NSURL URLWithString:imageurl]];
             return rightIconCell;
         }
         
@@ -356,8 +356,9 @@
         __weak typeof(self) weakSelf = self;
         NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
         MaxImageCell.content = newsModel.title;
-        NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
-        [MaxImageCell.iconImageView setImage:[UIImage imageNamed:imageurl]];
+        NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsModel.imgUrl];
+    
+        [MaxImageCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageurl]];
         return MaxImageCell;
         
     }
@@ -395,20 +396,20 @@
         //文字加图片
         if ([newsModel.infoType integerValue] == 1) {
             NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
-            detailVc.infoId = newsModel.ID;
+            detailVc.newsModel = newsModel;
             detailVc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:detailVc animated:YES];
         //文本
         }else if ([newsModel.infoType integerValue] == 2){
             NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
-            detailVc.infoId = newsModel.ID;
+            detailVc.newsModel = newsModel;
             detailVc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:detailVc animated:YES];
         //视频
         }else if ([newsModel.infoType integerValue] == 3){
             NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
             videoVC.hidesBottomBarWhenPushed = YES;
-            videoVC.infoId = newsModel.ID;
+            videoVC.newsModel = newsModel;
             [self.navigationController pushViewController:videoVC animated:YES];
         }
         
@@ -462,9 +463,9 @@
     NSMutableArray* images = [NSMutableArray array];
     for (NSInteger i = 0; i<self.bannerList.count; i++) {
         Banner *bannerModel = self.bannerList[i];
-        NSString *str = [NSString stringWithFormat:@"http://47.100.247.71/protal%@",bannerModel.imgUrl];
-        NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [images addObject:urlStr];
+        NSString *str = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl];
+        //NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [images addObject:str];
     }
        _scrollView.imageURLStringsGroup = images;
 }
@@ -553,7 +554,7 @@
         
         [self setContentData:nil];
         [self.table reloadData];
-        self.remindScrollHeader.contentStr = self.remindModel.summary.length?self.remindModel.summary:@"河南县党建项目已成功上线，请大家踊跃学习";
+        self.remindScrollHeader.contentStr = self.remindModel.positionName.length?self.remindModel.positionName:@"河南县党建项目已成功上线，请大家踊跃学习";
     }
     
 }

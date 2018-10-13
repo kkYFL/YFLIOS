@@ -179,7 +179,7 @@
  @property (nonatomic, strong) UILabel *timeLabel;*/
         
         
-        [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_learnModel.taskThumb]]];
+        [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_learnModel.taskThumb]]];
         [self.timeLabel setText:_learnModel.taskTitle];
         self.seeNum.text = [NSString stringWithFormat:@"%@条",_learnModel.nowNum];
         self.timeLabel.text = [NSString stringWithFormat:@"%@学时",_learnModel.learnTime];

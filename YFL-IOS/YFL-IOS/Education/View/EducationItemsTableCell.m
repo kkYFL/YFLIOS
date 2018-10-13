@@ -137,16 +137,16 @@
             Banner *bannerModel = _dataArr[i];
             if (i == 0) {
                 self.item1.titleLabel.text = bannerModel.positionName;
-                [self.item1.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item1.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
             }else if (i ==1){
                 self.item2.titleLabel.text = bannerModel.positionName;
-                [self.item2.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item2.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
             }else if (i == 2){
                 self.item3.titleLabel.text = bannerModel.positionName;
-                [self.item3.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item3.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
             }else if (i == 3){
                 self.item4.titleLabel.text = bannerModel.positionName;
-                [self.item4.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item4.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
             }
         }
     }

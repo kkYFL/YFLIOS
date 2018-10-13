@@ -205,7 +205,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         if ([_videoModel.imgUrl hasPrefix:@"http"]) {
             [self.backImageView sd_setImageWithURL:[NSURL URLWithString:_videoModel.imgUrl]];
         }else{
-            [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_videoModel.imgUrl]]];
+            [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_videoModel.imgUrl]]];
         }
     }
 }

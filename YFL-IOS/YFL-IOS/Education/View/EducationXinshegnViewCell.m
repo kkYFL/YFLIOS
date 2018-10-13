@@ -132,7 +132,7 @@
         //        NSLog(@"%@", model.createTime);
         //    }
         
-        [self.cellIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_thindModel.headImg]]];
+        [self.cellIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_thindModel.headImg]]];
         self.cellTitle.text = _thindModel.pmName;
         self.addressLabel.text = _thindModel.ssDepartment;
         self.cellContent.text = _thindModel.commentInfo;

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *taskId;
 @property (nonatomic, strong) NSString *host;
+@property (nonatomic, strong) NSString *sourceHost;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) UserMessage *userModel;
 @property (nonatomic, strong) NSString *password;

@@ -33,6 +33,7 @@
      self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
      self.taskId = @"1";
      self.host = @"http://47.100.247.71/protal";
+     self.sourceHost = @"http://47.100.247.71/img";
      self.userName = @"15606811521";
      self.password = @"123456";
     
@@ -222,7 +223,7 @@
         if (arr && [arr isKindOfClass:[NSArray class]] && arr.count) {
             NSDictionary *tmpDic = arr[0];
             NSString *urlStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"imgUrl"]];
-            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,urlStr]];
+            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
             [self.storyBoardView sd_setImageWithURL:imageUrl];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

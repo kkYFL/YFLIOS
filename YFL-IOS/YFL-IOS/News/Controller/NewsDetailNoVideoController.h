@@ -7,8 +7,8 @@
 //
 
 #import "EWTBaseViewController.h"
-
+@class NewsMessage;
 @interface NewsDetailNoVideoController : EWTBaseViewController
 //新闻id
-@property(nonatomic, copy) NSString *infoId;
+@property (nonatomic, strong) NewsMessage *newsModel;
 @end

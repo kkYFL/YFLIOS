@@ -146,7 +146,7 @@
         if ([self.userModel.headImg hasPrefix:@"http"]) {
             headimageUrl = self.userModel.headImg;
         }else{
-            headimageUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,self.userModel.headImg];
+            headimageUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.userModel.headImg];
         }
         [xinxiCell.headerIcon sd_setImageWithURL:[NSURL URLWithString:headimageUrl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
         

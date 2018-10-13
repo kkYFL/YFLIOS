@@ -14,6 +14,7 @@
 #import <ZFPlayer/ZFPlayerControlView.h>
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "NewsMessage.h"
 
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
@@ -31,7 +32,10 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 
 @property (nonatomic, strong) NewsDetail *newsDetail;
+@property (nonatomic, strong) NSString *corverImageUrl;
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UILabel *videoTitleLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 
 @end
 
@@ -50,9 +54,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
-    
-    
-   // [self.view addSubview:self.table];
+    if ([self.newsModel.imgUrl hasPrefix:@"http"]) {
+        self.corverImageUrl = self.newsModel.imgUrl;
+    }else{
+        self.corverImageUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.newsModel.imgUrl];
+    }
+    [self.backImageView sd_setImageWithURL:[NSURL URLWithString:self.corverImageUrl]];
     
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -90,22 +97,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         //        }
     };
     
-//    self.assetURLs = @[[NSURL URLWithString:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"http://flv3.bn.netease.com/tvmrepo/2018/6/H/9/EDJTRBEH9/SD/EDJTRBEH9-mobile.mp4"],
-//                       [NSURL URLWithString:@"http://flv3.bn.netease.com/tvmrepo/2018/6/9/R/EDJTRAD9R/SD/EDJTRAD9R-mobile.mp4"],
-//                       [NSURL URLWithString:@"http://dlhls.cdn.zhanqi.tv/zqlive/34338_PVMT5.m3u8"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-video/7_517c8948b166655ad5cfb563cc7fbd8e.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/68_20df3a646ab5357464cd819ea987763a.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/118_570ed13707b2ccee1057099185b115bf.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/15_ad895ac5fb21e5e7655556abee3775f8.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/12_cc75b3fb04b8a23546d62e3f56619e85.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/5_6d3243c354755b781f6cc80f60756ee5.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-movideo/11233547_ac127ce9e993877dce0eebceaa04d6c2_593d93a619b0.mp4"]];
-//
-//    self.player.assetURLs = self.assetURLs;
+
     
 }
 
@@ -113,7 +105,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     // 新闻详情接口
     // 测试结果: 未通过, 未提供测试数据, 无法测试
-        [HanZhaoHua getNewsDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId infoId:@"" informationId:self.infoId success:^(NewsDetail * _Nonnull newsDetail) {
+        [HanZhaoHua getNewsDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId infoId:@"" informationId:self.newsModel.ID success:^(NewsDetail * _Nonnull newsDetail) {
             self.newsDetail = newsDetail;
 
             
@@ -125,23 +117,29 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
             NSLog(@"%@", newsDetail.foreignType);
             NSLog(@"%@", newsDetail.positionNo);
             
-            if ([NSString isBlankString:newsDetail.videoUrl]) {
+            if ([NSString isBlankString:newsDetail.vedioUrl]) {
                 self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4"]];
             }else{
-                if ([newsDetail.videoUrl hasPrefix:@"http"]) {
-                    self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:newsDetail.videoUrl]];
+                if ([newsDetail.vedioUrl hasPrefix:@"http"]) {
+                    self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:newsDetail.vedioUrl]];
                 }else{
-                    self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsDetail.videoUrl]]];
+                    self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsDetail.vedioUrl]]];
                 }
             }
             
-            if ([newsDetail.imgUrl hasPrefix:@"http"]) {
-                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:newsDetail.imgUrl]];
-            }else{
-                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsDetail.imgUrl]]];
-            }
+//            if ([newsDetail.imgUrl hasPrefix:@"http"]) {
+//                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:newsDetail.imgUrl]];
+//            }else{
+//                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsDetail.imgUrl]]];
+//            }
+            
             self.player.assetURLs = self.assetURLs;
-            [self.webView loadHTMLString:self.newsDetail.info baseURL:nil];
+            //[self.webView loadHTMLString:self.newsDetail.info baseURL:nil];
+            
+            self.videoTitleLabel.hidden = NO;
+            [self.videoTitleLabel setText:[NSString stringWithFormat:@"%@",self.newsModel.title]];
+            self.timeLabel.hidden = NO;
+            [self.timeLabel setText:[NSString stringWithFormat:@"%@  %@",self.newsModel.createTime,self.newsModel.sourceFrom]];
 
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -275,6 +273,19 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
                 make.left.right.bottom.equalTo(self.view);
             }];
     
+    [self.videoTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15.0f);
+        make.top.equalTo(self.containerView.mas_bottom).offset(12.0f);
+        make.right.equalTo(self.view.mas_right).offset(-15.0f);
+    }];
+    
+    
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15.0f);
+        make.top.equalTo(self.videoTitleLabel.mas_bottom).offset(10.0f);
+        make.right.equalTo(self.view.mas_right).offset(-15.0f);
+    }];
+    
 }
 
 
@@ -286,14 +297,14 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     }
     
     [self.player playTheIndex:0];
-    [self.controlView showTitle:@"" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
+    [self.controlView showTitle:@"" coverURLString:self.newsModel.userPic fullScreenMode:ZFFullScreenModeLandscape];
 }
 
 - (void)nextClick:(UIButton *)sender {
     [self.player playTheNext];
     if (!self.player.isLastAssetURL) {
         NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
-        [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
+        [self.controlView showTitle:title coverURLString:self.corverImageUrl fullScreenMode:ZFFullScreenModeLandscape];
     } else {
         NSLog(@"最后一个视频了");
     }
@@ -371,7 +382,6 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 }
 
 
-
 #pragma mark - 无网络加载数据
 - (void)refreshNet{
     [self loadData];
@@ -412,6 +422,39 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         _backImageView.userInteractionEnabled = YES;
     }
     return _backImageView;
+}
+
+
+-(UILabel *)videoTitleLabel{
+    if (!_videoTitleLabel) {
+        UILabel *videoTitleLabel = [[UILabel alloc] init];
+        videoTitleLabel.font = [UIFont systemFontOfSize:17.0f];
+        videoTitleLabel.text = @"";
+        videoTitleLabel.textColor = [UIColor colorWithHexString:@"#000000"];
+        videoTitleLabel.textAlignment = NSTextAlignmentLeft;
+        videoTitleLabel.numberOfLines = 0;
+        videoTitleLabel.hidden = YES;
+        [self.view addSubview:videoTitleLabel];
+        _videoTitleLabel = videoTitleLabel;
+        return _videoTitleLabel;
+    }
+    return _videoTitleLabel;
+}
+
+
+-(UILabel *)timeLabel{
+    if (!_timeLabel) {
+        UILabel *timeLabel = [[UILabel alloc] init];
+        timeLabel.font = [UIFont systemFontOfSize:14.0f];
+        timeLabel.text = @"";
+        timeLabel.textColor = [UIColor colorWithHexString:@"#000000"];
+        timeLabel.textAlignment = NSTextAlignmentLeft;
+        timeLabel.hidden = YES;
+        [self.view addSubview:timeLabel];
+        _timeLabel = timeLabel;
+        return _timeLabel;
+    }
+    return _timeLabel;
 }
 
 

@@ -230,20 +230,20 @@
     //文字加图片
     if ([newsModel.infoType integerValue] == 1) {
         NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
-        detailVc.infoId = newsModel.ID;
+        detailVc.newsModel = newsModel;
         detailVc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailVc animated:YES];
         //文本
     }else if ([newsModel.infoType integerValue] == 2){
         NewsDetailNoVideoController *detailVc = [[NewsDetailNoVideoController alloc] init];
-        detailVc.infoId = newsModel.ID;
+        detailVc.newsModel = newsModel;
         detailVc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:detailVc animated:YES];
         //视频
     }else if ([newsModel.infoType integerValue] == 3){
         NewsVideoDetailViewController *videoVC = [[NewsVideoDetailViewController alloc]init];
         videoVC.hidesBottomBarWhenPushed = YES;
-        videoVC.infoId = newsModel.ID;
+        videoVC.newsModel = newsModel;
         [self.navigationController pushViewController:videoVC animated:YES];
     }
 }

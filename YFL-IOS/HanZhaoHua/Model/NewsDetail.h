@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //视频url
-@property (nonatomic, copy) NSString *videoUrl;
+@property (nonatomic, copy) NSString *vedioUrl;
 //title
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *sourceFrom;

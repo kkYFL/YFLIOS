@@ -345,7 +345,7 @@
 }
 
 -(void)refreshViewWithData{
-    NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,self.userModel.headImg];
+    NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.userModel.headImg];
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
     [self.nameLabel setText:self.userModel.pmName];
     [self.descibeLabel setText:self.userModel.motto];

@@ -15,7 +15,6 @@
 #import <ZFPlayer/ZFPlayerControlView.h>
 #import "AppDelegate.h"
 
-static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
 @interface EducationHeadTableCell ()
 //@property (nonatomic, strong) UIImageView *topImageView;
@@ -79,54 +78,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         //            [self.player stop];
         //        }
     };
-//    self.assetURLs = @[[NSURL URLWithString:@"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4"],
-//                       [NSURL URLWithString:@"http://flv3.bn.netease.com/tvmrepo/2018/6/H/9/EDJTRBEH9/SD/EDJTRBEH9-mobile.mp4"],
-//                       [NSURL URLWithString:@"http://flv3.bn.netease.com/tvmrepo/2018/6/9/R/EDJTRAD9R/SD/EDJTRAD9R-mobile.mp4"],
-//                       [NSURL URLWithString:@"http://dlhls.cdn.zhanqi.tv/zqlive/34338_PVMT5.m3u8"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-video/7_517c8948b166655ad5cfb563cc7fbd8e.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/68_20df3a646ab5357464cd819ea987763a.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/118_570ed13707b2ccee1057099185b115bf.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/15_ad895ac5fb21e5e7655556abee3775f8.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/12_cc75b3fb04b8a23546d62e3f56619e85.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/5_6d3243c354755b781f6cc80f60756ee5.mp4"],
-//                       [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-movideo/11233547_ac127ce9e993877dce0eebceaa04d6c2_593d93a619b0.mp4"]];
-    
-    //self.player.assetURLs = self.assetURLs;
-    
-    
-    
-    
-    
-    
-//    UIImageView *topImageView = [[UIImageView alloc]init];
-//    [topImageView setBackgroundColor:[UIColor whiteColor]];
-//    [self.contentView addSubview:topImageView];
-//    self.topImageView = topImageView;
-//    [topImageView setContentMode:UIViewContentModeScaleToFill];
-//    [topImageView setImage:[UIImage imageNamed:@"login-bg"]];
-//    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-//    topImageView.userInteractionEnabled = YES;
-//    [topImageView addGestureRecognizer:tap1];
-//
-//    [topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.top.right.equalTo(self).offset(0);
-//        make.height.mas_equalTo(topImageViewH);
-//    }];
-    
-    
-    
-//    UIImageView *iconImageView = [[UIImageView alloc]init];
-//    [self.containerView addSubview:iconImageView];
-//    [iconImageView setContentMode:UIViewContentModeScaleToFill];
-//    [iconImageView setImage:[UIImage imageNamed:@"Education_play"]];
-//    [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.containerView);
-//        make.centerY.equalTo(self.containerView);
-//        make.width.height.mas_equalTo(40);
-//    }];
+
     
 
     [self.playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -191,7 +143,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
                 self.assetURLs = [NSArray arrayWithObjects:[NSURL URLWithString:_videoModel.foreignUrl], nil];
                 self.player.assetURLs = self.assetURLs;
             }else{
-                self.assetURLs = [NSArray arrayWithObjects:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,_videoModel.foreignUrl]], nil];
+                self.assetURLs = [NSArray arrayWithObjects:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_videoModel.foreignUrl]], nil];
                 self.player.assetURLs = self.assetURLs;
             }
             
@@ -225,7 +177,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         return;
     }
     [self.player playTheIndex:0];
-    [self.controlView showTitle:@"" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
+    NSString *coverImageStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.videoModel.imgUrl];
+    [self.controlView showTitle:@"" coverURLString:coverImageStr fullScreenMode:ZFFullScreenModeLandscape];
 }
 
 - (UIView *)containerView {

@@ -18,6 +18,7 @@
 #import "MBProgressHUD+Toast.h"
 #import "SignMoel.h"
 #import "PersonJifenListController.h"
+#import "MBProgressHUD+Toast.h"
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *_filePath;//地址
@@ -88,7 +89,6 @@
 
     /**
      个人中心—用户信息查询接口
-     
      */
     NSMutableDictionary  *para = [NSMutableDictionary dictionary];
     [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
@@ -519,7 +519,22 @@
 
 //退出登录
 -(void)signOutAction:(UIButton *)sender{
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+}
+
+-(void)MYSignOutSerVer{
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+
+    NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
+    [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [HanZhaoHua MYLogOutWithParaDic:paraDic success:^(NSDictionary * _Nonnull responseObject) {
+        [[PromptBox sharedBox] removeLoadingView];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+    } failure:^(NSError * _Nonnull error) {
+        [[PromptBox sharedBox] removeLoadingView];
+        
+        [MBProgressHUD toastMessage:@"退出失败" ToView:self.view];
+    }];
 }
 
 -(void)sign:(UIButton *)sender{

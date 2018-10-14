@@ -179,8 +179,8 @@
     if ([newsModel.infoType integerValue] == 1) {
         NewsRightIConTableCell *rightIconCell = [tableView dequeueReusableCellWithIdentifier:@"rightIconCell"];
         rightIconCell.cellTitleLabel.text = newsModel.title;
-        NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
-        [rightIconCell.cellImageView setImage:[UIImage imageNamed:imageurl]];
+        NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsModel.imgUrl];
+        [rightIconCell.cellImageView sd_setImageWithURL:[NSURL URLWithString:imageurl]];
         return rightIconCell;
     }
     
@@ -194,11 +194,10 @@
     
     
     //视频
-    __weak typeof(self) weakSelf = self;
     NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
     MaxImageCell.content = newsModel.title;
-    NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,newsModel.imgUrl];
-    [MaxImageCell.iconImageView setImage:[UIImage imageNamed:imageurl]];
+    NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsModel.imgUrl];
+    [MaxImageCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageurl]];
     return MaxImageCell;
     
     

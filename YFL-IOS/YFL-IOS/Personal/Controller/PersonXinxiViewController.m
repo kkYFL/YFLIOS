@@ -155,7 +155,7 @@
         NSString *titleStr = @"";
         NSString *contentStr = @"";
         if (indexPath.row ==0) {
-            titleStr = @"用户名";
+            titleStr = @"真实姓名";
             contentStr = self.userModel.pmName;
             xinxiCell.cellContentLabel.tag = 101;
         }else if (indexPath.row ==1){
@@ -208,8 +208,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        [self showActionSheet];
+    if (allowEdting) {
+        if (indexPath.section == 0 && indexPath.row == 0) {
+            [self showActionSheet];
+        }
     }
 }
 
@@ -359,14 +361,19 @@
 }
 
 -(void)savePersonSource{
-    if ([NSString isBlankString:mottoInputStr]) {
+    if ([NSString isBlankString:mottoInputStr] && [NSString isBlankString:self.userModel.motto]) {
         [MBProgressHUD toastMessage:@"请输入新的座右铭" ToView:self.view];
+        return;
+    }
+    
+    if ([NSString isBlankString:self.userModel.headImg]) {
+        [MBProgressHUD toastMessage:@"请选择上传图片" ToView:self.view];
         return;
     }
     
     // 个人信息
     // 测试结果: 通过
-    [HanZhaoHua changePersonalInformationWithUserId:APP_DELEGATE.userId headImg:@"" motto:mottoInputStr success:^(NSDictionary * _Nonnull responseObject) {
+    [HanZhaoHua changePersonalInformationWithUserId:APP_DELEGATE.userId headImg:self.userModel.headImg motto:mottoInputStr?mottoInputStr:self.userModel.motto success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
         
         [MBProgressHUD toastMessage:@"数据保存成功" ToView:self.view];
@@ -393,14 +400,14 @@
         [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
             [[PromptBox sharedBox] removeLoadingView];
             
-            [MBProgressHUD toastMessage:@"图片上传成功" ToView:self.view];
+            //[MBProgressHUD toastMessage:@"图片上传成功" ToView:self.view];
 
             self.userModel.headImg = imgUrl;
             [self.table reloadData];
             
         } failure:^(NSError * _Nonnull error) {
             [[PromptBox sharedBox] removeLoadingView];
-            [MBProgressHUD toastMessage:@"图片上传失败" ToView:self.view];
+            //[MBProgressHUD toastMessage:@"图片上传失败" ToView:self.view];
         }];
     }
 

@@ -31,6 +31,8 @@
     [super viewDidLoad];
     
     [self initView];
+    
+    [self refershHeader];
 }
 
 -(void)initData{
@@ -131,7 +133,9 @@
     // 测试结果: 通过
     [HanZhaoHua getInformationBannerWithUserToken:APP_DELEGATE.userToken positionType:@"SPOS_3" success:^(NSArray * _Nonnull bannerList) {
         if (bannerList && bannerList.count) {
-            self.videoModel = self.bannerList[0];
+            Banner *videoModel = bannerList[0];
+            self.videoModel = videoModel;
+
         }
         self.serverCount ++;
     } failure:^(NSError * _Nonnull error) {

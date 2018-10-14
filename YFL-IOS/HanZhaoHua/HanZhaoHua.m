@@ -804,6 +804,14 @@ static NSString *host = @"http://47.100.247.71/protal/";
 //}
 
 
++(void)MYLogOutWithParaDic: (NSDictionary *)paraDic success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/logout"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
 
 
 @end

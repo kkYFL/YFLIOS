@@ -429,7 +429,11 @@
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
         wzweb.titleVC               =  @"详情";
-        wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host,bannerModel.foreignUrl];
+        if ([bannerModel.foreignUrl hasPrefix:@"http"]) {
+            wzweb.webUrl = [NSString stringWithFormat:@"%@",bannerModel.foreignUrl];
+        }else{
+            wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.sourceHost,bannerModel.foreignUrl];
+        }
         wzweb.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:wzweb animated:YES];
     }

@@ -441,13 +441,12 @@ NS_ASSUME_NONNULL_BEGIN
                               failure: (void (^)(NSError *error))failure;
 
 
-///**
-// 提交考试答案
-// 
-// */
-//+(void)GetSubmitExamAnswerToServerWithParaDic: (NSDictionary *)paraDic
-//                                      success: (void (^)(NSDictionary *responseObject))success
-//                                      failure: (void (^)(NSError *error))failure;
+
+/**
+ 欢迎页面
+ 
+ */
++(void)MYLogOutWithParaDic: (NSDictionary *)paraDic success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure;
 
 
 @end

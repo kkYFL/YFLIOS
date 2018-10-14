@@ -21,8 +21,6 @@
 #import "CLInputToolbar.h"
 
 
-static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
-
 @interface EducationTaskHistoryController ()<UITableViewDelegate,UITableViewDataSource>{
     NSInteger selectIndex;
     NSInteger _pageIndex;
@@ -33,6 +31,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 @property (nonatomic, strong) ZFPlayerController *player;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) ZFPlayerControlView *controlView;
+@property (nonatomic, strong) UIImageView *backImageView;
+
 @property (nonatomic, strong) UIButton *playBtn;
 @property (nonatomic, strong) NSArray <NSURL *>*assetURLs;
 @property (nonatomic, strong) UIView *itemsView;
@@ -83,7 +83,9 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.containerView];
+    [self.containerView addSubview:self.backImageView];
     [self.containerView addSubview:self.playBtn];
+    [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.model.taskThumb]]];
     [self setTextViewToolbar];
     
     
@@ -122,7 +124,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     if ([self.model.vedioUrl hasPrefix:@"http"]) {
         videoUrl = [NSURL URLWithString:self.model.vedioUrl];
     }else{
-        videoUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,self.model.vedioUrl]];
+        videoUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.model.vedioUrl]];
     }
     
     self.player.assetURLs = [NSArray arrayWithObject:videoUrl];
@@ -286,7 +288,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     if(!_table){
         CGFloat w = CGRectGetWidth(self.view.frame);
         CGFloat h = w*9/16;
-        CGFloat itemH = 44;
+        CGFloat itemH = 56;
 
         
         UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, h+itemH, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-h-itemH-EWTTabbar_SafeBottomMargin-50)];
@@ -322,6 +324,10 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     CGFloat h = w*9/16;
     self.containerView.frame = CGRectMake(x, y, w, h);
     
+    
+    self.backImageView.frame = CGRectMake(x, y, w, h);
+
+    
     w = 44;
     h = w;
     x = (CGRectGetWidth(self.containerView.frame)-w)/2;
@@ -331,30 +337,11 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
 }
 
-- (void)changeVideo:(UIButton *)sender {
-    /// 切换playerManager
-    //    ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
-    //    self.player.currentPlayerManager = playerManager;
-    //    [self.player replaceCurrentPlayerManager:playerManager];
-    
-    NSString *URLString = @"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4";
-    self.player.assetURL = [NSURL URLWithString:URLString];
-    [self.controlView showTitle:@"Apple" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModePortrait];
-}
 
 - (void)playClick:(UIButton *)sender {
     [self.player playTheIndex:0];
-    [self.controlView showTitle:@"视频标题" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
-}
-
-- (void)nextClick:(UIButton *)sender {
-    [self.player playTheNext];
-    if (!self.player.isLastAssetURL) {
-        NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
-        [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
-    } else {
-        NSLog(@"最后一个视频了");
-    }
+    NSString *coverStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.model.taskThumb];
+    [self.controlView showTitle:@"" coverURLString:coverStr fullScreenMode:ZFFullScreenModeLandscape];
 }
 
 
@@ -645,6 +632,16 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 -(void)BlankTextViewtapActions:(UITapGestureRecognizer *)tap {
     [self.inputToolbar bounceToolbar];
     self.maskView.hidden = YES;
+}
+
+-(UIImageView *)backImageView{
+    if (!_backImageView) {
+        UIImageView *backImageView = [[UIImageView alloc]init];
+        [backImageView setBackgroundColor:[UIColor colorWithRed:178/255.0 green:178/255.0 blue:178/255.0 alpha:0.5]];
+        _backImageView = backImageView;
+        _backImageView.userInteractionEnabled = YES;
+    }
+    return _backImageView;
 }
 
 #pragma mark - 右侧按钮

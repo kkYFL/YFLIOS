@@ -264,7 +264,7 @@
     NSMutableArray* images = [NSMutableArray array];
     for (NSInteger i = 0; i<self.bannerList.count; i++) {
         Banner *bannerModel = self.bannerList[i];
-        NSString *str = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,bannerModel.imgUrl];
+        NSString *str = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl];
         NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [images addObject:urlStr];
     }
@@ -286,7 +286,7 @@
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
         wzweb.titleVC               =  @"详情";
-        wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host,bannerModel.foreignUrl];
+        wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.sourceHost,bannerModel.foreignUrl];
         wzweb.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:wzweb animated:YES];
     }

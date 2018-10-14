@@ -19,6 +19,8 @@
 @interface EducationLearnController ()<UITableViewDelegate,UITableViewDataSource
 >{
     NSInteger selectIndex;
+    NSInteger _pageIndex;
+    BOOL hasloadAll;
 }
 @property (nonatomic, strong) UITableView *table;
 
@@ -41,15 +43,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initData];
-    
     [self initView];
     
-    [self loadData];
+    [self refershHeader];
 }
 
 -(void)initData{
     selectIndex = 1;
+    _pageIndex = 1;
+    hasloadAll = NO;
+    self.studyNotesArr = [NSMutableArray array];
 }
 
 -(void)initView{
@@ -63,9 +66,12 @@
     [self.view addSubview:self.table];
     [self.view addSubview:self.footerView];
     [self setTextViewToolbar];
+    
+    [self initRefresh];
 }
 
 -(void)loadData{
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
     
     // 获取学习心得列表
     // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
@@ -79,18 +85,83 @@
             NSLog(@"%@", model.createTime);
             NSLog(@"%@", model.learnContent);
         }
+        
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        if (list.count<10) {
+            [self.table.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.table.mj_footer endRefreshing];
+        }
 
         self.studyNotesArr = [NSMutableArray arrayWithArray:list];
         
         [self.table reloadData];
         
     } failure:^(NSError * _Nonnull error) {
-        
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_footer endRefreshing];
+        [self.table.mj_header endRefreshing];
     }];
-
-
 }
 
+-(void)loadMore{
+    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    // 获取学习心得列表
+    // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
+    NSString *type = (selectIndex == 1)?@"1":@"2";
+    [HanZhaoHua getStudyNotesWithUserId:APP_DELEGATE.userId taskId:nil queryType:type page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull list) {
+        for (StudyNotes *model in list) {
+            NSLog(@"%@", model.clickNum);
+            NSLog(@"%@", model.notesId);
+            NSLog(@"%@", model.taskTitle);
+            NSLog(@"%@", model.pmName);
+            NSLog(@"%@", model.createTime);
+            NSLog(@"%@", model.learnContent);
+        }
+        
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_header endRefreshing];
+        if (list.count < 10) {
+            [self.table.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.table.mj_footer endRefreshing];
+        }
+        
+        [self.studyNotesArr addObjectsFromArray:list];
+        
+        [self.table reloadData];
+        
+    } failure:^(NSError * _Nonnull error) {
+        [[PromptBox sharedBox] removeLoadingView];
+        [self.table.mj_footer endRefreshing];
+        [self.table.mj_header endRefreshing];
+    }];
+}
+
+
+#pragma mark 上下拉刷新
+- (void)initRefresh{
+    MJRefershHeader *header = [MJRefershHeader headerWithRefreshingTarget:self refreshingAction:@selector(refershHeader)];
+    self.table.mj_header = header;
+    MJBachFooter *footer = [MJBachFooter footerWithRefreshingTarget:self refreshingAction:@selector(refershFooter)];
+    self.table.mj_footer = footer;
+    self.table.mj_footer.automaticallyChangeAlpha = YES;
+}
+
+-(void)refershFooter{
+    if (hasloadAll) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+    _pageIndex++;
+    [self loadMore];
+}
+
+-(void)refershHeader{
+    [self initData];
+    [self loadData];
+}
 
 
 -(void)addCommentxinDeSourceWithContent:(NSString *)content{
@@ -160,7 +231,7 @@
 #pragma mark - 懒加载
 -(UITableView *)table{
     if(!_table){
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, pageMenueH, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-pageMenueH)];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(0, pageMenueH, SCREEN_WIDTH, SCREEN_HEIGHT-NAVIGATION_BAR_HEIGHT-pageMenueH-50)];
         _table = table;
         _table.backgroundColor = RGB(242, 242, 242);
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;

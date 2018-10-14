@@ -29,7 +29,7 @@
     
     
     UILabel *cellTitleLabel = [[UILabel alloc] init];
-    cellTitleLabel.font = [UIFont systemFontOfSize:14.0f];
+    cellTitleLabel.font = [UIFont systemFontOfSize:16.0f];
     cellTitleLabel.text = @"";
     cellTitleLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     cellTitleLabel.textAlignment = NSTextAlignmentLeft;
@@ -69,7 +69,7 @@
     UILabel *cellContentLabel = [[UILabel alloc] init];
     cellContentLabel.font = [UIFont systemFontOfSize:14.0f];
     cellContentLabel.text = @"";
-    cellContentLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+    cellContentLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     cellContentLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:cellContentLabel];
     self.cellContentLabel = cellContentLabel;
@@ -92,7 +92,7 @@
 }
 
 +(CGFloat)CellH{
-    return 44.0f;
+    return 50.0f;
 }
 
 

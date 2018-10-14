@@ -19,6 +19,10 @@
 #import "SignMoel.h"
 #import "PersonJifenListController.h"
 #import "MBProgressHUD+Toast.h"
+#import "SettingViewController.h"
+#import "AboutViewController.h"
+
+
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSString *_filePath;//地址
@@ -246,7 +250,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -298,6 +302,10 @@
         }else{
             rowCell.cellNewImageView.hidden = YES;
         }
+    }else if(indexPath.row == 4){
+        rowCell.cellTitleLabel.text = @"设置";
+        rowCell.cellContentLabel.text = @"";
+        rowCell.cellNewImageView.hidden = YES;
     }else{
         rowCell.cellTitleLabel.text = @"关于";
         rowCell.cellContentLabel.text = @"";
@@ -322,6 +330,14 @@
         [self.navigationController pushViewController:passVC animated:YES];
     }else if (indexPath.row == 3){
         [self gotoUPdateViersion];
+    }else if (indexPath.row == 4){
+        SettingViewController *settingVC = [[SettingViewController alloc] init];
+        settingVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:settingVC animated:YES];
+    }else if (indexPath.row == 5){
+        AboutViewController *aboutVc = [[AboutViewController alloc] init];
+        aboutVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:aboutVc animated:YES];
     }
 }
 
@@ -371,18 +387,18 @@
         [_headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, topSpace+settingWH+iconWH+cameraWH+describeLabelH+25+bottonViewH)];
         
         
-        UIImageView *settingImageView = [[UIImageView alloc]init];
-        [_headerView addSubview:settingImageView];
-        [settingImageView setContentMode:UIViewContentModeCenter];
-        [settingImageView setImage:[UIImage imageNamed:@"setting"]];
-        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-        settingImageView.userInteractionEnabled = YES;
-        [settingImageView addGestureRecognizer:tap1];
-        [settingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_headerView).offset(topSpace);
-            make.right.equalTo(_headerView.mas_right).offset(-25);
-            make.height.with.mas_equalTo(settingWH);
-        }];
+//        UIImageView *settingImageView = [[UIImageView alloc]init];
+//        [_headerView addSubview:settingImageView];
+//        [settingImageView setContentMode:UIViewContentModeCenter];
+//        [settingImageView setImage:[UIImage imageNamed:@"setting"]];
+//        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
+//        settingImageView.userInteractionEnabled = YES;
+//        [settingImageView addGestureRecognizer:tap1];
+//        [settingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(_headerView).offset(topSpace);
+//            make.right.equalTo(_headerView.mas_right).offset(-25);
+//            make.height.with.mas_equalTo(settingWH);
+//        }];
         
         
         UIImageView *iconImageView = [[UIImageView alloc]init];
@@ -394,7 +410,7 @@
         iconImageView.layer.cornerRadius = iconWH/2.0;
         self.iconImageView = iconImageView;
         [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(settingImageView.mas_bottom).offset(0);
+            make.top.equalTo(_headerView).offset(settingWH);
             make.centerX.equalTo(_headerView);
             make.height.width.mas_equalTo(iconWH);
         }];

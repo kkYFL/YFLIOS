@@ -39,6 +39,7 @@
     [cellTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(15.0f);
         make.centerY.equalTo(self);
+        make.width.mas_equalTo(120.0f);
     }];
     
     
@@ -64,6 +65,7 @@
     [rowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-15.0f);
         make.centerY.equalTo(self);
+        make.height.width.mas_equalTo(10);
     }];
     
     
@@ -76,7 +78,7 @@
     [headerIcon setContentMode:UIViewContentModeCenter];
     [headerIcon setImage:[UIImage imageNamed:@""]];
     [headerIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.rowImageView.mas_left).offset(-14);
+        make.right.equalTo(self.rowImageView.mas_left).offset(-10);
         make.centerY.equalTo(self.rowImageView);
         make.height.width.mas_equalTo(35.0f);
     }];
@@ -114,7 +116,7 @@
     [self.contentView addSubview:cellTextfield];
     [self.cellContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(rowImageView.mas_left).offset(-5);
-        make.left.equalTo(self.cellTitleLabel.mas_right).offset(10.0f);
+        make.left.equalTo(self.cellTitleLabel.mas_right).offset(5.0f);
         make.height.mas_equalTo(20);
         make.centerY.equalTo(self);
     }];

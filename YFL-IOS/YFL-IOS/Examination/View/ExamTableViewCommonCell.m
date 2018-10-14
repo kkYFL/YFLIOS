@@ -36,11 +36,14 @@
     [headerImageView setBackgroundColor:[UIColor whiteColor]];
     [self.contentView addSubview:headerImageView];
     self.headerImageView = headerImageView;
-    [headerImageView setContentMode:UIViewContentModeCenter];
+    [headerImageView setContentMode:UIViewContentModeScaleToFill];
     [headerImageView setImage:[UIImage imageNamed:@"exam_header"]];
+    headerImageView.layer.masksToBounds = YES;
+    headerImageView.layer.cornerRadius = 20.0f;
     [headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(15.0f);
         make.centerY.equalTo(self);
+        make.height.width.mas_equalTo(40.0f);
     }];
 
     

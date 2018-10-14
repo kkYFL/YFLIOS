@@ -423,6 +423,10 @@ NS_ASSUME_NONNULL_BEGIN
                               success: (void (^)(NSDictionary *responseObject))success
                               failure: (void (^)(NSError *error))failure;
 
+
++(void)savePersonalSourceWithPara:(NSDictionary *)para success:(void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure;
+    
+
 /**
  版本更新
  

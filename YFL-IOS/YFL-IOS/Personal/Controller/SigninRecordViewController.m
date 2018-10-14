@@ -146,7 +146,9 @@
     
     calendar.appearance.caseOptions = FSCalendarCaseOptionsWeekdayUsesSingleUpperCase;
     calendar.placeholderType = FSCalendarPlaceholderTypeNone;
+    calendar.appearance.headerTitleColor = [UIColor colorWithHexString:@"#0C0C0C"];//titleWeekendColor
     //calendar.placeholderType = FSCalendarPlaceholderTypeNone;
+    calendar.appearance.weekdayTextColor = [UIColor colorWithHexString:@"#0C0C0C"];//
     [calendar registerClass:[DIYCalendarCell class] forCellReuseIdentifier:@"cell"];
     
     [self.view addSubview:calendar];
@@ -311,7 +313,7 @@
         [backView setBackgroundColor:[UIColor whiteColor]];
         [_headerView addSubview:backView];
         [backView setContentMode:UIViewContentModeScaleToFill];
-        [backView setImage:[UIImage imageNamed:@"login-bg"]];
+        [backView setImage:[UIImage imageNamed:@"sign_view_bg"]];
         backView.userInteractionEnabled = YES;
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.bottom.equalTo(headerView);
@@ -472,8 +474,6 @@
 
 - (FSCalendarCell *)calendar:(FSCalendar *)calendar cellForDate:(NSDate *)date atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
-    
-    
     DIYCalendarCell *cell = [calendar dequeueReusableCellWithIdentifier:@"cell" forDate:date atMonthPosition:monthPosition];
     if (self.signModel && self.signModel.signDatArr.count && [self.signModel.signDatArr containsObject:@([self.gregorian component:NSCalendarUnitDay fromDate:date])]) {
         cell.signType = DIYDataTypeNoSign;
@@ -625,7 +625,6 @@
     NSCalendar *calender = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDate *mDate = [calender dateByAddingComponents:comps toDate:date options:0];
     return mDate;
-    
 }
 
 

@@ -69,6 +69,18 @@ static NSString *host = @"http://47.100.247.71/protal/";
     }];
 }
 
+
++(void)savePersonalSourceWithPara:(NSDictionary *)para success:(void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/saveUserInfo"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:para success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
+
+
 +(void)getUserCurrentScoreWithUserToken: (NSString *)userToken
                                   userId: (NSString *)userId
                                  success: (void (^)(NSNumber *score))success

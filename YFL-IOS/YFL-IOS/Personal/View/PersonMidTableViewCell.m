@@ -153,7 +153,7 @@
 }
 
 +(CGFloat)CellH{
-    return 70.0f;
+    return 78.0f;
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{

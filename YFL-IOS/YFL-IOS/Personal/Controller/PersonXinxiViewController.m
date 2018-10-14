@@ -16,16 +16,17 @@
 #define kMaxCount 1
 
 
-@interface PersonXinxiViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIActionSheetDelegate
+@interface PersonXinxiViewController ()<UITableViewDelegate,UIActionSheetDelegate,UITableViewDataSource,UITextFieldDelegate,UIActionSheetDelegate
 >{
     BOOL allowEdting;
     
-    NSString *nameInputStr;
+    NSString *headerImageUrl;
     NSString *phoneInputStr;
-    NSString *renzhengInputStr;
+    NSString *sexInputStr;
     NSString *mottoInputStr;
     NSString *addressInputStr;
 }
+
 @property (nonatomic, strong) UITableView *table;
 /** 获取图片方式选择器 */
 @property (nonatomic, strong) UIActionSheet *getPhotosSheet;
@@ -160,13 +161,21 @@
             xinxiCell.cellContentLabel.tag = 101;
         }else if (indexPath.row ==1){
             titleStr = @"手机号码";
-            contentStr = self.userModel.userName;
+            contentStr = phoneInputStr?self.userModel.userName:self.userModel.userName;
             xinxiCell.cellContentLabel.tag = 102;
         }else if (indexPath.row ==2){
-            titleStr = @"实名认证";
-            contentStr = self.userModel.pmIdcard;
+            titleStr = @"性别";
+            if ([self.userModel.pmSex integerValue] == 1) {
+                contentStr = @"男";
+            }else if ([self.userModel.pmSex integerValue] == 2){
+                contentStr = @"女";
+            }
+            if (sexInputStr.length) {
+                contentStr = sexInputStr;
+            }
             xinxiCell.cellContentLabel.tag = 103;
         }
+        
         if ([NSString isBlankString:contentStr]) {
             contentStr = @"";
         }
@@ -177,11 +186,11 @@
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = @"我的座右铭";
         xinxiCell.cellContentLabel.tag = 104;
-        xinxiCell.cellContentLabel.text = [NSString isBlankString:self.userModel.motto]?@"":self.userModel.motto;
+        xinxiCell.cellContentLabel.text = mottoInputStr.length?mottoInputStr:self.userModel.motto;
     }else if (indexPath.section == 3){
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = @"我的地址";
-        xinxiCell.cellContentLabel.text = [NSString isBlankString:self.userModel.pmAddress]?@"":self.userModel.pmAddress;
+        xinxiCell.cellContentLabel.text = addressInputStr.length?addressInputStr:self.userModel.pmAddress;
         xinxiCell.cellContentLabel.tag = 105;
     }
     
@@ -212,6 +221,7 @@
         if (indexPath.section == 0 && indexPath.row == 0) {
             [self showActionSheet];
         }
+        
     }
 }
 
@@ -247,18 +257,28 @@
 #pragma mark - UIActionSheet 代理
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex)
-    {
-
-        case 0:  //打开照相机拍照
-            
-            [self takePhotos];
-            break;
-            
-        case 1:  //打开本地相册
-            
-            [self getLocalPhotos];
-            break;
+    if (actionSheet.tag == 101) {
+        switch (buttonIndex)
+        {
+            case 0:
+                sexInputStr = @"男";
+                [self.table reloadData];
+                break;
+            case 1:
+                sexInputStr = @"女";
+                [self.table reloadData];
+                break;
+        }
+    }else{
+        switch (buttonIndex)
+        {
+            case 0:  //打开照相机拍照
+                [self takePhotos];
+                break;
+            case 1:  //打开本地相册
+                [self getLocalPhotos];
+                break;
+        }
     }
 }
 
@@ -319,13 +339,26 @@
 #pragma mark - Photo/Library
 - (void)showActionSheet {
     //[self resignKeyboard];
-    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:nil
+    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:@"修改头像"
                                                       delegate:self
                                              cancelButtonTitle:@"取消"
                                         destructiveButtonTitle:nil
                                              otherButtonTitles:@"打开照相机", @"从手机相册获取", nil];
+    self.getPhotosSheet.tag = 100;
     self.getPhotosSheet.delegate = self;
     [self.getPhotosSheet showInView:self.view];
+}
+
+- (void)showSexActionSheet {
+    //[self resignKeyboard];
+    UIActionSheet *sexActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                      delegate:self
+                                             cancelButtonTitle:@"取消"
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:@"男", @"女", nil];
+    sexActionSheet.tag = 101;
+    sexActionSheet.delegate = self;
+    [sexActionSheet showInView:self.view];
 }
 
 
@@ -345,12 +378,7 @@
         [self.righBtn setTitle:@"保存" forState:UIControlStateNormal];
         allowEdting = YES;
         
-        NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:1];
-        XinxiTableViewCell *cell = [self.table cellForRowAtIndexPath:index];
-        if (cell) {
-            [cell.cellContentLabel becomeFirstResponder];
-        }
-        
+        [self showActionSheet];
     }else{
         [self.righBtn setTitle:@"修改" forState:UIControlStateNormal];
         allowEdting = NO;
@@ -361,30 +389,51 @@
 }
 
 -(void)savePersonSource{
-    if ([NSString isBlankString:mottoInputStr] && [NSString isBlankString:self.userModel.motto]) {
-        [MBProgressHUD toastMessage:@"请输入新的座右铭" ToView:self.view];
-        return;
-    }
     
-    if ([NSString isBlankString:self.userModel.headImg]) {
-        [MBProgressHUD toastMessage:@"请选择上传图片" ToView:self.view];
+    if ([NSString isBlankString:headerImageUrl] && [NSString isBlankString:phoneInputStr] && [NSString isBlankString:sexInputStr] && [NSString isBlankString:mottoInputStr] && [NSString isBlankString:addressInputStr]) {
+        
+        [MBProgressHUD toastMessage:@"请选择修改内容" ToView:self.view];
         return;
     }
+
     
     // 个人信息
     // 测试结果: 通过
-    [HanZhaoHua changePersonalInformationWithUserId:APP_DELEGATE.userId headImg:self.userModel.headImg motto:mottoInputStr?mottoInputStr:self.userModel.motto success:^(NSDictionary * _Nonnull responseObject) {
+    NSString *sexNum = @"";
+    if ([sexInputStr isEqualToString:@"男"]) {
+        sexNum = @"1";
+    }else if ([sexInputStr isEqualToString:@"女"]){
+        sexNum = @"2";
+    }
+    
+    if (!sexNum.length) {
+        NSString *sexStr = self.userModel.pmSex;
+        if ([sexStr integerValue] == 1) {
+            sexNum = @"1";
+        }else if ([sexStr integerValue] == 2){
+            sexNum = @"2";
+        }
+    }
+
+    
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userId forKey:@"userId"];
+    [para setValue:self.userModel.headImg forKey:@"headImg"];
+    [para setValue:mottoInputStr?mottoInputStr:self.userModel.motto forKey:@"motto"];
+    [para setValue:addressInputStr?addressInputStr:self.userModel.pmAddress forKey:@"address"];
+    [para setValue:sexNum forKey:@"sex"];
+
+    
+    [HanZhaoHua savePersonalSourceWithPara:para success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
         
         [MBProgressHUD toastMessage:@"数据保存成功" ToView:self.view];
         
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonViewSourceNoti" object:nil];
-
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonViewSourceNoti" object:nil];
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
         [MBProgressHUD toastMessage:@"数据保存失败" ToView:self.view];
-
     }];
+    
 }
 
 
@@ -401,7 +450,7 @@
             [[PromptBox sharedBox] removeLoadingView];
             
             //[MBProgressHUD toastMessage:@"图片上传成功" ToView:self.view];
-
+            headerImageUrl = [imgUrl copy];
             self.userModel.headImg = imgUrl;
             [self.table reloadData];
             
@@ -415,6 +464,17 @@
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (allowEdting) {
+        if (textField.tag == 101) {
+            [MBProgressHUD toastMessage:@"不可修改真实姓名" ToView:self.view];
+            return NO;
+        }
+        
+        if (textField.tag == 103) {
+            [self.view endEditing:YES];
+            [self showSexActionSheet];
+            return NO;
+        }
+        
         return YES;
     }
     
@@ -429,12 +489,11 @@
 
 -(void)textContentDidChange:(NSNotification *)noti{
     UITextField *currentTextfield = (UITextField *)noti.object;
-    if (currentTextfield.tag == 101) {
-        nameInputStr = currentTextfield.text;
-    }else if (currentTextfield.tag == 102){
+    
+    if (currentTextfield.tag == 102){
         phoneInputStr = currentTextfield.text;
     }else if (currentTextfield.tag == 103){
-        renzhengInputStr = currentTextfield.text;
+        sexInputStr = currentTextfield.text;
     }else if (currentTextfield.tag == 104){
         mottoInputStr = currentTextfield.text;
     }else if (currentTextfield.tag == 105){
@@ -464,9 +523,8 @@
 
 
 
-
 -(void)dealloc{
-       [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

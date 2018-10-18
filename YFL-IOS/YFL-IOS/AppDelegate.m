@@ -37,7 +37,7 @@
      self.userName = @"15606811521";
      self.password = @"123456";
     
-    [self tabBarViewInit];
+    //[self tabBarViewInit];
 
     //启动图
     [self screenViewCreate];
@@ -46,7 +46,7 @@
     
     //[self showLoginAndRegistController];
     
-    //[self guidenView];
+    [self guidenView];
 
 //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];

@@ -534,6 +534,7 @@
 
 //退出登录
 -(void)signOutAction:(UIButton *)sender{
+    [self MYSignOutSerVer];
 }
 
 -(void)MYSignOutSerVer{

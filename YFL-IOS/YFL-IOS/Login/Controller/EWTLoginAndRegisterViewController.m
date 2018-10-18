@@ -258,15 +258,30 @@
 
 #pragma mark 登录
 - (void)doLogin{
-    
+    /*
+     self.userName = @"15606811521";
+     self.password = @"123456";
+     */
     // 用户登录
     // 测试结果: 通过
-    [HanZhaoHua loginWithUsername:APP_DELEGATE.userName password:APP_DELEGATE.password success:^(UserMessage * _Nonnull user) {
+    [HanZhaoHua loginWithUsername:self.loginView.phoneAndIDField.text password:self.loginView.passwordField.text success:^(UserMessage * _Nonnull user) {
         NSLog(@"%@", user);
         APP_DELEGATE.userModel = user;
         [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
+        
+        /*
+         self.userToken = @"1";
+         self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
+         self.taskId = @"1";
+         self.host = @"http://47.100.247.71/protal";
+         self.sourceHost = @"http://47.100.247.71/img";
+         self.userName = @"15606811521";
+         self.password = @"123456";
+         */
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
+        [MBProgressHUD toastMessage:@"账号或密码错误" ToView:self.view];
+
     }];
 
     

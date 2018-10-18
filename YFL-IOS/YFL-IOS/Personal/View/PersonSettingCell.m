@@ -26,8 +26,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UILabel *cellTitleLabel = [[UILabel alloc] init];
-    cellTitleLabel.font = [UIFont systemFontOfSize:18.0f];
-    cellTitleLabel.textColor = [UIColor colorWithHexString:@"#6B7884"];
+    cellTitleLabel.font = [UIFont systemFontOfSize:16.0f];
+    cellTitleLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     cellTitleLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:cellTitleLabel];
     self.cellTitleLabel = cellTitleLabel;
@@ -36,12 +36,12 @@
         make.centerY.equalTo(self);
     }];
     
-    
+    //
     
     UILabel *cellContentLabel = [[UILabel alloc] init];
-    cellContentLabel.font = [UIFont systemFontOfSize:18.0f];
+    cellContentLabel.font = [UIFont systemFontOfSize:14.0f];
     cellContentLabel.text = @"";
-    cellContentLabel.textColor = [UIColor colorWithHexString:@"#6B7884"];
+    cellContentLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     cellContentLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:cellContentLabel];
     self.cellContentLabel = cellContentLabel;
@@ -51,10 +51,19 @@
     }];
     
     
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"#BBBBBB"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(0);
+        make.bottom.equalTo(self.contentView);
+        make.right.equalTo(self.contentView);
+        make.height.mas_equalTo(0.5f);
+    }];
 }
 
 +(CGFloat)CellH{
-    return 44.0f;
+    return 50.0f;
 }
 
 

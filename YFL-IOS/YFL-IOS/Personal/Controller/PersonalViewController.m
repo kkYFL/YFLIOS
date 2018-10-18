@@ -375,7 +375,6 @@
 -(UIView *)headerView{
     if(!_headerView){
         CGFloat topSpace = 25.0f;
-        CGFloat settingWH = 30.0f;
         CGFloat iconWH = 60.0f;
         CGFloat cameraWH = 30.0f;
         CGFloat describeLabelH = 16.0f;
@@ -384,7 +383,7 @@
         UIView *headerView = [[UIView alloc]init];
         headerView.backgroundColor = [UIColor redColor];
         _headerView = headerView;
-        [_headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, topSpace+settingWH+iconWH+cameraWH+describeLabelH+25+bottonViewH)];
+        [_headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, topSpace+iconWH+cameraWH+describeLabelH+25+bottonViewH)];
         
         
 //        UIImageView *settingImageView = [[UIImageView alloc]init];
@@ -410,7 +409,7 @@
         iconImageView.layer.cornerRadius = iconWH/2.0;
         self.iconImageView = iconImageView;
         [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_headerView).offset(settingWH);
+            make.top.equalTo(_headerView).offset(topSpace);
             make.centerX.equalTo(_headerView);
             make.height.width.mas_equalTo(iconWH);
         }];

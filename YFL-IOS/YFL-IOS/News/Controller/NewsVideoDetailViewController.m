@@ -52,7 +52,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 -(void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
+    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     if ([self.newsModel.imgUrl hasPrefix:@"http"]) {
         self.corverImageUrl = self.newsModel.imgUrl;

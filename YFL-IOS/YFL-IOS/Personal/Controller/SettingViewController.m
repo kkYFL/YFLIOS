@@ -31,8 +31,7 @@
 -(void)initView{
     self.title = @"设置";
     self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 42, 15, @"view_back", @"view_back", leftButtonAction);
-    NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
+    NAVIGATION_BAR_LEFT_BUTTON(0, 0,25, 25, @"view_back", @"view_back", leftButtonAction);
     
     
     [self.view addSubview:self.table];
@@ -103,11 +102,10 @@
 {
     PersonSettingCell *settingCell = [tableView dequeueReusableCellWithIdentifier:@"settingCell"];
     if (indexPath.row == 0) {
-        settingCell.cellTitleLabel.text = @"语言";
+        settingCell.cellTitleLabel.text = @"语言切换";
         settingCell.cellContentLabel.text = @"切换";
     }else if (indexPath.row == 1){
         settingCell.cellTitleLabel.text = @"缓存清理";
-        
         //缓存
         cachePath = [self getCachePath];
         cacheSize = [PublicMethod folderSizeAtPath:cachePath];
@@ -131,6 +129,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        //prefs:root=General&path=INTERNATIONAL
+        //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=WIFI"]];
+
+        //prefs:root=General&path=INTERNATIONAL
+        //App-prefs:root=General&path=Language_AND_Region
+        NSURL *url = [NSURL URLWithString:@"App-Prefs:root=General&path=INTERNATIONAL"];
+        if ([[UIApplication sharedApplication] canOpenURL:url])
+        {
+            [[UIApplication sharedApplication] openURL:url];
+        }else{
+            NSLog(@"");
+        }
+        
+    }
     if (indexPath.row == 1) {
         [self clearTheCacheMethod];
     }

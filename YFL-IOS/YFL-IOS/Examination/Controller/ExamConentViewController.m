@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 -(void)initView{
     self.title = @"考试答题";
     self.view.backgroundColor = [UIColor whiteColor];
-    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 20, 20, @"view_back", @"view_back", leftButtonAction);
+    NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     

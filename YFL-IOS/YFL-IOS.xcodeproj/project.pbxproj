@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A022DC5217875F30064AD42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A022DC7217875F30064AD42 /* InfoPlist.strings */; };
+		3A022DCB21787D180064AD42 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A022DCD21787D180064AD42 /* Localizable.strings */; };
+		3A022DD121788CA90064AD42 /* PersonSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A022DD021788CA90064AD42 /* PersonSettingCell.m */; };
 		3A03CF0C2155DE6500C49295 /* EducationDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF0B2155DE6500C49295 /* EducationDetailController.m */; };
 		3A03CF0F2155E4CF00C49295 /* EducationLearnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF0E2155E4CF00C49295 /* EducationLearnController.m */; };
 		3A03CF122156584300C49295 /* EducationLearnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CF112156584300C49295 /* EducationLearnCell.m */; };
@@ -164,6 +167,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A022DC121786E920064AD42 /* bo-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bo-CN"; path = "bo-CN.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		3A022DC221786EF20064AD42 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		3A022DC6217875F30064AD42 /* bo-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bo-CN"; path = "bo-CN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3A022DC8217875FD0064AD42 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3A022DCC21787D180064AD42 /* bo-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bo-CN"; path = "bo-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3A022DCE21787D1A0064AD42 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3A022DCF21788CA90064AD42 /* PersonSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonSettingCell.h; sourceTree = "<group>"; };
+		3A022DD021788CA90064AD42 /* PersonSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonSettingCell.m; sourceTree = "<group>"; };
 		3A03CF0A2155DE6500C49295 /* EducationDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationDetailController.h; sourceTree = "<group>"; };
 		3A03CF0B2155DE6500C49295 /* EducationDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationDetailController.m; sourceTree = "<group>"; };
 		3A03CF0D2155E4CF00C49295 /* EducationLearnController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationLearnController.h; sourceTree = "<group>"; };
@@ -667,6 +678,8 @@
 				3A03CF262156A72A00C49295 /* PersonPasswordInCell.m */,
 				3A3A0436216E653F003D29F2 /* JifenListTableViewCell.h */,
 				3A3A0437216E653F003D29F2 /* JifenListTableViewCell.m */,
+				3A022DCF21788CA90064AD42 /* PersonSettingCell.h */,
+				3A022DD021788CA90064AD42 /* PersonSettingCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -813,6 +826,8 @@
 				3A3B4901213E399F000D8BF0 /* EWTiCarouselPageControl.m */,
 				3A3A0430216E5520003D29F2 /* StoryboardViewController.h */,
 				3A3A0431216E5520003D29F2 /* StoryboardViewController.m */,
+				3A022DC7217875F30064AD42 /* InfoPlist.strings */,
+				3A022DCD21787D180064AD42 /* Localizable.strings */,
 			);
 			path = "YFL-IOS";
 			sourceTree = "<group>";
@@ -1252,6 +1267,7 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
+				1CEBBDA546830A39D4826A4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1284,6 +1300,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 3A699B6320BA650C00F7BB60;
 			productRefGroup = 3A699B6D20BA650C00F7BB60 /* Products */;
@@ -1300,7 +1317,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A022DCB21787D180064AD42 /* Localizable.strings in Resources */,
 				3A03CFC42158C4E600C49295 /* EWTImagePicker.bundle in Resources */,
+				3A022DC5217875F30064AD42 /* InfoPlist.strings in Resources */,
 				3A699B7C20BA650C00F7BB60 /* LaunchScreen.storyboard in Resources */,
 				3A699B7920BA650C00F7BB60 /* Assets.xcassets in Resources */,
 			);
@@ -1309,6 +1328,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1CEBBDA546830A39D4826A4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9F10B425799630A608E22B9F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1500,6 +1534,7 @@
 				3A5C0F102144DCEE00BB11FB /* ExamWaitingViewController.m in Sources */,
 				3A5C0F5921553D7F00BB11FB /* EducationOptionsTableCell.m in Sources */,
 				3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */,
+				3A022DD121788CA90064AD42 /* PersonSettingCell.m in Sources */,
 				8923F5B2215640CB00CB98E4 /* LearningHistory.m in Sources */,
 				3A6BA58B21271E5B00322875 /* NSData+EWT.m in Sources */,
 				3A03CFAF2158C4E600C49295 /* NSBundle+EWTImagePicker.m in Sources */,
@@ -1540,10 +1575,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		3A022DC7217875F30064AD42 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A022DC6217875F30064AD42 /* bo-CN */,
+				3A022DC8217875FD0064AD42 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3A022DCD21787D180064AD42 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A022DCC21787D180064AD42 /* bo-CN */,
+				3A022DCE21787D1A0064AD42 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		3A699B7A20BA650C00F7BB60 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3A699B7B20BA650C00F7BB60 /* Base */,
+				3A022DC121786E920064AD42 /* bo-CN */,
+				3A022DC221786EF20064AD42 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1555,6 +1610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1610,6 +1666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

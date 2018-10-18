@@ -82,7 +82,8 @@
     
 -(void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"党员资讯";
+    //self.title = @"党员资讯";
+    self.title = NSLocalizedString(@"NewsHomeTitle", @"");
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.scrollView;
     

@@ -40,7 +40,7 @@
 }
 
 -(void)initView{
-    self.title = @"党员教育";
+    self.title = NSLocalizedString(@"DangYuanEducationTitle", nil);
     self.view.backgroundColor = [UIColor whiteColor];    
     [self.view addSubview:self.table];
     

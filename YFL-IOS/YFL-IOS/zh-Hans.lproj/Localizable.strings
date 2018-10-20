@@ -8,3 +8,53 @@
 
 //NEWS
 "NewsHomeTitle" = "党员资讯";
+
+
+//Education
+"TextInputTitle" = "留下你的心声，带给别人更多启发，这也是学习！";
+"TextSend" = "发送";
+"DangYuanEducationTitle" = "党员教育";
+"LearnTaskTitle" = "学习任务";
+"DangYuanHeart" = "党员心声";
+"XuexiQingkuang" = "学习情况";
+"RenWujianjie" = "任务简介";
+"Yijianfankui" = "意见反馈";
+"XiangzengFankui" = "新增反馈";
+"FankuiXiangqing" = "反馈详情";
+"XuexiXingDe" = "学习心得";
+"XindeXiangqing" = "心得详情";
+"KaoshiGuize" = "考试规则";
+"KaoshiDati" = "考试答题";
+"DangyuanKaoshi" = "党员考试";
+"ZuijinChengji" = "最近成绩";
+"Chengjiyouxiu" = "您的成绩优秀，请继续保持呦!";
+"LishiKaoshi" = "历史考试";
+"Daikaoshi" = "待考试";
+"KaoshiPaiming" = "考试排名";
+"ZhengceFagui" = "政策法规";
+"XiangQing" = "详情";
+"Zuzhihuodong" = "组织活动";
+"TongzhigongGao" = "通知公告";
+"ZixunXiangQing" = "资讯详情";
+"Gerenzhongxin" = "个人中心";
+"HuoquJIfen" = "获取积分";
+"GerenXinxi" = "个人信息";
+"XiugaiMima" = "修改密码";
+"JifenJilu" = "积分记录";
+"Setting" = "设置";
+"Guanyu" = "关于";
+
+
+
+
+
+
+
+
+
+//login
+"loginTitle" = "登录";
+"forgetPassword" = "忘记密码";
+//    [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
+"zhanghao" = "账号/手机号";
+"mima" = "密码";

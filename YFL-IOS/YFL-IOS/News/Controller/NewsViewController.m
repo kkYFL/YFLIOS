@@ -429,7 +429,7 @@
     if (self.bannerList.count > index) {
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
-        wzweb.titleVC               =  @"详情";
+        wzweb.titleVC               =  NSLocalizedString(@"XiangQing", nil);
         if ([bannerModel.foreignUrl hasPrefix:@"http"]) {
             wzweb.webUrl = [NSString stringWithFormat:@"%@",bannerModel.foreignUrl];
         }else{

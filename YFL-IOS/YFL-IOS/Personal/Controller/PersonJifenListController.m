@@ -27,7 +27,7 @@
 }
 
 -(void)initView{
-    self.title = @"积分记录";
+    self.title = NSLocalizedString(@"JifenJilu", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)

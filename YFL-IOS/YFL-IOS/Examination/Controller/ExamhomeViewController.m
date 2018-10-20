@@ -39,7 +39,7 @@
 }
 
 -(void)initView{
-    self.title = @"考试规则";
+    self.title = NSLocalizedString(@"KaoshiGuize", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -64,7 +64,7 @@
     {
         UILabel *rouleLabel = [[UILabel alloc] init];
         rouleLabel.font = [UIFont systemFontOfSize:17.0f];
-        rouleLabel.text = @"考试规则";
+        rouleLabel.text = NSLocalizedString(@"KaoshiGuize", nil);
         rouleLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
         rouleLabel.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:rouleLabel];

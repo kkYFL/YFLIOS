@@ -29,7 +29,7 @@
 }
 
 -(void)initView{
-    self.title = @"设置";
+    self.title = NSLocalizedString(@"Setting", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0,25, 25, @"view_back", @"view_back", leftButtonAction);
     

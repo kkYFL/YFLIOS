@@ -55,7 +55,7 @@
 }
 
 -(void)initView{
-    self.title = @"个人中心";
+    self.title = NSLocalizedString(@"Gerenzhongxin", nil);
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.table];

@@ -58,23 +58,23 @@
 
 -(void)tabBarViewInit{
     NewsViewController *newVC = [[NewsViewController alloc]init];
-    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:@"党员资讯" image:[UIImage imageNamed:@"NewsTab_gray"] selectedImage:[UIImage imageNamed:@"NewsTab_light"] VC:newVC];
+    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:NSLocalizedString(@"NewsHomeTitle", nil) image:[UIImage imageNamed:@"NewsTab_gray"] selectedImage:[UIImage imageNamed:@"NewsTab_light"] VC:newVC];
 
     
     
     
     EducationViewController *educationVC = [[EducationViewController alloc]init];
-    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:@"党员教育" image:[UIImage imageNamed:@"Educationtag_gray"] selectedImage:[UIImage imageNamed:@"Educationtab_light"] VC:educationVC];
+    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:NSLocalizedString(@"DangYuanEducationTitle", nil) image:[UIImage imageNamed:@"Educationtag_gray"] selectedImage:[UIImage imageNamed:@"Educationtab_light"] VC:educationVC];
     
     
     
     ExamnationViewController *examtionVC = [[ExamnationViewController alloc]init];
-    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:@"党员考试" image:[UIImage imageNamed:@"Examtab_gray"] selectedImage:[UIImage imageNamed:@"Examtab_light"] VC:examtionVC];
+    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:NSLocalizedString(@"DangyuanKaoshi", nil) image:[UIImage imageNamed:@"Examtab_gray"] selectedImage:[UIImage imageNamed:@"Examtab_light"] VC:examtionVC];
     
     
     
     PersonalViewController *personalVC = [[PersonalViewController alloc]init];
-    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:@"个人中心" image:[UIImage imageNamed:@"Persontab_gray"] selectedImage:[UIImage imageNamed:@"Persontab_light"] VC:personalVC];
+    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:NSLocalizedString(@"Gerenzhongxin", nil) image:[UIImage imageNamed:@"Persontab_gray"] selectedImage:[UIImage imageNamed:@"Persontab_light"] VC:personalVC];
     
     
     

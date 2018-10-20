@@ -81,7 +81,7 @@
 
     CGFloat itemTop = 25*2+18;
     self.item1 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop, itemViewW, itemViewH)];
-    self.item1.titleLabel.text = @"学习任务";
+    self.item1.titleLabel.text = NSLocalizedString(@"LearnTaskTitle", nil);
     self.item1.backView.tag = 101;
     self.item1.backView.backgroundColor = [UIColor colorWithHexString:@"#FFAA54"];
     [self.item1.icon setImage:[UIImage imageNamed:@"Education_renwu"]];
@@ -98,7 +98,7 @@
     
     
     self.item3 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
-    self.item3.titleLabel.text = @"意见反馈";
+    self.item3.titleLabel.text = NSLocalizedString(@"Yijianfankui", nil);
     self.item3.backView.tag = 103;
     self.item3.backView.backgroundColor = [UIColor colorWithHexString:@"#B489F0"];
     [self.item3.icon setImage:[UIImage imageNamed:@"Education_fankui"]];
@@ -106,7 +106,7 @@
     
     
     self.item4 = [[EducationItemContentView alloc]initWithFrame:CGRectMake(itemMarginSpace+itemViewW+itemViewSpace, itemTop+itemViewH+itemViewSpace, itemViewW, itemViewH)];
-    self.item4.titleLabel.text = @"学习心得";
+    self.item4.titleLabel.text = NSLocalizedString(@"XuexiXingDe", nil);
     self.item4.backView.tag = 104;
     self.item4.backView.backgroundColor = [UIColor colorWithHexString:@"#959DF5"];
     [self.item4.icon setImage:[UIImage imageNamed:@"Education_xinde"]];

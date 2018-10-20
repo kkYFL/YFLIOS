@@ -36,7 +36,7 @@
 }
 
 -(void)initView{
-    self.title = (_type == MYEducationViewTypeDefault)?@"学习任务":@"党员教育";
+    self.title = (_type == MYEducationViewTypeDefault)?NSLocalizedString(@"LearnTaskTitle", nil):NSLocalizedString(@"DangYuanEducationTitle", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)

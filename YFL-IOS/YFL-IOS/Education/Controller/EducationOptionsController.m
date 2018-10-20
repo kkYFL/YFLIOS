@@ -33,7 +33,7 @@
 }
 
 -(void)initView{
-    self.title = @"意见反馈";
+    self.title = NSLocalizedString(@"Yijianfankui", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"options_right", @"options_right", rightButtonAction)

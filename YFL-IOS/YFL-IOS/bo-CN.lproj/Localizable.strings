@@ -8,3 +8,55 @@
 
 //NEWS
 "NewsHomeTitle" = "ཏང་ཡོན་གྱི་གསར་འགྱུར";
+
+
+//Education
+"TextInputTitle" = "留下你的心声，带给别人更多启发，这也是学习！";
+"TextSend" = "发送";
+"DangYuanEducationTitle" = "ཏང་ཡོནསློབ་གསོ";
+"LearnTaskTitle" = "སློབ་སྦྱོངལས་འགན";
+"DangYuanHeart" = "ཏང་ཡོནབསམ་ཚུལ";
+"XuexiQingkuang" = "སློབ་སྦྱོངགནས་ཚུལ";
+"RenWujianjie" = "ལས་འགནངོ་སྤྲོད་མདོར་བསྡུས";
+"Yijianfankui" = "བསམ་ཚུལལྡོག་འདྲེན";
+"XiangzengFankui" = "འཕར་སྣོནལྡོག་འདྲེན";
+"FankuiXiangqing" = "ལྡོག་འདྲེནཞིབ་ཆ";
+"XuexiXingDe" = "སློབ་སྦྱོངམྱོང་ཚོར";
+"XindeXiangqing" = "མྱོང་ཚོརཞིབ་ཆ";
+"KaoshiGuize" = "རྒྱུགས་ལེནལམ་སྲོལ";
+"KaoshiDati" = "རྒྱུགས་ལེནདྲིས་ལན་ཁ་བྱང";
+"DangyuanKaoshi" = "ཏང་ཡོནརྒྱུགས་ལེན";
+"ZuijinChengji" = "最近成绩";
+"Chengjiyouxiu" = "您的成绩优秀，请继续保持呦!";
+"LishiKaoshi" = "ལོ་རྒྱུསརྒྱུགས་ལེན";
+"Daikaoshi" = "རེ་སྒུགརྒྱུགས་ལེན";
+"KaoshiPaiming" = "རྒྱུགས་ལེནགྲལ་སྟར་སྒྲིག་པ";
+"ZhengceFagui" = "སྲིད་ཇུསཁྲིམས་སྲོལ";
+"XiangQing" = "ཞིབ་ཆ";
+"Zuzhihuodong" = "རྩ་འཛུགསབྱེད་སྒོ";
+"TongzhigongGao" = "བརྡ་ཐོ";
+"ZixunXiangQing" = "ཆ་འཕྲིནཞིབ་ཆ";
+"Gerenzhongxin" = "མི་སྒེར";
+"HuoquJIfen" = "ལག་སོནཆ་བསགས";
+"GerenXinxi" = "མི་སྒེར་གྱི་ཆ་འཕྲིན";
+"XiugaiMima" = "བཟོ་བཅོས་ཨང་ཡིག";
+"JifenJilu" = "ཆ་བསགས་ཟིན་ཐོ";
+"Setting" = "མི་སྒེར་གྱི་བཟོ་བཅོས";
+"Guanyu" = "སྐོར";
+
+
+
+
+
+
+
+
+
+//login
+"loginTitle" = "登录";
+"forgetPassword" = "བརྗེད་ཨང་ཡིག";
+"zhanghao" = "རྩིས་ཐོའི་ཨང་གྲངས";
+"mima" = "གསང་བ";
+
+
+

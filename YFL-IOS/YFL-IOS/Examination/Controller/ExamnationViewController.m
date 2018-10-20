@@ -43,7 +43,7 @@
 }
 
 -(void)initView{
-    self.title = @"党员考试";
+    self.title = NSLocalizedString(@"DangyuanKaoshi", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     self.viewsArr = [NSMutableArray array];
     [self.view addSubview:self.table];
@@ -330,7 +330,7 @@
         }];
         UILabel *selectTitle1 = [[UILabel alloc] init];
         selectTitle1.font = [UIFont boldSystemFontOfSize:17.0f];
-        selectTitle1.text = @"历史考试";
+        selectTitle1.text = NSLocalizedString(@"LishiKaoshi", nil);
         selectTitle1.textColor = [UIColor whiteColor];
         selectTitle1.textAlignment = NSTextAlignmentCenter;
         [selectImageView addSubview:selectTitle1];
@@ -357,7 +357,7 @@
         }];
         UILabel *selectTitle2 = [[UILabel alloc] init];
         selectTitle2.font = [UIFont boldSystemFontOfSize:17.0f];
-        selectTitle2.text = @"待考试";
+        selectTitle2.text = NSLocalizedString(@"Daikaoshi", nil);
         selectTitle2.textColor = [UIColor whiteColor];
         selectTitle2.textAlignment = NSTextAlignmentCenter;
         [selectImageView2 addSubview:selectTitle2];
@@ -384,7 +384,7 @@
         
         UILabel *paimingLabel = [[UILabel alloc] init];
         paimingLabel.font = [UIFont systemFontOfSize:16.0f];
-        paimingLabel.text = @"考试排名";
+        paimingLabel.text = NSLocalizedString(@"KaoshiPaiming", nil);
         paimingLabel.textColor = [UIColor colorWithHexString:@"#FF6A00"];
         paimingLabel.textAlignment = NSTextAlignmentCenter;
         [_headerView addSubview:paimingLabel];

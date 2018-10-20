@@ -52,7 +52,7 @@
 }
 
 -(void)initView{
-    self.title = @"个人信息";
+    self.title = NSLocalizedString(@"GerenXinxi", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     

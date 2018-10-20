@@ -33,7 +33,7 @@
 }
 
 -(void)initView{
-    self.title = @"修改密码";
+    self.title = NSLocalizedString(@"XiugaiMima", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction);
@@ -179,7 +179,7 @@
         button.layer.masksToBounds = YES;
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
-        [button setTitle:@"修改密码" forState:UIControlStateNormal];
+        [button setTitle:NSLocalizedString(@"XiugaiMima", nil) forState:UIControlStateNormal];
         button.layer.cornerRadius = 4.0f;
         [_footerView addSubview:button];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {

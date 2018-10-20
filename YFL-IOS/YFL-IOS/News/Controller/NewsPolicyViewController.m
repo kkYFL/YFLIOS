@@ -43,7 +43,7 @@
 }
 
 -(void)initView{
-    self.title = @"政策法规";
+    self.title = NSLocalizedString(@"ZhengceFagui", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -285,7 +285,7 @@
     if (self.bannerList.count > index) {
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
-        wzweb.titleVC               =  @"详情";
+        wzweb.titleVC               =  NSLocalizedString(@"XiangQing", nil);
         wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.sourceHost,bannerModel.foreignUrl];
         wzweb.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:wzweb animated:YES];

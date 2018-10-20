@@ -415,7 +415,7 @@
         [button addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button setTitle:@"学习情况" forState:UIControlStateNormal];
+        [button setTitle:NSLocalizedString(@"XuexiQingkuang", nil) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button];
         button.tag = 101;
@@ -429,7 +429,7 @@
         [button1 addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button1 setTitle:@"任务简介" forState:UIControlStateNormal];
+        [button1 setTitle:NSLocalizedString(@"RenWujianjie", nil) forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button1];
         button1.tag = 102;
@@ -442,7 +442,7 @@
         [button2.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button2 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
         [button2 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
-        [button2 setTitle:@"党员心声" forState:UIControlStateNormal];
+        [button2 setTitle:NSLocalizedString(@"DangYuanHeart", nil) forState:UIControlStateNormal];
         [_itemsView addSubview:button2];
         button2.tag = 103;
         [button2 setFrame:CGRectMake(SCREEN_WIDTH/3.0*2, 0, SCREEN_WIDTH/3.0, 56)];

@@ -388,7 +388,7 @@
         [button addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button setTitle:@"任务简介" forState:UIControlStateNormal];
+        [button setTitle:NSLocalizedString(@"RenWujianjie", nil) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button];
         button.tag = 101;
@@ -402,7 +402,7 @@
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
-        [button1 setTitle:@"党员心声" forState:UIControlStateNormal];
+        [button1 setTitle:NSLocalizedString(@"DangYuanHeart", nil) forState:UIControlStateNormal];
         [_itemsView addSubview:button1];
         button1.tag = 102;
         [button1 setFrame:CGRectMake(SCREEN_WIDTH/2.0, 0, SCREEN_WIDTH/2.0, 56)];

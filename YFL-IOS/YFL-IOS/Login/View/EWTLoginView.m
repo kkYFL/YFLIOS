@@ -69,7 +69,7 @@
 
     //账号/手机号
     _phoneAndIDField = [[UITextField alloc] init];
-    _phoneAndIDField.placeholder = @"账号/手机号";
+    _phoneAndIDField.placeholder = NSLocalizedString(@"zhanghao", nil);
     _phoneAndIDField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_name"];
     _phoneAndIDField.borderStyle = UITextBorderStyleNone;
     _phoneAndIDField.textAlignment = NSTextAlignmentLeft;
@@ -108,7 +108,7 @@
     
     //密码
     _passwordField = [[UITextField alloc] init];
-    _passwordField.placeholder = @"密码";
+    _passwordField.placeholder = NSLocalizedString(@"mima", nil);
     _passwordField.borderStyle = UITextBorderStyleNone;
     _passwordField.textAlignment = NSTextAlignmentLeft;
     _passwordField.font = [UIFont systemFontOfSize:16];
@@ -155,7 +155,7 @@
 
     //密码找回
     UIButton *findButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [findButton setTitle:@"忘记密码?" forState:UIControlStateNormal];
+    [findButton setTitle:[NSString stringWithFormat:@"%@?",NSLocalizedString(@"forgetPassword", nil)] forState:UIControlStateNormal];
     findButton.titleLabel.textAlignment = NSTextAlignmentRight;
     findButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [findButton addTarget:self action:@selector(findPassword) forControlEvents:UIControlEventTouchUpInside];

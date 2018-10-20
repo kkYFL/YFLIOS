@@ -120,7 +120,7 @@
     [button.titleLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.layer.cornerRadius = 4.0f;
-    [button setTitle:@"未学习" forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"weixuexi", nil) forState:UIControlStateNormal];
     self.button = button;
     [self.contentView addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -180,14 +180,14 @@
         
         [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_learnModel.taskThumb]]];
         [self.timeLabel setText:_learnModel.taskTitle];
-        self.seeNum.text = [NSString stringWithFormat:@"%@条",_learnModel.nowNum];
-        self.timeLabel.text = [NSString stringWithFormat:@"%@学时",_learnModel.learnTime];
+        self.seeNum.text = [NSString stringWithFormat:@"%@%@",_learnModel.nowNum,NSLocalizedString(@"tiao", nil)];
+        self.timeLabel.text = [NSString stringWithFormat:@"%@%@",_learnModel.learnTime,NSLocalizedString(@"xueshi", nil)];
         if ([_learnModel.nowState integerValue] == 1) {
-            [self.button setTitle:@"未学习" forState:UIControlStateNormal];
+            [self.button setTitle:NSLocalizedString(@"weixuexi", nil) forState:UIControlStateNormal];
         }else if ([_learnModel.nowState integerValue] == 2){
-            [self.button setTitle:@"学习中" forState:UIControlStateNormal];
+            [self.button setTitle:NSLocalizedString(@"xuexizhong", nil) forState:UIControlStateNormal];
         }else if ([_learnModel.nowState integerValue] == 3){
-            [self.button setTitle:@"已学习" forState:UIControlStateNormal];
+            [self.button setTitle:NSLocalizedString(@"yixuexi", nil) forState:UIControlStateNormal];
         }
         
         

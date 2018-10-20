@@ -60,7 +60,7 @@
 
 
 -(void)loadData{
-     [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
 
     // 考试排名
     // 测试结果: 通过
@@ -285,7 +285,7 @@
         //remindLabel1
         UILabel *remindLabel1 = [[UILabel alloc] init];
         remindLabel1.font = [UIFont systemFontOfSize:16.0f];
-        remindLabel1.text = @"最近成绩";
+        remindLabel1.text = NSLocalizedString(@"ZuijinChengji", nil);
         remindLabel1.textColor = [UIColor whiteColor];
         remindLabel1.textAlignment = NSTextAlignmentCenter;
         [headerImageView addSubview:remindLabel1];
@@ -299,7 +299,7 @@
         //remindLabel2
         UILabel *remindLabel2 = [[UILabel alloc] init];
         remindLabel2.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel2.text = @"您的成绩优秀，请继续保持呦!";
+        remindLabel2.text = NSLocalizedString(@"Chengjiyouxiu", nil);
         remindLabel2.textColor = [UIColor whiteColor];
         remindLabel2.textAlignment = NSTextAlignmentCenter;
         [headerImageView addSubview:remindLabel2];

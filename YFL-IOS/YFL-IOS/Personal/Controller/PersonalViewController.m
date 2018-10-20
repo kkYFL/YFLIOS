@@ -89,7 +89,7 @@
 
 -(void)loadData{
     
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
 
     /**
      个人中心—用户信息查询接口
@@ -170,7 +170,7 @@
                                                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
                                                                       
                                                                   }];
-            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault
+            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"quxiao", nil) style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * action) {
                                                                      
                                                                  }];
@@ -286,28 +286,28 @@
     
     PersonRowTableViewCell *rowCell = [tableView dequeueReusableCellWithIdentifier:@"rowCell"];
     if(indexPath.row == 1){
-        rowCell.cellTitleLabel.text = @"个人信息";
-        rowCell.cellContentLabel.text = @"请完善个人信息";
+        rowCell.cellTitleLabel.text = NSLocalizedString(@"GerenXinxi", nil);
+        rowCell.cellContentLabel.text = NSLocalizedString(@"wanshangerenxingxi", nil);
         rowCell.cellNewImageView.hidden = YES;
     }else if (indexPath.row == 2){
-        rowCell.cellTitleLabel.text = @"密码管理";
-        rowCell.cellContentLabel.text = @"可设置微信、短信等方式";
+        rowCell.cellTitleLabel.text = NSLocalizedString(@"mimaguanli", nil);
+        rowCell.cellContentLabel.text = NSLocalizedString(@"weixinduanxinfangshi", nil);
         rowCell.cellNewImageView.hidden = YES;
         
     }else if (indexPath.row == 3){
-        rowCell.cellTitleLabel.text = @"版本更新";
-        rowCell.cellContentLabel.text = @"有新版本需要更新呦";
+        rowCell.cellTitleLabel.text = NSLocalizedString(@"banbengengxin", nil);
+        rowCell.cellContentLabel.text = NSLocalizedString(@"youxingbanbenxuyaogengxin", nil);
         if (![NSString isBlankString:_filePath]) {
             rowCell.cellNewImageView.hidden = NO;
         }else{
             rowCell.cellNewImageView.hidden = YES;
         }
     }else if(indexPath.row == 4){
-        rowCell.cellTitleLabel.text = @"设置";
+        rowCell.cellTitleLabel.text = NSLocalizedString(@"Setting", nil);
         rowCell.cellContentLabel.text = @"";
         rowCell.cellNewImageView.hidden = YES;
     }else{
-        rowCell.cellTitleLabel.text = @"关于";
+        rowCell.cellTitleLabel.text = NSLocalizedString(@"Guanyu", nil);
         rowCell.cellContentLabel.text = @"";
         rowCell.cellNewImageView.hidden = YES;
     }
@@ -367,7 +367,7 @@
     [self.descibeLabel setText:self.userModel.motto];
     
     if (self.signModel) {        
-        self.signLabel.text = [NSString stringWithFormat:@"已签到%@天，请继续保持呦！",self.signModel.totalSignIn];
+        self.signLabel.text = [NSString stringWithFormat:@"%@%@%@，%@",NSLocalizedString(@"yiqiandao", nil),self.signModel.totalSignIn,NSLocalizedString(@"tian", nil),NSLocalizedString(@"qingjixubaochi", nil)];
     }
 }
 
@@ -477,7 +477,7 @@
         signButton.layer.borderWidth = 0.5f;
         [signButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [signButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [signButton setTitle:@"签到" forState:UIControlStateNormal];
+        [signButton setTitle:NSLocalizedString(@"qiandao", nil) forState:UIControlStateNormal];
         [bottonView addSubview:signButton];
         [signButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(bottonView).offset(25.0f);
@@ -517,7 +517,7 @@
         outButton.layer.borderWidth = 0.5f;
         [outButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [outButton setTitleColor:[UIColor colorWithHexString:@"#FF0000"] forState:UIControlStateNormal];
-        [outButton setTitle:@"安全退出" forState:UIControlStateNormal];
+        [outButton setTitle:NSLocalizedString(@"tuichu", nil) forState:UIControlStateNormal];
         outButton.layer.cornerRadius = 4.0f;
         [_footerView addSubview:outButton];
         
@@ -538,7 +538,7 @@
 }
 
 -(void)MYSignOutSerVer{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
 
     NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
     [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
@@ -549,7 +549,7 @@
     } failure:^(NSError * _Nonnull error) {
         [[PromptBox sharedBox] removeLoadingView];
         
-        [MBProgressHUD toastMessage:@"退出失败" ToView:self.view];
+        [MBProgressHUD toastMessage:NSLocalizedString(@"tuichushibai", nil) ToView:self.view];
     }];
 }
 

@@ -292,7 +292,6 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 - (void)playClick:(UIButton *)sender {
     if (!self.assetURLs.count) {
-        [MBProgressHUD toastMessage:@"未获取到视频" ToView:self.view];
         return;
     }
     

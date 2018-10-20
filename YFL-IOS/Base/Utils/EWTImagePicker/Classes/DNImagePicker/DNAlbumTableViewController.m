@@ -59,13 +59,13 @@ static NSString* const dnalbumTableViewCellReuseIdentifier = @"dnalbumTableViewC
 
 - (void)setupView
 {
-    self.navigationItem.title = @"照片";
+    self.navigationItem.title = NSLocalizedString(@"zhaoping", nil);
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"#E51C23"];
     
 //    [self createBarButtonItemAtPosition:DNImagePickerNavigationBarPositionRight
 //                                   text:@"取消"
 //                                 action:@selector(cancelAction:)];
-    NAVIGATION_BAR_RIGHT_BUTTON_ONLYTEXT(0, 0, 37, 25, @"取消", @"取消", cancelAction);
+    NAVIGATION_BAR_RIGHT_BUTTON_ONLYTEXT(0, 0, 37, 25, NSLocalizedString(@"quxiao", nil), NSLocalizedString(@"quxiao", nil), cancelAction);
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }else {

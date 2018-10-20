@@ -127,7 +127,7 @@
 }
 
 +(CGFloat)CellHWithModel:(LearningTaskModel *)model{
-    NSString *content = [NSString stringWithFormat:@"%@%@",@"任务简介：",model.taskSummary];
+    NSString *content = [NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@：",NSLocalizedString(@"RenWujianjie", nil)],model.taskSummary];
     CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f]+0.5f;
     return 4*(15+14)+15.0f+H+60;
 }
@@ -155,22 +155,23 @@
     if (_model) {
         //任务类型 1 文字 2 视频 3 音频 4 图片
 
-        self.mingchengLabel.text = [NSString stringWithFormat:@"任务名称:%@",_model.taskTitle];
+        self.mingchengLabel.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"renwumingcheng", nil),_model.taskTitle];
         NSString *taskTypeStr = @"";
         if ([_model.taskType integerValue] == 1) {
-            taskTypeStr = @"文字";
+            taskTypeStr = NSLocalizedString(@"wenzi", nil);
         }else if ([_model.taskType integerValue] == 2){
-            taskTypeStr = @"视频";
+            taskTypeStr = NSLocalizedString(@"shiping", nil);
         }else if ([_model.taskType integerValue] == 3){
-            taskTypeStr = @"音频";
+            taskTypeStr = NSLocalizedString(@"yingping", nil);
         }else if ([_model.taskType integerValue] == 4){
-            taskTypeStr = @"图片";
+            taskTypeStr = NSLocalizedString(@"tupian", nil);
         }
         
-        self.leixingLabel.text = [NSString stringWithFormat:@"任务类别：%@",taskTypeStr];
-        self.learnTimeLabel.text = [NSString stringWithFormat:@"学习时长：%@分钟",_model.learnTime];
-        self.createTimeLabel.text = [NSString stringWithFormat:@"创建时间：%@",_model.createTime];
-        NSString *content = [NSString stringWithFormat:@"%@%@",@"任务简介：",_model.taskSummary];
+        self.leixingLabel.text = [NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"renwuleixing", nil),taskTypeStr];
+        self.learnTimeLabel.text = [NSString stringWithFormat:@"%@：%@%@",NSLocalizedString(@"xuexishixhang", nil),_model.learnTime,NSLocalizedString(@"fenzhogn", nil)];
+        self.createTimeLabel.text = [NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"chaugnjianshijian", nil),_model.createTime];
+        //RenWujianjie
+        NSString *content = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"chaugnjianshijian", nil),_model.taskSummary];
         NSMutableAttributedString *attri = [EducationJianjieCell getAttriHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f]];
         self.jianjieLabel.attributedText = attri;
         //CGFloat H = [EducationJianjieCell getSpaceLabelHeightwithString:content Speace:4.0f withFont:[UIFont systemFontOfSize:14.0f] withWidth:SCREEN_WIDTH-30.0f];

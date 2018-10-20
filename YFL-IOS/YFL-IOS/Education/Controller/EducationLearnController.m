@@ -71,8 +71,8 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-    
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+
     // 获取学习心得列表
     // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
     NSString *type = (selectIndex == 1)?@"1":@"2";
@@ -106,7 +106,7 @@
 }
 
 -(void)loadMore{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
     // 获取学习心得列表
     // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
     NSString *type = (selectIndex == 1)?@"1":@"2";
@@ -168,13 +168,13 @@
     // 学习心得
     // 测试结果: 通过
         [HanZhaoHua submitStudyNotesWithUserId:APP_DELEGATE.userId taskId:nil learnContent:content success:^(NSDictionary * _Nonnull responseObject) {
-            [MBProgressHUD toastMessage:@"发表心得成功" ToView:self.view];
+            [MBProgressHUD toastMessage:NSLocalizedString(@"fabiaoxingdechenggong", nil) ToView:self.view];
 
             NSLog(@"%@", responseObject);
         
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
-            [MBProgressHUD toastMessage:@"发表心得失败" ToView:self.view];
+            [MBProgressHUD toastMessage:NSLocalizedString(@"fabioxingdeshibai", nil) ToView:self.view];
 
         }];
 }
@@ -276,7 +276,7 @@
         [button addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button setTitle:@"全部心得" forState:UIControlStateNormal];
+        [button setTitle:NSLocalizedString(@"quanbuxingde", nil) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button];
         button.tag = 101;
@@ -290,7 +290,7 @@
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
-        [button1 setTitle:@"我的心得" forState:UIControlStateNormal];
+        [button1 setTitle:NSLocalizedString(@"我的心得", nil) forState:UIControlStateNormal];
         [_itemsView addSubview:button1];
         button1.tag = 102;
         [button1 setFrame:CGRectMake(w, 0, w, pageMenueH)];
@@ -395,7 +395,7 @@
         
         UILabel *remindLabel = [[UILabel alloc] init];
         remindLabel.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel.text = @"我的想法";
+        remindLabel.text = NSLocalizedString(@"wodexiangfa", nil);
         remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         remindLabel.textAlignment = NSTextAlignmentLeft;
         [footerTouch addSubview:remindLabel];
@@ -419,7 +419,7 @@
     self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
-    self.inputToolbar.placeholder = @"请输入...";
+    self.inputToolbar.placeholder = NSLocalizedString(@"qingshuru", nil);
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {
         __typeof(&*weakSelf) strongSelf = weakSelf;

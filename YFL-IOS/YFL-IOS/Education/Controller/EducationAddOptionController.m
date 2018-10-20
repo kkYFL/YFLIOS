@@ -135,13 +135,14 @@
     if (!_contentTitle) {
         UILabel *contentTitle = [[UILabel alloc] init];
         contentTitle.font = [UIFont systemFontOfSize:14.0f];
-        contentTitle.text = @"您有什么问题或建议想对我们说？";
+        contentTitle.text = NSLocalizedString(@"ningdewenti", nil);
         contentTitle.textColor = [UIColor colorWithHexString:@"#E51C23"];
         contentTitle.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:contentTitle];
         _contentTitle = contentTitle;
     }
     return _contentTitle;
+    
 }
 
 -(UITextField *)topicTextfield{
@@ -154,7 +155,7 @@
         //设置字体颜色
         cellTextfield.textColor = [UIColor colorWithHexString:@"#888888"];
         //当输入框没有内容时，水印提示 提示内容为password
-        cellTextfield.placeholder = @"您的主题";
+        cellTextfield.placeholder = NSLocalizedString(@"ningdezhuti", nil);
         //内容对齐方式
         cellTextfield.textAlignment = NSTextAlignmentLeft;
         //设置键盘的样式
@@ -183,7 +184,7 @@
         
         UILabel *placeHolderView = [[UILabel alloc] init];
         placeHolderView.font = [UIFont systemFontOfSize:14.0f];
-        placeHolderView.text = @"您的宝贵意见，就是我们进步的源泉";
+        placeHolderView.text = NSLocalizedString(@"ningdeyijian", nil);
         placeHolderView.textColor = [UIColor colorWithHexString:@"#888888"];
         placeHolderView.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:placeHolderView];
@@ -197,7 +198,7 @@
     if (!_reindLabel) {
         UILabel *reindLabel = [[UILabel alloc] init];
         reindLabel.font = [UIFont systemFontOfSize:14.0f];
-        reindLabel.text = @"      请详细描述您遇到的问题或疑问，有助于我们快速定位并解决，或留下您宝贵的意见或建议，我们会认真进行评估！";
+        reindLabel.text = [NSString stringWithFormat:@"      %@",NSLocalizedString(@"ningdeyijianshuoming", nil)];
         reindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         reindLabel.textAlignment = NSTextAlignmentLeft;
         reindLabel.numberOfLines = 0;
@@ -213,7 +214,7 @@
         button.backgroundColor = [UIColor colorWithHexString:@"#E51C23"];
         [button addTarget:self action:@selector(selectSource:) forControlEvents:UIControlEventTouchUpInside];
         button.layer.masksToBounds = YES;
-        [button setTitle:@"问题提交" forState:UIControlStateNormal];
+        [button setTitle:NSLocalizedString(@"wentitijiao", nil) forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
         button.layer.cornerRadius = 4.0f;
@@ -242,7 +243,7 @@
 
 -(void)selectSource:(UIButton *)sender{
     if (!self.topicTextfield.text.length || !self.contentTextView.text.length) {
-        [[PromptBox sharedBox] showPromptBoxWithText:@"请输入你的反馈信息" onView:self.view hideTime:2 y:0];
+        [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"shurufankui", nil) onView:self.view hideTime:2 y:0];
         return;
     }
     

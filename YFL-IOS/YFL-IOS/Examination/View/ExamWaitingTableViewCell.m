@@ -92,7 +92,6 @@
     
     UILabel *remainTimes = [[UILabel alloc] init];
     remainTimes.font = [UIFont systemFontOfSize:11.0f];
-    remainTimes.text = @"剩余 2 次";
     remainTimes.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     remainTimes.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:remainTimes];
@@ -106,7 +105,6 @@
     
     UILabel *examLabel = [[UILabel alloc] init];
     examLabel.font = [UIFont systemFontOfSize:14.0f];
-    examLabel.text = @"考试";
     examLabel.textColor = [UIColor colorWithHexString:@"#0DA2E8"];
     examLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:examLabel];
@@ -148,15 +146,15 @@
     _examModel = examModel;
     if (_examModel) {
         [self.cellTitleLabel setText:_examModel.paperTitle];
-        [self.timeLabel setText:[NSString stringWithFormat:@"%@到%@",_examModel.beginTime,_examModel.finalTime]];
-        self.remainTimes.text = [NSString stringWithFormat:@"剩余%ld次",([_examModel.totalTimes integerValue]-[_examModel.times integerValue])];
+        [self.timeLabel setText:[NSString stringWithFormat:@"%@%@%@",_examModel.beginTime,NSLocalizedString(@"dao", nil),_examModel.finalTime]];
+        self.remainTimes.text = [NSString stringWithFormat:@"%@%ld%@",NSLocalizedString(@"shengyu", nil),([_examModel.totalTimes integerValue]-[_examModel.times integerValue]),NSLocalizedString(@"ci", nil)];
         NSString *statueStr = @"";
         if ([_examModel.state integerValue] == 1) {
-            statueStr = @"已考试";
+            statueStr = NSLocalizedString(@"yikaoshi", nil);
         }else if ([_examModel.state integerValue] == 2){
-            statueStr = @"待考试";
+            statueStr = NSLocalizedString(@"Daikaoshi", nil);
         }else if ([_examModel.state integerValue] == 3){
-            statueStr = @"已完成";
+            statueStr = NSLocalizedString(@"yiwancheng", nil);
         }
         self.examLabel.text = statueStr;
         

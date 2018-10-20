@@ -47,7 +47,7 @@
     //设置字体颜色
     cellTextfield.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     //当输入框没有内容时，水印提示 提示内容为password
-    cellTextfield.placeholder = @"请输入当前密码";
+    cellTextfield.placeholder = NSLocalizedString(@"shurudangqianmima", nil);
     //内容对齐方式
     cellTextfield.textAlignment = NSTextAlignmentLeft;
     //设置键盘的样式

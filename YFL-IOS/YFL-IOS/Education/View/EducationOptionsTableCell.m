@@ -36,7 +36,6 @@
     
     UILabel *cellTitle = [[UILabel alloc] init];
     cellTitle.font = [UIFont systemFontOfSize:17.0f];
-    cellTitle.text = @"关于考试学习的问题";
     cellTitle.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     cellTitle.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:cellTitle];
@@ -77,7 +76,6 @@
     
     UILabel *statuslabel = [[UILabel alloc] init];
     statuslabel.font = [UIFont systemFontOfSize:14.0f];
-    statuslabel.text = @"已解决";
     statuslabel.textColor = [UIColor colorWithHexString:@"#259B24"];
     statuslabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:statuslabel];
@@ -101,7 +99,6 @@
     
     UILabel *solveLabel = [[UILabel alloc] init];
     solveLabel.font = [UIFont systemFontOfSize:14.0f];
-    solveLabel.text = @"处理人：张三";
     solveLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     solveLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:solveLabel];
@@ -133,9 +130,9 @@
         self.cellContent.text = _feedBackModel.createTime;
 
         if ([_feedBackModel.answerState integerValue] == 1) {
-            self.statuslabel.text = @"解决中";
+            self.statuslabel.text = NSLocalizedString(@"jiejuezhong", nil);
         }else{
-            self.statuslabel.text = @"已处理";
+            self.statuslabel.text = NSLocalizedString(@"yichuli", nil);
         }
         self.solveLabel.hidden = YES;
 

@@ -38,7 +38,8 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+
     // 积分列表
     // 测试结果: 接口通过, 但是无数据返回
     [HanZhaoHua getScoreListWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId success:^(NSArray * _Nonnull scoreList) {

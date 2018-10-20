@@ -116,15 +116,15 @@
     PersonPasswordInCell *passwordCell = [tableView dequeueReusableCellWithIdentifier:@"passwordCell"];
     NSString *placholder = @"";
     if (indexPath.section == 0) {
-        placholder = @"请输入当前密码";
+        placholder = NSLocalizedString(@"shurudangqianmima", nil);
         passwordCell.textfield.tag = 100;
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             passwordCell.textfield.tag = 101;
-            placholder = @"请输入新密码";
+            placholder = NSLocalizedString(@"shuruxingmima", nil);
         }else if (indexPath.row == 1){
             passwordCell.textfield.tag = 102;
-            placholder = @"请确认新密码";
+            placholder = NSLocalizedString(@"querenmima", nil);
         }
     }
     passwordCell.textfield.placeholder = placholder;
@@ -238,15 +238,15 @@
         [HanZhaoHua changePasswordWithUserId:APP_DELEGATE.userId oldPwd:inputPass1 password:inputPass2 success:^(NSDictionary * _Nonnull responseObject) {
             NSLog(@"%@", responseObject);
             if ([[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] isEqualToString:@"2000"]) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"密码修改成功！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"tishi", nil) message:NSLocalizedString(@"mimaxiugaichengong", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"queding", nil) otherButtonTitles:nil, nil];
                 [alert show];
             }else{
-                [MBProgressHUD toastMessage:@"密码修改失败" ToView:self.view];
+                [MBProgressHUD toastMessage:NSLocalizedString(@"mimaxiugaishibai", nil) ToView:self.view];
             }
             
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
-            [MBProgressHUD toastMessage:@"密码修改失败" ToView:self.view];
+            [MBProgressHUD toastMessage:NSLocalizedString(@"mimaxiugaishibai", nil) ToView:self.view];
         }];
     
 }

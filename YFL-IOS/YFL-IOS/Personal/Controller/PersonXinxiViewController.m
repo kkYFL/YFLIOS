@@ -58,7 +58,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 30, 30);
-    [button setTitle:@"修改" forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"xiugai", nil) forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(rightButtonAction) forControlEvents:UIControlEventTouchUpInside];
     self.righBtn = button;
@@ -141,7 +141,7 @@
     
     if (indexPath.section == 0) {
         xinxiCell.type = XinxiCellTypeWithIconAndRow;
-        xinxiCell.cellTitleLabel.text = @"用户头像";
+        xinxiCell.cellTitleLabel.text = NSLocalizedString(@"yonghutouxiang", nil);
         
         NSString *headimageUrl = @"";
         if ([self.userModel.headImg hasPrefix:@"http"]) {
@@ -156,19 +156,19 @@
         NSString *titleStr = @"";
         NSString *contentStr = @"";
         if (indexPath.row ==0) {
-            titleStr = @"真实姓名";
+            titleStr = NSLocalizedString(@"zhengshixingming", nil);
             contentStr = self.userModel.pmName;
             xinxiCell.cellContentLabel.tag = 101;
         }else if (indexPath.row ==1){
-            titleStr = @"手机号码";
+            titleStr = NSLocalizedString(@"PhoneNum", nil);
             contentStr = phoneInputStr?self.userModel.userName:self.userModel.userName;
             xinxiCell.cellContentLabel.tag = 102;
         }else if (indexPath.row ==2){
-            titleStr = @"性别";
+            titleStr = NSLocalizedString(@"sex", nil);
             if ([self.userModel.pmSex integerValue] == 1) {
-                contentStr = @"男";
+                contentStr = NSLocalizedString(@"nan", nil);
             }else if ([self.userModel.pmSex integerValue] == 2){
-                contentStr = @"女";
+                contentStr = NSLocalizedString(@"nv", nil);
             }
             if (sexInputStr.length) {
                 contentStr = sexInputStr;
@@ -184,12 +184,12 @@
         xinxiCell.cellContentLabel.text = contentStr;
     }else if (indexPath.section == 2){
         xinxiCell.type = XinxiCellTypeWithJustContent;
-        xinxiCell.cellTitleLabel.text = @"我的座右铭";
+        xinxiCell.cellTitleLabel.text = NSLocalizedString(@"wodezuoyouming", nil);
         xinxiCell.cellContentLabel.tag = 104;
         xinxiCell.cellContentLabel.text = mottoInputStr.length?mottoInputStr:self.userModel.motto;
     }else if (indexPath.section == 3){
         xinxiCell.type = XinxiCellTypeWithJustContent;
-        xinxiCell.cellTitleLabel.text = @"我的地址";
+        xinxiCell.cellTitleLabel.text = NSLocalizedString(@"wodedizhi", nil);
         xinxiCell.cellContentLabel.text = addressInputStr.length?addressInputStr:self.userModel.pmAddress;
         xinxiCell.cellContentLabel.tag = 105;
     }
@@ -261,11 +261,11 @@
         switch (buttonIndex)
         {
             case 0:
-                sexInputStr = @"男";
+                sexInputStr = NSLocalizedString(@"nan", nil);
                 [self.table reloadData];
                 break;
             case 1:
-                sexInputStr = @"女";
+                sexInputStr = NSLocalizedString(@"nv", nil);
                 [self.table reloadData];
                 break;
         }
@@ -339,11 +339,11 @@
 #pragma mark - Photo/Library
 - (void)showActionSheet {
     //[self resignKeyboard];
-    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:@"修改头像"
+    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"xiugaitouxiang", nil)
                                                       delegate:self
-                                             cancelButtonTitle:@"取消"
+                                             cancelButtonTitle:NSLocalizedString(@"quxiao", nil)
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:@"打开照相机", @"从手机相册获取", nil];
+                                             otherButtonTitles:NSLocalizedString(@"dakaixiangji", nil), NSLocalizedString(@"dakixiangce", nil), nil];
     self.getPhotosSheet.tag = 100;
     self.getPhotosSheet.delegate = self;
     [self.getPhotosSheet showInView:self.view];
@@ -353,9 +353,9 @@
     //[self resignKeyboard];
     UIActionSheet *sexActionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                       delegate:self
-                                             cancelButtonTitle:@"取消"
+                                             cancelButtonTitle:NSLocalizedString(@"quxiao", nil)
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:@"男", @"女", nil];
+                                             otherButtonTitles:NSLocalizedString(@"nan", nil), NSLocalizedString(@"nv", nil), nil];
     sexActionSheet.tag = 101;
     sexActionSheet.delegate = self;
     [sexActionSheet showInView:self.view];
@@ -375,12 +375,12 @@
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     if (!allowEdting) {
-        [self.righBtn setTitle:@"保存" forState:UIControlStateNormal];
+        [self.righBtn setTitle:NSLocalizedString(@"baocun", nil) forState:UIControlStateNormal];
         allowEdting = YES;
         
         [self showActionSheet];
     }else{
-        [self.righBtn setTitle:@"修改" forState:UIControlStateNormal];
+        [self.righBtn setTitle:NSLocalizedString(@"xiugai", nil) forState:UIControlStateNormal];
         allowEdting = NO;
         
         [self savePersonSource];
@@ -392,7 +392,7 @@
     
     if ([NSString isBlankString:headerImageUrl] && [NSString isBlankString:phoneInputStr] && [NSString isBlankString:sexInputStr] && [NSString isBlankString:mottoInputStr] && [NSString isBlankString:addressInputStr]) {
         
-        [MBProgressHUD toastMessage:@"请选择修改内容" ToView:self.view];
+        [MBProgressHUD toastMessage:NSLocalizedString(@"xuanzexiugaineirong", nil) ToView:self.view];
         return;
     }
 
@@ -400,9 +400,9 @@
     // 个人信息
     // 测试结果: 通过
     NSString *sexNum = @"";
-    if ([sexInputStr isEqualToString:@"男"]) {
+    if ([sexInputStr isEqualToString:NSLocalizedString(@"nan", nil)]) {
         sexNum = @"1";
-    }else if ([sexInputStr isEqualToString:@"女"]){
+    }else if ([sexInputStr isEqualToString:NSLocalizedString(@"nv", nil)]){
         sexNum = @"2";
     }
     
@@ -427,11 +427,11 @@
     [HanZhaoHua savePersonalSourceWithPara:para success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
         
-        [MBProgressHUD toastMessage:@"数据保存成功" ToView:self.view];
+        [MBProgressHUD toastMessage:NSLocalizedString(@"saveSuccess", nil) ToView:self.view];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonViewSourceNoti" object:nil];
     } failure:^(NSError * _Nonnull error) {
-        [MBProgressHUD toastMessage:@"数据保存失败" ToView:self.view];
+        [MBProgressHUD toastMessage:NSLocalizedString(@"saveError", nil) ToView:self.view];
     }];
     
 }
@@ -441,7 +441,7 @@
     // 文件上传
     //测试结果:
     if (self.images.count) {
-       [[PromptBox sharedBox] showLoadingWithText:@"上传中..." onView:self.view];
+       [[PromptBox sharedBox] showLoadingWithText:NSLocalizedString(@"shangchuanzhong", nil) onView:self.view];
 
         UIImage *image = self.images[0];
         NSData *data = UIImagePNGRepresentation(image);
@@ -449,14 +449,12 @@
         [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
             [[PromptBox sharedBox] removeLoadingView];
             
-            //[MBProgressHUD toastMessage:@"图片上传成功" ToView:self.view];
             headerImageUrl = [imgUrl copy];
             self.userModel.headImg = imgUrl;
             [self.table reloadData];
             
         } failure:^(NSError * _Nonnull error) {
             [[PromptBox sharedBox] removeLoadingView];
-            //[MBProgressHUD toastMessage:@"图片上传失败" ToView:self.view];
         }];
     }
 
@@ -465,7 +463,7 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (allowEdting) {
         if (textField.tag == 101) {
-            [MBProgressHUD toastMessage:@"不可修改真实姓名" ToView:self.view];
+            [MBProgressHUD toastMessage:NSLocalizedString(@"bukexiugaixingming", nil) ToView:self.view];
             return NO;
         }
         

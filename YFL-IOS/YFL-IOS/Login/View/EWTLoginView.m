@@ -144,7 +144,7 @@
     } else {
         _nextVCButton.enabled = NO;
     }
-    [_nextVCButton setTitle:@"登录" forState:UIControlStateNormal];
+    [_nextVCButton setTitle:NSLocalizedString(@"loginTitle", nil) forState:UIControlStateNormal];
     [_nextVCButton addTarget:self action:@selector(dologin:) forControlEvents:UIControlEventTouchUpInside];
     [_nextVCButton setBackgroundColor:[UIColor colorWithHexString:@"#0096F6"]];
 //    [_nextVCButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -180,7 +180,7 @@
 
 #pragma mark 忘记密码
 - (void)findPassword {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"忘记密码" message:@"请拨打 13634174103进行充值！" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"forgetPassword", nil) message:[NSString stringWithFormat:@"%@ 13634174103%@",NSLocalizedString(@"iphonePlay", nil),NSLocalizedString(@"chongzhi", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"quxiao", nil) otherButtonTitles:NSLocalizedString(@"queding", nil), nil];
     [alertView show];
     
 }

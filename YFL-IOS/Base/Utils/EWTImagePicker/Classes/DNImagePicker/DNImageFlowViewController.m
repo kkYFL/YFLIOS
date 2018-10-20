@@ -92,7 +92,7 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
 
 - (void)setupView
 {
-    self.navigationItem.title = @"照片";
+    self.navigationItem.title = NSLocalizedString(@"zhaoping", nil);
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"#E51C23"];
     self.view.backgroundColor = [UIColor whiteColor];
 //    [self createBarButtonItemAtPosition:DNImagePickerNavigationBarPositionLeft
@@ -231,7 +231,7 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
     firstItem.enabled = YES;
     if (self.selectedAssetsArray.count >= self.maxImagesCount) {
         NSString* alertContent = [NSString stringWithFormat:@"不能超过%zd张图片",self.maxImagesCount];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertContent message:alertContent delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertContent message:alertContent delegate:self cancelButtonTitle:NSLocalizedString(@"queding", nil) otherButtonTitles:nil, nil];
         [alert show];
         
         return NO;

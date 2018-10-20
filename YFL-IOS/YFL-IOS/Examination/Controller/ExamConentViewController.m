@@ -100,17 +100,17 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             ExamTopTitleTableViewCell *topTitleCell = [tableView dequeueReusableCellWithIdentifier:@"topTitleCell"];
             NSString *typeStr = @"";
             if ([_currentExamModel.examType integerValue] == 1) {
-                typeStr = @"单选";
+                typeStr = NSLocalizedString(@"danxuan", nil);
             }else if ([_currentExamModel.examType integerValue] == 2){
-                typeStr = @"多选";
+                typeStr = NSLocalizedString(@"duoxuan", nil);
             }else if ([_currentExamModel.examType integerValue] == 3){
-                typeStr = @"填空";
+                typeStr = NSLocalizedString(@"tiankong", nil);
             }else if ([_currentExamModel.examType integerValue] == 4){
-                typeStr = @"判断";
+                typeStr = NSLocalizedString(@"panduan", nil);
             }else if ([_currentExamModel.examType integerValue] == 5){
-                typeStr = @"简答";
+                typeStr = NSLocalizedString(@"jieda", nil);
             }
-            topTitleCell.titleLabel.text = [NSString stringWithFormat:@"第%ld题  %@题",(_currentIndex+1),typeStr];
+            topTitleCell.titleLabel.text = [NSString stringWithFormat:@"%@%ld%@  %@%@",NSLocalizedString(@"di", nil),(_currentIndex+1),NSLocalizedString(@"timu", nil),typeStr,NSLocalizedString(@"timu", nil)];
             return topTitleCell;
         }
         
@@ -255,7 +255,11 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 #pragma mark - 返回
 - (void)leftButtonAction{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您好，您还有1次答题的机会,是否确定放弃本次答题？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    //fangqibencidati
+    //UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您好，您还有1次答题的机会,是否确定放弃本次答题？" delegate:self cancelButtonTitle:NSLocalizedString(@"quxiao", nil) otherButtonTitles:NSLocalizedString(@"queding", nil), nil];
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"tishi", nil) message:[NSString stringWithFormat:@"%@%@%@,%@",NSLocalizedString(@"shengyu", nil),@"1",NSLocalizedString(@"ci", nil),NSLocalizedString(@"jihui", nil),NSLocalizedString(@"fangqibencidati", nil)] delegate:self cancelButtonTitle:NSLocalizedString(@"quxiao", nil) otherButtonTitles:NSLocalizedString(@"queding", nil), nil];
+
     [alert show];
     }
 
@@ -272,7 +276,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         button1.tag = 101;
         button1.layer.masksToBounds = YES;
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
-        [button1 setTitle:@"上一题" forState:UIControlStateNormal];
+        [button1 setTitle:NSLocalizedString(@"shangyiti", nil) forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
         button1.layer.cornerRadius = 10.0f;
         [_footerView addSubview:button1];
@@ -293,7 +297,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         [button2.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button2 setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
         button2.layer.cornerRadius = 10.0f;
-        [button2 setTitle:@"下一题" forState:UIControlStateNormal];
+        [button2 setTitle:NSLocalizedString(@"xiayiti", nil) forState:UIControlStateNormal];
         [_footerView addSubview:button2];
         [button2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_footerView).offset(0);

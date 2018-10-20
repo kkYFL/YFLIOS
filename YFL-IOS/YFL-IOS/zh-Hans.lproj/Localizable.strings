@@ -58,3 +58,156 @@
 //    [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
 "zhanghao" = "账号/手机号";
 "mima" = "密码";
+
+
+
+"zhanghaoError" = "账号或密码错误";
+"iphonePlay" = "请拨打";
+"chongzhi" = "充值";
+"weixuexi" = "未学习";
+"xuexizhong" = "学习中";
+"yixuexi" = "已学习";
+"tiao" = "条";
+"xueshi" = "学时";
+"guanyukaoshi" = "关于考试学习的问题";
+"jiejuezhong" = "解决中";
+"yichuli" = "已处理";
+"wenzi" = "文字";
+"shiping" = "视频";
+"yingping" = "音频";
+"tupian" = "图片";
+"renwuleixing" = "任务类别";
+"xuexishixhang" = "学习时长";
+"fenzhogn" = "分钟";
+"chaugnjianshijian" = "创建时间";
+"jiazaizhong" = "加载中";
+"pinglunchengong" = "评论发表成功！";
+"pinglunshibai" = "评论发表失败！";
+"wodexiangfa" = "我的想法";
+"qingshuru" = "请输入...";
+"ningdewenti" = "您有什么问题或建议想对我们说？";
+"ningdezhuti" = "您的主题";
+"ningdeyijian" = "您的宝贵意见，就是我们进步的源泉";
+"ningdeyijianshuoming" = "请详细描述您遇到的问题或疑问，有助于我们快速定位并解决，或留下您宝贵的意见或建议，我们会认真进行评估！";
+"shurufankui" = "请输入你的反馈信息";
+"fabiaoxingdechenggong" = "发表心得成功";
+"quanbuxingde" = "全部心得";
+"wodexingde" = "我的心得";
+"pinglun" = "评论";
+"yikaoshi" = "已考试";
+"yiwancheng" = "已完成";
+"duohangshuru" = "多行输入";
+"danxuan" = "单选";
+"duoxuan" = "多选";
+"tiankong" = "填空";
+"panduan" = "判断";
+"jieda" = "简答";
+"ruhehuodejifen" = "如何获取积分?";
+"chankanjifen" = "查看积分";
+"huoqujilu" = "获取记录";
+"shurudangqianmima" = "请输入当前密码";
+"shuruxingmima" = "请输入新密码";
+"querenmima" = "请确认新密码";
+"quxiao" = "取消";
+"queding" = "确定";
+
+
+
+
+
+
+"zhaoping" = "照片";
+"xuanzezhaopianweizhi" = "选取照片位置";
+"baocun" = "保存";
+"yuantu" = "原图";
+"dangyuanrequ" = "党员热区";
+"zuixingzixun" = "最新资讯";
+"renwumingcheng" = "任务名称";
+"shichang" = "时长";
+"wentitijiao" = "问题提交";
+"fabioxingdeshibai" = "发表心得失败";
+"dianzanchenggong" = "点赞成功";
+"dao" = "到";
+"shengyu" = "剩余";
+"ci" = "次";
+"jihui" = "机会";
+"fangqibencidati" = "是否确定放弃本次答题？";
+"kaishikaoshi" = "开始考试";
+"timu" = "题";
+"di" = "第";
+"shangyiti" = "上一题";
+"xiayiti" = "下一题";
+"yaowensudi" = "要闻速递";
+"jifen" = "积分";
+"tuichu" = "退出";
+"lijigengxing" = "立即升级";
+"banbengengxin" = "版本更新";
+"youxingbanbenxuyaogengxin" = "有新版本需要更新呦";
+"yiqiandao" = "已签到";
+"tian" = "天";
+"qingjixubaochi" = "请继续保持呦！";
+"anquantuichu" = "安全退出";
+"tuichushibai" = "退出失败";
+"jinriqiandaorenshu" = "今日签到人数";
+"yijianchitianshu" = "已坚持天数";
+"yilianxudakatianshu" = "已连续打卡天数";
+"xiugai" = "修改";
+"yonghutouxiang" = "用户头像";
+"zhengshixingming" = "真实姓名";
+"PhoneNum" = "手机号码";
+"sex" = "性别";
+"nan" = "男";
+"nv" = "女";
+"wodezuoyouming" = "我的座右铭";
+"wodedizhi" = "我的地址";
+"xiugaitouxiang" = "修改头像";
+"dakixiangce" = "从手机相册获取";
+"dakaixiangji" = "打开照相机";
+"xuanzexiugaineirong" = "请选择修改内容";
+"saveSuccess" = "数据保存成功";
+"saveError" = "数据保存失败";
+"shangchuanzhong" = "上传中";
+"bukexiugaixingming" = "不可修改真实姓名";
+"tishi" = "提示";
+"mimaxiugaichengong" = "密码修改成功";
+"mimaxiugaishibai" = "密码修改失败";
+"yuyanqiehuan" = "语言切换";
+"mimaguanli" = "密码管理";
+"qiehuan" = "切换";
+"qinglichenggong" = "清理完成";
+"gongxuqinglihuancun" = "共需清理缓存";
+"wanshangerenxingxi" = "请完善个人信息";
+"weixinduanxinfangshi" = "可设置微信、短信等方式";
+"qiandao" = "签到";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

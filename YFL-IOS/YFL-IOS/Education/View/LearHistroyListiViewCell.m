@@ -117,7 +117,7 @@
 
         
         //
-        self.rightLabel.text = [NSString stringWithFormat:@"时长 %@分钟",_historyModel.learnTime];
+        self.rightLabel.text = [NSString stringWithFormat:@"%@ %@%@",NSLocalizedString(@"shichang", nil),_historyModel.learnTime,NSLocalizedString(@"fenzhogn", nil)];
 
 
     }

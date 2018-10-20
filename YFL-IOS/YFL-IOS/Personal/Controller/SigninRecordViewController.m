@@ -286,7 +286,7 @@
         if (self.signModel) {
             //NSDate *severData = [self refreshCalandarWithYear:[self.signModel.year integerValue] Month:[self.signModel.month integerValue]];
             [self.calendar setCurrentPage:date animated:YES];
-            [self.signNumLabel setText:[NSString stringWithFormat:@"今日签到人数：%@",self.signModel.todayTotalNum]];
+            [self.signNumLabel setText:[NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"jinriqiandaorenshu", nil),self.signModel.todayTotalNum]];
             [self.hasOnDay setText:[NSString stringWithFormat:@"%@",self.signModel.totalSignIn]];
             [self.hasOnDayRight setText:[NSString stringWithFormat:@"%@",self.signModel.continueSignIn]];
         }else{
@@ -338,7 +338,7 @@
         
         UILabel *signTitleLabel = [[UILabel alloc] init];
         signTitleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
-        signTitleLabel.text = @"签到";
+        signTitleLabel.text = NSLocalizedString(@"qiandao", nil);
         signTitleLabel.textColor = [UIColor whiteColor];
         signTitleLabel.textAlignment = NSTextAlignmentLeft;
         [signView addSubview:signTitleLabel];
@@ -369,7 +369,7 @@
         
         UILabel *hasOnTitle = [[UILabel alloc] init];
         hasOnTitle.font = [UIFont boldSystemFontOfSize:17.0f];
-        hasOnTitle.text = @"已坚持天数";
+        hasOnTitle.text = NSLocalizedString(@"yijianchitianshu", nil);
         hasOnTitle.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
         hasOnTitle.textAlignment = NSTextAlignmentLeft;
         [backView addSubview:hasOnTitle];
@@ -395,7 +395,7 @@
 
         UILabel *hasOnDayTitle = [[UILabel alloc] init];
         hasOnDayTitle.font = [UIFont boldSystemFontOfSize:17.0f];
-        hasOnDayTitle.text = @"已连续打卡天数";
+        hasOnDayTitle.text = NSLocalizedString(@"yilianxudakatianshu", nil);
         hasOnDayTitle.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
         hasOnDayTitle.textAlignment = NSTextAlignmentRight;
         [backView addSubview:hasOnDayTitle];

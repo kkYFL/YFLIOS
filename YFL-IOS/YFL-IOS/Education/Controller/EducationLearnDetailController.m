@@ -59,7 +59,7 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
 
     // 获取心得评论列表
     // 测试结果: 通过
@@ -174,7 +174,7 @@
         return [[UIView alloc]init];
     }
     
-    NSString *title = [NSString stringWithFormat:@"评论(%lu)",(unsigned long)self.commentListArr.count];
+    NSString *title = [NSString stringWithFormat:@"%@(%lu)",NSLocalizedString(@"pinglun", nil),(unsigned long)self.commentListArr.count];
     return [self headerViewWithIcon:@"red_line" Title:title];
 }
 
@@ -293,7 +293,7 @@
     [HanZhaoHua likeStudyNotesWithNotesId:notiId success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
         if ([[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] integerValue] == 2000) {
-            [[PromptBox sharedBox] showPromptBoxWithText:@"点赞成功" onView:self.view hideTime:2 y:0];
+            [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"dianzanchenggong", nil) onView:self.view hideTime:2 y:0];
         }
 
         [self loadData];
@@ -334,7 +334,7 @@
         
         UILabel *remindLabel = [[UILabel alloc] init];
         remindLabel.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel.text = @"我的想法";
+        remindLabel.text = NSLocalizedString(@"wodexiangfa", nil);
         remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         remindLabel.textAlignment = NSTextAlignmentLeft;
         [footerTouch addSubview:remindLabel];
@@ -358,7 +358,7 @@
     self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
-    self.inputToolbar.placeholder = @"请输入...";
+    self.inputToolbar.placeholder = NSLocalizedString(@"qingshuru", nil);
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {
         __typeof(&*weakSelf) strongSelf = weakSelf;
@@ -391,16 +391,16 @@
         NSLog(@"%@", responseObject);
         NSString *code = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]];
         if ([code isEqualToString:@"2000"]) {
-            [MBProgressHUD toastMessage:@"发表评论成功" ToView:self.view];
+            [MBProgressHUD toastMessage:NSLocalizedString(@"pinglunchengong", nil) ToView:self.view];
             
             [self refershHeader];
         }else{
-            [MBProgressHUD toastMessage:@"发表评论失败" ToView:self.view];
+            [MBProgressHUD toastMessage:NSLocalizedString(@"pinglunshibai", nil) ToView:self.view];
         }
         
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
-        [MBProgressHUD toastMessage:@"发表评论失败" ToView:self.view];
+        [MBProgressHUD toastMessage:NSLocalizedString(@"pinglunshibai", nil) ToView:self.view];
     }];
 }
 

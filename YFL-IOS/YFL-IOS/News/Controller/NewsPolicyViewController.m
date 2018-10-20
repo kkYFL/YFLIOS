@@ -65,8 +65,8 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-    
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
     // 测试结果: 通过
@@ -116,7 +116,7 @@
 }
 
 -(void)loadMoreData{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
 
     // 新闻列表接口
     // 测试结果: 通过

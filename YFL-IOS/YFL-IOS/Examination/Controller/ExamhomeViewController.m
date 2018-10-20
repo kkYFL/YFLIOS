@@ -210,7 +210,7 @@
     
     UILabel *examTileLab = [[UILabel alloc] init];
     examTileLab.font = [UIFont boldSystemFontOfSize:17.0f];
-    examTileLab.text = @"开始考试";
+    examTileLab.text = NSLocalizedString(@"kaishikaoshi", nil);
     examTileLab.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
     examTileLab.textAlignment = NSTextAlignmentCenter;
     [self.examImageView addSubview:examTileLab];

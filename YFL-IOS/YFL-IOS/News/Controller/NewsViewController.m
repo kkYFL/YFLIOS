@@ -104,7 +104,8 @@
 
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
     // 测试结果: 通过
@@ -201,7 +202,8 @@
     
     // 新闻列表接口
     // 测试结果: 通过
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+
     [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" Title:@"" page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull newsList) {
         
         [[PromptBox sharedBox] removeLoadingView];
@@ -367,7 +369,7 @@
     if (section == 0) {
         return self.remindScrollHeader;
     }
-    return [self headerViewWithIcon:nil Title:@"最新资讯"];
+    return [self headerViewWithIcon:nil Title:NSLocalizedString(@"zuixingzixun", nil)];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

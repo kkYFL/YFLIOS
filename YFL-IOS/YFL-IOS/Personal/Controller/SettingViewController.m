@@ -102,8 +102,8 @@
 {
     PersonSettingCell *settingCell = [tableView dequeueReusableCellWithIdentifier:@"settingCell"];
     if (indexPath.row == 0) {
-        settingCell.cellTitleLabel.text = @"语言切换";
-        settingCell.cellContentLabel.text = @"切换";
+        settingCell.cellTitleLabel.text = NSLocalizedString(@"yuyanqiehuan", nil);
+        settingCell.cellContentLabel.text = NSLocalizedString(@"qiehuan", nil);
     }else if (indexPath.row == 1){
         settingCell.cellTitleLabel.text = @"缓存清理";
         //缓存
@@ -204,8 +204,8 @@
 
 #pragma mark 清空缓存
 - (void)clearTheCacheMethod {
-    NSString *string = [NSString stringWithFormat:@"共需清理缓存%.2lfM",cacheSize/1000.];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"清理完成" message:string delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    NSString *string = [NSString stringWithFormat:@"%@%.2lfM",NSLocalizedString(@"gongxuqinglihuancun", nil),cacheSize/1000.];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"qinglichenggong", nil) message:string delegate:self cancelButtonTitle:NSLocalizedString(@"quxiao", nil) otherButtonTitles:NSLocalizedString(@"queding", nil), nil];
     [alert show];
 }
 

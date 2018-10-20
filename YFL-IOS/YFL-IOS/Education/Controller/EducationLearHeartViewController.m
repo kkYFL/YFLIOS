@@ -91,8 +91,8 @@
 //         [self showDisnetView];
 //     }];
     
-    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-    
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+
     // 学习任务
     if (self.type == MYEducationViewTypeDefault) {
         // 学习任务列表

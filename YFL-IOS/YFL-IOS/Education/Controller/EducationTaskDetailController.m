@@ -157,13 +157,13 @@
     
         [HanZhaoHua submitCommentsWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId commentInfo:comment success:^(NSDictionary * _Nonnull responseObject) {
             NSLog(@"%@", responseObject);
-            [[PromptBox sharedBox] showPromptBoxWithText:@"评论发表成功！" onView:self.view hideTime:2 y:0];
+            [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"pinglunchengong", nil) onView:self.view hideTime:2 y:0];
             
             [self loadData];
 
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
-            [[PromptBox sharedBox] showPromptBoxWithText:@"评论发表失败！" onView:self.view hideTime:2 y:0];
+            [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"pinglunshibai", nil) onView:self.view hideTime:2 y:0];
 
         }];
     
@@ -454,7 +454,7 @@
 
         UILabel *remindLabel = [[UILabel alloc] init];
         remindLabel.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel.text = @"我的想法";
+        remindLabel.text = NSLocalizedString(@"wodexiangfa", nil);
         remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         remindLabel.textAlignment = NSTextAlignmentLeft;
         [footerTouch addSubview:remindLabel];
@@ -477,7 +477,7 @@
     self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
-    self.inputToolbar.placeholder = @"请输入...";
+    self.inputToolbar.placeholder = NSLocalizedString(@"qingshuru", nil);
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {
         __typeof(&*weakSelf) strongSelf = weakSelf;

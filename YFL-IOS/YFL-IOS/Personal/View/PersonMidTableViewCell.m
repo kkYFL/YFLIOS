@@ -96,7 +96,7 @@
     
     UILabel *huoqu = [[UILabel alloc] init];
     huoqu.font = [UIFont systemFontOfSize:12.0f];
-    huoqu.text = @"如何获取积分？";
+    huoqu.text = NSLocalizedString(@"ruhehuodejifen", nil);
     huoqu.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     huoqu.textAlignment = NSTextAlignmentLeft;
     [self.leftBackView addSubview:huoqu];
@@ -118,7 +118,7 @@
     
     UILabel *chakan = [[UILabel alloc] init];
     chakan.font = [UIFont systemFontOfSize:12.0f];
-    chakan.text = @"查看积分";
+    chakan.text = NSLocalizedString(@"chankanjifen", nil);
     chakan.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     chakan.textAlignment = NSTextAlignmentLeft;
     [self.rightBackView addSubview:chakan];
@@ -130,7 +130,7 @@
     
     UILabel *jilu = [[UILabel alloc] init];
     jilu.font = [UIFont systemFontOfSize:12.0f];
-    jilu.text = @"获取记录";
+    jilu.text = NSLocalizedString(@"huoqujilu", nil);
     jilu.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     jilu.textAlignment = NSTextAlignmentLeft;
     [self.rightBackView addSubview:jilu];
@@ -174,7 +174,7 @@
 -(void)setScore:(NSInteger)score{
     _score = score;
     if (_score) {
-        self.jifenNum.text = [NSString stringWithFormat:@"积分%ld",_score];
+        self.jifenNum.text = [NSString stringWithFormat:@"%@%ld",NSLocalizedString(@"jifen", nil),_score];
 
     }
 }

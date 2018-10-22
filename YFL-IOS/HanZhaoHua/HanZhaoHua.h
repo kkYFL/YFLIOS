@@ -453,6 +453,16 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)MYLogOutWithParaDic: (NSDictionary *)paraDic success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure;
 
 
+
+/**
+ 墨云-获取学习任务列表
+ 
+ @param queryType      类型   1：汉语 2：藏语
+ */
++(void)MYGetLaungeWithParaDic:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

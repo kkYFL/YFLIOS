@@ -121,6 +121,12 @@
 		3AB19238216B84DE006C5666 /* RYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19232216B84DE006C5666 /* RYPageControl.m */; };
 		3AB19239216B84DE006C5666 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19233216B84DE006C5666 /* GuideViewController.m */; };
 		3AB1923A216B84DE006C5666 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19236216B84DE006C5666 /* OnboardingContentViewController.m */; };
+		3AB1FACC217B7B8D00DDF11D /* PersonRowWithIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FACB217B7B8C00DDF11D /* PersonRowWithIconCell.m */; };
+		3AB1FACF217B849300DDF11D /* CareerLessonSelectMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FACE217B849300DDF11D /* CareerLessonSelectMaskView.m */; };
+		3AB1FAD2217B84FA00DDF11D /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FAD1217B84FA00DDF11D /* VersionUpdateView.m */; };
+		3AB1FADD217E26CA00DDF11D /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FADB217E26CA00DDF11D /* LLTabBarItem.m */; };
+		3AB1FADE217E26CA00DDF11D /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FADC217E26CA00DDF11D /* LLTabBar.m */; };
+		3AB1FAE2217E28A600DDF11D /* FabuHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FAE1217E28A600DDF11D /* FabuHomeViewController.m */; };
 		3AB25B7A2173994800C7B689 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB25B792173994700C7B689 /* SettingViewController.m */; };
 		3AB25B7D2173999B00C7B689 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB25B7C2173999B00C7B689 /* AboutViewController.m */; };
 		3AC06C89216A99B800D4A61F /* CLInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC06C87216A99B800D4A61F /* CLInputToolbar.m */; };
@@ -404,6 +410,18 @@
 		3AB19234216B84DE006C5666 /* OnboardingContentViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingContentViewController_Private.h; sourceTree = "<group>"; };
 		3AB19235216B84DE006C5666 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		3AB19236216B84DE006C5666 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingContentViewController.m; sourceTree = "<group>"; };
+		3AB1FACA217B7B8C00DDF11D /* PersonRowWithIconCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonRowWithIconCell.h; sourceTree = "<group>"; };
+		3AB1FACB217B7B8C00DDF11D /* PersonRowWithIconCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonRowWithIconCell.m; sourceTree = "<group>"; };
+		3AB1FACD217B849300DDF11D /* CareerLessonSelectMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CareerLessonSelectMaskView.h; sourceTree = "<group>"; };
+		3AB1FACE217B849300DDF11D /* CareerLessonSelectMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareerLessonSelectMaskView.m; sourceTree = "<group>"; };
+		3AB1FAD0217B84FA00DDF11D /* VersionUpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionUpdateView.h; sourceTree = "<group>"; };
+		3AB1FAD1217B84FA00DDF11D /* VersionUpdateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionUpdateView.m; sourceTree = "<group>"; };
+		3AB1FAD9217E26CA00DDF11D /* LLTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBar.h; sourceTree = "<group>"; };
+		3AB1FADA217E26CA00DDF11D /* LLTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLTabBarItem.h; sourceTree = "<group>"; };
+		3AB1FADB217E26CA00DDF11D /* LLTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBarItem.m; sourceTree = "<group>"; };
+		3AB1FADC217E26CA00DDF11D /* LLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBar.m; sourceTree = "<group>"; };
+		3AB1FAE0217E28A600DDF11D /* FabuHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FabuHomeViewController.h; sourceTree = "<group>"; };
+		3AB1FAE1217E28A600DDF11D /* FabuHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FabuHomeViewController.m; sourceTree = "<group>"; };
 		3AB25B782173994700C7B689 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		3AB25B792173994700C7B689 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		3AB25B7B2173999B00C7B689 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -666,6 +684,8 @@
 		3A2E5D8B213AF8F400363947 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AB1FACD217B849300DDF11D /* CareerLessonSelectMaskView.h */,
+				3AB1FACE217B849300DDF11D /* CareerLessonSelectMaskView.m */,
 				3AFBC2BA2143D45300D154D3 /* DIYCalendarCell.h */,
 				3AFBC2BB2143D45300D154D3 /* DIYCalendarCell.m */,
 				3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */,
@@ -680,6 +700,10 @@
 				3A3A0437216E653F003D29F2 /* JifenListTableViewCell.m */,
 				3A022DCF21788CA90064AD42 /* PersonSettingCell.h */,
 				3A022DD021788CA90064AD42 /* PersonSettingCell.m */,
+				3AB1FACA217B7B8C00DDF11D /* PersonRowWithIconCell.h */,
+				3AB1FACB217B7B8C00DDF11D /* PersonRowWithIconCell.m */,
+				3AB1FAD0217B84FA00DDF11D /* VersionUpdateView.h */,
+				3AB1FAD1217B84FA00DDF11D /* VersionUpdateView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -805,6 +829,7 @@
 		3A699B6E20BA650C00F7BB60 /* YFL-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				3AB1FADF217E289100DDF11D /* Fabu */,
 				3A3AA570212C118C00FE8CC0 /* Login */,
 				3A6BA5932129C09B00322875 /* Education */,
 				3A6BA5942129C09B00322875 /* Examination */,
@@ -885,6 +910,7 @@
 		3A6BA48821271E5A00322875 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3AB1FAD8217E26CA00DDF11D /* LLTabBar */,
 				3ACCFC26216CAF56008CF09E /* MJBachFooter.h */,
 				3ACCFC29216CAF56008CF09E /* MJBachFooter.m */,
 				3ACCFC28216CAF56008CF09E /* MJRefershHeader.h */,
@@ -1151,6 +1177,26 @@
 			path = "引导页";
 			sourceTree = "<group>";
 		};
+		3AB1FAD8217E26CA00DDF11D /* LLTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				3AB1FAD9217E26CA00DDF11D /* LLTabBar.h */,
+				3AB1FADA217E26CA00DDF11D /* LLTabBarItem.h */,
+				3AB1FADB217E26CA00DDF11D /* LLTabBarItem.m */,
+				3AB1FADC217E26CA00DDF11D /* LLTabBar.m */,
+			);
+			path = LLTabBar;
+			sourceTree = "<group>";
+		};
+		3AB1FADF217E289100DDF11D /* Fabu */ = {
+			isa = PBXGroup;
+			children = (
+				3AB1FAE0217E28A600DDF11D /* FabuHomeViewController.h */,
+				3AB1FAE1217E28A600DDF11D /* FabuHomeViewController.m */,
+			);
+			path = Fabu;
+			sourceTree = "<group>";
+		};
 		3AC06C86216A99B800D4A61F /* TextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1408,6 +1454,7 @@
 				3A03CF0C2155DE6500C49295 /* EducationDetailController.m in Sources */,
 				3AFBC2B621417AC900D154D3 /* NewsVideoDetailViewController.m in Sources */,
 				3A5C0F162144E46D00BB11FB /* ExamhomeViewController.m in Sources */,
+				3AB1FAE2217E28A600DDF11D /* FabuHomeViewController.m in Sources */,
 				3A50D520212DBB9200BD2919 /* EducationHeadTableCell.m in Sources */,
 				3A3A0432216E5520003D29F2 /* StoryboardViewController.m in Sources */,
 				3A5C0F2E214D6D4C00BB11FB /* NewsContentMaxImageViewCell.m in Sources */,
@@ -1446,6 +1493,7 @@
 				3A5C0F2B214D6BF700BB11FB /* NewsdeliveryViewController.m in Sources */,
 				3AFBC2BC2143D45400D154D3 /* DIYCalendarCell.m in Sources */,
 				3A03CFB22158C4E600C49295 /* DNAlbumTableViewController.m in Sources */,
+				3AB1FACF217B849300DDF11D /* CareerLessonSelectMaskView.m in Sources */,
 				3A5C0F3D214DCB9B00BB11FB /* NewsActivityTableViewCell.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
 				3A5C0F34214DC64200BB11FB /* NewsPolicyTableViewCell.m in Sources */,
@@ -1490,6 +1538,7 @@
 				3AC06C89216A99B800D4A61F /* CLInputToolbar.m in Sources */,
 				3AB19238216B84DE006C5666 /* RYPageControl.m in Sources */,
 				3A3A0438216E653F003D29F2 /* JifenListTableViewCell.m in Sources */,
+				3AB1FADE217E26CA00DDF11D /* LLTabBar.m in Sources */,
 				8923F5CD2157929C00CB98E4 /* InformationMenu.m in Sources */,
 				3A699B7120BA650C00F7BB60 /* AppDelegate.m in Sources */,
 				3A6BA54421271E5B00322875 /* PromptBox.m in Sources */,
@@ -1499,6 +1548,7 @@
 				3A2E5D98213C264D00363947 /* ICarouselViewController.m in Sources */,
 				3A6BA56B21271E5B00322875 /* EWTNotification.m in Sources */,
 				3ACCFC2A216CAF57008CF09E /* MJRefershHeader.m in Sources */,
+				3AB1FADD217E26CA00DDF11D /* LLTabBarItem.m in Sources */,
 				3AD47CAE215A8FA0000FBC04 /* WebViewJavascriptBridge.m in Sources */,
 				3A03CF2121569A7F00C49295 /* XinxiTableViewCell.m in Sources */,
 				3AFBC2B921422A3200D154D3 /* SigninRecordViewController.m in Sources */,
@@ -1536,6 +1586,8 @@
 				3A6BA57E21271E5B00322875 /* UIView+EWT.m in Sources */,
 				3A03CF0F2155E4CF00C49295 /* EducationLearnController.m in Sources */,
 				3A5C0F22214D414F00BB11FB /* ExamTextInViewCell.m in Sources */,
+				3AB1FACC217B7B8D00DDF11D /* PersonRowWithIconCell.m in Sources */,
+				3AB1FAD2217B84FA00DDF11D /* VersionUpdateView.m in Sources */,
 				3A03CFAE2158C4E600C49295 /* EWTImagePickerTool.m in Sources */,
 				3A6BA57C21271E5B00322875 /* UIColor+EWT.m in Sources */,
 				3A03CF1B215692BB00C49295 /* PersonJIfenViewController.m in Sources */,

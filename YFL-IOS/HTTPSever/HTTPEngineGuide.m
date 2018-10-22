@@ -8,6 +8,7 @@
 
 #import "HTTPEngineGuide.h"
 #import "YFKeychainUUID.h"
+#import "AppDelegate.h"
 
 
 // HTTPEngine.m 里面也有key
@@ -163,6 +164,8 @@ static NSString * MoYunLoginUrl = @"userCtrl/doLogin";
     }];
     
 }
+
+
 
 
 

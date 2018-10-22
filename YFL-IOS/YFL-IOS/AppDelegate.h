@@ -21,6 +21,13 @@
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) UserMessage *userModel;
 @property (nonatomic, strong) NSString *password;
+
+@property (nonatomic, strong) NSString *localType;
+@property (nonatomic, assign) BOOL isHans;
+@property (nonatomic, assign) BOOL isZang;
+
++(NSString*)getPreferredLanguage;
++(void)getServerLanguageSource;//MYGetLaungeWithParaDic
 @end
 
 

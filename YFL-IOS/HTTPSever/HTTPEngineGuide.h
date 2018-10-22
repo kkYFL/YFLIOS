@@ -90,4 +90,12 @@
 +(void)MYLessonListSourceWithType:(NSInteger)type Page:(NSInteger)page PageNum:(NSInteger)pageNum Success:(void (^)(NSDictionary *responseObject))success
                           failure:(void (^)(NSError *error))failure;
 
+
+
+
+
+
+
+
+
 @end

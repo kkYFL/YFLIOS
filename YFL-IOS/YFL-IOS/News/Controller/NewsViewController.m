@@ -25,7 +25,7 @@
 #import "AppDelegate.h"
 #import "MJRefresh.h"
 
-#define SDViewH 150
+#define SDViewH 180
 
 @interface NewsViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>{
     NSInteger _pageIndex;

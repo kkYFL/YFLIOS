@@ -8,6 +8,10 @@
 
 #import "SettingViewController.h"
 #import "PersonSettingCell.h"
+#import "AboutViewController.h"
+#import "AppDelegate.h"
+#import "HanZhaoHua.h"
+
 
 @interface SettingViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>{
     float cacheSize;//缓存大小
@@ -15,6 +19,7 @@
 }
 
 @property (nonatomic, strong) UITableView *table;
+@property (nonatomic, strong) UIView *footerView;
 
 @end
 
@@ -102,8 +107,11 @@
 {
     PersonSettingCell *settingCell = [tableView dequeueReusableCellWithIdentifier:@"settingCell"];
     if (indexPath.row == 0) {
-        settingCell.cellTitleLabel.text = NSLocalizedString(@"yuyanqiehuan", nil);
-        settingCell.cellContentLabel.text = NSLocalizedString(@"qiehuan", nil);
+        //rowCell.cellTitleLabel.text = NSLocalizedString(@"Guanyu", nil);
+
+        settingCell.cellTitleLabel.text = NSLocalizedString(@"Guanyu", nil);
+        settingCell.cellContentLabel.hidden = YES;
+        //settingCell.cellContentLabel.text = NSLocalizedString(@"qiehuan", nil);
     }else if (indexPath.row == 1){
         settingCell.cellTitleLabel.text = @"缓存清理";
         //缓存
@@ -135,15 +143,22 @@
 
         //prefs:root=General&path=INTERNATIONAL
         //App-prefs:root=General&path=Language_AND_Region
-        NSURL *url = [NSURL URLWithString:@"App-Prefs:root=General&path=INTERNATIONAL"];
-        if ([[UIApplication sharedApplication] canOpenURL:url])
-        {
-            [[UIApplication sharedApplication] openURL:url];
-        }else{
-            NSLog(@"");
-        }
+//        NSURL *url = [NSURL URLWithString:@"App-Prefs:root=General&path=INTERNATIONAL"];
+//        if ([[UIApplication sharedApplication] canOpenURL:url])
+//        {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }else{
+//            NSLog(@"");
+//        }
+        
+        
+        AboutViewController *aboutVc = [[AboutViewController alloc] init];
+        aboutVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:aboutVc animated:YES];
         
     }
+    
+    
     if (indexPath.row == 1) {
         [self clearTheCacheMethod];
     }
@@ -159,6 +174,8 @@
         _table.delegate = self;
         _table.dataSource = self;
         [self.view addSubview:_table];
+        
+        _table.tableFooterView = self.footerView;
         
         [_table registerClass:[PersonSettingCell class] forCellReuseIdentifier:@"settingCell"];
     }
@@ -219,6 +236,58 @@
         
         [self.table reloadData];
     }
+}
+
+-(UIView *)footerView{
+    if (!_footerView) {
+        UIView *footerView = [[UIView alloc]init];
+        footerView.backgroundColor = [UIColor colorWithHexString:@"#F2F2F2"];
+        [footerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, HEIGHT_SCALE*(50+25)+40)];
+        _footerView = footerView;
+        
+        UIButton *outButton = [[UIButton alloc]init];
+        outButton.backgroundColor = [UIColor whiteColor];
+        [outButton addTarget:self action:@selector(signOutAction:) forControlEvents:UIControlEventTouchUpInside];
+        outButton.layer.masksToBounds = YES;
+        outButton.layer.borderColor = [UIColor colorWithHexString:@"#D64348"].CGColor;
+        outButton.layer.borderWidth = 0.5f;
+        [outButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [outButton setTitleColor:[UIColor colorWithHexString:@"#FF0000"] forState:UIControlStateNormal];
+        [outButton setTitle:NSLocalizedString(@"tuichu", nil) forState:UIControlStateNormal];
+        outButton.layer.cornerRadius = 4.0f;
+        [_footerView addSubview:outButton];
+        
+        [outButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_footerView).offset(HEIGHT_SCALE*50);
+            make.centerX.equalTo(_footerView);
+            make.width.mas_equalTo(WIDTH_SCALE*300);
+            make.height.mas_equalTo(40.0f);
+        }];
+        
+    }
+    return _footerView;
+}
+
+//退出登录
+-(void)signOutAction:(UIButton *)sender{
+    [self MYSignOutSerVer];
+}
+
+
+-(void)MYSignOutSerVer{
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    
+    NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
+    [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [HanZhaoHua MYLogOutWithParaDic:paraDic success:^(NSDictionary * _Nonnull responseObject) {
+        [[PromptBox sharedBox] removeLoadingView];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+    } failure:^(NSError * _Nonnull error) {
+        [[PromptBox sharedBox] removeLoadingView];
+        
+        [MBProgressHUD toastMessage:NSLocalizedString(@"tuichushibai", nil) ToView:self.view];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -826,4 +826,27 @@ static NSString *host = @"http://47.100.247.71/protal/";
 }
 
 
++(void)MYGetLaungeWithType:(NSInteger)type Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
+    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/toolsCtrl/translation"];
+    NSDictionary *paraDic = @{@"userToken":APP_DELEGATE.userToken,
+                              @"userId":@"1"};
+    
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
++(void)MYGetLaungeWithParaDic:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/toolsCtrl/translation"];
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
+
 @end

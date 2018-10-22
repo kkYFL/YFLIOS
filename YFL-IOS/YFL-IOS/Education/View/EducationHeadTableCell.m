@@ -48,7 +48,7 @@
     [self.contentView addSubview:self.containerView];
     [self.containerView addSubview:self.backImageView];
     [self.containerView addSubview:self.playBtn];
-    CGFloat topImageViewH = 0.5*SCREEN_WIDTH;
+    CGFloat topImageViewH = 0.6*SCREEN_WIDTH;
     self.containerView.frame = CGRectMake(0, 0, SCREEN_WIDTH,topImageViewH);
     self.backImageView.frame = CGRectMake(0, 0, SCREEN_WIDTH,topImageViewH);
 
@@ -123,12 +123,12 @@
     if (videoModel) {
         NSString *contentStr = videoModel.summary;
         CGFloat contentViewH = [contentStr heightWithFont:[UIFont systemFontOfSize:14.0f] constrainedToWidth:SCREEN_WIDTH-24]+0.5;
-        CGFloat topImageViewH = 0.5*SCREEN_WIDTH;
+        CGFloat topImageViewH = 0.6*SCREEN_WIDTH;
         
         return topImageViewH+contentViewH+8*2;
     }
     
-    CGFloat topImageViewH = 0.5*SCREEN_WIDTH;
+    CGFloat topImageViewH = 0.6*SCREEN_WIDTH;
     return topImageViewH;
 }
 

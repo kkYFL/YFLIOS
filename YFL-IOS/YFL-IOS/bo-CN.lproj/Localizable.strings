@@ -138,7 +138,8 @@
 "tuichu" = "ལས་འགྲོལ་";
 "lijigengxing" = "འཕྲལ་མར་རིམ་སྤར་";
 "banbengengxin" = "གསར་སྒྱུར་";
-"youxingbanbenxuyaogengxin" = "པར་གཞི་གསར་པ་བརྗེ་བྱེད་དགོས་པའང་ཡོད་རེད་ད་";
+"youxingbanbenxuyaogengxin" = "པར་གཞི་གསར་བརྗེས་";
+"yizuixingbanben" = "གསར་ཤོས་ནི་";
 "yiqiandao" = "འབྱོར་ཐོ་བཀོད་ཟིན་";
 "tian" = "ཉིན་";
 "qingjixubaochi" = "མུ་མཐུད་རྒྱུན་འཁྱོངས་རོགས་";
@@ -172,9 +173,9 @@
 "qinglichenggong" = "གཙང་བཤེར་ལེགས་གྲུབ་";
 "gongxuqinglihuancun" = "མཉམ་དགོས་པ་གཙང་བཤེར་缓存";
 "mimaguanli" = "གསང་བའི་དོ་དམ";
-"wanshangerenxingxi" = "ཁྱེད་ཀྱི་འཐུས་ཚང་མི་སྒེར་གྱི་ཆ་འཕྲིན";
+"wanshangerenxingxi" = "ཆ་འཕྲིན་ལ་བལྟ་བ་";
 "weixinduanxinfangshi" = "འཕྲིན་ཐུང་དང་འཕྲིན་ཐུང་སོགས་ཀྱི་རྣམ་པ";
-"qiandao" = "འབྱོར་ཐོ་འགོད་པ";
+"qiandao" = "བཟོ་བཅོས་གསང་ཨང་";
 
 
 

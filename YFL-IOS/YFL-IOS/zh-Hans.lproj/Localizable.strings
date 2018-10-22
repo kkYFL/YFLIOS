@@ -142,7 +142,8 @@
 "tuichu" = "退出";
 "lijigengxing" = "立即升级";
 "banbengengxin" = "版本更新";
-"youxingbanbenxuyaogengxin" = "有新版本需要更新呦";
+"youxingbanbenxuyaogengxin" = "更新版本";
+"yizuixingbanben" = "已最新版";
 "yiqiandao" = "已签到";
 "tian" = "天";
 "qingjixubaochi" = "请继续保持呦！";
@@ -176,8 +177,8 @@
 "qiehuan" = "切换";
 "qinglichenggong" = "清理完成";
 "gongxuqinglihuancun" = "共需清理缓存";
-"wanshangerenxingxi" = "请完善个人信息";
-"weixinduanxinfangshi" = "可设置微信、短信等方式";
+"wanshangerenxingxi" = "查看信息";
+"weixinduanxinfangshi" = "修改密码";
 "qiandao" = "签到";
 
 

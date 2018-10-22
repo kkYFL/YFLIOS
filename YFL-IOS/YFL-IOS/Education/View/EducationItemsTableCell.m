@@ -11,8 +11,8 @@
 #import "AppDelegate.h"
 
 #define itemMarginSpace 20
-#define itemViewSpace 25
-#define itemViewH 60
+#define itemViewSpace 15
+#define itemViewH 82
 #define itemViewW (SCREEN_WIDTH-itemMarginSpace*2-itemViewSpace)/2.0
 
 @interface EducationItemsTableCell ()
@@ -140,13 +140,13 @@
                 [self.item1.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
             }else if (i ==1){
                 self.item2.titleLabel.text = bannerModel.positionName;
-                [self.item2.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item2.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_henji"]];
             }else if (i == 2){
                 self.item3.titleLabel.text = bannerModel.positionName;
-                [self.item3.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item3.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_fankui"]];
             }else if (i == 3){
                 self.item4.titleLabel.text = bannerModel.positionName;
-                [self.item4.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_renwu"]];
+                [self.item4.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,bannerModel.imgUrl]] placeholderImage:[UIImage imageNamed:@"Education_xinde"]];
             }
         }
     }

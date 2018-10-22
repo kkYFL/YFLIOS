@@ -21,6 +21,7 @@
 #import "MBProgressHUD+Toast.h"
 #import "SettingViewController.h"
 #import "AboutViewController.h"
+#import "PersonRowWithIconCell.h"
 
 
 
@@ -245,27 +246,35 @@
 #pragma mark - UITableView Delegate And Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    if (section == 0) {
+        return 4;
+    }
+    if (section == 1) {
+        return 2;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0){
-        return [PersonMidTableViewCell CellH];
+    if(indexPath.section == 0 && indexPath.row == 0){
+        if (indexPath.row == 0) {
+            return [PersonMidTableViewCell CellH];
+        }
+        return [PersonRowWithIconCell CellH];
     }
-    
+
     return [PersonRowTableViewCell CellH];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if(indexPath.row == 0){
+    if(indexPath.section == 0 && indexPath.row == 0){
         PersonMidTableViewCell *midCell = [tableView dequeueReusableCellWithIdentifier:@"midCell"];
         midCell.score = _score;
         __weak typeof(self) weakSelf = self;
@@ -284,60 +293,99 @@
         return midCell;
     }
     
-    PersonRowTableViewCell *rowCell = [tableView dequeueReusableCellWithIdentifier:@"rowCell"];
-    if(indexPath.row == 1){
-        rowCell.cellTitleLabel.text = NSLocalizedString(@"GerenXinxi", nil);
-        rowCell.cellContentLabel.text = NSLocalizedString(@"wanshangerenxingxi", nil);
-        rowCell.cellNewImageView.hidden = YES;
-    }else if (indexPath.row == 2){
-        rowCell.cellTitleLabel.text = NSLocalizedString(@"mimaguanli", nil);
-        rowCell.cellContentLabel.text = NSLocalizedString(@"weixinduanxinfangshi", nil);
-        rowCell.cellNewImageView.hidden = YES;
+    
+
+    if (indexPath.section == 0) {
+        PersonRowWithIconCell *rowIconCell = [tableView dequeueReusableCellWithIdentifier:@"rowIconCell"];
+        if(indexPath.row == 1){
+            rowIconCell.cellTitleLabel.text = NSLocalizedString(@"GerenXinxi", nil);
+            rowIconCell.cellContentLabel.text = NSLocalizedString(@"wanshangerenxingxi", nil);
+            rowIconCell.cellNewImageView.hidden = YES;
+            [rowIconCell.cellIcon setImage:[UIImage imageNamed:@"person_userHaerd"]];
+        }else if (indexPath.row == 2){
+            rowIconCell.cellTitleLabel.text = NSLocalizedString(@"mimaguanli", nil);
+            rowIconCell.cellContentLabel.text = NSLocalizedString(@"weixinduanxinfangshi", nil);
+            rowIconCell.cellNewImageView.hidden = YES;
+            [rowIconCell.cellIcon setImage:[UIImage imageNamed:@"person_suo"]];
+        }else if (indexPath.row == 3){
+            rowIconCell.cellTitleLabel.text = NSLocalizedString(@"banbengengxin", nil);
+            rowIconCell.cellContentLabel.text = NSLocalizedString(@"youxingbanbenxuyaogengxin", nil);
+            if (![NSString isBlankString:_filePath]) {
+                rowIconCell.cellNewImageView.hidden = NO;
+            }else{
+                rowIconCell.cellNewImageView.hidden = YES;
+            }
+            [rowIconCell.cellIcon setImage:[UIImage imageNamed:@"person_update"]];
+        }
         
-    }else if (indexPath.row == 3){
-        rowCell.cellTitleLabel.text = NSLocalizedString(@"banbengengxin", nil);
-        rowCell.cellContentLabel.text = NSLocalizedString(@"youxingbanbenxuyaogengxin", nil);
-        if (![NSString isBlankString:_filePath]) {
-            rowCell.cellNewImageView.hidden = NO;
-        }else{
+        return rowIconCell;
+    }
+
+    
+    PersonRowTableViewCell *rowCell = [tableView dequeueReusableCellWithIdentifier:@"rowCell"];
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            rowCell.cellTitleLabel.text = NSLocalizedString(@"Setting", nil);
+            rowCell.cellContentLabel.text = @"";
+            rowCell.cellNewImageView.hidden = YES;
+        }else if (indexPath.row == 1){
+            //rowCell.cellTitleLabel.text = NSLocalizedString(@"Guanyu", nil);
+            rowCell.cellTitleLabel.text = NSLocalizedString(@"yuyanqiehuan", nil);
+            rowCell.cellContentLabel.text =  NSLocalizedString(@"qiehuan", nil);
             rowCell.cellNewImageView.hidden = YES;
         }
-    }else if(indexPath.row == 4){
-        rowCell.cellTitleLabel.text = NSLocalizedString(@"Setting", nil);
-        rowCell.cellContentLabel.text = @"";
-        rowCell.cellNewImageView.hidden = YES;
-    }else{
-        rowCell.cellTitleLabel.text = NSLocalizedString(@"Guanyu", nil);
-        rowCell.cellContentLabel.text = @"";
-        rowCell.cellNewImageView.hidden = YES;
     }
-    
     return rowCell;
-    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        return 15.0f;
+    }
+    return 0.01f;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        UIView *tmpView = [[UIView alloc]init];
+        tmpView.backgroundColor = [UIColor clearColor];
+        [tmpView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 15.0f)];
+        return tmpView;
+    }
+    return [[UIView alloc]initWithFrame:CGRectZero];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //信息
-    if (indexPath.row == 1) {
-        PersonXinxiViewController *xinxiVC = [[PersonXinxiViewController alloc]init];
-        xinxiVC.hidesBottomBarWhenPushed = YES;
-        xinxiVC.userModel = self.userModel;
-        [self.navigationController pushViewController:xinxiVC animated:YES];
-    }else if (indexPath.row == 2){
-        PersonPassWordController *passVC = [[PersonPassWordController alloc]init];
-        passVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:passVC animated:YES];
-    }else if (indexPath.row == 3){
-        [self gotoUPdateViersion];
-    }else if (indexPath.row == 4){
-        SettingViewController *settingVC = [[SettingViewController alloc] init];
-        settingVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:settingVC animated:YES];
-    }else if (indexPath.row == 5){
-        AboutViewController *aboutVc = [[AboutViewController alloc] init];
-        aboutVc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:aboutVc animated:YES];
+    
+    if (indexPath.section == 0) {
+        //信息
+        if (indexPath.row == 1) {
+            PersonXinxiViewController *xinxiVC = [[PersonXinxiViewController alloc]init];
+            xinxiVC.hidesBottomBarWhenPushed = YES;
+            xinxiVC.userModel = self.userModel;
+            [self.navigationController pushViewController:xinxiVC animated:YES];
+        }else if (indexPath.row == 2){
+            PersonPassWordController *passVC = [[PersonPassWordController alloc]init];
+            passVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:passVC animated:YES];
+        }else if (indexPath.row == 3){
+            [self gotoUPdateViersion];
+        }
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0){
+            SettingViewController *settingVC = [[SettingViewController alloc] init];
+            settingVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:settingVC animated:YES];
+        }else if (indexPath.row == 1){
+            NSURL *url = [NSURL URLWithString:@"App-Prefs:root=General&path=INTERNATIONAL"];
+            if ([[UIApplication sharedApplication] canOpenURL:url])
+            {
+                [[UIApplication sharedApplication] openURL:url];
+            }else{
+                NSLog(@"");
+            }
+        }
     }
 }
 
@@ -351,11 +399,13 @@
         _table.delegate = self;
         _table.dataSource = self;
         [self.view addSubview:_table];
-        _table.tableFooterView = self.footerView;
+        //_table.tableFooterView = self.footerView;
         
         [_table registerClass:[PersonMidTableViewCell class] forCellReuseIdentifier:@"midCell"];
         [_table registerClass:[PersonRowTableViewCell class] forCellReuseIdentifier:@"rowCell"];
-        
+        [_table registerClass:[PersonRowWithIconCell class] forCellReuseIdentifier:@"rowIconCell"];
+
+        //
     }
     return _table;
 }
@@ -475,15 +525,20 @@
         signButton.layer.masksToBounds = YES;
         signButton.layer.borderColor = [[UIColor whiteColor] CGColor];
         signButton.layer.borderWidth = 0.5f;
+        signButton.layer.cornerRadius = 4.0f;
         [signButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [signButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [signButton setTitle:NSLocalizedString(@"qiandao", nil) forState:UIControlStateNormal];
+        CGFloat contentW = [PublicMethod getTheWidthOfTheLabelWithContent:NSLocalizedString(@"qiandao", nil) font:14.0f]+2;
+        if (contentW < 50) {
+            contentW = 50;
+        }
         [bottonView addSubview:signButton];
         [signButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(bottonView).offset(25.0f);
             make.centerY.equalTo(bottonView);
             make.height.mas_equalTo(30);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(contentW+10);
         }];
         
         
@@ -590,6 +645,10 @@
 
 -(void)freshPersonViewSource:(NSNotification *)noti{
     [self refershHeader];
+}
+
+-(void)showUpdateViewWindow{
+    
 }
 
 - (void)didReceiveMemoryWarning {

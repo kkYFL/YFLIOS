@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NewsViewController.h"
 #import "EducationViewController.h"
+#import "FabuHomeViewController.h"
 #import "ExamnationViewController.h"
 #import "PersonalViewController.h"
 #import "EWTLoginAndRegisterViewController.h"
@@ -16,6 +17,7 @@
 #import "TestInterface.h"
 #import "GuideViewController.h"
 #import "GuidenModel.h"
+#import "LLTabBar.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate>
@@ -58,31 +60,54 @@
 
 -(void)tabBarViewInit{
     NewsViewController *newVC = [[NewsViewController alloc]init];
-    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:NSLocalizedString(@"NewsHomeTitle", nil) image:[UIImage imageNamed:@"NewsTab_gray"] selectedImage:[UIImage imageNamed:@"NewsTab_light"] VC:newVC];
+    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:NSLocalizedString(@"NewsHomeTitle", nil) image:[UIImage imageNamed:@"news_icon_gray"] selectedImage:[UIImage imageNamed:@"news_icon_light"] VC:newVC];
 
     
     
     
     EducationViewController *educationVC = [[EducationViewController alloc]init];
-    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:NSLocalizedString(@"DangYuanEducationTitle", nil) image:[UIImage imageNamed:@"Educationtag_gray"] selectedImage:[UIImage imageNamed:@"Educationtab_light"] VC:educationVC];
+    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:NSLocalizedString(@"DangYuanEducationTitle", nil) image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:educationVC];
+    
+    
+    FabuHomeViewController *fabuVC = [[FabuHomeViewController alloc]init];
+    EWTBaseNavigationController *fabuNav = [self viewControllerWithTitle:NSLocalizedString(@"DangYuanEducationTitle", nil) image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:fabuVC];
     
     
     
     ExamnationViewController *examtionVC = [[ExamnationViewController alloc]init];
-    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:NSLocalizedString(@"DangyuanKaoshi", nil) image:[UIImage imageNamed:@"Examtab_gray"] selectedImage:[UIImage imageNamed:@"Examtab_light"] VC:examtionVC];
+    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:NSLocalizedString(@"DangyuanKaoshi", nil) image:[UIImage imageNamed:@"exam_icon_gray"] selectedImage:[UIImage imageNamed:@"exam_icon_light"] VC:examtionVC];
     
     
     
     PersonalViewController *personalVC = [[PersonalViewController alloc]init];
-    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:NSLocalizedString(@"Gerenzhongxin", nil) image:[UIImage imageNamed:@"Persontab_gray"] selectedImage:[UIImage imageNamed:@"Persontab_light"] VC:personalVC];
+    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:NSLocalizedString(@"Gerenzhongxin", nil) image:[UIImage imageNamed:@"person_icon_gray"] selectedImage:[UIImage imageNamed:@"person_icon_light"] VC:personalVC];
     
     
     
     UITabBarController *tabBar = [[UITabBarController alloc]init];
     tabBar.delegate = self;
-    tabBar.viewControllers = @[newsNav,educationNav,examtionNav,personalNav];
-    tabBar.tabBar.barTintColor = [UIColor redColor];
+    tabBar.viewControllers = @[newsNav,educationNav,fabuNav,examtionNav,personalNav];
     tabBar.tabBar.translucent = NO;
+    
+
+
+    
+    
+    
+//    LLTabBar *tab = [[LLTabBar alloc] initWithFrame:tabBar.tabBar.bounds];
+//
+//    tab.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle : NSLocalizedString(@"NewsHomeTitle", nil), kLLTabBarItemAttributeNormalImageName : @"news_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"news_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//                                    @{kLLTabBarItemAttributeTitle : NSLocalizedString(@"DangYuanEducationTitle", nil), kLLTabBarItemAttributeNormalImageName : @"education_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"education_icon_gray", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//                                    @{kLLTabBarItemAttributeTitle : @"支部", kLLTabBarItemAttributeNormalImageName : @"mycity_normal", kLLTabBarItemAttributeSelectedImageName : @"mycity_highlight", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//                                    @{kLLTabBarItemAttributeTitle : NSLocalizedString(@"DangyuanKaoshi", nil), kLLTabBarItemAttributeNormalImageName : @"exam_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"exam_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//                                    @{kLLTabBarItemAttributeTitle : NSLocalizedString(@"Gerenzhongxin", nil), kLLTabBarItemAttributeNormalImageName : @"person_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"person_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
+    
+    //tab.delegate = self;
+    //[tabBar.tabBar addSubview:tab];
+        
+    
+    
+    
     
     
     if (!self.window) {
@@ -140,9 +165,10 @@
     nav.navigationBar.barTintColor = [UIColor redColor];
     NSDictionary *dict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [nav.navigationBar setTitleTextAttributes:dict];
-    [VC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
-    [VC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
+    [VC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:229/255.0f green:28/255.0f blue:35/255.0f alpha:0.5f]} forState:UIControlStateNormal];
+    [VC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:229/255.0f green:28/255.0f blue:35/255.0f alpha:1.0f]} forState:UIControlStateSelected];
     return nav;
+ 
 }
 
 
@@ -258,6 +284,52 @@
     return _storyBoardView;
 }
 
+//zh-Hans-CN,
+//bo-CN
+//en-CN
+/**  *得到本机现在用的语言  * en:英文  zh-Hans:简体中文   zh-Hant:繁体中文    ja:日本  ......  */
++ (NSString*)getPreferredLanguage {
+    NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+    NSArray* languages = [defs objectForKey:@"AppleLanguages"];
+    NSString* preferredLang = [languages objectAtIndex:0];
+    NSLog(@"Preferred Language:%@", preferredLang);
+    
+    //默认
+    APP_DELEGATE.localType = @"1";
+    
+    //本地中文
+    if ([preferredLang hasPrefix:@"zh-Han"]) {
+        APP_DELEGATE.localType = @"1";
+    }
+    
+    //本地藏文
+    if ([preferredLang hasPrefix:@"bo-CN"]) {
+        APP_DELEGATE.localType = @"2";
+    }
+    
+    
+    return preferredLang;
+}
+
+
++(void)getServerLanguageSource{
+    NSDictionary *paraDic = [NSMutableDictionary dictionary];
+    
+    [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [paraDic setValue:APP_DELEGATE.localType forKey:@"queryType"];
+    
+    [HanZhaoHua MYGetLaungeWithParaDic:paraDic Success:^(NSDictionary * _Nonnull responseObject) {
+        if ([APP_DELEGATE.localType isEqualToString:@"1"]) {
+            APP_DELEGATE.isHans = YES;
+            APP_DELEGATE.isZang = NO;
+        }else{
+            APP_DELEGATE.isZang = YES;
+            APP_DELEGATE.isHans = NO;
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 
 

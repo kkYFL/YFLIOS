@@ -463,6 +463,50 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+/**
+ 墨云-支部党员接口
+
+ */
+
++(void)MYGetDangYuanListWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
+
+/**
+ 墨云-支部任务监督
+ 
+ */
++(void)MYGetDangYuanJianduListWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
+
+/**
+ 墨云-支部考试监督
+ 
+ */
++(void)MYGetDangYuanKaoshiJianduListWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
+
+
+/**
+ 墨云-支部任务监督人员列表
+ 
+ */
++(void)MYGetDangYuanRenwuDetailSourceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
+
+
+/**
+ 墨云-支部考试监督人员列表
+ 
+ */
++(void)MYGetDangYuanKaoshiDetailSourceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
+
+
+
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

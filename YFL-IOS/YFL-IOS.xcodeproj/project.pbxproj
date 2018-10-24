@@ -127,6 +127,9 @@
 		3AB1FADD217E26CA00DDF11D /* LLTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FADB217E26CA00DDF11D /* LLTabBarItem.m */; };
 		3AB1FADE217E26CA00DDF11D /* LLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FADC217E26CA00DDF11D /* LLTabBar.m */; };
 		3AB1FAE2217E28A600DDF11D /* FabuHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FAE1217E28A600DDF11D /* FabuHomeViewController.m */; };
+		3AB1FAE5218096A100DDF11D /* FanbudangyuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FAE4218096A000DDF11D /* FanbudangyuanCell.m */; };
+		3AB1FAE821809D0B00DDF11D /* FanbuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FAE721809D0B00DDF11D /* FanbuDetailViewController.m */; };
+		3AB1FAEB2180A56100DDF11D /* FanbuDangyuanMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1FAEA2180A56100DDF11D /* FanbuDangyuanMode.m */; };
 		3AB25B7A2173994800C7B689 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB25B792173994700C7B689 /* SettingViewController.m */; };
 		3AB25B7D2173999B00C7B689 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB25B7C2173999B00C7B689 /* AboutViewController.m */; };
 		3AC06C89216A99B800D4A61F /* CLInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC06C87216A99B800D4A61F /* CLInputToolbar.m */; };
@@ -422,6 +425,12 @@
 		3AB1FADC217E26CA00DDF11D /* LLTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLTabBar.m; sourceTree = "<group>"; };
 		3AB1FAE0217E28A600DDF11D /* FabuHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FabuHomeViewController.h; sourceTree = "<group>"; };
 		3AB1FAE1217E28A600DDF11D /* FabuHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FabuHomeViewController.m; sourceTree = "<group>"; };
+		3AB1FAE3218096A000DDF11D /* FanbudangyuanCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanbudangyuanCell.h; sourceTree = "<group>"; };
+		3AB1FAE4218096A000DDF11D /* FanbudangyuanCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FanbudangyuanCell.m; sourceTree = "<group>"; };
+		3AB1FAE621809D0B00DDF11D /* FanbuDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanbuDetailViewController.h; sourceTree = "<group>"; };
+		3AB1FAE721809D0B00DDF11D /* FanbuDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FanbuDetailViewController.m; sourceTree = "<group>"; };
+		3AB1FAE92180A56100DDF11D /* FanbuDangyuanMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanbuDangyuanMode.h; sourceTree = "<group>"; };
+		3AB1FAEA2180A56100DDF11D /* FanbuDangyuanMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FanbuDangyuanMode.m; sourceTree = "<group>"; };
 		3AB25B782173994700C7B689 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		3AB25B792173994700C7B689 /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		3AB25B7B2173999B00C7B689 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -1193,6 +1202,12 @@
 			children = (
 				3AB1FAE0217E28A600DDF11D /* FabuHomeViewController.h */,
 				3AB1FAE1217E28A600DDF11D /* FabuHomeViewController.m */,
+				3AB1FAE3218096A000DDF11D /* FanbudangyuanCell.h */,
+				3AB1FAE4218096A000DDF11D /* FanbudangyuanCell.m */,
+				3AB1FAE621809D0B00DDF11D /* FanbuDetailViewController.h */,
+				3AB1FAE721809D0B00DDF11D /* FanbuDetailViewController.m */,
+				3AB1FAE92180A56100DDF11D /* FanbuDangyuanMode.h */,
+				3AB1FAEA2180A56100DDF11D /* FanbuDangyuanMode.m */,
 			);
 			path = Fabu;
 			sourceTree = "<group>";
@@ -1597,12 +1612,15 @@
 				3A5C0F43214DD34800BB11FB /* NewsNoticiTableViewCell.m in Sources */,
 				3A50D51C212D69CC00BD2919 /* NewsRightIConTableCell.m in Sources */,
 				8923F5D02157966A00CB98E4 /* NewsMessage.m in Sources */,
+				3AB1FAE5218096A100DDF11D /* FanbudangyuanCell.m in Sources */,
+				3AB1FAEB2180A56100DDF11D /* FanbuDangyuanMode.m in Sources */,
 				8923F5D62157A1D500CB98E4 /* UserMessage.m in Sources */,
 				3AB19239216B84DE006C5666 /* GuideViewController.m in Sources */,
 				3AD47C9B215A8D3F000FBC04 /* WZWebViewController.m in Sources */,
 				3AD47C9E215A8DB7000FBC04 /* DisnetView.m in Sources */,
 				3A5C0F40214DD2B000BB11FB /* NewsNoticeViewController.m in Sources */,
 				3A5C0F5621553C8D00BB11FB /* EducationOptionsController.m in Sources */,
+				3AB1FAE821809D0B00DDF11D /* FanbuDetailViewController.m in Sources */,
 				3AB25B7A2173994800C7B689 /* SettingViewController.m in Sources */,
 				3A5C0F5C2155450600BB11FB /* EducationAddOptionController.m in Sources */,
 			);

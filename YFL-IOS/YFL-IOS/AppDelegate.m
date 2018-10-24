@@ -33,7 +33,6 @@
     
      self.userToken = @"1";
      self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
-     self.taskId = @"1";
      self.host = @"http://47.100.247.71/protal";
      self.sourceHost = @"http://47.100.247.71/img";
      self.userName = @"15606811521";

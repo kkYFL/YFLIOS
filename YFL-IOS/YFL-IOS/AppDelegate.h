@@ -13,15 +13,16 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
 @property (nonatomic, strong) NSString *userToken;
 @property (nonatomic, strong) NSString *userId;
-@property (nonatomic, strong) NSString *taskId;
+@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) UserMessage *userModel;
+
+
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong) NSString *sourceHost;
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) UserMessage *userModel;
-@property (nonatomic, strong) NSString *password;
-
 @property (nonatomic, strong) NSString *localType;
 @property (nonatomic, assign) BOOL isHans;
 @property (nonatomic, assign) BOOL isZang;

@@ -19,9 +19,53 @@ static NSString *host = @"http://47.100.247.71/protal/";
                  failure: (void (^)(NSError *error))failure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/doLogin"];
-    NSDictionary *paraDic = @{@"username":username,
-                              @"password":password
-                              };
+    
+    NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
+    //paraDic setValue:<#(nullable id)#> forKey:<#(nonnull NSString *)#>
+    
+    //NSMutableDictionary *paraDic = @{@"username":username,
+//                              @"password":password
+//                              };
+    
+    
+    NSString *timeStamp = @"20181024";
+    NSString *randomNum = @"100";
+    NSString *sign = [PublicMethod MD5Encrypt:randomNum];
+    NSString *originTakes = [PublicMethod MD5Encrypt:timeStamp];
+    
+    
+    NSMutableDictionary *tmpDic = [NSMutableDictionary dictionary];
+    [tmpDic setValue:timeStamp forKey:@"times"];
+    [tmpDic setValue:originTakes forKey:@"takes"];
+    [tmpDic setValue:username forKey:@"username"];
+    [tmpDic setValue:password forKey:@"password"];
+    
+    
+    
+    NSArray *keys = tmpDic.allKeys;
+    keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSComparisonResult result = [obj1 compare:obj2];
+        return result == NSOrderedDescending;
+    }];
+    
+    NSMutableString *valuesStr = [[NSMutableString alloc]init];
+    for (NSInteger i = 0; i<keys.count; i++) {
+        NSString *objKey = keys[i];
+        NSString *objValue = [tmpDic objectForKey:objKey];
+        if (i == (keys.count -1)) {
+            [valuesStr appendString:[NSString stringWithFormat:@"%@=%@",objKey,objValue]];
+        }else{
+            [valuesStr appendString:[NSString stringWithFormat:@"%@=%@|",objKey,objValue]];
+        }
+    }
+    
+    [paraDic setValue:timeStamp forKey:@"times"];
+    [paraDic setValue:sign forKey:@"sign"];
+    [paraDic setValue:[PublicMethod MD5Encrypt:valuesStr] forKey:@"takes"];
+    [paraDic setValue:username forKey:@"username"];
+    [paraDic setValue:password forKey:@"password"];
+    
+    
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];

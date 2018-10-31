@@ -47,6 +47,7 @@
 		3A03CFC42158C4E600C49295 /* EWTImagePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A03CFA52158C4E500C49295 /* EWTImagePicker.bundle */; };
 		3A03CFC52158C4E600C49295 /* EWTMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CFAA2158C4E500C49295 /* EWTMediator.m */; };
 		3A03CFC62158C4E600C49295 /* EWTMediator+EWTImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A03CFAB2158C4E500C49295 /* EWTMediator+EWTImagePicker.m */; };
+		3A08D4002189AB8D007C06F9 /* UpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08D3FF2189AB8D007C06F9 /* UpdateView.m */; };
 		3A2E5D8A213ADE4700363947 /* ExamTableViewCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */; };
 		3A2E5D8E213AF90E00363947 /* PersonMidTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D8D213AF90E00363947 /* PersonMidTableViewCell.m */; };
 		3A2E5D91213AFF8500363947 /* PersonRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E5D90213AFF8500363947 /* PersonRowTableViewCell.m */; };
@@ -257,6 +258,8 @@
 		3A03CFA92158C4E500C49295 /* EWTMediator+EWTImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EWTMediator+EWTImagePicker.h"; sourceTree = "<group>"; };
 		3A03CFAA2158C4E500C49295 /* EWTMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EWTMediator.m; sourceTree = "<group>"; };
 		3A03CFAB2158C4E500C49295 /* EWTMediator+EWTImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EWTMediator+EWTImagePicker.m"; sourceTree = "<group>"; };
+		3A08D3FE2189AB8D007C06F9 /* UpdateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateView.h; sourceTree = "<group>"; };
+		3A08D3FF2189AB8D007C06F9 /* UpdateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateView.m; sourceTree = "<group>"; };
 		3A2E5D88213ADE4700363947 /* ExamTableViewCommonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamTableViewCommonCell.h; sourceTree = "<group>"; };
 		3A2E5D89213ADE4700363947 /* ExamTableViewCommonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamTableViewCommonCell.m; sourceTree = "<group>"; };
 		3A2E5D8C213AF90E00363947 /* PersonMidTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonMidTableViewCell.h; sourceTree = "<group>"; };
@@ -1166,6 +1169,8 @@
 				3AB25B792173994700C7B689 /* SettingViewController.m */,
 				3AB25B7B2173999B00C7B689 /* AboutViewController.h */,
 				3AB25B7C2173999B00C7B689 /* AboutViewController.m */,
+				3A08D3FE2189AB8D007C06F9 /* UpdateView.h */,
+				3A08D3FF2189AB8D007C06F9 /* UpdateView.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1328,6 +1333,7 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
+				A3121785FB69080401880885 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1404,6 +1410,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3121785FB69080401880885 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */ = {
@@ -1511,6 +1532,7 @@
 				3AB1FACF217B849300DDF11D /* CareerLessonSelectMaskView.m in Sources */,
 				3A5C0F3D214DCB9B00BB11FB /* NewsActivityTableViewCell.m in Sources */,
 				3A6BA56221271E5B00322875 /* HTTPEngine.m in Sources */,
+				3A08D4002189AB8D007C06F9 /* UpdateView.m in Sources */,
 				3A5C0F34214DC64200BB11FB /* NewsPolicyTableViewCell.m in Sources */,
 				3A03CFBB2158C4E600C49295 /* DNAssetsViewCell.m in Sources */,
 				3A6BA56F21271E5B00322875 /* PublicMethod.m in Sources */,

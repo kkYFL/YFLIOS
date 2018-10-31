@@ -18,17 +18,21 @@
 #import "GuideViewController.h"
 #import "GuidenModel.h"
 #import "LLTabBar.h"
+#import "UpdateView.h"
 
 
-@interface AppDelegate ()<UITabBarControllerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate,SubjectViewDelegate>
 @property (nonatomic, strong) NSMutableArray *guidenViewArr;
 @property (nonatomic, strong) UIImageView *storyBoardView;
+@property (nonatomic, strong) UpdateView *updateView;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+
     
     
      self.userToken = @"1";
@@ -37,16 +41,21 @@
      self.sourceHost = @"http://47.100.247.71/img";
      self.userName = @"15606811521";
      self.password = @"123456";
-    
+
     [self tabBarViewInit];
+    
+    
+    UpdateView *updateView = [[UpdateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    updateView.delegate = self;
+    self.updateView = updateView;
 
     //启动图
     //[self screenViewCreate];
 
-    
-    
+
+
     //[self showLoginAndRegistController];
-    
+
     //[self guidenView];
 
 //
@@ -55,6 +64,10 @@
     
     //[TestInterface test];
     return YES;
+}
+
+- (void)updateDelegate{
+    self.updateView.hidden = YES;
 }
 
 -(void)tabBarViewInit{

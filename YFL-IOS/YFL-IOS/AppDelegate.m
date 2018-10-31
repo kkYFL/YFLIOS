@@ -343,6 +343,20 @@
     }];
 }
 
++ (NSString *)getURLWithKey:(NSString *)key {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"HTTPURL" ofType:@"plist"];
+    NSString* environment = nil;
+#ifdef DEBUG
+    NSString* env = [[NSUserDefaults standardUserDefaults] objectForKey:@"environment"];
+    environment = env ? : @"development";
+#else
+    environment = @"production";
+#endif
+    
+    NSDictionary *dic = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:environment]; // development:开发环境。production:发布环境
+    return [dic objectForKey:key];
+}
+
 
 
 @end

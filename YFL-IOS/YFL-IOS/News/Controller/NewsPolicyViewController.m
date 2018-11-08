@@ -43,7 +43,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"ZhengceFagui", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"ZhengceFagui", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -65,7 +65,7 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
@@ -116,7 +116,7 @@
 }
 
 -(void)loadMoreData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // 新闻列表接口
     // 测试结果: 通过
@@ -285,7 +285,7 @@
     if (self.bannerList.count > index) {
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
-        wzweb.titleVC               =  NSLocalizedString(@"XiangQing", nil);
+        wzweb.titleVC               =  [AppDelegate getURLWithKey:@""]@"XiangQing", nil);
         wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.sourceHost,bannerModel.foreignUrl];
         wzweb.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:wzweb animated:YES];

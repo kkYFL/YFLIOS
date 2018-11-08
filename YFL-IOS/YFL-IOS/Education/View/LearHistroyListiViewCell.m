@@ -8,6 +8,7 @@
 
 #import "LearHistroyListiViewCell.h"
 #import "LearningHistory.h"
+#import "AppDelegate.h"
 
 @interface LearHistroyListiViewCell ()
 @property (nonatomic, strong) UILabel *leftLabel;
@@ -117,7 +118,7 @@
 
         
         //
-        self.rightLabel.text = [NSString stringWithFormat:@"%@ %@%@",NSLocalizedString(@"shichang", nil),_historyModel.learnTime,NSLocalizedString(@"fenzhogn", nil)];
+        self.rightLabel.text = [NSString stringWithFormat:@"%@ %@%@",[AppDelegate getURLWithKey:@"shichang"],_historyModel.learnTime,[AppDelegate getURLWithKey:@"fenzhogn"]];
 
 
     }

@@ -146,15 +146,15 @@
     _examModel = examModel;
     if (_examModel) {
         [self.cellTitleLabel setText:_examModel.paperTitle];
-        [self.timeLabel setText:[NSString stringWithFormat:@"%@%@%@",_examModel.beginTime,NSLocalizedString(@"dao", nil),_examModel.finalTime]];
-        self.remainTimes.text = [NSString stringWithFormat:@"%@%ld%@",NSLocalizedString(@"shengyu", nil),([_examModel.totalTimes integerValue]-[_examModel.times integerValue]),NSLocalizedString(@"ci", nil)];
+        [self.timeLabel setText:[NSString stringWithFormat:@"%@%@%@",_examModel.beginTime,[AppDelegate getURLWithKey:@""]@"dao", nil),_examModel.finalTime]];
+        self.remainTimes.text = [NSString stringWithFormat:@"%@%ld%@",[AppDelegate getURLWithKey:@""]@"shengyu", nil),([_examModel.totalTimes integerValue]-[_examModel.times integerValue]),[AppDelegate getURLWithKey:@""]@"ci", nil)];
         NSString *statueStr = @"";
         if ([_examModel.state integerValue] == 1) {
-            statueStr = NSLocalizedString(@"yikaoshi", nil);
+            statueStr = [AppDelegate getURLWithKey:@""]@"yikaoshi", nil);
         }else if ([_examModel.state integerValue] == 2){
-            statueStr = NSLocalizedString(@"Daikaoshi", nil);
+            statueStr = [AppDelegate getURLWithKey:@""]@"Daikaoshi", nil);
         }else if ([_examModel.state integerValue] == 3){
-            statueStr = NSLocalizedString(@"yiwancheng", nil);
+            statueStr = [AppDelegate getURLWithKey:@""]@"yiwancheng", nil);
         }
         self.examLabel.text = statueStr;
         

@@ -47,7 +47,7 @@
     
     UILabel *placeHolderView = [[UILabel alloc] init];
     placeHolderView.font = [UIFont systemFontOfSize:14.0f];
-    placeHolderView.text = NSLocalizedString(@"duohangshuru", nil);
+    placeHolderView.text = [AppDelegate getURLWithKey:@""]@"duohangshuru", nil);
     placeHolderView.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     placeHolderView.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:placeHolderView];

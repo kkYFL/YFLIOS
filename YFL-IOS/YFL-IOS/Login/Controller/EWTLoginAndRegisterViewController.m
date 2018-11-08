@@ -84,7 +84,7 @@
     
     UILabel *navTitleLab = [[UILabel alloc] init];
     navTitleLab.font = [UIFont boldSystemFontOfSize:18];
-    navTitleLab.text = NSLocalizedString(@"loginTitle", nil);
+    navTitleLab.text = [AppDelegate getURLWithKey:@"loginTitle"];
     navTitleLab.textColor = [UIColor whiteColor];
     navTitleLab.textAlignment = NSTextAlignmentLeft;
     [navView addSubview:navTitleLab];
@@ -280,7 +280,7 @@
          */
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
-        [MBProgressHUD toastMessage:NSLocalizedString(@"zhanghaoError", nil) ToView:self.view];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"zhanghaoError"] ToView:self.view];
 
     }];
 

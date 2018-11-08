@@ -29,6 +29,7 @@
 
 +(NSString*)getPreferredLanguage;
 +(void)getServerLanguageSource;//MYGetLaungeWithParaDic
++(NSString *)getURLWithKey:(NSString *)key;
 @end
 
 

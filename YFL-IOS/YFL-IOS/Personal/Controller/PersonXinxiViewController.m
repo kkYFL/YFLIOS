@@ -52,13 +52,13 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"GerenXinxi", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"GerenXinxi", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 30, 30);
-    [button setTitle:NSLocalizedString(@"xiugai", nil) forState:UIControlStateNormal];
+    [button setTitle:[AppDelegate getURLWithKey:@""]@"xiugai", nil) forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(rightButtonAction) forControlEvents:UIControlEventTouchUpInside];
     self.righBtn = button;
@@ -141,7 +141,7 @@
     
     if (indexPath.section == 0) {
         xinxiCell.type = XinxiCellTypeWithIconAndRow;
-        xinxiCell.cellTitleLabel.text = NSLocalizedString(@"yonghutouxiang", nil);
+        xinxiCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"yonghutouxiang", nil);
         
         NSString *headimageUrl = @"";
         if ([self.userModel.headImg hasPrefix:@"http"]) {
@@ -156,19 +156,19 @@
         NSString *titleStr = @"";
         NSString *contentStr = @"";
         if (indexPath.row ==0) {
-            titleStr = NSLocalizedString(@"zhengshixingming", nil);
+            titleStr = [AppDelegate getURLWithKey:@""]@"zhengshixingming", nil);
             contentStr = self.userModel.pmName;
             xinxiCell.cellContentLabel.tag = 101;
         }else if (indexPath.row ==1){
-            titleStr = NSLocalizedString(@"PhoneNum", nil);
+            titleStr = [AppDelegate getURLWithKey:@""]@"PhoneNum", nil);
             contentStr = phoneInputStr?self.userModel.userName:self.userModel.userName;
             xinxiCell.cellContentLabel.tag = 102;
         }else if (indexPath.row ==2){
-            titleStr = NSLocalizedString(@"sex", nil);
+            titleStr = [AppDelegate getURLWithKey:@""]@"sex", nil);
             if ([self.userModel.pmSex integerValue] == 1) {
-                contentStr = NSLocalizedString(@"nan", nil);
+                contentStr = [AppDelegate getURLWithKey:@""]@"nan", nil);
             }else if ([self.userModel.pmSex integerValue] == 2){
-                contentStr = NSLocalizedString(@"nv", nil);
+                contentStr = [AppDelegate getURLWithKey:@""]@"nv", nil);
             }
             if (sexInputStr.length) {
                 contentStr = sexInputStr;
@@ -184,12 +184,12 @@
         xinxiCell.cellContentLabel.text = contentStr;
     }else if (indexPath.section == 2){
         xinxiCell.type = XinxiCellTypeWithJustContent;
-        xinxiCell.cellTitleLabel.text = NSLocalizedString(@"wodezuoyouming", nil);
+        xinxiCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"wodezuoyouming", nil);
         xinxiCell.cellContentLabel.tag = 104;
         xinxiCell.cellContentLabel.text = mottoInputStr.length?mottoInputStr:self.userModel.motto;
     }else if (indexPath.section == 3){
         xinxiCell.type = XinxiCellTypeWithJustContent;
-        xinxiCell.cellTitleLabel.text = NSLocalizedString(@"wodedizhi", nil);
+        xinxiCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"wodedizhi", nil);
         xinxiCell.cellContentLabel.text = addressInputStr.length?addressInputStr:self.userModel.pmAddress;
         xinxiCell.cellContentLabel.tag = 105;
     }
@@ -261,11 +261,11 @@
         switch (buttonIndex)
         {
             case 0:
-                sexInputStr = NSLocalizedString(@"nan", nil);
+                sexInputStr = [AppDelegate getURLWithKey:@""]@"nan", nil);
                 [self.table reloadData];
                 break;
             case 1:
-                sexInputStr = NSLocalizedString(@"nv", nil);
+                sexInputStr = [AppDelegate getURLWithKey:@""]@"nv", nil);
                 [self.table reloadData];
                 break;
         }
@@ -339,11 +339,11 @@
 #pragma mark - Photo/Library
 - (void)showActionSheet {
     //[self resignKeyboard];
-    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"xiugaitouxiang", nil)
+    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:[AppDelegate getURLWithKey:@""]@"xiugaitouxiang", nil)
                                                       delegate:self
-                                             cancelButtonTitle:NSLocalizedString(@"quxiao", nil)
+                                             cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil)
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:NSLocalizedString(@"dakaixiangji", nil), NSLocalizedString(@"dakixiangce", nil), nil];
+                                             otherButtonTitles:[AppDelegate getURLWithKey:@""]@"dakaixiangji", nil), [AppDelegate getURLWithKey:@""]@"dakixiangce", nil), nil];
     self.getPhotosSheet.tag = 100;
     self.getPhotosSheet.delegate = self;
     [self.getPhotosSheet showInView:self.view];
@@ -353,9 +353,9 @@
     //[self resignKeyboard];
     UIActionSheet *sexActionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                       delegate:self
-                                             cancelButtonTitle:NSLocalizedString(@"quxiao", nil)
+                                             cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil)
                                         destructiveButtonTitle:nil
-                                             otherButtonTitles:NSLocalizedString(@"nan", nil), NSLocalizedString(@"nv", nil), nil];
+                                             otherButtonTitles:[AppDelegate getURLWithKey:@""]@"nan", nil), [AppDelegate getURLWithKey:@""]@"nv", nil), nil];
     sexActionSheet.tag = 101;
     sexActionSheet.delegate = self;
     [sexActionSheet showInView:self.view];
@@ -375,12 +375,12 @@
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     if (!allowEdting) {
-        [self.righBtn setTitle:NSLocalizedString(@"baocun", nil) forState:UIControlStateNormal];
+        [self.righBtn setTitle:[AppDelegate getURLWithKey:@""]@"baocun", nil) forState:UIControlStateNormal];
         allowEdting = YES;
         
         [self showActionSheet];
     }else{
-        [self.righBtn setTitle:NSLocalizedString(@"xiugai", nil) forState:UIControlStateNormal];
+        [self.righBtn setTitle:[AppDelegate getURLWithKey:@""]@"xiugai", nil) forState:UIControlStateNormal];
         allowEdting = NO;
         
         [self savePersonSource];
@@ -392,7 +392,7 @@
     
     if ([NSString isBlankString:headerImageUrl] && [NSString isBlankString:phoneInputStr] && [NSString isBlankString:sexInputStr] && [NSString isBlankString:mottoInputStr] && [NSString isBlankString:addressInputStr]) {
         
-        [MBProgressHUD toastMessage:NSLocalizedString(@"xuanzexiugaineirong", nil) ToView:self.view];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"xuanzexiugaineirong", nil) ToView:self.view];
         return;
     }
 
@@ -400,9 +400,9 @@
     // 个人信息
     // 测试结果: 通过
     NSString *sexNum = @"";
-    if ([sexInputStr isEqualToString:NSLocalizedString(@"nan", nil)]) {
+    if ([sexInputStr isEqualToString:[AppDelegate getURLWithKey:@""]@"nan", nil)]) {
         sexNum = @"1";
-    }else if ([sexInputStr isEqualToString:NSLocalizedString(@"nv", nil)]){
+    }else if ([sexInputStr isEqualToString:[AppDelegate getURLWithKey:@""]@"nv", nil)]){
         sexNum = @"2";
     }
     
@@ -427,11 +427,11 @@
     [HanZhaoHua savePersonalSourceWithPara:para success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
         
-        [MBProgressHUD toastMessage:NSLocalizedString(@"saveSuccess", nil) ToView:self.view];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"saveSuccess", nil) ToView:self.view];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonViewSourceNoti" object:nil];
     } failure:^(NSError * _Nonnull error) {
-        [MBProgressHUD toastMessage:NSLocalizedString(@"saveError", nil) ToView:self.view];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"saveError", nil) ToView:self.view];
     }];
     
 }
@@ -441,7 +441,7 @@
     // 文件上传
     //测试结果:
     if (self.images.count) {
-       [[PromptBox sharedBox] showLoadingWithText:NSLocalizedString(@"shangchuanzhong", nil) onView:self.view];
+       [[PromptBox sharedBox] showLoadingWithText:[AppDelegate getURLWithKey:@""]@"shangchuanzhong", nil) onView:self.view];
 
         UIImage *image = self.images[0];
         NSData *data = UIImagePNGRepresentation(image);
@@ -463,7 +463,7 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     if (allowEdting) {
         if (textField.tag == 101) {
-            [MBProgressHUD toastMessage:NSLocalizedString(@"bukexiugaixingming", nil) ToView:self.view];
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"bukexiugaixingming", nil) ToView:self.view];
             return NO;
         }
         

@@ -7,6 +7,7 @@
 //
 
 #import "EducationDetailController.h"
+#import "AppDelegate.h"
 
 @interface EducationDetailController ()
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -31,7 +32,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"FankuiXiangqing", nil);
+    self.title = [AppDelegate getURLWithKey:@"FankuiXiangqing"];
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)

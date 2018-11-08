@@ -59,7 +59,7 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // 新闻列表接口
     // 测试结果: 通过
@@ -314,7 +314,7 @@
         //设置字体颜色
         cellTextfield.textColor = [UIColor colorWithHexString:@"#8E8E93"];
         //当输入框没有内容时，水印提示 提示内容为password
-        cellTextfield.placeholder = NSLocalizedString(@"yaowensudi", nil);
+        cellTextfield.placeholder = [AppDelegate getURLWithKey:@""]@"yaowensudi", nil);
         //内容对齐方式
         cellTextfield.textAlignment = NSTextAlignmentLeft;
         //return键变成什么键

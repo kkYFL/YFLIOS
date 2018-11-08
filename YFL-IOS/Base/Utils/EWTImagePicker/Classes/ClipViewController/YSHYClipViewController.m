@@ -7,6 +7,7 @@
 //
 
 #import "YSHYClipViewController.h"
+#import "AppDelegate.h"
 #import "Masonry.h"
 #import "EWTBase.h"
 
@@ -81,7 +82,7 @@
 
 - (void)configCustomNaviBar {
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = NSLocalizedString(@"zhaoping", nil);
+    self.navigationItem.title = [AppDelegate getURLWithKey:@"zhaoping"];
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     leftButton.frame = CGRectMake(0, 0, 44, 44);
     [leftButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -118,13 +119,13 @@
     
     _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _doneButton.frame = CGRectMake(self.view.width - 75 - 12, 8, 75, 33);
-    [_doneButton setTitle:NSLocalizedString(@"baocun", nil) forState:UIControlStateNormal];
+    [_doneButton setTitle:[AppDelegate getURLWithKey:@"baocun"] forState:UIControlStateNormal];
     _doneButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [_doneButton addTarget:self action:@selector(clipBtnSelected:) forControlEvents:UIControlEventTouchUpInside];
     
     _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _cancelButton.frame = CGRectMake(12, 8, 75, 33);
-    [_cancelButton setTitle:NSLocalizedString(@"quxiao", nil) forState:UIControlStateNormal];
+    [_cancelButton setTitle:[AppDelegate getURLWithKey:@"quxiao"] forState:UIControlStateNormal];
     _cancelButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [_cancelButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
     

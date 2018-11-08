@@ -83,7 +83,7 @@
 -(void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
     //self.title = @"党员资讯";
-    self.title = NSLocalizedString(@"NewsHomeTitle", @"");
+    self.title = [AppDelegate getURLWithKey:@""]@"NewsHomeTitle", @"");
     [self.view addSubview:self.table];
     self.table.tableHeaderView = self.scrollView;
     
@@ -104,7 +104,7 @@
 
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // banner接口   positionType:@"MPOS_1"
     // 热区菜单接口  positionType:@"MPOS_4"
@@ -202,7 +202,7 @@
     
     // 新闻列表接口
     // 测试结果: 通过
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     [HanZhaoHua getNewsListWithUserToken:APP_DELEGATE.userToken typesId:@"0" Title:@"" page:_pageIndex pageNum:10 success:^(NSArray * _Nonnull newsList) {
         
@@ -369,7 +369,7 @@
     if (section == 0) {
         return self.remindScrollHeader;
     }
-    return [self headerViewWithIcon:nil Title:NSLocalizedString(@"zuixingzixun", nil)];
+    return [self headerViewWithIcon:nil Title:[AppDelegate getURLWithKey:@""]@"zuixingzixun", nil)];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -431,7 +431,7 @@
     if (self.bannerList.count > index) {
         WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
         Banner *bannerModel = self.bannerList[index];
-        wzweb.titleVC               =  NSLocalizedString(@"XiangQing", nil);
+        wzweb.titleVC               =  [AppDelegate getURLWithKey:@""]@"XiangQing", nil);
         if ([bannerModel.foreignUrl hasPrefix:@"http"]) {
             wzweb.webUrl = [NSString stringWithFormat:@"%@",bannerModel.foreignUrl];
         }else{

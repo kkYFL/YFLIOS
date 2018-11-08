@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSMutableArray *guidenViewArr;
 @property (nonatomic, strong) UIImageView *storyBoardView;
 @property (nonatomic, strong) UpdateView *updateView;
+@property (nonatomic, assign) BOOL isHan;
+
 @end
 
 @implementation AppDelegate
@@ -72,27 +74,27 @@
 
 -(void)tabBarViewInit{
     NewsViewController *newVC = [[NewsViewController alloc]init];
-    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:NSLocalizedString(@"NewsHomeTitle", nil) image:[UIImage imageNamed:@"news_icon_gray"] selectedImage:[UIImage imageNamed:@"news_icon_light"] VC:newVC];
+    EWTBaseNavigationController *newsNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"NewsHomeTitle"] image:[UIImage imageNamed:@"news_icon_gray"] selectedImage:[UIImage imageNamed:@"news_icon_light"] VC:newVC];
 
     
     
     
     EducationViewController *educationVC = [[EducationViewController alloc]init];
-    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:NSLocalizedString(@"DangYuanEducationTitle", nil) image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:educationVC];
+    EWTBaseNavigationController *educationNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"DangYuanEducationTitle"] image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:educationVC];
     
     
     FabuHomeViewController *fabuVC = [[FabuHomeViewController alloc]init];
-    EWTBaseNavigationController *fabuNav = [self viewControllerWithTitle:NSLocalizedString(@"DangYuanEducationTitle", nil) image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:fabuVC];
+    EWTBaseNavigationController *fabuNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"DangYuanEducationTitle"] image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:fabuVC];
     
     
     
     ExamnationViewController *examtionVC = [[ExamnationViewController alloc]init];
-    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:NSLocalizedString(@"DangyuanKaoshi", nil) image:[UIImage imageNamed:@"exam_icon_gray"] selectedImage:[UIImage imageNamed:@"exam_icon_light"] VC:examtionVC];
+    EWTBaseNavigationController *examtionNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"DangyuanKaoshi"] image:[UIImage imageNamed:@"exam_icon_gray"] selectedImage:[UIImage imageNamed:@"exam_icon_light"] VC:examtionVC];
     
     
     
     PersonalViewController *personalVC = [[PersonalViewController alloc]init];
-    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:NSLocalizedString(@"Gerenzhongxin", nil) image:[UIImage imageNamed:@"person_icon_gray"] selectedImage:[UIImage imageNamed:@"person_icon_light"] VC:personalVC];
+    EWTBaseNavigationController *personalNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"Gerenzhongxin"] image:[UIImage imageNamed:@"person_icon_gray"] selectedImage:[UIImage imageNamed:@"person_icon_light"] VC:personalVC];
     
     
     
@@ -108,11 +110,11 @@
     
 //    LLTabBar *tab = [[LLTabBar alloc] initWithFrame:tabBar.tabBar.bounds];
 //
-//    tab.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle : NSLocalizedString(@"NewsHomeTitle", nil), kLLTabBarItemAttributeNormalImageName : @"news_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"news_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
-//                                    @{kLLTabBarItemAttributeTitle : NSLocalizedString(@"DangYuanEducationTitle", nil), kLLTabBarItemAttributeNormalImageName : @"education_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"education_icon_gray", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//    tab.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle : [AppDelegate getURLWithKey:@""]@"NewsHomeTitle", nil), kLLTabBarItemAttributeNormalImageName : @"news_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"news_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//                                    @{kLLTabBarItemAttributeTitle : [AppDelegate getURLWithKey:@""]@"DangYuanEducationTitle", nil), kLLTabBarItemAttributeNormalImageName : @"education_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"education_icon_gray", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
 //                                    @{kLLTabBarItemAttributeTitle : @"支部", kLLTabBarItemAttributeNormalImageName : @"mycity_normal", kLLTabBarItemAttributeSelectedImageName : @"mycity_highlight", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
-//                                    @{kLLTabBarItemAttributeTitle : NSLocalizedString(@"DangyuanKaoshi", nil), kLLTabBarItemAttributeNormalImageName : @"exam_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"exam_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
-//                                    @{kLLTabBarItemAttributeTitle : NSLocalizedString(@"Gerenzhongxin", nil), kLLTabBarItemAttributeNormalImageName : @"person_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"person_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
+//                                    @{kLLTabBarItemAttributeTitle : [AppDelegate getURLWithKey:@""]@"DangyuanKaoshi", nil), kLLTabBarItemAttributeNormalImageName : @"exam_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"exam_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
+//                                    @{kLLTabBarItemAttributeTitle : [AppDelegate getURLWithKey:@""]@"Gerenzhongxin", nil), kLLTabBarItemAttributeNormalImageName : @"person_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"person_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)}];
     
     //tab.delegate = self;
     //[tabBar.tabBar addSubview:tab];
@@ -135,7 +137,7 @@
     
 -(void)showLoginAndRegistController {
     EWTLoginAndRegisterViewController *loginVC = [[EWTLoginAndRegisterViewController alloc] init];
-    loginVC.title = NSLocalizedString(@"loginTitle", nil);
+    loginVC.title = [AppDelegate getURLWithKey:@"loginTitle"];
     EWTBaseNavigationController* nav = [[EWTBaseNavigationController alloc] initWithRootViewController:loginVC];
 
     nav.navigationBar.translucent = NO;
@@ -344,16 +346,14 @@
 }
 
 + (NSString *)getURLWithKey:(NSString *)key {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"HTTPURL" ofType:@"plist"];
-    NSString* environment = nil;
-#ifdef DEBUG
-    NSString* env = [[NSUserDefaults standardUserDefaults] objectForKey:@"environment"];
-    environment = env ? : @"development";
-#else
-    environment = @"production";
-#endif
-    
-    NSDictionary *dic = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:environment]; // development:开发环境。production:发布环境
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"launguage" ofType:@"plist"];
+    NSString* launuage = nil;
+    if (APP_DELEGATE.isHan) {
+        launuage = @"Han";
+    }else{
+        launuage = @"Zang";
+    }
+    NSDictionary *dic = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:launuage];
     return [dic objectForKey:key];
 }
 

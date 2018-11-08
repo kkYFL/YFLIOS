@@ -36,7 +36,7 @@
 }
 
 -(void)initView{
-    self.title = (_type == MYEducationViewTypeDefault)?NSLocalizedString(@"LearnTaskTitle", nil):NSLocalizedString(@"DangYuanEducationTitle", nil);
+    self.title = (_type == MYEducationViewTypeDefault)?[AppDelegate getURLWithKey:@"LearnTaskTitle"]:[AppDelegate getURLWithKey:@"DangYuanEducationTitle"]@"", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -91,7 +91,7 @@
 //         [self showDisnetView];
 //     }];
     
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // 学习任务
     if (self.type == MYEducationViewTypeDefault) {

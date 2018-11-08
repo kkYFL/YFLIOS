@@ -43,7 +43,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"DangyuanKaoshi", nil);
+    self.title = [AppDelegate getURLWithKey:@"DangyuanKaoshi"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.viewsArr = [NSMutableArray array];
     [self.view addSubview:self.table];
@@ -60,7 +60,7 @@
 
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@"jiazaizhong"]] onView:self.view];
 
     // 考试排名
     // 测试结果: 通过
@@ -284,7 +284,7 @@
         //remindLabel1
         UILabel *remindLabel1 = [[UILabel alloc] init];
         remindLabel1.font = [UIFont systemFontOfSize:16.0f];
-        remindLabel1.text = NSLocalizedString(@"ZuijinChengji", nil);
+        remindLabel1.text = [AppDelegate getURLWithKey:@"ZuijinChengji"];
         remindLabel1.textColor = [UIColor whiteColor];
         remindLabel1.textAlignment = NSTextAlignmentCenter;
         [headerImageView addSubview:remindLabel1];
@@ -298,7 +298,7 @@
         //remindLabel2
         UILabel *remindLabel2 = [[UILabel alloc] init];
         remindLabel2.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel2.text = NSLocalizedString(@"Chengjiyouxiu", nil);
+        remindLabel2.text = [AppDelegate getURLWithKey:@"Chengjiyouxiu"];
         remindLabel2.textColor = [UIColor whiteColor];
         remindLabel2.textAlignment = NSTextAlignmentCenter;
         [headerImageView addSubview:remindLabel2];
@@ -329,7 +329,7 @@
         }];
         UILabel *selectTitle1 = [[UILabel alloc] init];
         selectTitle1.font = [UIFont boldSystemFontOfSize:17.0f];
-        selectTitle1.text = NSLocalizedString(@"LishiKaoshi", nil);
+        selectTitle1.text = [AppDelegate getURLWithKey:@"LishiKaoshi"];
         selectTitle1.textColor = [UIColor whiteColor];
         selectTitle1.textAlignment = NSTextAlignmentCenter;
         [selectImageView addSubview:selectTitle1];
@@ -356,7 +356,7 @@
         }];
         UILabel *selectTitle2 = [[UILabel alloc] init];
         selectTitle2.font = [UIFont boldSystemFontOfSize:17.0f];
-        selectTitle2.text = NSLocalizedString(@"Daikaoshi", nil);
+        selectTitle2.text = [AppDelegate getURLWithKey:@"Daikaoshi"];
         selectTitle2.textColor = [UIColor whiteColor];
         selectTitle2.textAlignment = NSTextAlignmentCenter;
         [selectImageView2 addSubview:selectTitle2];
@@ -383,7 +383,7 @@
         
         UILabel *paimingLabel = [[UILabel alloc] init];
         paimingLabel.font = [UIFont systemFontOfSize:16.0f];
-        paimingLabel.text = NSLocalizedString(@"KaoshiPaiming", nil);
+        paimingLabel.text = [AppDelegate getURLWithKey:@"KaoshiPaiming"];
         paimingLabel.textColor = [UIColor colorWithHexString:@"#FF6A00"];
         paimingLabel.textAlignment = NSTextAlignmentCenter;
         [_headerView addSubview:paimingLabel];

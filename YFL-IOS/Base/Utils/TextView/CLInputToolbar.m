@@ -62,7 +62,7 @@
     //
     UILabel *topLabel = [[UILabel alloc] init];
     topLabel.font = [UIFont systemFontOfSize:14.0f];
-    topLabel.text = NSLocalizedString(@"TextInputTitle", nil);
+    topLabel.text = [AppDelegate getURLWithKey:@""]@"TextInputTitle", nil);
     topLabel.textColor = [UIColor colorWithHexString:@"#179EE8"];
     [self addSubview:topLabel];
     self.topLabel = topLabel;
@@ -112,7 +112,7 @@
     self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"#9C9C9C"].CGColor;
     self.sendButton.enabled = NO;
     self.sendButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-    [self.sendButton setTitle:NSLocalizedString(@"TextSend", nil) forState:UIControlStateNormal];
+    [self.sendButton setTitle:[AppDelegate getURLWithKey:@""]@"TextSend", nil) forState:UIControlStateNormal];
     [self.sendButton setTitleColor:[UIColor colorWithHexString:@"#888888"] forState:UIControlStateNormal];
     [self.sendButton addTarget:self action:@selector(didClicksendButton) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.sendButton];

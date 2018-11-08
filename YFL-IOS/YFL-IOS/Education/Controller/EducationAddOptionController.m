@@ -34,7 +34,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"XiangzengFankui", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"XiangzengFankui", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -135,7 +135,7 @@
     if (!_contentTitle) {
         UILabel *contentTitle = [[UILabel alloc] init];
         contentTitle.font = [UIFont systemFontOfSize:14.0f];
-        contentTitle.text = NSLocalizedString(@"ningdewenti", nil);
+        contentTitle.text = [AppDelegate getURLWithKey:@""]@"ningdewenti", nil);
         contentTitle.textColor = [UIColor colorWithHexString:@"#E51C23"];
         contentTitle.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:contentTitle];
@@ -155,7 +155,7 @@
         //设置字体颜色
         cellTextfield.textColor = [UIColor colorWithHexString:@"#888888"];
         //当输入框没有内容时，水印提示 提示内容为password
-        cellTextfield.placeholder = NSLocalizedString(@"ningdezhuti", nil);
+        cellTextfield.placeholder = [AppDelegate getURLWithKey:@""]@"ningdezhuti", nil);
         //内容对齐方式
         cellTextfield.textAlignment = NSTextAlignmentLeft;
         //设置键盘的样式
@@ -184,7 +184,7 @@
         
         UILabel *placeHolderView = [[UILabel alloc] init];
         placeHolderView.font = [UIFont systemFontOfSize:14.0f];
-        placeHolderView.text = NSLocalizedString(@"ningdeyijian", nil);
+        placeHolderView.text = [AppDelegate getURLWithKey:@""]@"ningdeyijian", nil);
         placeHolderView.textColor = [UIColor colorWithHexString:@"#888888"];
         placeHolderView.textAlignment = NSTextAlignmentLeft;
         [self.view addSubview:placeHolderView];
@@ -198,7 +198,7 @@
     if (!_reindLabel) {
         UILabel *reindLabel = [[UILabel alloc] init];
         reindLabel.font = [UIFont systemFontOfSize:14.0f];
-        reindLabel.text = [NSString stringWithFormat:@"      %@",NSLocalizedString(@"ningdeyijianshuoming", nil)];
+        reindLabel.text = [NSString stringWithFormat:@"      %@",[AppDelegate getURLWithKey:@""]@"ningdeyijianshuoming", nil)];
         reindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         reindLabel.textAlignment = NSTextAlignmentLeft;
         reindLabel.numberOfLines = 0;
@@ -214,7 +214,7 @@
         button.backgroundColor = [UIColor colorWithHexString:@"#E51C23"];
         [button addTarget:self action:@selector(selectSource:) forControlEvents:UIControlEventTouchUpInside];
         button.layer.masksToBounds = YES;
-        [button setTitle:NSLocalizedString(@"wentitijiao", nil) forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@""]@"wentitijiao", nil) forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
         button.layer.cornerRadius = 4.0f;
@@ -243,7 +243,7 @@
 
 -(void)selectSource:(UIButton *)sender{
     if (!self.topicTextfield.text.length || !self.contentTextView.text.length) {
-        [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"shurufankui", nil) onView:self.view hideTime:2 y:0];
+        [[PromptBox sharedBox] showPromptBoxWithText:[AppDelegate getURLWithKey:@""]@"shurufankui", nil) onView:self.view hideTime:2 y:0];
         return;
     }
     

@@ -33,7 +33,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"XiugaiMima", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"XiugaiMima", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction);
@@ -116,15 +116,15 @@
     PersonPasswordInCell *passwordCell = [tableView dequeueReusableCellWithIdentifier:@"passwordCell"];
     NSString *placholder = @"";
     if (indexPath.section == 0) {
-        placholder = NSLocalizedString(@"shurudangqianmima", nil);
+        placholder = [AppDelegate getURLWithKey:@""]@"shurudangqianmima", nil);
         passwordCell.textfield.tag = 100;
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             passwordCell.textfield.tag = 101;
-            placholder = NSLocalizedString(@"shuruxingmima", nil);
+            placholder = [AppDelegate getURLWithKey:@""]@"shuruxingmima", nil);
         }else if (indexPath.row == 1){
             passwordCell.textfield.tag = 102;
-            placholder = NSLocalizedString(@"querenmima", nil);
+            placholder = [AppDelegate getURLWithKey:@""]@"querenmima", nil);
         }
     }
     passwordCell.textfield.placeholder = placholder;
@@ -179,7 +179,7 @@
         button.layer.masksToBounds = YES;
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
-        [button setTitle:NSLocalizedString(@"XiugaiMima", nil) forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@""]@"XiugaiMima", nil) forState:UIControlStateNormal];
         button.layer.cornerRadius = 4.0f;
         [_footerView addSubview:button];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -238,15 +238,15 @@
         [HanZhaoHua changePasswordWithUserId:APP_DELEGATE.userId oldPwd:inputPass1 password:inputPass2 success:^(NSDictionary * _Nonnull responseObject) {
             NSLog(@"%@", responseObject);
             if ([[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] isEqualToString:@"2000"]) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"tishi", nil) message:NSLocalizedString(@"mimaxiugaichengong", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"queding", nil) otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@""]@"tishi", nil) message:[AppDelegate getURLWithKey:@""]@"mimaxiugaichengong", nil) delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"queding", nil) otherButtonTitles:nil, nil];
                 [alert show];
             }else{
-                [MBProgressHUD toastMessage:NSLocalizedString(@"mimaxiugaishibai", nil) ToView:self.view];
+                [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"mimaxiugaishibai", nil) ToView:self.view];
             }
             
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
-            [MBProgressHUD toastMessage:NSLocalizedString(@"mimaxiugaishibai", nil) ToView:self.view];
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"mimaxiugaishibai", nil) ToView:self.view];
         }];
     
 }

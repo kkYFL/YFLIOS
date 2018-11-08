@@ -40,7 +40,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"DangYuanEducationTitle", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"DangYuanEducationTitle", nil);
     self.view.backgroundColor = [UIColor whiteColor];    
     [self.view addSubview:self.table];
     
@@ -123,7 +123,7 @@
 
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     
     //教育视频接口

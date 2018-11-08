@@ -33,7 +33,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"Yijianfankui", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"Yijianfankui", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"options_right", @"options_right", rightButtonAction)
@@ -53,7 +53,7 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
 
     // 获取意见反馈列表

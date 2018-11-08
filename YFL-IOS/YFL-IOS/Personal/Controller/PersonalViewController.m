@@ -56,7 +56,7 @@
 }
 
 -(void)initView{
-    self.title = NSLocalizedString(@"Gerenzhongxin", nil);
+    self.title = [AppDelegate getURLWithKey:@""]@"Gerenzhongxin", nil);
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.table];
@@ -90,7 +90,7 @@
 
 -(void)loadData{
     
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     /**
      个人中心—用户信息查询接口
@@ -171,7 +171,7 @@
                                                                       [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
                                                                       
                                                                   }];
-            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"quxiao", nil) style:UIAlertActionStyleDefault
+            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil) style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * action) {
                                                                      
                                                                  }];
@@ -298,18 +298,18 @@
     if (indexPath.section == 0) {
         PersonRowWithIconCell *rowIconCell = [tableView dequeueReusableCellWithIdentifier:@"rowIconCell"];
         if(indexPath.row == 1){
-            rowIconCell.cellTitleLabel.text = NSLocalizedString(@"GerenXinxi", nil);
-            rowIconCell.cellContentLabel.text = NSLocalizedString(@"wanshangerenxingxi", nil);
+            rowIconCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"GerenXinxi", nil);
+            rowIconCell.cellContentLabel.text = [AppDelegate getURLWithKey:@""]@"wanshangerenxingxi", nil);
             rowIconCell.cellNewImageView.hidden = YES;
             [rowIconCell.cellIcon setImage:[UIImage imageNamed:@"person_userHaerd"]];
         }else if (indexPath.row == 2){
-            rowIconCell.cellTitleLabel.text = NSLocalizedString(@"mimaguanli", nil);
-            rowIconCell.cellContentLabel.text = NSLocalizedString(@"weixinduanxinfangshi", nil);
+            rowIconCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"mimaguanli", nil);
+            rowIconCell.cellContentLabel.text = [AppDelegate getURLWithKey:@""]@"weixinduanxinfangshi", nil);
             rowIconCell.cellNewImageView.hidden = YES;
             [rowIconCell.cellIcon setImage:[UIImage imageNamed:@"person_suo"]];
         }else if (indexPath.row == 3){
-            rowIconCell.cellTitleLabel.text = NSLocalizedString(@"banbengengxin", nil);
-            rowIconCell.cellContentLabel.text = NSLocalizedString(@"youxingbanbenxuyaogengxin", nil);
+            rowIconCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"banbengengxin", nil);
+            rowIconCell.cellContentLabel.text = [AppDelegate getURLWithKey:@""]@"youxingbanbenxuyaogengxin", nil);
             if (![NSString isBlankString:_filePath]) {
                 rowIconCell.cellNewImageView.hidden = NO;
             }else{
@@ -325,13 +325,13 @@
     PersonRowTableViewCell *rowCell = [tableView dequeueReusableCellWithIdentifier:@"rowCell"];
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            rowCell.cellTitleLabel.text = NSLocalizedString(@"Setting", nil);
+            rowCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"Setting", nil);
             rowCell.cellContentLabel.text = @"";
             rowCell.cellNewImageView.hidden = YES;
         }else if (indexPath.row == 1){
-            //rowCell.cellTitleLabel.text = NSLocalizedString(@"Guanyu", nil);
-            rowCell.cellTitleLabel.text = NSLocalizedString(@"yuyanqiehuan", nil);
-            rowCell.cellContentLabel.text =  NSLocalizedString(@"qiehuan", nil);
+            //rowCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"Guanyu", nil);
+            rowCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"yuyanqiehuan", nil);
+            rowCell.cellContentLabel.text =  [AppDelegate getURLWithKey:@""]@"qiehuan", nil);
             rowCell.cellNewImageView.hidden = YES;
         }
     }
@@ -417,7 +417,7 @@
     [self.descibeLabel setText:self.userModel.motto];
     
     if (self.signModel) {        
-        self.signLabel.text = [NSString stringWithFormat:@"%@%@%@，%@",NSLocalizedString(@"yiqiandao", nil),self.signModel.totalSignIn,NSLocalizedString(@"tian", nil),NSLocalizedString(@"qingjixubaochi", nil)];
+        self.signLabel.text = [NSString stringWithFormat:@"%@%@%@，%@",[AppDelegate getURLWithKey:@""]@"yiqiandao", nil),self.signModel.totalSignIn,[AppDelegate getURLWithKey:@""]@"tian", nil),[AppDelegate getURLWithKey:@""]@"qingjixubaochi", nil)];
     }
 }
 
@@ -528,8 +528,8 @@
         signButton.layer.cornerRadius = 4.0f;
         [signButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [signButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [signButton setTitle:NSLocalizedString(@"qiandao", nil) forState:UIControlStateNormal];
-        CGFloat contentW = [PublicMethod getTheWidthOfTheLabelWithContent:NSLocalizedString(@"qiandao", nil) font:14.0f]+2;
+        [signButton setTitle:[AppDelegate getURLWithKey:@""]@"qiandao", nil) forState:UIControlStateNormal];
+        CGFloat contentW = [PublicMethod getTheWidthOfTheLabelWithContent:[AppDelegate getURLWithKey:@""]@"qiandao", nil) font:14.0f]+2;
         if (contentW < 50) {
             contentW = 50;
         }
@@ -572,7 +572,7 @@
         outButton.layer.borderWidth = 0.5f;
         [outButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [outButton setTitleColor:[UIColor colorWithHexString:@"#FF0000"] forState:UIControlStateNormal];
-        [outButton setTitle:NSLocalizedString(@"tuichu", nil) forState:UIControlStateNormal];
+        [outButton setTitle:[AppDelegate getURLWithKey:@""]@"tuichu", nil) forState:UIControlStateNormal];
         outButton.layer.cornerRadius = 4.0f;
         [_footerView addSubview:outButton];
         
@@ -593,7 +593,7 @@
 }
 
 -(void)MYSignOutSerVer{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
     [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
@@ -604,7 +604,7 @@
     } failure:^(NSError * _Nonnull error) {
         [[PromptBox sharedBox] removeLoadingView];
         
-        [MBProgressHUD toastMessage:NSLocalizedString(@"tuichushibai", nil) ToView:self.view];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"tuichushibai", nil) ToView:self.view];
     }];
 }
 

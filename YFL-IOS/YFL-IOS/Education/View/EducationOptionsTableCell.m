@@ -130,9 +130,9 @@
         self.cellContent.text = _feedBackModel.createTime;
 
         if ([_feedBackModel.answerState integerValue] == 1) {
-            self.statuslabel.text = NSLocalizedString(@"jiejuezhong", nil);
+            self.statuslabel.text = [AppDelegate getURLWithKey:@""]@"jiejuezhong", nil);
         }else{
-            self.statuslabel.text = NSLocalizedString(@"yichuli", nil);
+            self.statuslabel.text = [AppDelegate getURLWithKey:@""]@"yichuli", nil);
         }
         self.solveLabel.hidden = YES;
 

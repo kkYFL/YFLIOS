@@ -137,7 +137,7 @@
 
 -(void)loadData{
     
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // 获取学习痕迹列表
     // 测试结果: 通过
@@ -183,7 +183,7 @@
 }
 
 -(void)loadMore{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",NSLocalizedString(@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
 
     // 获取党员心声
     // 测试结果: 通过
@@ -415,7 +415,7 @@
         [button addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button setTitle:NSLocalizedString(@"XuexiQingkuang", nil) forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@""]@"XuexiQingkuang", nil) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button];
         button.tag = 101;
@@ -429,7 +429,7 @@
         [button1 addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button1 setTitle:NSLocalizedString(@"RenWujianjie", nil) forState:UIControlStateNormal];
+        [button1 setTitle:[AppDelegate getURLWithKey:@""]@"RenWujianjie", nil) forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button1];
         button1.tag = 102;
@@ -442,7 +442,7 @@
         [button2.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button2 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
         [button2 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
-        [button2 setTitle:NSLocalizedString(@"DangYuanHeart", nil) forState:UIControlStateNormal];
+        [button2 setTitle:[AppDelegate getURLWithKey:@""]@"DangYuanHeart", nil) forState:UIControlStateNormal];
         [_itemsView addSubview:button2];
         button2.tag = 103;
         [button2 setFrame:CGRectMake(SCREEN_WIDTH/3.0*2, 0, SCREEN_WIDTH/3.0, 56)];
@@ -540,7 +540,7 @@
         
         UILabel *remindLabel = [[UILabel alloc] init];
         remindLabel.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel.text = NSLocalizedString(@"wodexiangfa", nil);
+        remindLabel.text = [AppDelegate getURLWithKey:@""]@"wodexiangfa", nil);
         remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         remindLabel.textAlignment = NSTextAlignmentLeft;
         [footerTouch addSubview:remindLabel];
@@ -564,7 +564,7 @@
     self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
-    self.inputToolbar.placeholder = NSLocalizedString(@"qingshuru", nil);
+    self.inputToolbar.placeholder = [AppDelegate getURLWithKey:@""]@"qingshuru", nil);
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {
         __typeof(&*weakSelf) strongSelf = weakSelf;
@@ -586,13 +586,13 @@
     
     [HanZhaoHua submitCommentsWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId taskId:self.model.taskId commentInfo:comment success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
-        [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"pinglunchengong", nil) onView:self.view hideTime:2 y:0];
+        [[PromptBox sharedBox] showPromptBoxWithText:[AppDelegate getURLWithKey:@""]@"pinglunchengong", nil) onView:self.view hideTime:2 y:0];
         
         [self refershHeader];
         
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
-        [[PromptBox sharedBox] showPromptBoxWithText:NSLocalizedString(@"pinglunshibai", nil) onView:self.view hideTime:2 y:0];
+        [[PromptBox sharedBox] showPromptBoxWithText:[AppDelegate getURLWithKey:@""]@"pinglunshibai", nil) onView:self.view hideTime:2 y:0];
         
     }];
     

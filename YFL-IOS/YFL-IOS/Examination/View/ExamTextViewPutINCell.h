@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ExamTextViewPutINCell : UITableViewCell
+@property (nonatomic, strong) UITextView *textView;
 +(CGFloat)CellH;
 @end

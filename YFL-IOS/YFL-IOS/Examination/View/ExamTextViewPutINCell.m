@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 
 @interface ExamTextViewPutINCell ()<UITextViewDelegate>
-@property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UILabel *placeHolderView;
 
 @end

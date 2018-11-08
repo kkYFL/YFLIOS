@@ -114,6 +114,10 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         }
         
         ExamTextInViewCell *textInCell = [tableView dequeueReusableCellWithIdentifier:@"textInCell"];
+        if (self.detailList.count > _currentIndex) {
+            HistoryExamDetail *detailModel = self.detailList[_currentIndex];
+            textInCell.examModel = detailModel;
+        }
         return textInCell;
         
     }else if (indexPath.row == 1){
@@ -155,6 +159,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         }
         
         ExamTextViewPutINCell *putInCell = [tableView dequeueReusableCellWithIdentifier:@"putInCell"];
+        putInCell.textView.text = @"";
         return putInCell;
     }
     
@@ -169,6 +174,10 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - 懒加载
@@ -353,9 +362,9 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
                 hasAnswered = YES;
             }
         }
-        if (!hasAnswered) {
-            return;
-        }
+//        if (!hasAnswered) {
+//            return;
+//        }
         
         
         

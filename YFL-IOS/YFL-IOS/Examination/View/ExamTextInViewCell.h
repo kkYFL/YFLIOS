@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HistoryExamDetail;
 
 @interface ExamTextInViewCell : UITableViewCell
+@property (nonatomic, copy) NSString *sourceUrl;
+@property (nonatomic, strong) HistoryExamDetail *examModel;
 +(CGFloat)CellH;
 @end

@@ -159,18 +159,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     NSLog(@"VC_APPEAR : %@\n", NSStringFromClass(self.class));
-    
-    NSString *launguage = [AppDelegate getPreferredLanguage];
-    if ([APP_DELEGATE.localType isEqualToString:@"1"]) {
-        if (!APP_DELEGATE.isHans) {
-            [AppDelegate getServerLanguageSource];
-        }
-    }else{
-        if (!APP_DELEGATE.isZang) {
-            [AppDelegate getServerLanguageSource];
-        }
-    }
-    
+        
     //getServerLanguageSource
     NSLog(@"");
 }

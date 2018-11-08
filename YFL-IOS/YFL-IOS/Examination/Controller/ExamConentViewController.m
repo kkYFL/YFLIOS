@@ -47,7 +47,6 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 }
 
 -(void)initView{
-    self.title = [AppDelegate getURLWithKey:@""]@"KaoshiDati", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -100,17 +99,17 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             ExamTopTitleTableViewCell *topTitleCell = [tableView dequeueReusableCellWithIdentifier:@"topTitleCell"];
             NSString *typeStr = @"";
             if ([_currentExamModel.examType integerValue] == 1) {
-                typeStr = [AppDelegate getURLWithKey:@""]@"danxuan", nil);
+                typeStr = [AppDelegate getURLWithKey:@"danxuan"];
             }else if ([_currentExamModel.examType integerValue] == 2){
-                typeStr = [AppDelegate getURLWithKey:@""]@"duoxuan", nil);
+                typeStr = [AppDelegate getURLWithKey:@"duoxuan"];
             }else if ([_currentExamModel.examType integerValue] == 3){
-                typeStr = [AppDelegate getURLWithKey:@""]@"tiankong", nil);
+                typeStr = [AppDelegate getURLWithKey:@"tiankong"];
             }else if ([_currentExamModel.examType integerValue] == 4){
-                typeStr = [AppDelegate getURLWithKey:@""]@"panduan", nil);
+                typeStr = [AppDelegate getURLWithKey:@"panduan"];
             }else if ([_currentExamModel.examType integerValue] == 5){
-                typeStr = [AppDelegate getURLWithKey:@""]@"jieda", nil);
+                typeStr = [AppDelegate getURLWithKey:@"jieda"];
             }
-            topTitleCell.titleLabel.text = [NSString stringWithFormat:@"%@%ld%@  %@%@",[AppDelegate getURLWithKey:@""]@"di", nil),(_currentIndex+1),[AppDelegate getURLWithKey:@""]@"timu", nil),typeStr,[AppDelegate getURLWithKey:@""]@"timu", nil)];
+            topTitleCell.titleLabel.text = [NSString stringWithFormat:@"%@%ld%@  %@%@",[AppDelegate getURLWithKey:@"di"],(_currentIndex+1),[AppDelegate getURLWithKey:@"timu"],typeStr,[AppDelegate getURLWithKey:@"timu"]];
             return topTitleCell;
         }
         
@@ -258,7 +257,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     //fangqibencidati
     //UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您好，您还有1次答题的机会,是否确定放弃本次答题？" delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil) otherButtonTitles:[AppDelegate getURLWithKey:@""]@"queding", nil), nil];
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@""]@"tishi", nil) message:[NSString stringWithFormat:@"%@%@%@,%@",[AppDelegate getURLWithKey:@""]@"shengyu", nil),@"1",[AppDelegate getURLWithKey:@""]@"ci", nil),[AppDelegate getURLWithKey:@""]@"jihui", nil),[AppDelegate getURLWithKey:@""]@"fangqibencidati", nil)] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil) otherButtonTitles:[AppDelegate getURLWithKey:@""]@"queding", nil), nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@"tishi"] message:[NSString stringWithFormat:@"%@%@%@,%@",[AppDelegate getURLWithKey:@"shengyu"],@"1",[AppDelegate getURLWithKey:@"ci"],[AppDelegate getURLWithKey:@"jihui"],[AppDelegate getURLWithKey:@"fangqibencidati"]] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"] otherButtonTitles:[AppDelegate getURLWithKey:@"queding"], nil];
 
     [alert show];
     }
@@ -276,7 +275,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         button1.tag = 101;
         button1.layer.masksToBounds = YES;
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
-        [button1 setTitle:[AppDelegate getURLWithKey:@""]@"shangyiti", nil) forState:UIControlStateNormal];
+        [button1 setTitle:[AppDelegate getURLWithKey:@"shangyiti"] forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
         button1.layer.cornerRadius = 10.0f;
         [_footerView addSubview:button1];
@@ -297,7 +296,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         [button2.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button2 setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
         button2.layer.cornerRadius = 10.0f;
-        [button2 setTitle:[AppDelegate getURLWithKey:@""]@"xiayiti", nil) forState:UIControlStateNormal];
+        [button2 setTitle:[AppDelegate getURLWithKey:@"xiayiti"] forState:UIControlStateNormal];
         [_footerView addSubview:button2];
         [button2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_footerView).offset(0);
@@ -491,6 +490,12 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = [AppDelegate getURLWithKey:@"KaoshiDati"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -286,7 +286,7 @@
         if (self.signModel) {
             //NSDate *severData = [self refreshCalandarWithYear:[self.signModel.year integerValue] Month:[self.signModel.month integerValue]];
             [self.calendar setCurrentPage:date animated:YES];
-            [self.signNumLabel setText:[NSString stringWithFormat:@"%@：%@",[AppDelegate getURLWithKey:@""]@"jinriqiandaorenshu", nil),self.signModel.todayTotalNum]];
+            [self.signNumLabel setText:[NSString stringWithFormat:@"%@：%@",[AppDelegate getURLWithKey:@"jinriqiandaorenshu"],self.signModel.todayTotalNum]];
             [self.hasOnDay setText:[NSString stringWithFormat:@"%@",self.signModel.totalSignIn]];
             [self.hasOnDayRight setText:[NSString stringWithFormat:@"%@",self.signModel.continueSignIn]];
         }else{
@@ -338,7 +338,7 @@
         
         UILabel *signTitleLabel = [[UILabel alloc] init];
         signTitleLabel.font = [UIFont boldSystemFontOfSize:24.0f];
-        signTitleLabel.text = [AppDelegate getURLWithKey:@""]@"qiandao", nil);
+        signTitleLabel.text = [AppDelegate getURLWithKey:@"qiandao"];
         signTitleLabel.textColor = [UIColor whiteColor];
         signTitleLabel.textAlignment = NSTextAlignmentLeft;
         [signView addSubview:signTitleLabel];
@@ -369,7 +369,7 @@
         
         UILabel *hasOnTitle = [[UILabel alloc] init];
         hasOnTitle.font = [UIFont boldSystemFontOfSize:17.0f];
-        hasOnTitle.text = [AppDelegate getURLWithKey:@""]@"yijianchitianshu", nil);
+        hasOnTitle.text = [AppDelegate getURLWithKey:@"yijianchitianshu"];
         hasOnTitle.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
         hasOnTitle.textAlignment = NSTextAlignmentLeft;
         [backView addSubview:hasOnTitle];
@@ -395,7 +395,7 @@
 
         UILabel *hasOnDayTitle = [[UILabel alloc] init];
         hasOnDayTitle.font = [UIFont boldSystemFontOfSize:17.0f];
-        hasOnDayTitle.text = [AppDelegate getURLWithKey:@""]@"yilianxudakatianshu", nil);
+        hasOnDayTitle.text = [AppDelegate getURLWithKey:@"yilianxudakatianshu"];
         hasOnDayTitle.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
         hasOnDayTitle.textAlignment = NSTextAlignmentRight;
         [backView addSubview:hasOnDayTitle];
@@ -627,7 +627,12 @@
     return mDate;
 }
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+   
+    
+    self.title = [AppDelegate getURLWithKey:@"qiandaojilu"];
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -10,6 +10,7 @@
 #import "UIView+DNImagePicker.h"
 #import "NSBundle+EWTImagePicker.h"
 #import "DNFullImageCheckButton.h"
+#import "AppDelegate.h"
 
 @interface DNFullImageButton ()
 @property (nonatomic, strong) DNFullImageCheckButton *fullImageButton;
@@ -58,7 +59,7 @@
         _fullImageButton = [DNFullImageCheckButton buttonWithType:UIButtonTypeCustom];
         _fullImageButton.frame = CGRectMake(0, (self.height - 28 )/2, [self fullImageButtonWidth], 28);
         _fullImageButton.backgroundColor = [UIColor clearColor];
-        [_fullImageButton setTitle:[AppDelegate getURLWithKey:@""]@"yuantu", nil) forState:UIControlStateNormal];
+        [_fullImageButton setTitle:[AppDelegate getURLWithKey:@"yuantu"] forState:UIControlStateNormal];
         _fullImageButton.titleLabel.font = kDNFullImageButtonFont;
         [_fullImageButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [_fullImageButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -85,7 +86,7 @@
 
 - (CGFloat)fullImageButtonWidth
 {
-    NSString *string = [AppDelegate getURLWithKey:@""]@"yuantu", nil);
+    NSString *string = [AppDelegate getURLWithKey:@"yuantu"];
     CGRect rect = [string boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingUsesLineFragmentOrigin |
                    NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:kDNFullImageButtonFont} context:nil];
     CGFloat width = buttonImageWidth + buttonPadding + CGRectGetWidth(rect);

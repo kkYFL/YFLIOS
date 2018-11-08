@@ -34,7 +34,7 @@
 }
 
 -(void)initView{
-    self.title = [AppDelegate getURLWithKey:@""]@"Setting", nil);
+
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0,25, 25, @"view_back", @"view_back", leftButtonAction);
     
@@ -109,7 +109,7 @@
     if (indexPath.row == 0) {
         //rowCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"Guanyu", nil);
 
-        settingCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"Guanyu", nil);
+        settingCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@"Guanyu"];
         settingCell.cellContentLabel.hidden = YES;
         //settingCell.cellContentLabel.text = [AppDelegate getURLWithKey:@""]@"qiehuan", nil);
     }else if (indexPath.row == 1){
@@ -221,8 +221,8 @@
 
 #pragma mark 清空缓存
 - (void)clearTheCacheMethod {
-    NSString *string = [NSString stringWithFormat:@"%@%.2lfM",[AppDelegate getURLWithKey:@""]@"gongxuqinglihuancun", nil),cacheSize/1000.];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[AppDelegate getURLWithKey:@""]@"qinglichenggong", nil) message:string delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil) otherButtonTitles:[AppDelegate getURLWithKey:@""]@"queding", nil), nil];
+    NSString *string = [NSString stringWithFormat:@"%@%.2lfM",[AppDelegate getURLWithKey:@"gongxuqinglihuancun"],cacheSize/1000.];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[AppDelegate getURLWithKey:@"qinglichenggong"] message:string delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"] otherButtonTitles:[AppDelegate getURLWithKey:@"queding"], nil];
     [alert show];
 }
 
@@ -253,7 +253,7 @@
         outButton.layer.borderWidth = 0.5f;
         [outButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [outButton setTitleColor:[UIColor colorWithHexString:@"#FF0000"] forState:UIControlStateNormal];
-        [outButton setTitle:[AppDelegate getURLWithKey:@""]@"tuichu", nil) forState:UIControlStateNormal];
+        [outButton setTitle:[AppDelegate getURLWithKey:@"tuichu"] forState:UIControlStateNormal];
         outButton.layer.cornerRadius = 4.0f;
         [_footerView addSubview:outButton];
         
@@ -275,7 +275,7 @@
 
 
 -(void)MYSignOutSerVer{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@"jiazaizhong"]] onView:self.view];
     
     NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
     [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
@@ -286,8 +286,15 @@
     } failure:^(NSError * _Nonnull error) {
         [[PromptBox sharedBox] removeLoadingView];
         
-        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"tuichushibai", nil) ToView:self.view];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"tuichushibai"] ToView:self.view];
     }];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = [AppDelegate getURLWithKey:@"Setting"];
 }
 
 - (void)didReceiveMemoryWarning {

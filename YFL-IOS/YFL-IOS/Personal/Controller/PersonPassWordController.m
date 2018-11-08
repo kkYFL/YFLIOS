@@ -33,7 +33,6 @@
 }
 
 -(void)initView{
-    self.title = [AppDelegate getURLWithKey:@""]@"XiugaiMima", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction);
@@ -116,15 +115,15 @@
     PersonPasswordInCell *passwordCell = [tableView dequeueReusableCellWithIdentifier:@"passwordCell"];
     NSString *placholder = @"";
     if (indexPath.section == 0) {
-        placholder = [AppDelegate getURLWithKey:@""]@"shurudangqianmima", nil);
+        placholder = [AppDelegate getURLWithKey:@"shurudangqianmima"];
         passwordCell.textfield.tag = 100;
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             passwordCell.textfield.tag = 101;
-            placholder = [AppDelegate getURLWithKey:@""]@"shuruxingmima", nil);
+            placholder = [AppDelegate getURLWithKey:@"shuruxingmima"];
         }else if (indexPath.row == 1){
             passwordCell.textfield.tag = 102;
-            placholder = [AppDelegate getURLWithKey:@""]@"querenmima", nil);
+            placholder = [AppDelegate getURLWithKey:@"querenmima"];
         }
     }
     passwordCell.textfield.placeholder = placholder;
@@ -179,7 +178,7 @@
         button.layer.masksToBounds = YES;
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#FFFFFF"] forState:UIControlStateNormal];
-        [button setTitle:[AppDelegate getURLWithKey:@""]@"XiugaiMima", nil) forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@"XiugaiMima"] forState:UIControlStateNormal];
         button.layer.cornerRadius = 4.0f;
         [_footerView addSubview:button];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -238,15 +237,15 @@
         [HanZhaoHua changePasswordWithUserId:APP_DELEGATE.userId oldPwd:inputPass1 password:inputPass2 success:^(NSDictionary * _Nonnull responseObject) {
             NSLog(@"%@", responseObject);
             if ([[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"code"]] isEqualToString:@"2000"]) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@""]@"tishi", nil) message:[AppDelegate getURLWithKey:@""]@"mimaxiugaichengong", nil) delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"queding", nil) otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@"tishi"] message:[AppDelegate getURLWithKey:@"mimaxiugaichengong"] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"queding"] otherButtonTitles:nil, nil];
                 [alert show];
             }else{
-                [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"mimaxiugaishibai", nil) ToView:self.view];
+                [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"mimaxiugaishibai"] ToView:self.view];
             }
             
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
-            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"mimaxiugaishibai", nil) ToView:self.view];
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"mimaxiugaishibai"] ToView:self.view];
         }];
     
 }
@@ -254,6 +253,12 @@
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = [AppDelegate getURLWithKey:@"XiugaiMima"];
 }
 
 - (void)didReceiveMemoryWarning {

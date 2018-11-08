@@ -8,6 +8,7 @@
 
 #import "DNSendButton.h"
 #import "UIView+DNImagePicker.h"
+#import "AppDelegate.h"
 #import "UIColor+Hex.h"
 #define kSendButtonFont  [UIFont systemFontOfSize:15]
 static NSString *const dnSendButtonTintNormalColor = @"#1FB823";
@@ -58,7 +59,7 @@ static CGFloat const kSendButtonTextWitdh = 38.0f;
     
     _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _sendButton.frame = CGRectMake(0, 0, self.width, self.height);
-    [_sendButton setTitle:[AppDelegate getURLWithKey:@""]@"TextSend", nil)
+    [_sendButton setTitle:[AppDelegate getURLWithKey:@"TextSend"]
                  forState:UIControlStateNormal];
     [_sendButton setTitleColor:[UIColor hexStringToColor:dnSendButtonTintNormalColor] forState:UIControlStateNormal];
     [_sendButton setTitleColor:[UIColor hexStringToColor:dnSendButtonTintAbnormalColor] forState:UIControlStateHighlighted];

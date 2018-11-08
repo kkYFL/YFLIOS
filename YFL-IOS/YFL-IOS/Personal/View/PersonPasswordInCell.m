@@ -7,6 +7,7 @@
 //
 
 #import "PersonPasswordInCell.h"
+#import "AppDelegate.h"
 
 @interface PersonPasswordInCell ()
 
@@ -47,7 +48,7 @@
     //设置字体颜色
     cellTextfield.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
     //当输入框没有内容时，水印提示 提示内容为password
-    cellTextfield.placeholder = [AppDelegate getURLWithKey:@""]@"shurudangqianmima", nil);
+    cellTextfield.placeholder = [AppDelegate getURLWithKey:@"shurudangqianmima"];
     //内容对齐方式
     cellTextfield.textAlignment = NSTextAlignmentLeft;
     //设置键盘的样式

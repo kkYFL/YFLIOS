@@ -25,7 +25,6 @@
 @property (nonatomic, strong) NSMutableArray *guidenViewArr;
 @property (nonatomic, strong) UIImageView *storyBoardView;
 @property (nonatomic, strong) UpdateView *updateView;
-@property (nonatomic, assign) BOOL isHan;
 
 @end
 
@@ -298,57 +297,11 @@
     return _storyBoardView;
 }
 
-//zh-Hans-CN,
-//bo-CN
-//en-CN
-/**  *得到本机现在用的语言  * en:英文  zh-Hans:简体中文   zh-Hant:繁体中文    ja:日本  ......  */
-+ (NSString*)getPreferredLanguage {
-    NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
-    NSArray* languages = [defs objectForKey:@"AppleLanguages"];
-    NSString* preferredLang = [languages objectAtIndex:0];
-    NSLog(@"Preferred Language:%@", preferredLang);
-    
-    //默认
-    APP_DELEGATE.localType = @"1";
-    
-    //本地中文
-    if ([preferredLang hasPrefix:@"zh-Han"]) {
-        APP_DELEGATE.localType = @"1";
-    }
-    
-    //本地藏文
-    if ([preferredLang hasPrefix:@"bo-CN"]) {
-        APP_DELEGATE.localType = @"2";
-    }
-    
-    
-    return preferredLang;
-}
-
-
-+(void)getServerLanguageSource{
-    NSDictionary *paraDic = [NSMutableDictionary dictionary];
-    
-    [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
-    [paraDic setValue:APP_DELEGATE.localType forKey:@"queryType"];
-    
-    [HanZhaoHua MYGetLaungeWithParaDic:paraDic Success:^(NSDictionary * _Nonnull responseObject) {
-        if ([APP_DELEGATE.localType isEqualToString:@"1"]) {
-            APP_DELEGATE.isHans = YES;
-            APP_DELEGATE.isZang = NO;
-        }else{
-            APP_DELEGATE.isZang = YES;
-            APP_DELEGATE.isHans = NO;
-        }
-    } failure:^(NSError * _Nonnull error) {
-        
-    }];
-}
 
 + (NSString *)getURLWithKey:(NSString *)key {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"launguage" ofType:@"plist"];
     NSString* launuage = nil;
-    if (APP_DELEGATE.isHan) {
+    if (!APP_DELEGATE.isHan) {
         launuage = @"Han";
     }else{
         launuage = @"Zang";

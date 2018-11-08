@@ -24,11 +24,9 @@
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong) NSString *sourceHost;
 @property (nonatomic, strong) NSString *localType;
-@property (nonatomic, assign) BOOL isHans;
-@property (nonatomic, assign) BOOL isZang;
 
-+(NSString*)getPreferredLanguage;
-+(void)getServerLanguageSource;//MYGetLaungeWithParaDic
+@property (nonatomic, assign) BOOL isHan;//默认 汉语
+
 +(NSString *)getURLWithKey:(NSString *)key;
 @end
 

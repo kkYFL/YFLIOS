@@ -43,7 +43,6 @@
 }
 
 -(void)initView{
-    self.title = [AppDelegate getURLWithKey:@"DangyuanKaoshi"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.viewsArr = [NSMutableArray array];
     [self.view addSubview:self.table];
@@ -487,6 +486,8 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = YES;
+    
+    self.title = [AppDelegate getURLWithKey:@"DangyuanKaoshi"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

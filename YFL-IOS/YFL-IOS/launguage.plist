@@ -306,8 +306,8 @@
 		<string>འཕྲིན་ཐུང་དང་འཕྲིན་ཐུང་སོགས་ཀྱི་རྣམ་པ</string>
 		<key>qiandao</key>
 		<string>བཟོ་བཅོས་གསང་ཨང་</string>
-		<key>New item - 15</key>
-		<string></string>
+		<key>qiandaojilu</key>
+		<string>འབྱོར་ཐོ་འགོད་པའི་ཟིན་ཐོ</string>
 		<key>New item - 16</key>
 		<string></string>
 		<key>New item - 17</key>
@@ -342,286 +342,288 @@
 		<key>FankuiXiangqing</key>
 		<string>反馈详情</string>
 		<key>XuexiXingDe</key>
-		<string>སློབ་སྦྱོངམྱོང་ཚོར</string>
+		<string>学习心得</string>
 		<key>XindeXiangqing</key>
-		<string>མྱོང་ཚོརཞིབ་ཆ</string>
+		<string>心得详情</string>
 		<key>KaoshiGuize</key>
-		<string>རྒྱུགས་ལེནལམ་སྲོལ</string>
+		<string>考试规则</string>
 		<key>KaoshiDati</key>
-		<string>རྒྱུགས་ལེནདྲིས་ལན་ཁ་བྱང</string>
+		<string>考试答题</string>
 		<key>DangyuanKaoshi</key>
-		<string>ཏང་ཡོནརྒྱུགས་ལེན</string>
+		<string>党员考试</string>
 		<key>ZuijinChengji</key>
-		<string>ཉེ་ལམགྲུབ་འབྲས</string>
+		<string>最近成绩</string>
 		<key>Chengjiyouxiu</key>
-		<string>ཁྱེད་ཀྱི་གྲུབ་འབྲས་ཕུལ་བྱུང་ཞུ་མུ་མཐུད་རྒྱུན་འཁྱོངས་呦</string>
+		<string>您的成绩优秀，请继续保持呦!</string>
 		<key>LishiKaoshi</key>
-		<string>ལོ་རྒྱུསརྒྱུགས་ལེན</string>
+		<string>历史考试</string>
 		<key>Daikaoshi</key>
-		<string>རེ་སྒུགརྒྱུགས་ལེན</string>
+		<string>待考试</string>
 		<key>KaoshiPaiming</key>
-		<string>རྒྱུགས་ལེནགྲལ་སྟར་སྒྲིག་པ</string>
+		<string>考试排名</string>
 		<key>ZhengceFagui</key>
-		<string>སྲིད་ཇུསཁྲིམས་སྲོལ</string>
+		<string>政策法规</string>
 		<key>XiangQing</key>
-		<string>ཞིབ་ཆ</string>
+		<string>详情</string>
 		<key>Zuzhihuodong</key>
-		<string>རྩ་འཛུགསབྱེད་སྒོ</string>
+		<string>组织活动</string>
 		<key>TongzhigongGao</key>
-		<string>བརྡ་ཐོ</string>
+		<string>通知公告</string>
 		<key>ZixunXiangQing</key>
-		<string>ཆ་འཕྲིནཞིབ་ཆ</string>
+		<string>资讯详情</string>
 		<key>Gerenzhongxin</key>
-		<string>མི་སྒེར</string>
+		<string>个人中心</string>
 		<key>HuoquJIfen</key>
-		<string>ལག་སོནཆ་བསགས</string>
+		<string>获取积分</string>
 		<key>GerenXinxi</key>
-		<string>མི་སྒེར་གྱི་ཆ་འཕྲིན</string>
+		<string>个人信息</string>
 		<key>XiugaiMima</key>
-		<string>བཟོ་བཅོས་ཨང་ཡིག</string>
+		<string>修改密码</string>
 		<key>JifenJilu</key>
-		<string>ཆ་བསགས་ཟིན་ཐོ</string>
+		<string>积分记录</string>
 		<key>Setting</key>
-		<string>མི་སྒེར་གྱི་བཟོ་བཅོས</string>
+		<string>设置</string>
 		<key>Guanyu</key>
-		<string>སྐོར</string>
+		<string>关于</string>
 		<key>loginTitle</key>
-		<string>ཐོ་འཇུག་</string>
+		<string>登录</string>
 		<key>forgetPassword</key>
-		<string>བརྗེད་ཨང་ཡིག</string>
+		<string>忘记密码</string>
 		<key>zhanghao</key>
-		<string>རྩིས་ཐོའི་ཨང་གྲངས</string>
+		<string>账号/手机号</string>
 		<key>mima</key>
-		<string>གསང་བ</string>
+		<string>密码</string>
 		<key>zhanghaoError</key>
-		<string>རྩིས་ཐོའི་ཨང་གྲངས་འམ་གསང་བའི་ནོར་འཁྲུལ</string>
+		<string>账号或密码错误</string>
 		<key>iphonePlay</key>
-		<string>ཁྱེད་ལ་ཁ་པར་བརྒྱབ་ནས</string>
+		<string>请拨打</string>
 		<key>chongzhi</key>
-		<string>སྐོང་ལས་རེས</string>
+		<string>充值</string>
 		<key>weixuexi</key>
-		<string>མེད་སློབ་སྦྱོང</string>
+		<string>未学习</string>
 		<key>xuexizhong</key>
-		<string>སློབ་སྦྱོང་བྱེད་པའི་ཁྲོད</string>
+		<string>学习中</string>
 		<key>yixuexi</key>
-		<string>ཟིན་པའི་སློབ་སྦྱོང</string>
+		<string>已学习</string>
 		<key>tiao</key>
-		<string>དོན་ཚན</string>
+		<string>条</string>
 		<key>xueshi</key>
-		<string>སློབ་ཁྲིད་དུས་ཡུན</string>
+		<string>学时</string>
 		<key>guanyukaoshi</key>
-		<string>རྒྱུགས་ལེན་སློབ་སྦྱོང་བྱ་རྒྱུའི་གནད་དོན་སྐོར་གྱི་</string>
+		<string>关于考试学习的问题</string>
 		<key>yijiejue</key>
-		<string>སྤྲད་ཟིན་ཡང་</string>
+		<string>已解决</string>
 		<key>jiejuezhong</key>
-		<string>ཐག་གཅོད་བྱེད་པའི་ཁྲོད་དུ་</string>
+		<string>解决中</string>
 		<key>yichuli</key>
-		<string>ཐག་གཅོད་བྱས་ཟིན་</string>
+		<string>已处理</string>
 		<key>wenzi</key>
-		<string>ཡིག་དེབ་</string>
+		<string>文字</string>
 		<key>shiping</key>
-		<string>བརྙན་ལམ་</string>
+		<string>视频</string>
 		<key>yingping</key>
-		<string>སྒྲ་ཟློས་</string>
+		<string>音频</string>
 		<key>tupian</key>
-		<string>པར་རིས་།</string>
+		<string>图片</string>
 		<key>renwuleixing</key>
-		<string>ལས་འགན་།རིགས་དབྱེ་།</string>
+		<string>任务类别</string>
 		<key>xuexishixhang</key>
-		<string>སློབ་སྦྱོང་གི་དུས་ཚོད་</string>
+		<string>学习时长</string>
 		<key>fenzhogn</key>
-		<string>སྐར་མ་</string>
+		<string>分钟</string>
 		<key>chaugnjianshijian</key>
-		<string>གཏོད་པའི་དུས་ཚོད་</string>
+		<string>创建时间</string>
 		<key>jiazaizhong</key>
-		<string>སྣོན་བཞིན་པ་</string>
+		<string>加载中</string>
 		<key>pinglunchengong</key>
-		<string>ཁྱབ་བསྒྲགས་བྱས་པའི་གྲུབ་འབྲས་ཐོབ་པའི་ངང་</string>
+		<string>评论发表成功！</string>
 		<key>pinglunshibai</key>
-		<string>དཔྱད་གཏམ་ཕམ་</string>
+		<string>评论发表失败！</string>
 		<key>wodexiangfa</key>
-		<string>ངའི་བསམ་ཚུལ་</string>
+		<string>我的想法</string>
 		<key>qingshuru</key>
-		<string>ནང་འཇུག་...</string>
+		<string>请输入...</string>
 		<key>ningdewenti</key>
-		<string>ཁྱེད་ལ་གནད་དོན་ཅི་ཞིག་ཡོད་དང་མི་མཚུངས་བའི་བསམ་ཚུལ་འདོད་།ང་ཚོར་མཚོན་ནས་བཤད་ན་ཡིན་ནམ་།</string>
+		<string>您有什么问题或建议想对我们说？</string>
 		<key>ningdezhuti</key>
-		<string>ཁྱེད་ཀྱི་བརྗོད་བྱ་གཙོ་བོ་</string>
+		<string>您的主题</string>
 		<key>ningdeyijian</key>
-		<string>ཁྱེད་ཀྱི་བསམ་འཆར་རྩ་ཆེན་དག་ནི་ང་ཚོས་ཡར་ཐོན་ཡོང་བའི་འབྱུང་ཁུངས་ཡིན་</string>
+		<string>您的宝贵意见，就是我们进步的源泉</string>
 		<key>ningdeyijianshuoming</key>
-		<string>རོགས་།ཁྱེད་རང་ལ་འཕྲད་པའི་གནད་དོན་གྱི་གནས་ཚུལ་ཞིབ་པར་བཀོད་པ་ལ་དོགས་གཞི་དང་ཚེ་ང་ཚོས་གནས་ཕྱོགས་མྱུར་དུ་གཏན་ཁེལ་བྱེད་པ་མ་ཟད་ཐག་གཅོད་དང་།ཡང་ན་ཀྱིས་རྩ་ཆེ་བའི་བསམ་འཆར་རམ་གྲོས་འགོ་།ང་ཚོས་ནན་ཏན་གྱིས་ཚོད་སྐོར་།</string>
+		<string>请详细描述您遇到的问题或疑问，有助于我们快速定位并解决，或留下您宝贵的意见或建议，我们会认真进行评估！</string>
 		<key>shurufankui</key>
-		<string>རོགས་།ཁྱོད་ཀྱི་ཆ་འཕྲིན་ཕྱིར་འདྲེན་ནང་འཇུག་</string>
+		<string>请输入你的反馈信息</string>
 		<key>fabiaoxingdechenggong</key>
-		<string>ཁྱབ་བསྒྲགས་བྱས་པའི་གྲུབ་འབྲས་ཐོབ་པའི་ངང་</string>
+		<string>发表心得成功</string>
 		<key>quanbuxingde</key>
-		<string>བསམ་ཚུལ་ལ་དབང་བའི་</string>
+		<string>全部心得</string>
 		<key>wodexingde</key>
-		<string>ངའི་བསམ་ཚུལ་</string>
+		<string>我的心得</string>
 		<key>pinglun</key>
-		<string>དཔྱད་གཏམ་</string>
+		<string>评论</string>
 		<key>yikaoshi</key>
-		<string>རྒྱུགས་ལེན་ལེགས་གྲུབ་</string>
+		<string>已考试</string>
 		<key>yiwancheng</key>
-		<string>ལེགས་གྲུབ་ཟིན་པ་།</string>
+		<string>已完成</string>
 		<key>duohangshuru</key>
-		<string>མང་ཕྲེང་ནང་འཇུག་</string>
+		<string>多行输入</string>
 		<key>danxuan</key>
-		<string>གཅིག་བདམ་</string>
+		<string>单选</string>
 		<key>duoxuan</key>
-		<string>མང་འདེམས་</string>
+		<string>多选</string>
 		<key>tiankong</key>
-		<string>ནང་འཇུག་</string>
+		<string>填空</string>
 		<key>panduan</key>
-		<string>བརྡར་ཤ་གཅོད་པ་།</string>
+		<string>判断</string>
 		<key>jieda</key>
-		<string>སྐོར་གྱི་དྲི་བ་དྲིས་ལན་།</string>
+		<string>简答</string>
 		<key>ruhehuodejifen</key>
-		<string>ཆ་བསགས་ཇི་ལྟར་བྱས་ནས་ལེན་</string>
+		<string>如何获取积分?</string>
 		<key>chankanjifen</key>
-		<string>ཆ་བསགས་ལ་བལྟ་བ་།</string>
+		<string>查看积分</string>
 		<key>huoqujilu</key>
-		<string>ཟིན་ཐོ་ཐོབ་ཐབས་</string>
+		<string>获取记录</string>
 		<key>shurudangqianmima</key>
-		<string>གསང་ཨང་རྙིང་པ་འགོད་རོགས་།</string>
+		<string>请输入当前密码</string>
 		<key>shuruxingmima</key>
-		<string>གསང་གྲངས་གསར་པ་འགོད་རོགས་།</string>
+		<string>请输入新密码</string>
 		<key>querenmima</key>
-		<string>གསང་ཨང་ངོས་འཛིན་རོགས་།</string>
+		<string>请确认新密码</string>
 		<key>quxiao</key>
-		<string>མེད་པ་བཟོ་རྒྱུ་།</string>
+		<string>取消</string>
 		<key>queding</key>
-		<string>གཏན་འཁེལ་བྱ་རྒྱུ་</string>
+		<string>确定</string>
 		<key>zhaoping</key>
-		<string>འདྲ་པར་</string>
+		<string>照片</string>
 		<key>xuanzezhaopianweizhi</key>
 		<string>选取照片位置</string>
 		<key>baocun</key>
-		<string>ཉར་ཚགས་</string>
+		<string>保存</string>
 		<key>yuantu</key>
-		<string>མ་རིས་</string>
+		<string>原图</string>
 		<key>dangyuanrequ</key>
-		<string>ཏང་ཡོན་གླེང་མང་བའི་</string>
+		<string>党员热区</string>
 		<key>zuixingzixun</key>
-		<string>དཔྱད་ཡིག་ཆ་འཕྲིན་གསར་ཤོས་</string>
+		<string>最新资讯</string>
 		<key>renwumingcheng</key>
-		<string>ལས་འགན་མིང་</string>
+		<string>任务名称</string>
 		<key>shichang</key>
-		<string>དུས་ཡུན་རིང་ན་དྲན་རྒྱུ་མང་</string>
+		<string>时长</string>
 		<key>wentitijiao</key>
-		<string>གནད་དོན་འདོན་ཆོག་</string>
+		<string>问题提交</string>
 		<key>fabioxingdeshibai</key>
-		<string>ཕམ་ཁ་ཕུལ་</string>
+		<string>发表心得失败</string>
 		<key>dianzanchenggong</key>
-		<string>ཚེག་མོས་མཐུན་བྱེད་ཀྱི་རྩོལ་བ་</string>
+		<string>点赞成功</string>
 		<key>dao</key>
-		<string>ནས་</string>
+		<string>到</string>
 		<key>shengyu</key>
-		<string>ལྷག་མ་</string>
+		<string>剩余</string>
 		<key>ci</key>
-		<string>ཐེངས</string>
+		<string>次</string>
 		<key>jihui</key>
-		<string>གོ་སྐབས</string>
+		<string>机会</string>
 		<key>fangqibencidati</key>
-		<string>ཡིན་མིན་གཏན་ཁེལ་དོར་ནས་ཐེངས་འདི་འི་དྲིས་ལན་ཁ་བྱང་</string>
+		<string>是否确定放弃本次答题？</string>
 		<key>kaishikaoshi</key>
-		<string>མགོ་བརྩམས་།རྒྱུགས་སྤྲོད་</string>
+		<string>开始考试</string>
 		<key>timu</key>
-		<string>གནད་དོན་</string>
+		<string>题</string>
 		<key>di</key>
-		<string>བོད་ཡིག་པར་གཞིའི་</string>
+		<string>第</string>
 		<key>shangyiti</key>
-		<string>སྟེང་ནས་བརྗོད་བྱ་གཅིག་</string>
+		<string>上一题</string>
 		<key>xiayiti</key>
-		<string>འོག་ནས་བརྗོད་བྱ་གཅིག་</string>
+		<string>下一题</string>
 		<key>yaowensudi</key>
-		<string>གལ་ཆེའི་གསར་འགྱུར་མྱུར་སྐྱེལ་</string>
+		<string>要闻速递</string>
 		<key>jifen</key>
-		<string>ཆ་བསགས་</string>
+		<string>积分</string>
 		<key>tuichu</key>
-		<string>ལས་འགྲོལ་</string>
+		<string>退出</string>
 		<key>lijigengxing</key>
-		<string>འཕྲལ་མར་རིམ་སྤར་</string>
+		<string>立即升级</string>
 		<key>banbengengxin</key>
-		<string>གསར་སྒྱུར་</string>
+		<string>版本更新</string>
 		<key>youxingbanbenxuyaogengxin</key>
-		<string>པར་གཞི་གསར་བརྗེས་</string>
+		<string>更新版本</string>
 		<key>yizuixingbanben</key>
-		<string>གསར་ཤོས་ནི་</string>
+		<string>已最新版</string>
 		<key>yiqiandao</key>
-		<string>འབྱོར་ཐོ་བཀོད་ཟིན་</string>
+		<string>已签到</string>
 		<key>tian</key>
-		<string>ཉིན་</string>
+		<string>天</string>
 		<key>qingjixubaochi</key>
-		<string>མུ་མཐུད་རྒྱུན་འཁྱོངས་རོགས་</string>
+		<string>请继续保持呦！</string>
 		<key>anquantuichu</key>
-		<string>བདེ་འཇགས་ལས་འགྲོལ་</string>
+		<string>安全退出</string>
 		<key>tuichushibai</key>
-		<string>ཕམ་ནས་ཕྱིར་འཐེན་</string>
+		<string>退出失败</string>
 		<key>jinriqiandaorenshu</key>
-		<string>གོང་ཚེས་ཉིན་སླེབས་ཐོ་མི་གྲངས་</string>
+		<string>今日签到人数</string>
 		<key>yijianchitianshu</key>
-		<string>མཐའ་འཁྱོངས་།ཉིན་གྲངས་</string>
+		<string>已坚持天数</string>
 		<key>yilianxudakatianshu</key>
-		<string>བསྟུད་མར་ཉིན་གྲངས་ལ་བྱང་བུ་རྒྱག་</string>
+		<string>已连续打卡天数</string>
 		<key>xiugai</key>
-		<string>བཟོ་བཅོས་</string>
+		<string>修改</string>
 		<key>yonghutouxiang</key>
-		<string>སྤྱོད་མཁན་གྱི་དབུ་བརྙན་</string>
+		<string>用户头像</string>
 		<key>zhengshixingming</key>
-		<string>རུས་མིང་ངོ་མ་</string>
+		<string>真实姓名</string>
 		<key>PhoneNum</key>
-		<string>ལག་ཐོགས་ཁ་པར་གྱི་ཨང་གྲངས་</string>
+		<string>手机号码</string>
 		<key>sex</key>
-		<string>ཕོ་མོའི་དབྱེ་བ་།</string>
+		<string>性别</string>
 		<key>nan</key>
-		<string>ཕོ་།</string>
+		<string>男</string>
 		<key>nv</key>
-		<string>བུད་མེད་། </string>
+		<string>女</string>
 		<key>wodezuoyouming</key>
-		<string>ངའི་གྲུབ་འབྲས་</string>
+		<string>我的座右铭</string>
 		<key>wodedizhi</key>
-		<string>ངའི་ས་གནས་</string>
+		<string>我的地址</string>
 		<key>xiugaitouxiang</key>
-		<string>མགོ་བརྙན་བརྗེ</string>
+		<string>修改头像</string>
 		<key>dakixiangce</key>
-		<string>ནས་ཁ་པར་པར་སྒམ་ཐོབ་ཐབས་</string>
+		<string>从手机相册获取</string>
 		<key>dakaixiangji</key>
-		<string>པར་ཆས་ཁ་ཕྱེ་། </string>
+		<string>打开照相机</string>
 		<key>xuanzexiugaineirong</key>
-		<string>བཟོ་བཅོས་རྒྱག་པའི་ནང་དོན་འདེམ་རོགས་།</string>
+		<string>请选择修改内容</string>
 		<key>saveSuccess</key>
-		<string>རྒན་འཁོག་གྲུབ་འབྲས་ཐོབ་པའི་ངང་</string>
+		<string>数据保存成功</string>
 		<key>saveError</key>
-		<string>རྒན་འཁོག་ཕམ་</string>
+		<string>数据保存失败</string>
 		<key>shangchuanzhong</key>
-		<string>ཡར་བསྐུར་ཁྲོད་</string>
+		<string>上传中</string>
 		<key>bukexiugaixingming</key>
-		<string>རུས་མིང་ངོ་མ་བཟོ་བཅོས་བརྒྱབ་མི་ཆོག་པ་</string>
+		<string>不可修改真实姓名</string>
 		<key>tishi</key>
-		<string>གསལ་འདེབས་།</string>
+		<string>提示</string>
 		<key>mimaxiugaichengong</key>
-		<string>གསང་ཨང་བཟོ་བཅོས་ལེགས་འགྲུབ་བྱུང་</string>
+		<string>密码修改成功</string>
 		<key>mimaxiugaishibai</key>
-		<string>བཟོ་བཅོས་གསང་ཨང་ཕམ་</string>
+		<string>密码修改失败</string>
 		<key>yuyanqiehuan</key>
-		<string>སྐད་བརྡ་བརྗེ་བ་</string>
+		<string>语言切换</string>
 		<key>qiehuan</key>
-		<string>བརྗེ་བ་། </string>
+		<string>切换</string>
 		<key>qinglichenggong</key>
-		<string>གཙང་བཤེར་ལེགས་གྲུབ་</string>
+		<string>清理完成</string>
 		<key>gongxuqinglihuancun</key>
-		<string>མཉམ་དགོས་པ་གཙང་བཤེར་缓存</string>
+		<string>共需清理缓存</string>
 		<key>mimaguanli</key>
-		<string>གསང་བའི་དོ་དམ</string>
+		<string>密码管理</string>
 		<key>wanshangerenxingxi</key>
-		<string>ཆ་འཕྲིན་ལ་བལྟ་བ་</string>
+		<string>查看信息</string>
 		<key>weixinduanxinfangshi</key>
-		<string>འཕྲིན་ཐུང་དང་འཕྲིན་ཐུང་སོགས་ཀྱི་རྣམ་པ</string>
+		<string>修改密码</string>
 		<key>qiandao</key>
-		<string>བཟོ་བཅོས་གསང་ཨང་</string>
-		<key>New item - 15</key>
+		<string>签到</string>
+		<key>qiandaojilu</key>
+		<string>签到记录</string>
+		<key>New item</key>
 		<string></string>
 		<key>New item - 16</key>
 		<string></string>

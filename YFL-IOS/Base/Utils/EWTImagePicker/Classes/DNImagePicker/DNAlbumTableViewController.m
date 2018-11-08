@@ -12,6 +12,7 @@
 #import "DNImageFlowViewController.h"
 #import "UIViewController+DNImagePicker.h"
 #import "DNUnAuthorizedTipsView.h"
+#import "AppDelegate.h"
 #import "EWTBase.h"
 
 static NSString* const dnalbumTableViewCellReuseIdentifier = @"dnalbumTableViewCellReuseIdentifier";
@@ -59,13 +60,13 @@ static NSString* const dnalbumTableViewCellReuseIdentifier = @"dnalbumTableViewC
 
 - (void)setupView
 {
-    self.navigationItem.title = [AppDelegate getURLWithKey:@""]@"zhaoping", nil);
+    self.navigationItem.title = [AppDelegate getURLWithKey:@"zhaoping"];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"#E51C23"];
     
 //    [self createBarButtonItemAtPosition:DNImagePickerNavigationBarPositionRight
 //                                   text:@"取消"
 //                                 action:@selector(cancelAction:)];
-    NAVIGATION_BAR_RIGHT_BUTTON_ONLYTEXT(0, 0, 37, 25, [AppDelegate getURLWithKey:@""]@"quxiao", nil), [AppDelegate getURLWithKey:@""]@"quxiao", nil), cancelAction);
+    NAVIGATION_BAR_RIGHT_BUTTON_ONLYTEXT(0, 0, 37, 25, [AppDelegate getURLWithKey:@"quxiao"], [AppDelegate getURLWithKey:@"quxiao"], cancelAction);
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }else {

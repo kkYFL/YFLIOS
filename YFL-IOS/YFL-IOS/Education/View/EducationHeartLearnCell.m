@@ -120,7 +120,7 @@
     [button.titleLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.layer.cornerRadius = 4.0f;
-    [button setTitle:[AppDelegate getURLWithKey:@""]@"weixuexi", nil) forState:UIControlStateNormal];
+    [button setTitle:[AppDelegate getURLWithKey:@"weixuexi"] forState:UIControlStateNormal];
     self.button = button;
     [self.contentView addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -180,14 +180,14 @@
         
         [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_learnModel.taskThumb]]];
         [self.timeLabel setText:_learnModel.taskTitle];
-        self.seeNum.text = [NSString stringWithFormat:@"%@%@",_learnModel.nowNum,[AppDelegate getURLWithKey:@""]@"tiao", nil)];
-        self.timeLabel.text = [NSString stringWithFormat:@"%@%@",_learnModel.learnTime,[AppDelegate getURLWithKey:@""]@"xueshi", nil)];
+        self.seeNum.text = [NSString stringWithFormat:@"%@%@",_learnModel.nowNum,[AppDelegate getURLWithKey:@"tiao"]];
+        self.timeLabel.text = [NSString stringWithFormat:@"%@%@",_learnModel.learnTime,[AppDelegate getURLWithKey:@"xueshi"]];
         if ([_learnModel.nowState integerValue] == 1) {
-            [self.button setTitle:[AppDelegate getURLWithKey:@""]@"weixuexi", nil) forState:UIControlStateNormal];
+            [self.button setTitle:[AppDelegate getURLWithKey:@"weixuexi"] forState:UIControlStateNormal];
         }else if ([_learnModel.nowState integerValue] == 2){
-            [self.button setTitle:[AppDelegate getURLWithKey:@""]@"xuexizhong", nil) forState:UIControlStateNormal];
+            [self.button setTitle:[AppDelegate getURLWithKey:@"xuexizhong"] forState:UIControlStateNormal];
         }else if ([_learnModel.nowState integerValue] == 3){
-            [self.button setTitle:[AppDelegate getURLWithKey:@""]@"yixuexi", nil) forState:UIControlStateNormal];
+            [self.button setTitle:[AppDelegate getURLWithKey:@"yixuexi"] forState:UIControlStateNormal];
         }
         
         

@@ -30,7 +30,6 @@
 }
 
 -(void)initView{
-    self.title = [AppDelegate getURLWithKey:@""]@"ZixunXiangQing", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
@@ -178,6 +177,13 @@
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    
+    self.title = [AppDelegate getURLWithKey:@"ZixunXiangQing"];
 }
 
 - (void)didReceiveMemoryWarning {

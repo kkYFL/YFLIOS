@@ -8,6 +8,7 @@
 
 #import "ExamWaitingTableViewCell.h"
 #import "HistoryExam.h"
+#import "AppDelegate.h"
 
 @interface ExamWaitingTableViewCell ()
 @property (nonatomic, strong) UILabel *cellTitleLabel;
@@ -146,15 +147,15 @@
     _examModel = examModel;
     if (_examModel) {
         [self.cellTitleLabel setText:_examModel.paperTitle];
-        [self.timeLabel setText:[NSString stringWithFormat:@"%@%@%@",_examModel.beginTime,[AppDelegate getURLWithKey:@""]@"dao", nil),_examModel.finalTime]];
-        self.remainTimes.text = [NSString stringWithFormat:@"%@%ld%@",[AppDelegate getURLWithKey:@""]@"shengyu", nil),([_examModel.totalTimes integerValue]-[_examModel.times integerValue]),[AppDelegate getURLWithKey:@""]@"ci", nil)];
+        [self.timeLabel setText:[NSString stringWithFormat:@"%@%@%@",_examModel.beginTime,[AppDelegate getURLWithKey:@"dao"],_examModel.finalTime]];
+        self.remainTimes.text = [NSString stringWithFormat:@"%@%ld%@",[AppDelegate getURLWithKey:@"shengyu"],([_examModel.totalTimes integerValue]-[_examModel.times integerValue]),[AppDelegate getURLWithKey:@"ci"]];
         NSString *statueStr = @"";
         if ([_examModel.state integerValue] == 1) {
-            statueStr = [AppDelegate getURLWithKey:@""]@"yikaoshi", nil);
+            statueStr = [AppDelegate getURLWithKey:@"yikaoshi"];
         }else if ([_examModel.state integerValue] == 2){
-            statueStr = [AppDelegate getURLWithKey:@""]@"Daikaoshi", nil);
+            statueStr = [AppDelegate getURLWithKey:@"Daikaoshi"];
         }else if ([_examModel.state integerValue] == 3){
-            statueStr = [AppDelegate getURLWithKey:@""]@"yiwancheng", nil);
+            statueStr = [AppDelegate getURLWithKey:@"yiwancheng"];
         }
         self.examLabel.text = statueStr;
         

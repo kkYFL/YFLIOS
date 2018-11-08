@@ -9,6 +9,7 @@
 #define TextPutInView 175*HEIGHT_SCALE
 
 #import "ExamTextViewPutINCell.h"
+#import "AppDelegate.h"
 
 @interface ExamTextViewPutINCell ()<UITextViewDelegate>
 @property (nonatomic, strong) UITextView *textView;
@@ -47,7 +48,7 @@
     
     UILabel *placeHolderView = [[UILabel alloc] init];
     placeHolderView.font = [UIFont systemFontOfSize:14.0f];
-    placeHolderView.text = [AppDelegate getURLWithKey:@""]@"duohangshuru", nil);
+    placeHolderView.text = [AppDelegate getURLWithKey:@"duohangshuru"];
     placeHolderView.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     placeHolderView.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:placeHolderView];

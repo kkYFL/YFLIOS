@@ -8,6 +8,7 @@
 #import "EWTLoginView.h"
 //#import "UserCenterHTTPEngineGuide.h"
 #import "EWTBase.h"
+#import "AppDelegate.h"
 
 
 #define kTextFieldHeight (60*HEIGHT_SCALE)
@@ -69,7 +70,7 @@
 
     //账号/手机号
     _phoneAndIDField = [[UITextField alloc] init];
-    _phoneAndIDField.placeholder = [AppDelegate getURLWithKey:@""]@"zhanghao", nil);
+    _phoneAndIDField.placeholder = [AppDelegate getURLWithKey:@"zhanghao"];
     _phoneAndIDField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"user_name"];
     _phoneAndIDField.borderStyle = UITextBorderStyleNone;
     _phoneAndIDField.textAlignment = NSTextAlignmentLeft;
@@ -108,7 +109,7 @@
     
     //密码
     _passwordField = [[UITextField alloc] init];
-    _passwordField.placeholder = [AppDelegate getURLWithKey:@""]@"mima", nil);
+    _passwordField.placeholder = [AppDelegate getURLWithKey:@"mima"];
     _passwordField.borderStyle = UITextBorderStyleNone;
     _passwordField.textAlignment = NSTextAlignmentLeft;
     _passwordField.font = [UIFont systemFontOfSize:16];
@@ -144,7 +145,7 @@
     } else {
         _nextVCButton.enabled = NO;
     }
-    [_nextVCButton setTitle:[AppDelegate getURLWithKey:@""]@"loginTitle", nil) forState:UIControlStateNormal];
+    [_nextVCButton setTitle:[AppDelegate getURLWithKey:@"loginTitle"] forState:UIControlStateNormal];
     [_nextVCButton addTarget:self action:@selector(dologin:) forControlEvents:UIControlEventTouchUpInside];
     [_nextVCButton setBackgroundColor:[UIColor colorWithHexString:@"#0096F6"]];
 //    [_nextVCButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -155,7 +156,7 @@
 
     //密码找回
     UIButton *findButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [findButton setTitle:[NSString stringWithFormat:@"%@?",[AppDelegate getURLWithKey:@""]@"forgetPassword", nil)] forState:UIControlStateNormal];
+    [findButton setTitle:[NSString stringWithFormat:@"%@?",[AppDelegate getURLWithKey:@"forgetPassword"]] forState:UIControlStateNormal];
     findButton.titleLabel.textAlignment = NSTextAlignmentRight;
     findButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [findButton addTarget:self action:@selector(findPassword) forControlEvents:UIControlEventTouchUpInside];
@@ -180,7 +181,7 @@
 
 #pragma mark 忘记密码
 - (void)findPassword {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@""]@"forgetPassword", nil) message:[NSString stringWithFormat:@"%@ 13634174103%@",[AppDelegate getURLWithKey:@""]@"iphonePlay", nil),[AppDelegate getURLWithKey:@""]@"chongzhi", nil)] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil) otherButtonTitles:[AppDelegate getURLWithKey:@""]@"queding", nil), nil];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@"forgetPassword"] message:[NSString stringWithFormat:@"%@ 13634174103%@",[AppDelegate getURLWithKey:@"iphonePlay"],[AppDelegate getURLWithKey:@"chongzhi"]] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"] otherButtonTitles:[AppDelegate getURLWithKey:@"queding"], nil];
     [alertView show];
     
 }

@@ -8,6 +8,7 @@
 
 #import "EducationOptionsTableCell.h"
 #import "SuggestionFeedback.h"
+#import "AppDelegate.h"
 
 @interface EducationOptionsTableCell ()
 @property (nonatomic, strong) UILabel *cellTitle;
@@ -130,9 +131,9 @@
         self.cellContent.text = _feedBackModel.createTime;
 
         if ([_feedBackModel.answerState integerValue] == 1) {
-            self.statuslabel.text = [AppDelegate getURLWithKey:@""]@"jiejuezhong", nil);
+            self.statuslabel.text = [AppDelegate getURLWithKey:@"jiejuezhong"];
         }else{
-            self.statuslabel.text = [AppDelegate getURLWithKey:@""]@"yichuli", nil);
+            self.statuslabel.text = [AppDelegate getURLWithKey:@"yichuli"];
         }
         self.solveLabel.hidden = YES;
 

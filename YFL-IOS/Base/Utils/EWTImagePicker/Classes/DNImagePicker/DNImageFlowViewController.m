@@ -17,6 +17,7 @@
 #import "DNAsset.h"
 #import "NSURL+DNIMagePickerUrlEqual.h"
 #import "EWTBase.h"
+#import "AppDelegate.h"
 
 @interface DNImageFlowViewController () <UICollectionViewDataSource, UICollectionViewDelegate, DNAssetsViewCellDelegate, DNPhotoBrowserDelegate>
 
@@ -92,7 +93,7 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
 
 - (void)setupView
 {
-    self.navigationItem.title = [AppDelegate getURLWithKey:@""]@"zhaoping", nil);
+    self.navigationItem.title = [AppDelegate getURLWithKey:@"zhaoping"];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:@"#E51C23"];
     self.view.backgroundColor = [UIColor whiteColor];
 //    [self createBarButtonItemAtPosition:DNImagePickerNavigationBarPositionLeft
@@ -231,7 +232,7 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
     firstItem.enabled = YES;
     if (self.selectedAssetsArray.count >= self.maxImagesCount) {
         NSString* alertContent = [NSString stringWithFormat:@"不能超过%zd张图片",self.maxImagesCount];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertContent message:alertContent delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"queding", nil) otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertContent message:alertContent delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"queding"] otherButtonTitles:nil, nil];
         [alert show];
         
         return NO;

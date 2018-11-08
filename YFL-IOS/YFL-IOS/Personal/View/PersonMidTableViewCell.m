@@ -7,6 +7,7 @@
 //
 
 #import "PersonMidTableViewCell.h"
+#import "AppDelegate.h"
 
 @interface PersonMidTableViewCell ()
 @property (nonatomic, strong) UIImageView *leftBackView;
@@ -96,7 +97,7 @@
     
     UILabel *huoqu = [[UILabel alloc] init];
     huoqu.font = [UIFont systemFontOfSize:12.0f];
-    huoqu.text = [AppDelegate getURLWithKey:@""]@"ruhehuodejifen", nil);
+    huoqu.text = [AppDelegate getURLWithKey:@"ruhehuodejifen"];
     huoqu.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     huoqu.textAlignment = NSTextAlignmentLeft;
     [self.leftBackView addSubview:huoqu];
@@ -118,7 +119,7 @@
     
     UILabel *chakan = [[UILabel alloc] init];
     chakan.font = [UIFont systemFontOfSize:12.0f];
-    chakan.text = [AppDelegate getURLWithKey:@""]@"chankanjifen", nil);
+    chakan.text = [AppDelegate getURLWithKey:@"chankanjifen"];
     chakan.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     chakan.textAlignment = NSTextAlignmentLeft;
     [self.rightBackView addSubview:chakan];
@@ -130,7 +131,7 @@
     
     UILabel *jilu = [[UILabel alloc] init];
     jilu.font = [UIFont systemFontOfSize:12.0f];
-    jilu.text = [AppDelegate getURLWithKey:@""]@"huoqujilu", nil);
+    jilu.text = [AppDelegate getURLWithKey:@"huoqujilu"];
     jilu.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
     jilu.textAlignment = NSTextAlignmentLeft;
     [self.rightBackView addSubview:jilu];
@@ -174,7 +175,7 @@
 -(void)setScore:(NSInteger)score{
     _score = score;
     if (_score) {
-        self.jifenNum.text = [NSString stringWithFormat:@"%@%ld",[AppDelegate getURLWithKey:@""]@"jifen", nil),_score];
+        self.jifenNum.text = [NSString stringWithFormat:@"%@%ld",[AppDelegate getURLWithKey:@"jifen"],_score];
 
     }
 }

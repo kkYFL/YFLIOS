@@ -56,7 +56,6 @@
 }
 
 -(void)initView{
-    self.title = [AppDelegate getURLWithKey:@""]@"XuexiXingDe", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction);
@@ -71,7 +70,7 @@
 }
 
 -(void)loadData{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@"jiazaizhong"]] onView:self.view];
 
     // 获取学习心得列表
     // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
@@ -106,7 +105,7 @@
 }
 
 -(void)loadMore{
-    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@""]@"jiazaizhong", nil)] onView:self.view];
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@"jiazaizhong"]] onView:self.view];
     // 获取学习心得列表
     // 测试结果: 接口通过, 但相比于接口文档, 缺少两个字段: headImg, ssDepartment
     NSString *type = (selectIndex == 1)?@"1":@"2";
@@ -168,13 +167,13 @@
     // 学习心得
     // 测试结果: 通过
         [HanZhaoHua submitStudyNotesWithUserId:APP_DELEGATE.userId taskId:nil learnContent:content success:^(NSDictionary * _Nonnull responseObject) {
-            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"fabiaoxingdechenggong", nil) ToView:self.view];
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"fabiaoxingdechenggong"] ToView:self.view];
 
             NSLog(@"%@", responseObject);
         
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
-            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@""]@"fabioxingdeshibai", nil) ToView:self.view];
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"fabioxingdeshibai"] ToView:self.view];
 
         }];
 }
@@ -276,7 +275,7 @@
         [button addTarget:self action:@selector(itemSelect:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
-        [button setTitle:[AppDelegate getURLWithKey:@""]@"quanbuxingde", nil) forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@"quanbuxingde"] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
         [_itemsView addSubview:button];
         button.tag = 101;
@@ -290,7 +289,7 @@
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:17.0f]];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#0C0C0C"] forState:UIControlStateNormal];
         [button1 setTitleColor:[UIColor colorWithHexString:@"#E51C23"] forState:UIControlStateSelected];
-        [button1 setTitle:[AppDelegate getURLWithKey:@""]@"我的心得", nil) forState:UIControlStateNormal];
+        [button1 setTitle:[AppDelegate getURLWithKey:@"wodexingde"] forState:UIControlStateNormal];
         [_itemsView addSubview:button1];
         button1.tag = 102;
         [button1 setFrame:CGRectMake(w, 0, w, pageMenueH)];
@@ -358,10 +357,7 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    //[self addCommentxinDeSourceWithContent:@"自觉性是指个体自觉自愿地执行或自主自愿地追求整体长远目标任务的程度。就其产生过程来讲，个体的自觉性是在信念基础上"];
-}
+
 
 -(UIView *)footerView{
     if (!_footerView) {
@@ -395,7 +391,7 @@
         
         UILabel *remindLabel = [[UILabel alloc] init];
         remindLabel.font = [UIFont systemFontOfSize:14.0f];
-        remindLabel.text = [AppDelegate getURLWithKey:@""]@"wodexiangfa", nil);
+        remindLabel.text = [AppDelegate getURLWithKey:@"wodexiangfa"];
         remindLabel.textColor = [UIColor colorWithHexString:@"#9C9C9C"];
         remindLabel.textAlignment = NSTextAlignmentLeft;
         [footerTouch addSubview:remindLabel];
@@ -419,7 +415,7 @@
     self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
-    self.inputToolbar.placeholder = [AppDelegate getURLWithKey:@""]@"qingshuru", nil);
+    self.inputToolbar.placeholder = [AppDelegate getURLWithKey:@"qingshuru"];
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {
         __typeof(&*weakSelf) strongSelf = weakSelf;
@@ -445,6 +441,12 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = [AppDelegate getURLWithKey:@"XuexiXingDe"];
 }
 
 

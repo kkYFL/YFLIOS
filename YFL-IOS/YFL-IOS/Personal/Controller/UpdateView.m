@@ -18,10 +18,11 @@
 
 @implementation UpdateView
 
--(instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame];
+-(instancetype)initWithUpdateViewWithFrame:(CGRect)rect ContentInfo:(NSString *)info{
+    self = [super initWithFrame:rect];
+    
     if (self) {
-
+        
         //取得window
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         [[UIApplication sharedApplication].keyWindow addSubview:self];
@@ -43,7 +44,7 @@
         backView.layer.cornerRadius = 10.0f;
         [self addSubview:backView];
         self.backView = backView;
-
+        
         
         
         //
@@ -58,11 +59,11 @@
             make.centerY.equalTo(self);
             make.height.mas_equalTo(100);
         }];
-
+        
         
         
         //
-        NSString *contentStr = @"sdjdoifjsoidjfoisdjfoijsdofjsidjfoisjdfojsdojfidsjfijdifjdjfoi";
+        NSString *contentStr = info.length?info:@"版本更新";
         CGFloat contentH = [self getSpaceLabelHeightwithString:contentStr Speace:4.0 withFont:[UIFont systemFontOfSize:18.0f] withWidth:SCREEN_WIDTH-90];
         
         UILabel *contentLabel = [[UILabel alloc] init];
@@ -80,7 +81,7 @@
             make.height.mas_equalTo(contentH);
         }];
         
-
+        
         UIButton *button = [[UIButton alloc]init];
         button.backgroundColor = [UIColor colorWithHexString:@"#F9FAFC"];
         [button addTarget:self action:@selector(selectSource:) forControlEvents:UIControlEventTouchUpInside];
@@ -126,9 +127,11 @@
         }];
         
     }
-        
+    
     return self;
 }
+
+
 
 
 -(NSMutableAttributedString *)getAttriHeightwithString:(NSString *)string Speace:(CGFloat)lineSpeace withFont:(UIFont*)font{

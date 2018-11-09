@@ -19,6 +19,7 @@
 #import "GuidenModel.h"
 #import "LLTabBar.h"
 #import "UpdateView.h"
+#import "UpdateModel.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate,SubjectViewDelegate>

@@ -23,6 +23,7 @@
 #import "AboutViewController.h"
 #import "PersonRowWithIconCell.h"
 #import "UpdateView.h"
+#import "UpdateModel.h"
 
 
 
@@ -54,7 +55,6 @@
     [self initView];
     
     [self refershHeader];
-
 }
 
 -(void)initView{
@@ -148,6 +148,15 @@
     
 }
 
+
+/*
+ "appType": 1,
+ "version:"1.0.1",
+ "isForceUpdate": 1,
+ "filePath": "file/update/version/android_1.0.1.apk",
+ "info":"更新说明"
+ */
+
 -(void)appVersionCheck{
     NSMutableDictionary *para = [NSMutableDictionary dictionary];
     [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
@@ -158,45 +167,19 @@
         
         if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
             
-            NSInteger isForceUpdate = [[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForceUpdate"]] integerValue];
-            _filePath = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"filePath"]];
-            _info = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"info"]];
+            APP_DELEGATE.updateModel = [[UpdateModel alloc]initWithDic:dataDic];
+//            NSInteger isForceUpdate = [[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForceUpdate"]] integerValue];
+//            _filePath = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"filePath"]];
+//            _info = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"info"]];
+//
+//            if (isForceUpdate == 1) {
+//
+//            }else{
+//
+//            }
             
-            //强制更新
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"版本更新"
-                                                                           message:_info
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
+        
             
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"立即升级" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
-                                                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
-                                                                      
-                                                                  }];
-            UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:[AppDelegate getURLWithKey:@"quxiao"] style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * action) {
-                                                                     
-                                                                 }];
-            
-            UIAlertAction* exitAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault
-                                                               handler:^(UIAlertAction * action) {
-                                                                   [UIView animateWithDuration:1.0f animations:^{
-                                                                   } completion:^(BOOL finished) {
-                                                                       exit(0);
-                                                                   }];
-                                                               }];
-            
-            
-            
-            
-            if (isForceUpdate == 1) {
-                [alert addAction:defaultAction];
-                [alert addAction:exitAction];
-            }else{
-                [alert addAction:defaultAction];
-                [alert addAction:cancelAction];
-            }
-            
-            [self.navigationController presentViewController:alert animated:YES completion:nil];
         }
 
         
@@ -208,7 +191,7 @@
 
 -(void)gotoUPdateViersion{
     //测试使用
-    UpdateView *updateView = [[UpdateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    UpdateView *updateView = [[UpdateView alloc]initWithUpdateViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) ContentInfo:APP_DELEGATE.updateModel.info];
     updateView.delegate = self;
     self.updateView = updateView;
 }
@@ -226,7 +209,10 @@
     
     if (!_filePath.length) {
         [MBProgressHUD toastMessage:@"暂无更新信息" ToView:self.view];
-        return;    }
+        return;
+    }
+    
+    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
 }
 

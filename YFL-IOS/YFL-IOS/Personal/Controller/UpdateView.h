@@ -14,4 +14,7 @@
 
 @interface UpdateView : UIView
 @property (nonatomic, weak) id<SubjectViewDelegate> delegate;
+
+
+-(instancetype)initWithUpdateViewWithFrame:(CGRect)rect ContentInfo:(NSString *)info;
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserMessage.h"
-
+@class UpdateModel;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSString *localType;
 
 @property (nonatomic, assign) BOOL isHan;//默认 汉语
+
+@property (nonatomic, strong) UpdateModel *updateModel;
 
 +(NSString *)getURLWithKey:(NSString *)key;
 @end

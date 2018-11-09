@@ -23,25 +23,25 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Icon-small-40@2x.png",
+      "filename" : "dangjian40x2.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Icon-small-40@3x.png",
+      "filename" : "dangjian60x2.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Icon-60@2x.png",
+      "filename" : "dangjian60x2-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Icon-60@3x.png",
+      "filename" : "dangjian60x3.png",
       "scale" : "3x"
     },
     {
@@ -92,7 +92,7 @@
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "icon.png",
+      "filename" : "dangjian1024.png",
       "scale" : "1x"
     }
   ],

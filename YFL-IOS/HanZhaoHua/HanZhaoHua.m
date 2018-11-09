@@ -20,18 +20,19 @@ static NSString *host = @"http://47.100.247.71/protal/";
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/doLogin"];
     
+    
+    //外部传入数据
     NSMutableDictionary *paraDic = [NSMutableDictionary dictionary];
-    //paraDic setValue:<#(nullable id)#> forKey:<#(nonnull NSString *)#>
-    
-    //NSMutableDictionary *paraDic = @{@"username":username,
-//                              @"password":password
-//                              };
+    [paraDic setValue:username forKey:@"username"];
+    [paraDic setValue:password forKey:@"password"];
+
     
     
-    NSString *timeStamp = @"20181024";
-    NSString *randomNum = @"100";
+    NSString *timeStamp = [PublicMethod currentTimeInterval];
+    NSString *keyss = [self getCurrentYearMonthDay];
+    NSString *randomNum = [self getRandomNum];
     NSString *sign = [PublicMethod MD5Encrypt:randomNum];
-    NSString *originTakes = [PublicMethod MD5Encrypt:timeStamp];
+    NSString *originTakes = [PublicMethod MD5Encrypt:keyss];
     
     
     NSMutableDictionary *tmpDic = [NSMutableDictionary dictionary];
@@ -62,8 +63,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
     [paraDic setValue:timeStamp forKey:@"times"];
     [paraDic setValue:sign forKey:@"sign"];
     [paraDic setValue:[PublicMethod MD5Encrypt:valuesStr] forKey:@"takes"];
-    [paraDic setValue:username forKey:@"username"];
-    [paraDic setValue:password forKey:@"password"];
+
     
     
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
@@ -75,6 +75,48 @@ static NSString *host = @"http://47.100.247.71/protal/";
     } failure:^(NSError *error) {
         if (failure) failure(error);
     }];
+}
+
+
++(NSMutableDictionary *)encryptionWithPara:(NSMutableDictionary *)para{
+    NSString *timeStamp = [PublicMethod currentTimeInterval];
+    NSString *keyss = [self getCurrentYearMonthDay];
+    NSString *randomNum = [self getRandomNum];
+    NSString *sign = [PublicMethod MD5Encrypt:randomNum];
+    NSString *originTakes = [PublicMethod MD5Encrypt:keyss];
+    
+    
+    //加密前临时数据
+    NSMutableDictionary *tmpDic = [para copy];
+    [tmpDic setValue:timeStamp forKey:@"times"];
+    [tmpDic setValue:originTakes forKey:@"takes"];
+    
+    
+    NSArray *keys = tmpDic.allKeys;
+    keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSComparisonResult result = [obj1 compare:obj2];
+        return result == NSOrderedDescending;
+    }];
+    
+    NSMutableString *valuesStr = [[NSMutableString alloc]init];
+    for (NSInteger i = 0; i<keys.count; i++) {
+        NSString *objKey = keys[i];
+        NSString *objValue = [tmpDic objectForKey:objKey];
+        if (i == (keys.count -1)) {
+            [valuesStr appendString:[NSString stringWithFormat:@"%@=%@",objKey,objValue]];
+        }else{
+            [valuesStr appendString:[NSString stringWithFormat:@"%@=%@|",objKey,objValue]];
+        }
+    }
+    
+    
+    //加密后数据包装
+    [para setValue:timeStamp forKey:@"times"];
+    [para setValue:sign forKey:@"sign"];
+    [para setValue:[PublicMethod MD5Encrypt:valuesStr] forKey:@"takes"];
+
+    return para;
+
 }
 
 +(void)changePasswordWithUserId: (NSString *)userId
@@ -94,6 +136,32 @@ static NSString *host = @"http://47.100.247.71/protal/";
         if (failure) failure(error);
     }];
 }
+
+//获取当前的年月日  20181109
++(NSString *)getCurrentYearMonthDay{
+    NSDate *date =[NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    
+    [formatter setDateFormat:@"yyyy"];
+    NSInteger currentYear=[[formatter stringFromDate:date] integerValue];
+    [formatter setDateFormat:@"MM"];
+    NSInteger currentMonth=[[formatter stringFromDate:date]integerValue];
+    [formatter setDateFormat:@"dd"];
+    NSInteger currentDay=[[formatter stringFromDate:date] integerValue];
+
+    if (currentDay < 10) {
+        return [NSString stringWithFormat:@"%ld%ld%@%ld",currentYear,currentMonth,@"0",currentDay];
+    }
+    
+    return [NSString stringWithFormat:@"%ld%ld%ld",currentYear,currentMonth,currentDay];
+}
+
+
++(NSString *)getRandomNum{
+    int randomNum = (arc4random() % 10000)+1;
+    return [NSString stringWithFormat:@"%ld",randomNum];
+}
+
 
 +(void)changePersonalInformationWithUserId: (NSString *)userId
                                    headImg: (NSString *)headImg

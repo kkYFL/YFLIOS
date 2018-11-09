@@ -21,8 +21,9 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     ExamContentViewTypeTextIn
 };
 
-@interface ExamConentViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>{
+@interface ExamConentViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,UITextViewDelegate>{
     HistoryExamDetail *_currentExamModel;
+    NSString *_currentInputStr;
     NSInteger _currentIndex;
 }
 @property (nonatomic, strong) UITableView *table;
@@ -125,40 +126,12 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             ExamChooseCell *chooseCell = [tableView dequeueReusableCellWithIdentifier:@"chooseCell"];
             if (_currentExamModel) {chooseCell.currentExamModel = _currentExamModel; }
             chooseCell.chooseActionBlock = ^(NSInteger chooseIndex) {
-//                if (weakSelf.detailList.count ) {
-//
-//                }
-                
-                //if (_currentIndex < self.detailList.count && chooseIndex<self.detailList.count) //{
-//                    HistoryExamDetail *examDetailModel = self.detailList[_currentIndex];
-//                    for (NSInteger i=0; i<examDetailModel.answers.count; i++) {
-//                        Answers *ansModel = examDetailModel.answers[i];
-//
-//                        //单选
-//                        if ([examDetailModel.examType integerValue] == 1) {
-//                            //选择项
-//                            if (chooseIndex == i) {
-//                                ansModel.selected = @"1";
-//                            }else{
-//                                ansModel.selected = @"2";
-//                            }
-//                        //多选
-//                        }else{
-//                            //选择项
-//                            if (chooseIndex == i) {
-//                                ansModel.selected = @"1";
-//                            }
-//                        }
-//
-//
-//                    }
-//                }
-
             };
             return chooseCell;
         }
         
         ExamTextViewPutINCell *putInCell = [tableView dequeueReusableCellWithIdentifier:@"putInCell"];
+        putInCell.textView.delegate =self;
         putInCell.textView.text = @"";
         return putInCell;
     }
@@ -203,7 +176,6 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 }
 
 -(void)loadData{
-    
     // 待开始详情
     // 测试结果: 通过
     [HanZhaoHua getWaitingToStartDetailWithUserToken:APP_DELEGATE.userToken userId:APP_DELEGATE.userId paperId:(self.ruleDic.paperId)?self.ruleDic.paperId:@"0" success:^(NSArray * _Nonnull detailList) {
@@ -215,44 +187,6 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             NSLog(@"%@", error);
         }];
     
-    
-
-    
-    
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
 }
 
 
@@ -263,8 +197,6 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 #pragma mark - 返回
 - (void)leftButtonAction{
-    //fangqibencidati
-    //UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您好，您还有1次答题的机会,是否确定放弃本次答题？" delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@""]@"quxiao", nil) otherButtonTitles:[AppDelegate getURLWithKey:@""]@"queding", nil), nil];
     
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@"tishi"] message:[NSString stringWithFormat:@"%@%@%@,%@",[AppDelegate getURLWithKey:@"shengyu"],@"1",[AppDelegate getURLWithKey:@"ci"],[AppDelegate getURLWithKey:@"jihui"],[AppDelegate getURLWithKey:@"fangqibencidati"]] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"] otherButtonTitles:[AppDelegate getURLWithKey:@"queding"], nil];
 
@@ -340,44 +272,63 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         
     //下一题
     }else if (viewTag == 102){
-        //_viewType = ExamContentViewTypeTextIn;
-        //case 1
+        //答案存储以及判断
+        //简答
+        if ([_currentExamModel.examType integerValue] == 5){
+            //简答已经输入
+            if (![NSString isBlankString:_currentInputStr]) {
+                //答案存储 默认应该数组个数为1
+                for (NSInteger i=0; i<_currentExamModel.answers.count; i++) {
+                    Answers *ansModel = _currentExamModel.answers[i];
+                    ansModel.content = [NSString stringWithFormat:@"%@",_currentInputStr];
+                }
+                //清空数据
+                _currentInputStr = @"";
+            //简答未输入
+            }else{
+                return;
+            }
+            
+        }else{
+            //case 2
+            //未答题禁止进入下一题
+            //        NSString *key = [NSString stringWithFormat:@"%ld",(long)_currentIndex];
+            //        if (![self.answersDic objectForKey:key]) {
+            //            //未答题禁止进入下一题
+            //            return;
+            //        }
+            BOOL hasAnswered = NO;
+            for (NSInteger i=0; i<_currentExamModel.answers.count; i++) {
+                Answers *ansModel = _currentExamModel.answers[i];
+                if ([ansModel.selected integerValue] == 1) {
+                    hasAnswered = YES;
+                }
+            }
+            //选择未做任何选择返回
+            if (!hasAnswered) {
+                return;
+            }
+        }
+        
+        
+        //2 是否答题结束
         if (_currentIndex >= self.detailList.count) {
             //答题结束提交答案
             [self submitData];
             return;
         }
         
-        //case 2
-        //未答题禁止进入下一题
-//        NSString *key = [NSString stringWithFormat:@"%ld",(long)_currentIndex];
-//        if (![self.answersDic objectForKey:key]) {
-//            //未答题禁止进入下一题
-//            return;
-//        }
-        BOOL hasAnswered = NO;
-        for (NSInteger i=0; i<_currentExamModel.answers.count; i++) {
-            Answers *ansModel = _currentExamModel.answers[i];
-            if ([ansModel.selected integerValue] == 1) {
-                hasAnswered = YES;
-            }
-        }
-//        if (!hasAnswered) {
-//            return;
-//        }
+
         
         
         
         //case 3
         //继续答题
         _currentIndex++;
-        
         [self refreshViewWithWithIndex:_currentIndex];
 
         [self.table reloadData];
     }
-    
-    
     
 }
 
@@ -471,9 +422,6 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
      //答案列表
      @property(nonatomic, strong) NSMutableArray *answers;
      //试题类型【1、单选 2、多选 3、填空 4、判断 5、简答】
-     //
-     //
-     //
      */
     
     
@@ -505,6 +453,13 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     [super viewWillAppear:animated];
     
     self.title = [AppDelegate getURLWithKey:@"KaoshiDati"];
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    NSLog(@"textViewDidChange：%@", textView.text);
+    _currentInputStr = textView.text;
+    
 }
 
 - (void)didReceiveMemoryWarning {

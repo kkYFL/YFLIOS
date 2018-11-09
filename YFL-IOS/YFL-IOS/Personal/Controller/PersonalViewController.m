@@ -22,10 +22,11 @@
 #import "SettingViewController.h"
 #import "AboutViewController.h"
 #import "PersonRowWithIconCell.h"
+#import "UpdateView.h"
 
 
 
-@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,SubjectViewDelegate>{
     NSString *_filePath;//地址
     NSString *_info;    //更新说明
     
@@ -42,6 +43,7 @@
 @property (nonatomic, strong) UserMessage *userModel;
 @property (nonatomic, strong) SignMoel *signModel;
 
+@property (nonatomic, strong) UpdateView *updateView;
 @end
 
 @implementation PersonalViewController
@@ -206,19 +208,26 @@
 
 -(void)gotoUPdateViersion{
     //测试使用
+    UpdateView *updateView = [[UpdateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    updateView.delegate = self;
+    self.updateView = updateView;
+}
+
+#pragma mark - SubjectViewDelegate
+- (void)updateDelegate{
+    self.updateView.hidden = YES;
     
 #ifdef DEBUG
     NSString *tmpstr = @"https://itunes.apple.com/us/app/%E5%8D%96%E5%A5%BD%E8%BD%A6%E7%89%A9%E6%B5%81/id1212731400?ls=1&mt=8";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tmpstr]];
 #else
 #endif
-
+    
     
     if (!_filePath.length) {
         [MBProgressHUD toastMessage:@"暂无更新信息" ToView:self.view];
         return;    }
-      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_filePath]];
 }
 
 

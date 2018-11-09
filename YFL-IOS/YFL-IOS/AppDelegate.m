@@ -46,9 +46,10 @@
     [self tabBarViewInit];
     
     
-    UpdateView *updateView = [[UpdateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    updateView.delegate = self;
-    self.updateView = updateView;
+//    UpdateView *updateView = [[UpdateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    updateView.delegate = self;
+//    self.updateView = updateView;
+    
 
     //启动图
     //[self screenViewCreate];

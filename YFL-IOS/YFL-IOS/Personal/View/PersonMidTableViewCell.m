@@ -14,6 +14,11 @@
 @property (nonatomic, strong) UIImageView *rightBackView;
 @property (nonatomic, strong) UILabel *jifenNum;
 
+
+@property (nonatomic, strong) UILabel *huoqu;
+@property (nonatomic, strong) UILabel *chakan;
+@property (nonatomic, strong) UILabel *jilu;
+
 @end
 
 
@@ -105,6 +110,7 @@
         make.left.equalTo(leftIcon.mas_right).offset(10);
         make.top.equalTo(leftIcon.mas_centerY).offset(5);
     }];
+    self.huoqu = huoqu;
     
     
     UIImageView *rightIcon = [[UIImageView alloc]init];
@@ -127,6 +133,7 @@
         make.left.equalTo(rightIcon.mas_right).offset(10);
         make.bottom.equalTo(rightIcon.mas_centerY).offset(-5);
     }];
+    self.chakan = chakan;
     
     
     UILabel *jilu = [[UILabel alloc] init];
@@ -139,6 +146,7 @@
         make.left.equalTo(rightIcon.mas_right).offset(10);
         make.top.equalTo(rightIcon.mas_centerY).offset(5);
     }];
+    self.jilu = jilu;
     
     
     UIView *bottonLine = [[UIView alloc]init];
@@ -177,6 +185,10 @@
     if (_score) {
         self.jifenNum.text = [NSString stringWithFormat:@"%@%ld",[AppDelegate getURLWithKey:@"jifen"],_score];
 
+        
+        self.huoqu.text = [AppDelegate getURLWithKey:@"ruhehuodejifen"];
+        self.chakan.text = [AppDelegate getURLWithKey:@"chankanjifen"];
+        self.jilu.text = [AppDelegate getURLWithKey:@"huoqujilu"];
     }
 }
 

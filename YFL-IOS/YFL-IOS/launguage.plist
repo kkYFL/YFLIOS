@@ -308,13 +308,29 @@
 		<string>བཟོ་བཅོས་གསང་ཨང་</string>
 		<key>qiandaojilu</key>
 		<string>འབྱོར་ཐོ་འགོད་པའི་ཟིན་ཐོ</string>
-		<key>New item - 16</key>
+		<key>huancunqingli</key>
+		<string>缓存གཙང་བཤེར</string>
+		<key>zhibu</key>
+		<string>ཀྲི་པུའུ</string>
+		<key>zhibudangyuan</key>
+		<string>ཀྲི་པུའུ་ཏང་ཡོན</string>
+		<key>renwujiandu</key>
+		<string>ལས་འགན་ལྟ་སྐུལ</string>
+		<key>kaoshijiandu</key>
+		<string>རྒྱུགས་ལེན་ལྟ་སྐུལ</string>
+		<key>New item</key>
 		<string></string>
-		<key>New item - 17</key>
+		<key>New item - 2</key>
+		<string></string>
+		<key>New item - 7</key>
+		<string></string>
+		<key>New item - 8</key>
 		<string></string>
 		<key>New item - 6</key>
 		<string></string>
-		<key>New item - 5</key>
+		<key>New item - 4</key>
+		<string></string>
+		<key>New item - 3</key>
 		<string></string>
 	</dict>
 	<key>Han</key>
@@ -623,15 +639,21 @@
 		<string>签到</string>
 		<key>qiandaojilu</key>
 		<string>签到记录</string>
-		<key>New item</key>
+		<key>huancunqingli</key>
+		<string>缓存清理</string>
+		<key>zhibu</key>
+		<string>支部</string>
+		<key>zhibudangyuan</key>
+		<string>支部党员</string>
+		<key>renwujiandu</key>
+		<string>任务监督</string>
+		<key>kaoshijiandu</key>
+		<string>考试监督</string>
+		<key>New item - 2</key>
 		<string></string>
-		<key>New item - 16</key>
+		<key>New item - 3</key>
 		<string></string>
-		<key>New item - 17</key>
-		<string></string>
-		<key>New item - 6</key>
-		<string></string>
-		<key>New item - 5</key>
+		<key>New item - 4</key>
 		<string></string>
 	</dict>
 </dict>

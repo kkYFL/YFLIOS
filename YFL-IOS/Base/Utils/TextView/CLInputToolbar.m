@@ -9,6 +9,7 @@
 #import "CLInputToolbar.h"
 #import "UIView+CLSetRect.h"
 #import "AppDelegate.h"
+#import "CLInputTextView.h"
 
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
@@ -16,7 +17,7 @@
     CGFloat fatherViewH;
 }
 /**文本输入框*/
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) CLInputTextView *textView;
 /**边框*/
 @property (nonatomic, strong) UIView *edgeLineView;
 
@@ -82,7 +83,7 @@
     
     
     //输入框
-    self.textView = [[UITextView alloc] init];;
+    self.textView = [[CLInputTextView alloc] init];;
     //self.textView.CLwidth = self.CLwidth - 50 - 46;
     //self.textView.CLleft = 18;
     [self.textView setFrame:CGRectMake(25, 45, self.CLwidth - 50 - 45-10-10, 20)];
@@ -254,6 +255,15 @@
 //    self.sendButton.CLcenterY = self.CLheight * (0.5+r1);
 //    self.edgeLineView.CLcenterY = self.CLheight * (0.5+r1);
 //    self.bottomLine.CLy = self.CLheight - 0.5;
+}
+
+-(void)setCanPaste:(BOOL)canPaste{
+    _canPaste = canPaste;
+    if (_canPaste) {
+        self.textView.canPaste = YES;
+    }else{
+        self.textView.canPaste = NO;
+    }
 }
 
 - (void)dealloc{

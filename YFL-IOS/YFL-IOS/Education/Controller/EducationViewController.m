@@ -26,6 +26,13 @@
 
 @implementation EducationViewController
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLuanguageAction:) name:KNotificationChangeLaunuageNoti object:nil];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -235,6 +242,11 @@
     [super viewWillDisappear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+}
+
+-(void)changeLuanguageAction:(NSNotification *)noti{
+    [self.table reloadData];    
+    self.title = [AppDelegate getURLWithKey:@"DangYuanEducationTitle"];
 }
 
 

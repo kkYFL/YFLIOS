@@ -43,11 +43,20 @@
 @property (nonatomic, assign) NSInteger serverCount;
 @property (nonatomic, strong) UserMessage *userModel;
 @property (nonatomic, strong) SignMoel *signModel;
+@property (nonatomic, strong) UIButton *signButton;
 
 @property (nonatomic, strong) UpdateView *updateView;
 @end
 
 @implementation PersonalViewController
+
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLuanguageAction:) name:KNotificationChangeLaunuageNoti object:nil];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -379,8 +388,8 @@
             }else{
                 APP_DELEGATE.isHan = YES;
             }
-            self.title = [AppDelegate getURLWithKey:@"Gerenzhongxin"];
-            [self.table reloadData];
+
+             [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationChangeLaunuageNoti object:nil];
         }
     }
 }
@@ -411,7 +420,8 @@
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
     [self.nameLabel setText:self.userModel.pmName];
     [self.descibeLabel setText:self.userModel.motto];
-    
+    [self.signButton setTitle:[AppDelegate getURLWithKey:@"qiandao"] forState:UIControlStateNormal];
+
     if (self.signModel) {        
         self.signLabel.text = [NSString stringWithFormat:@"%@%@%@，%@",[AppDelegate getURLWithKey:@"yiqiandao"],self.signModel.totalSignIn,[AppDelegate getURLWithKey:@"tian"],[AppDelegate getURLWithKey:@"qingjixubaochi"]];
     }
@@ -525,6 +535,7 @@
         [signButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [signButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [signButton setTitle:[AppDelegate getURLWithKey:@"qiandao"] forState:UIControlStateNormal];
+        self.signButton = signButton;
         CGFloat contentW = [PublicMethod getTheWidthOfTheLabelWithContent:[AppDelegate getURLWithKey:@"qiandao"] font:14.0f]+2;
         if (contentW < 50) {
             contentW = 50;
@@ -652,13 +663,22 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
 }
+
+
+-(void)changeLuanguageAction:(NSNotification *)noti{
+    [self.table reloadData];
+    [self refreshViewWithData];
+    
+    self.title = [AppDelegate getURLWithKey:@"Gerenzhongxin"];
+}
+
 
 -(void)dealloc{
     [self removeObserver:self forKeyPath:@"serverCount"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 
 

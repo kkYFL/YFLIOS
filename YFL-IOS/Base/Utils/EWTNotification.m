@@ -15,6 +15,7 @@ NSString * const KNotificationAccessHomeWindow = @"kNotificationAccessHomeWindow
 
 NSString * const KNotificationNewsItemsSelect = @"kNotificationNewsItemsSelect";
 NSString * const KNotificationEducationItemsSelect = @"kNotificationEducationItemsSelect";
+NSString * const KNotificationChangeLaunuageNoti = @"kNotificationChangeLaunuageNoti";
 
 
 

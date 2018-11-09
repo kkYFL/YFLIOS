@@ -113,7 +113,7 @@
         settingCell.cellContentLabel.hidden = YES;
         //settingCell.cellContentLabel.text = [AppDelegate getURLWithKey:@""]@"qiehuan", nil);
     }else if (indexPath.row == 1){
-        settingCell.cellTitleLabel.text = @"缓存清理";
+        settingCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@"huancunqingli"];
         //缓存
         cachePath = [self getCachePath];
         cacheSize = [PublicMethod folderSizeAtPath:cachePath];

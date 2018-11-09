@@ -38,6 +38,15 @@
 
 @implementation FabuHomeViewController
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLuanguageAction:) name:KNotificationChangeLaunuageNoti object:nil];
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -664,10 +673,24 @@
     [super viewWillDisappear:animated];
     
     _pageItemView.hidden = YES;
+    
+}
+
+-(void)changeLuanguageAction:(NSNotification *)noti{
+    [self.table reloadData];
+    self.title = [AppDelegate getURLWithKey:@"zhibu"];
+    
+    [self.button setTitle:[AppDelegate getURLWithKey:@"zhibudangyuan"] forState:UIControlStateNormal];
+    [self.button1 setTitle:[AppDelegate getURLWithKey:@"renwujiandu"] forState:UIControlStateNormal];
+    [self.button2 setTitle:[AppDelegate getURLWithKey:@"kaoshijiandu"] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

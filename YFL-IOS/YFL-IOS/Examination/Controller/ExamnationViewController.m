@@ -33,13 +33,20 @@
 
 @implementation ExamnationViewController
 
+-(instancetype)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLuanguageAction:) name:KNotificationChangeLaunuageNoti object:nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initView];
     
     [self refershHeader];
-    
 }
 
 -(void)initView{
@@ -496,11 +503,19 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
+-(void)changeLuanguageAction:(NSNotification *)noti{
+    [self.table reloadData];    
+    self.title = [AppDelegate getURLWithKey:@"DangyuanKaoshi"];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end

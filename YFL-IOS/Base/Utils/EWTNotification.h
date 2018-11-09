@@ -20,5 +20,8 @@ FOUNDATION_EXPORT NSString * const KNotificationAccessHomeWindow;               
 
 FOUNDATION_EXPORT NSString * const KNotificationNewsItemsSelect;
 FOUNDATION_EXPORT NSString * const KNotificationEducationItemsSelect;
+
+
+FOUNDATION_EXPORT NSString * const KNotificationChangeLaunuageNoti;
 @end
 

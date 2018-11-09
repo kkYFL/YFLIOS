@@ -13,7 +13,6 @@
 @interface ExamChooseCell (){
     NSArray *_zimiArr;
 }
-@property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) NSMutableArray *tagViewArr;
 
 @end
@@ -35,23 +34,6 @@
     self.tagViewArr = [NSMutableArray array];
     _zimiArr = [NSArray arrayWithObjects:@"A: ",@"B: ",@"C: ",@"D: ",@"E: ",@"F: ",@"G: ", nil];
 
-    
-    
-    UILabel *contentLabel = [[UILabel alloc] init];
-    contentLabel.font = [UIFont systemFontOfSize:17.0f];
-    contentLabel.text = @"";
-    contentLabel.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    contentLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:contentLabel];
-    contentLabel.numberOfLines = 0;
-    self.contentLabel = contentLabel;
-    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(15.0f);
-        make.top.equalTo(self).offset(15.0f);
-        make.right.equalTo(self.mas_right).offset(-15.0f);
-    }];
-    
-
 }
 
 
@@ -69,20 +51,6 @@
         }
         
         
-        NSString *content = currentExamModel.examTitle;
-        NSMutableAttributedString *attri = [ExamChooseCell getAttriHeightwithString:content Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f]];
-        self.contentLabel.attributedText = attri;
-        //self.contentLabel.text = content;
-//        CGFloat contentH = [PublicMethod getSpaceLabelHeight:content withWidh:SCREEN_WIDTH-30 font:17]+0.5f;
-        CGFloat contentH = [ExamChooseCell getSpaceLabelHeightwithString:content Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30.0f]+0.5f;
-
-        
-        [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(15.0f);
-            make.top.equalTo(self).offset(15.0f);
-            make.right.equalTo(self.mas_right).offset(-15.0f);
-            make.height.mas_equalTo(contentH);
-        }];
         
         for (NSInteger i = 0; i<self.tagViewArr.count; i++) {
             ExamChooseTagView *tagView = self.tagViewArr[i];
@@ -99,10 +67,10 @@
                     tagView.selected = NO;
                 }
                 
-                CGFloat topSpace = 15+contentH+80*HEIGHT_SCALE+(25+15)*i;
+                CGFloat topSpace = (25+15)*i;
                 [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(self).offset(0);
-                    make.top.equalTo(self.contentLabel.mas_bottom).offset(topSpace);
+                    make.top.equalTo(self).offset(topSpace);
                     make.height.mas_equalTo(25);
                     make.width.mas_equalTo(SCREEN_WIDTH);
                 }];
@@ -117,10 +85,8 @@
 
 +(CGFloat)CellHWithModel:(HistoryExamDetail *)examModel{
     if (examModel) {
-        NSString *content = examModel.examTitle;
-        CGFloat contentH = [ExamChooseCell getSpaceLabelHeightwithString:content Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f] withWidth:SCREEN_WIDTH-30.0f]+0.5f;
         NSInteger questionCount = examModel.answers.count;
-        return 15+contentH+80*HEIGHT_SCALE+25*questionCount+15*(questionCount-1)+40;
+        return 25*questionCount+15*(questionCount-1)+40;
     }
     return 0.01f;
 }

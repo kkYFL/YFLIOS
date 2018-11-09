@@ -415,6 +415,7 @@
     self.inputToolbar = [[CLInputToolbar alloc] initWithFrame:self.view.bounds];
     self.inputToolbar.textViewMaxLine = 1;
     self.inputToolbar.fontSize = 13;
+    self.inputToolbar.canPaste = YES;
     self.inputToolbar.placeholder = [AppDelegate getURLWithKey:@"qingshuru"];
     __weak __typeof(self) weakSelf = self;
     [self.inputToolbar inputToolbarSendText:^(NSString *text) {

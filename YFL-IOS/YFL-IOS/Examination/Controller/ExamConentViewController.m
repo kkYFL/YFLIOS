@@ -14,6 +14,7 @@
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 #import "ExamRuleModel.h"
+#import "ExamTimuTitleViewCell.h"
 
 
 typedef NS_ENUM(NSInteger,ExamContentViewType) {
@@ -70,58 +71,81 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (_viewType == ExamContentViewTypeDefault) {
+        return 3;
+    }else{
+        return 4;
+    }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        if (_viewType == ExamContentViewTypeDefault) {
-            return [ExamTopTitleTableViewCell CellH];
-        }
-        
-        return [ExamTextInViewCell CellH];
-        
+        return [ExamTopTitleTableViewCell CellH];
     }else if (indexPath.row == 1){
+        return [ExamTimuTitleViewCell CellHWithContent:_currentExamModel.examTitle];
+    }else if (indexPath.row == 2){
         if (_viewType == ExamContentViewTypeDefault) {
             return [ExamChooseCell CellHWithModel:_currentExamModel]+60;
         }
         
+        return [ExamTextInViewCell CellH];
+    }else if (indexPath.row == 3){
         return [ExamTextViewPutINCell CellH];
+
     }
+    
     return 0.01f;;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    /*
+     if (indexPath.row == 0) {
+     return [ExamTopTitleTableViewCell CellH];
+     }else if (indexPath.row == 1){
+     return [ExamTimuTitleViewCell CellHWithContent:_currentExamModel.examTitle];
+     }else if (indexPath.row == 2){
+     if (_viewType == ExamContentViewTypeDefault) {
+     return [ExamChooseCell CellHWithModel:_currentExamModel]+60;
+     }
+     
+     return [ExamTextInViewCell CellH];
+     }else if (indexPath.row == 3){
+     return [ExamTextViewPutINCell CellH];
+     
+     }
+     */
     __weak typeof(self) weakSelf = self;
     if (indexPath.row == 0) {
-        if (_viewType == ExamContentViewTypeDefault) {
-            ExamTopTitleTableViewCell *topTitleCell = [tableView dequeueReusableCellWithIdentifier:@"topTitleCell"];
-            NSString *typeStr = @"";
-            if ([_currentExamModel.examType integerValue] == 1) {
-                typeStr = [AppDelegate getURLWithKey:@"danxuan"];
-            }else if ([_currentExamModel.examType integerValue] == 2){
-                typeStr = [AppDelegate getURLWithKey:@"duoxuan"];
-            }else if ([_currentExamModel.examType integerValue] == 3){
-                typeStr = [AppDelegate getURLWithKey:@"tiankong"];
-            }else if ([_currentExamModel.examType integerValue] == 4){
-                typeStr = [AppDelegate getURLWithKey:@"panduan"];
-            }else if ([_currentExamModel.examType integerValue] == 5){
-                typeStr = [AppDelegate getURLWithKey:@"jieda"];
-            }
-            topTitleCell.titleLabel.text = [NSString stringWithFormat:@"%@%ld%@  %@%@",[AppDelegate getURLWithKey:@"di"],(_currentIndex+1),[AppDelegate getURLWithKey:@"timu"],typeStr,[AppDelegate getURLWithKey:@"timu"]];
-            return topTitleCell;
+        ExamTopTitleTableViewCell *topTitleCell = [tableView dequeueReusableCellWithIdentifier:@"topTitleCell"];
+        NSString *typeStr = @"";
+        if ([_currentExamModel.examType integerValue] == 1) {
+            typeStr = [AppDelegate getURLWithKey:@"danxuan"];
+        }else if ([_currentExamModel.examType integerValue] == 2){
+            typeStr = [AppDelegate getURLWithKey:@"duoxuan"];
+        }else if ([_currentExamModel.examType integerValue] == 3){
+            typeStr = [AppDelegate getURLWithKey:@"tiankong"];
+        }else if ([_currentExamModel.examType integerValue] == 4){
+            typeStr = [AppDelegate getURLWithKey:@"panduan"];
+        }else if ([_currentExamModel.examType integerValue] == 5){
+            typeStr = [AppDelegate getURLWithKey:@"jieda"];
         }
-        
-        ExamTextInViewCell *textInCell = [tableView dequeueReusableCellWithIdentifier:@"textInCell"];
-        if (self.detailList.count > _currentIndex) {
-            HistoryExamDetail *detailModel = self.detailList[_currentIndex];
-            textInCell.examModel = detailModel;
-        }
-        return textInCell;
+        topTitleCell.titleLabel.text = [NSString stringWithFormat:@"%@%ld%@  %@%@",[AppDelegate getURLWithKey:@"di"],(_currentIndex+1),[AppDelegate getURLWithKey:@"timu"],typeStr,[AppDelegate getURLWithKey:@"timu"]];
+        return topTitleCell;
+
         
     }else if (indexPath.row == 1){
+        
+        ExamTimuTitleViewCell *ExamTitleCell = [tableView dequeueReusableCellWithIdentifier:@"ExamTitleCell"];
+        ExamTitleCell.cellTitle = _currentExamModel.examTitle;
+        return ExamTitleCell;
+        
+        
+    }else if (indexPath.row == 2){
+        
         if (_viewType == ExamContentViewTypeDefault) {
             ExamChooseCell *chooseCell = [tableView dequeueReusableCellWithIdentifier:@"chooseCell"];
             if (_currentExamModel) {chooseCell.currentExamModel = _currentExamModel; }
@@ -130,11 +154,21 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             return chooseCell;
         }
         
+        
+        ExamTextInViewCell *textInCell = [tableView dequeueReusableCellWithIdentifier:@"textInCell"];
+        if (self.detailList.count > _currentIndex) {
+            HistoryExamDetail *detailModel = self.detailList[_currentIndex];
+            textInCell.examModel = detailModel;
+        }
+        return textInCell;
+        
+    }else if (indexPath.row == 3){
         ExamTextViewPutINCell *putInCell = [tableView dequeueReusableCellWithIdentifier:@"putInCell"];
         putInCell.textView.delegate =self;
         putInCell.textView.text = @"";
         return putInCell;
     }
+    
     
     static NSString *identify = @"cellIdentify";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
@@ -171,6 +205,9 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         //
         [_table registerClass:[ExamTextInViewCell class] forCellReuseIdentifier:@"textInCell"];
         [_table registerClass:[ExamTextViewPutINCell class] forCellReuseIdentifier:@"putInCell"];
+        [_table registerClass:[ExamTimuTitleViewCell class] forCellReuseIdentifier:@"ExamTitleCell"];
+        
+        
     }
     return _table;
 }
@@ -312,15 +349,13 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         
         
         //2 是否答题结束
-        if (_currentIndex >= self.detailList.count) {
+        if (_currentIndex >= (self.detailList.count-1)) {
             //答题结束提交答案
             [self submitData];
             return;
         }
         
 
-        
-        
         
         //case 3
         //继续答题
@@ -341,7 +376,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
          @property(nonatomic, assign) NSNumber *examType;
          */
         //单选 多选
-        if ([_currentExamModel.examType integerValue] == 1 || [_currentExamModel.examType integerValue] == 2) {
+        if ([_currentExamModel.examType integerValue] != 5) {
             _viewType = ExamContentViewTypeDefault;
         //简答
         }else{

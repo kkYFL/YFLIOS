@@ -21,6 +21,8 @@ typedef void(^inputTextBlock)(NSString *text);
 
 @property (nonatomic, assign) CGFloat *fatherViewH;
 
+@property (nonatomic, assign) BOOL canPaste;
+
 
 /**收回键盘*/
 -(void)bounceToolbar;

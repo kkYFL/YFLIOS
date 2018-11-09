@@ -269,15 +269,12 @@
         APP_DELEGATE.userModel = user;
         [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
         
-        /*
-         self.userToken = @"1";
-         self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
-         self.taskId = @"1";
-         self.host = @"http://47.100.247.71/protal";
-         self.sourceHost = @"http://47.100.247.71/img";
-         self.userName = @"15606811521";
-         self.password = @"123456";
-         */
+    
+         APP_DELEGATE.userToken = APP_DELEGATE.userModel.userToken;
+         APP_DELEGATE.userId = APP_DELEGATE.userModel.userId;
+         APP_DELEGATE.userName = APP_DELEGATE.userModel.userName;
+        
+        
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
         [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"zhanghaoError"] ToView:self.view];

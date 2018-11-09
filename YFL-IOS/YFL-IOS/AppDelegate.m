@@ -35,16 +35,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 
-    
-    
-     self.userToken = @"1";
-     self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
+    //资源路径
      self.host = @"http://47.100.247.71/protal";
      self.sourceHost = @"http://47.100.247.71/img";
-     self.userName = @"15606811521";
-     self.password = @"123456";
+    
+    
+//     self.userToken = @"1";
+//     self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
+//     self.host = @"http://47.100.247.71/protal";
+//     self.sourceHost = @"http://47.100.247.71/img";
+//     self.userName = @"15606811521";
+//     self.password = @"123456";
 
-    [self tabBarViewInit];
+    //[self tabBarViewInit];
     
     
 //    UpdateView *updateView = [[UpdateView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -52,14 +55,18 @@
 //    self.updateView = updateView;
     
 
-    //启动图
-    //[self screenViewCreate];
+
 
 
 
     //[self showLoginAndRegistController];
+    
 
-    //[self guidenView];
+
+    [self guidenView];
+    
+    //启动图
+    [self screenViewCreate];
 
 //
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
@@ -311,7 +318,6 @@
     NSDictionary *dic = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:launuage];
     return [dic objectForKey:key];
 }
-
 
 
 @end

@@ -58,6 +58,7 @@
     self.table.tableHeaderView = self.headerView;
     
     [self initRefresh];
+
 }
 
 -(void)initData{
@@ -520,6 +521,8 @@
 
     [self refershHeader];
 }
+
+
 
 
 - (void)didReceiveMemoryWarning {

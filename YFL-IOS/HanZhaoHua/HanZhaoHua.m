@@ -437,6 +437,7 @@
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/getData"];
     NSDictionary *paraDic = @{@"userId":userId,
+                              @"userToken":APP_DELEGATE.userToken,
                               @"type":[NSNumber numberWithInteger:type],
                               @"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]
@@ -607,6 +608,7 @@
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host, @"/taskNotes/getNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
+                              @"userToken":APP_DELEGATE.userToken,
                               @"queryType":queryType,
                               @"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]

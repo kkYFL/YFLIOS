@@ -26,7 +26,9 @@
 #import "UpdateModel.h"
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+Toast.h"
+#import "EWTMediator+EWTImagePicker.h"
 
+#define kMaxCount 1
 
 
 @interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,SubjectViewDelegate,UIActionSheetDelegate>{
@@ -34,6 +36,8 @@
     NSString *_info;    //更新说明
     
     NSInteger _score;
+    
+    NSString *headerImageUrl;
 }
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
@@ -48,6 +52,13 @@
 @property (nonatomic, strong) UIButton *signButton;
 
 @property (nonatomic, strong) UpdateView *updateView;
+
+
+/** 获取图片方式选择器 */
+@property (nonatomic, strong) UIActionSheet *getPhotosSheet;
+/** 已选图片集合 */
+@property (nonatomic, strong) NSMutableArray *images;
+
 @end
 
 @implementation PersonalViewController
@@ -394,6 +405,20 @@
 }
 
 
+#pragma mark - Photo/Library
+- (void)showActionSheet {
+    //[self resignKeyboard];
+    self.getPhotosSheet = [[UIActionSheet alloc] initWithTitle:[AppDelegate getURLWithKey:@"xiugaitouxiang"]
+                                                      delegate:self
+                                             cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"]
+                                        destructiveButtonTitle:nil
+                                             otherButtonTitles:[AppDelegate getURLWithKey:@"dakaixiangji"], [AppDelegate getURLWithKey:@"dakixiangce"], nil];
+    self.getPhotosSheet.tag = 100;
+    self.getPhotosSheet.delegate = self;
+    [self.getPhotosSheet showInView:self.view];
+}
+
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag == 101) {
         switch (buttonIndex)
@@ -415,6 +440,17 @@
                 
                 [self getServerLaunuage];
 
+                break;
+        }
+        
+    }else{
+        switch (buttonIndex)
+        {
+            case 0:  //打开照相机拍照
+                [self takePhotos];
+                break;
+            case 1:  //打开本地相册
+                [self getLocalPhotos];
                 break;
         }
     }
@@ -533,15 +569,15 @@
             make.centerX.equalTo(_headerView);
             make.height.width.mas_equalTo(iconWH);
         }];
+        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
+        iconImageView.userInteractionEnabled = YES;
+        [iconImageView addGestureRecognizer:tap2];
         
         
         UIImageView *cameraImageView = [[UIImageView alloc]init];
         [_headerView addSubview:cameraImageView];
         [cameraImageView setContentMode:UIViewContentModeCenter];
         [cameraImageView setImage:[UIImage imageNamed:@"camara"]];
-        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
-        cameraImageView.userInteractionEnabled = YES;
-        [cameraImageView addGestureRecognizer:tap2];
         [cameraImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(iconImageView.mas_bottom).offset(0);
             make.right.equalTo(iconImageView.mas_centerX).offset(-6);
@@ -686,7 +722,7 @@
 }
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    
+    [self showActionSheet];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -722,6 +758,106 @@
 
 -(void)showUpdateViewWindow{
     
+}
+
+
+-(void)takePhotos {
+    __weak typeof(self) weakSelf = self;
+    
+    if (self.images.count) {
+        [self.images removeAllObjects];
+    }
+    
+    [EWTMediator EWTImagePicker_getImageFromCameraWithController:self authorityType:SystemAuthorityVideo allowCrop:NO completion:^(NSArray<UIImage *> *images) {
+        UIImage* originalImg = [images firstObject];
+        if (originalImg) {
+            // 原图压缩处理（要求最多压缩2次将图片不然延迟感太强）
+            CGFloat compressionQuality = 0.05f;
+            NSData *compressedImgData = UIImageJPEGRepresentation(originalImg, 1.0f);
+            if ((compressedImgData.length / 1024.0f) > 200.0f) {
+                compressedImgData = UIImageJPEGRepresentation(originalImg, compressionQuality);
+            }
+            // 将压缩后的图片重新赋值给原图片
+            originalImg = [UIImage imageWithData:compressedImgData];
+            // 将图片添加到数组中
+            [weakSelf.images addObject:originalImg];
+            
+            
+            UIImage *imageOrigin = weakSelf.images[0];
+            UIImage *imageNew = [weakSelf imageWithOriginalImage:imageOrigin andScaledSize:CGSizeMake(60, 60)];
+            [self.images removeAllObjects];
+            [self.images addObject:imageNew];
+        }
+        
+        [self uploadImageToServer];
+        //[weakSelf showImagesView];
+    }];
+}
+
+-(void)getLocalPhotos {
+    __weak typeof(self) weakSelf = self;
+    
+    if (self.images.count) {
+        [self.images removeAllObjects];
+    }
+    
+    [EWTMediator EWTImagePicker_getImageFromLibraryWithController:self maxNum:kMaxCount allowCrop:YES completion:^(NSArray<UIImage *> *images) {
+        if (images && images.count > 0) {
+            [weakSelf.images addObjectsFromArray:images];
+            UIImage *imageOrigin = weakSelf.images[0];
+            UIImage *imageNew = [weakSelf imageWithOriginalImage:imageOrigin andScaledSize:CGSizeMake(60, 60)];
+            [self.images removeAllObjects];
+            [self.images addObject:imageNew];
+            [self uploadImageToServer];
+            //[weakSelf showImagesView];
+        }
+    }];
+}
+
+
+
+-(void)uploadImageToServer{
+    // 文件上传
+    //测试结果:
+    if (self.images.count) {
+        [[PromptBox sharedBox] showLoadingWithText:[AppDelegate getURLWithKey:@"shangchuanzhong"] onView:self.view];
+        
+        UIImage *image = self.images[0];
+        NSData *data = UIImagePNGRepresentation(image);
+        
+        [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
+            [[PromptBox sharedBox] removeLoadingView];
+            
+            headerImageUrl = [imgUrl copy];
+            self.userModel.headImg = imgUrl;
+            APP_DELEGATE.userModel.headImg = imgUrl;
+            
+            
+            NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.userModel.headImg];
+            [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
+            
+        } failure:^(NSError * _Nonnull error) {
+            [[PromptBox sharedBox] removeLoadingView];
+        }];
+    }
+    
+}
+
+-(UIImage *)imageWithOriginalImage:(UIImage *)originalImage andScaledSize:(CGSize)imageNewSize{
+    UIGraphicsBeginImageContext(imageNewSize);
+    [originalImage drawInRect:CGRectMake(0, 0, imageNewSize.width, imageNewSize.height)];
+    UIImage *imageNew = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return imageNew;
+}
+
+
+- (NSMutableArray *)images {
+    if (!_images) {
+        _images = [NSMutableArray array];
+        return _images;
+    }
+    return _images;
 }
 
 

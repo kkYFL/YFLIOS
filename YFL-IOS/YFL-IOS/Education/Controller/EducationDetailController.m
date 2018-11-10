@@ -46,6 +46,7 @@
     if ([NSString isBlankString:self.feedBackModel.answer]) {
         self.line.hidden = YES;
         self.questBackLabel.hidden = YES;
+        self.questBackContent.hidden = YES;
     }
     
     //

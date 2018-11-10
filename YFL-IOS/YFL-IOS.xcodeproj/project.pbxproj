@@ -122,6 +122,7 @@
 		3A6BA5A62129C1D000322875 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A52129C1D000322875 /* PersonalViewController.m */; };
 		3A6BA5A92129C1E500322875 /* ExamnationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5A82129C1E500322875 /* ExamnationViewController.m */; };
 		3A6BA5AC2129C1F400322875 /* EducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6BA5AB2129C1F400322875 /* EducationViewController.m */; };
+		3A7A98BD21970F7C00ED623A /* MYBlanKView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A98BC21970F7C00ED623A /* MYBlanKView.m */; };
 		3AB19237216B84DE006C5666 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19230216B84DE006C5666 /* OnboardingViewController.m */; };
 		3AB19238216B84DE006C5666 /* RYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19232216B84DE006C5666 /* RYPageControl.m */; };
 		3AB19239216B84DE006C5666 /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19233216B84DE006C5666 /* GuideViewController.m */; };
@@ -418,6 +419,8 @@
 		3A6BA5A82129C1E500322875 /* ExamnationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamnationViewController.m; sourceTree = "<group>"; };
 		3A6BA5AA2129C1F400322875 /* EducationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EducationViewController.h; sourceTree = "<group>"; };
 		3A6BA5AB2129C1F400322875 /* EducationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EducationViewController.m; sourceTree = "<group>"; };
+		3A7A98BB21970F7C00ED623A /* MYBlanKView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYBlanKView.h; sourceTree = "<group>"; };
+		3A7A98BC21970F7C00ED623A /* MYBlanKView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYBlanKView.m; sourceTree = "<group>"; };
 		3AB1922E216B84DE006C5666 /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		3AB1922F216B84DE006C5666 /* RYPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYPageControl.h; sourceTree = "<group>"; };
 		3AB19230216B84DE006C5666 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
@@ -945,6 +948,8 @@
 				3AD47C9C215A8DB7000FBC04 /* DisnetView.m */,
 				3A6BA49721271E5A00322875 /* PromptBox.m */,
 				3A6BA4BD21271E5A00322875 /* PromptBox.h */,
+				3A7A98BB21970F7C00ED623A /* MYBlanKView.h */,
+				3A7A98BC21970F7C00ED623A /* MYBlanKView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1548,6 +1553,7 @@
 				3A03CFC32158C4E600C49295 /* DNBrowserCell.m in Sources */,
 				3A03CF242156A5CB00C49295 /* PersonPassWordController.m in Sources */,
 				3A50D516212D46F500BD2919 /* BannerScrollViewCell.m in Sources */,
+				3A7A98BD21970F7C00ED623A /* MYBlanKView.m in Sources */,
 				8923F5AF2156338500CB98E4 /* PartyMemberThinking.m in Sources */,
 				3A5C0F37214DC9C600BB11FB /* NewsPolicyDetailViewController.m in Sources */,
 				3AD47CAC215A8FA0000FBC04 /* WebViewJavascriptBridgeBase.m in Sources */,

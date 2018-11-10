@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "CLInputToolbar.h"
 #import "MBProgressHUD+Toast.h"
+#import "MYBlanKView.h"
 
 #define pageMenueH 44.0
 
@@ -21,6 +22,8 @@
     NSInteger selectIndex;
     NSInteger _pageIndex;
     BOOL hasloadAll;
+    
+    MYBlanKView *_blanView;
 }
 @property (nonatomic, strong) UITableView *table;
 
@@ -62,6 +65,12 @@
                                 
     [self.view addSubview:self.itemsView];
     
+    //
+    _blanView = [[MYBlanKView alloc]initWithFrame:CGRectMake(0, 44.0, SCREEN_WIDTH, self.view.bounds.size.height-EWTTabbar_SafeBottomMargin-50-44.0)];
+    _blanView.hidden = YES;
+    [self.view addSubview:_blanView];
+    
+    
     [self.view addSubview:self.table];
     [self.view addSubview:self.footerView];
     [self setTextViewToolbar];
@@ -94,6 +103,12 @@
         }
 
         self.studyNotesArr = [NSMutableArray arrayWithArray:list];
+        
+        if (self.studyNotesArr.count == 0) {
+            [self showBlanVuiew];
+        }else{
+            [self hidenBlankView];
+        }
         
         [self.table reloadData];
         
@@ -449,6 +464,16 @@
     
     self.title = [AppDelegate getURLWithKey:@"XuexiXingDe"];
 }
+
+-(void)showBlanVuiew{
+    [self.view bringSubviewToFront:_blanView];
+    _blanView.hidden = NO;
+}
+
+-(void)hidenBlankView{
+    _blanView.hidden = YES;
+}
+
 
 
 - (void)didReceiveMemoryWarning {

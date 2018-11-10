@@ -8,6 +8,7 @@
 
 #import "NewsActivityTableViewCell.h"
 #import "NewsMessage.h"
+#import "AppDelegate.h"
 
 @interface NewsActivityTableViewCell ()
 @property (nonatomic, strong) UIImageView *icon;
@@ -34,7 +35,7 @@
     [icon setBackgroundColor:[UIColor grayColor]];
     [self.contentView addSubview:icon];
     self.icon = icon;
-    [icon setContentMode:UIViewContentModeCenter];
+    [icon setContentMode:UIViewContentModeScaleToFill];
     //[icon setImage:[UIImage imageNamed:@""]];
     icon.layer.masksToBounds = YES;
     icon.layer.cornerRadius = 20.0f;
@@ -169,7 +170,7 @@
 -(void)setMessModel:(NewsMessage *)messModel{
     _messModel = messModel;
     if (_messModel) {
-        [self.icon sd_setImageWithURL:[NSURL URLWithString:_messModel.userPic]];
+        [self.icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_messModel.userPic]]];
         [self.cellTitle1 setText:_messModel.userDepartment];
         [self.time setText:_messModel.createTime];
         

@@ -13,12 +13,15 @@
 #import "AppDelegate.h"
 #import "NewsDetailNoVideoController.h"
 #import "NewsVideoDetailViewController.h"
+#import "MYBlanKView.h"
 
 
 @interface NewsNoticeViewController ()<UITableViewDelegate,UITableViewDataSource
 >{
     NSInteger _pageIndex;
     BOOL hasLoadAll;
+    
+    MYBlanKView *_blanView;
 }
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *newsList;
@@ -40,6 +43,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
+    
+    
+    //
+    _blanView = [[MYBlanKView alloc]initWithFrame:self.view.bounds];
+    _blanView.hidden = YES;
+    [self.view addSubview:_blanView];
     
     
     [self.view addSubview:self.table];
@@ -87,6 +96,12 @@
         //more
         }else{
             [self.newsList addObjectsFromArray:newsList];
+        }
+        
+        if (self.newsList.count == 0) {
+            [self showBlanVuiew];
+        }else{
+            [self hidenBlankView];
         }
         
         [self.table reloadData];
@@ -219,6 +234,15 @@
     [super viewWillAppear:animated];
     
     self.title = [AppDelegate getURLWithKey:@"TongzhigongGao"];
+}
+
+-(void)showBlanVuiew{
+    [self.view bringSubviewToFront:_blanView];
+    _blanView.hidden = NO;
+}
+
+-(void)hidenBlankView{
+    _blanView.hidden = YES;
 }
 
 

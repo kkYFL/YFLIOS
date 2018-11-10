@@ -12,12 +12,17 @@
 #import "EducationTaskHistoryController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "MYBlanKView.h"
+
 
 @interface EducationLearHeartViewController ()<UITableViewDelegate,UITableViewDataSource
 >{
     NSInteger _pageIndex;
     BOOL hasLoadAll;
+    
+    MYBlanKView *_blanView;
 }
+
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *itemsView;
 @property (nonatomic, strong) NSMutableArray *learnListArr;
@@ -41,6 +46,12 @@
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     
+    //
+    _blanView = [[MYBlanKView alloc]initWithFrame:self.view.bounds];
+    _blanView.hidden = YES;
+    [self.view addSubview:_blanView];
+    
+    
     [self.view addSubview:self.table];
     
     [self initRefresh];
@@ -55,41 +66,7 @@
 }
 
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
-    
+
     [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@"jiazaizhong"]] onView:self.view];
 
     // 学习任务
@@ -116,10 +93,19 @@
                     [self.learnListArr addObjectsFromArray:listArray];
                 }
                 
+                if (self.learnListArr.count == 0) {
+                    [self showBlanVuiew];
+                }else{
+                    [self hidenBlankView];
+                }
+                
                 
                 [self.table reloadData];
             } failure:^(NSError * _Nonnull error) {
-                NSLog(@"%@", error);
+                
+                [[PromptBox sharedBox] removeLoadingView];
+                [self.table.mj_footer endRefreshing];
+                [self.table.mj_header endRefreshing];
             }];
 
     }else{
@@ -147,6 +133,11 @@
                 [self.learnListArr addObjectsFromArray:listArray];
             }
             
+            if (self.learnListArr.count == 0) {
+                [self showBlanVuiew];
+            }else{
+                [self hidenBlankView];
+            }
             
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
@@ -272,6 +263,16 @@
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     
+}
+
+
+-(void)showBlanVuiew{
+    [self.view bringSubviewToFront:_blanView];
+    _blanView.hidden = NO;
+}
+
+-(void)hidenBlankView{
+    _blanView.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

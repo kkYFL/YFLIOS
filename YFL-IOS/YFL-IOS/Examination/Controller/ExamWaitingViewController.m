@@ -11,8 +11,12 @@
 #import "ExamhomeViewController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "MYBlanKView.h"
 
-@interface ExamWaitingViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface ExamWaitingViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    MYBlanKView *_blanView;
+}
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSArray *list;
 @end
@@ -34,6 +38,12 @@
     
     
     [self.view addSubview:self.table];
+    
+    
+    //
+    _blanView = [[MYBlanKView alloc]initWithFrame:self.view.bounds];
+    _blanView.hidden = YES;
+    [self.view addSubview:_blanView];
 }
 
 -(void)loadData{
@@ -55,47 +65,17 @@
             }
         self.list = list;
         
+        if (self.list.count == 0) {
+            [self showBlanVuiew];
+        }else{
+            [self hidenBlankView];
+        }
+        
         [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
         }];
     
-    
-    
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
 }
 
 
@@ -183,6 +163,16 @@
     [super viewWillAppear:animated];
     
     self.title = (_type == ExamViewTypeDefault)?[AppDelegate getURLWithKey:@"LishiKaoshi"]:[AppDelegate getURLWithKey:@"Daikaoshi"];
+}
+
+
+-(void)showBlanVuiew{
+    [self.view bringSubviewToFront:_blanView];
+    _blanView.hidden = NO;
+}
+
+-(void)hidenBlankView{
+    _blanView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {

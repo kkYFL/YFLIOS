@@ -39,7 +39,7 @@
 		<key>ZuijinChengji</key>
 		<string>ཉེ་ལམགྲུབ་འབྲས</string>
 		<key>Chengjiyouxiu</key>
-		<string>ཁྱེད་ཀྱི་གྲུབ་འབྲས་ཕུལ་བྱུང་ཞུ་མུ་མཐུད་རྒྱུན་འཁྱོངས་呦</string>
+		<string>宝剑锋ནས་རྡར་རྡོ་རྒྱག་པ་ཐོན་དཔྱིད་འགོའི་དྲི་ཞིམ་རང་གྲང་ངར་ཆེན་པོ་ཡོང</string>
 		<key>LishiKaoshi</key>
 		<string>ལོ་རྒྱུསརྒྱུགས་ལེན</string>
 		<key>Daikaoshi</key>
@@ -342,8 +342,8 @@
 		<string>གནད་དོན་ལ་བརྡ་ལན</string>
 		<key>bukexiugaishoujihao</key>
 		<string>མི་བཟོ་བཅོས་ལག་ཐོགས་ཁ་པར་གྱི་ཨང་གྲངས</string>
-		<key>New item - 6</key>
-		<string></string>
+		<key>kaoshitishi</key>
+		<string>གལ་ཏེ་ཁྱོད་ཐབས་མེད་གཙང་མའི་མཚོན་པའི་ཁྱོད་ཀྱི་བསམ་ཚུལ་དེ་ཁོ་ན་ར་ཁྱོད་ད་རུང་མི་རྒྱུས་ལོན། --ཨ་尔伯特·དབྱིན་སི་ཐན།</string>
 		<key>New item - 5</key>
 		<string></string>
 		<key>New item - 4</key>
@@ -388,7 +388,7 @@
 		<key>ZuijinChengji</key>
 		<string>最近成绩</string>
 		<key>Chengjiyouxiu</key>
-		<string>您的成绩优秀，请继续保持呦!</string>
+		<string>宝剑锋从磨砺出 梅花香自苦寒来</string>
 		<key>LishiKaoshi</key>
 		<string>历史考试</string>
 		<key>Daikaoshi</key>
@@ -691,8 +691,8 @@
 		<string>回复：</string>
 		<key>bukexiugaishoujihao</key>
 		<string>不可修改手机号</string>
-		<key>New item</key>
-		<string></string>
+		<key>kaoshitishi</key>
+		<string>如果你无法简洁的表达你的想法，那只说明你还不够了解他！		--阿尔伯特·爱因斯坦</string>
 		<key>New item - 2</key>
 		<string></string>
 		<key>New item - 3</key>

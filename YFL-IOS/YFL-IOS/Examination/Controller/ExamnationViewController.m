@@ -400,6 +400,7 @@
         paimingLabel.text = [AppDelegate getURLWithKey:@"KaoshiPaiming"];
         paimingLabel.textColor = [UIColor colorWithHexString:@"#FF6A00"];
         paimingLabel.textAlignment = NSTextAlignmentCenter;
+        self.paimingLabel = paimingLabel;
         [_headerView addSubview:paimingLabel];
         [paimingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(headerImageView.mas_bottom).offset(30.0f);

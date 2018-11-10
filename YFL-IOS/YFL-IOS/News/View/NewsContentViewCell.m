@@ -7,6 +7,7 @@
 //
 
 #import "NewsContentViewCell.h"
+#import "AppDelegate.h"
 
 @interface NewsContentViewCell ()
 @property (nonatomic, strong) UILabel *cellTitleLabel;
@@ -96,7 +97,7 @@
         NSMutableAttributedString *attri = [NewsContentViewCell getAttriHeightwithString:_newsModel.title Speace:3.0f withFont:[UIFont systemFontOfSize:17.0f]];
         self.cellTitleLabel.attributedText = attri;
         self.laiyunLabel.text = _newsModel.sourceFrom;
-        self.pinlunLabel.text = [NSString stringWithFormat:@"%@评论",[_newsModel.commonNum stringValue]];
+        self.pinlunLabel.text = [NSString stringWithFormat:@"%@%@",[_newsModel.commonNum stringValue],[AppDelegate getURLWithKey:@"pinglun"]];
     }
 }
 

@@ -18,7 +18,6 @@
 
 @interface EducationHeadTableCell ()
 //@property (nonatomic, strong) UIImageView *topImageView;
-@property (nonatomic, strong) UILabel *cellContentLabel;
 @property (nonatomic, strong) UIView *line;
 
 
@@ -92,7 +91,7 @@
     UILabel *cellContentLabel = [[UILabel alloc] init];
     cellContentLabel.font = [UIFont systemFontOfSize:14.0f];
     cellContentLabel.numberOfLines = 0;
-    cellContentLabel.text = @"";
+    cellContentLabel.text = [AppDelegate getURLWithKey:@"kaoshitishi"];
     cellContentLabel.textColor = [UIColor colorWithHexString:@"#2A333A"];
     cellContentLabel.textAlignment = NSTextAlignmentLeft;
     [self.contentView addSubview:cellContentLabel];
@@ -121,7 +120,7 @@
 
 +(CGFloat)CellHWithModel:(Banner *)videoModel{
     if (videoModel) {
-        NSString *contentStr = videoModel.summary;
+        NSString *contentStr = [AppDelegate getURLWithKey:@"kaoshitishi"];
         CGFloat contentViewH = [contentStr heightWithFont:[UIFont systemFontOfSize:14.0f] constrainedToWidth:SCREEN_WIDTH-24]+0.5;
         CGFloat topImageViewH = 0.6*SCREEN_WIDTH;
         
@@ -135,7 +134,7 @@
 -(void)setVideoModel:(Banner *)videoModel{
     _videoModel = videoModel;
     if (_videoModel) {
-        [self.cellContentLabel setText:_videoModel.summary];
+        [self.cellContentLabel setText:[AppDelegate getURLWithKey:@"kaoshitishi"]];
         
         if (![NSString isBlankString:_videoModel.foreignUrl]) {
             

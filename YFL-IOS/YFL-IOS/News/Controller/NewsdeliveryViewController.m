@@ -180,6 +180,7 @@
         NewsRightIConTableCell *rightIconCell = [tableView dequeueReusableCellWithIdentifier:@"rightIconCell"];
         rightIconCell.cellTitleLabel.text = newsModel.title;
         NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsModel.imgUrl];
+        [rightIconCell.pinlunLabel setText:[NSString stringWithFormat:@"%@%@",[newsModel.commonNum stringValue],[AppDelegate getURLWithKey:@"pinglun"]]];
         [rightIconCell.cellImageView sd_setImageWithURL:[NSURL URLWithString:imageurl]];
         return rightIconCell;
     }

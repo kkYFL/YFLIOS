@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @class Banner;
 @interface EducationHeadTableCell : UITableViewCell
+@property (nonatomic, strong) UILabel *cellContentLabel;
 @property (nonatomic, strong) Banner *videoModel;
 +(CGFloat)CellHWithModel:(Banner *)videoModel;
 @end

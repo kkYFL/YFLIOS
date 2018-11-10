@@ -77,6 +77,9 @@
     }
     
 
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    NSString *MYUerser = [userdefaults objectForKey:@"MYUserName"];
+
 
     [self guidenView];
     

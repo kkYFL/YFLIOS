@@ -40,7 +40,6 @@
     
     UILabel *cellTitleLab = [[UILabel alloc] init];
     cellTitleLab.font = [UIFont systemFontOfSize:18.0f];
-    cellTitleLab.text = [AppDelegate getURLWithKey:@"dangyuanrequ"];
     cellTitleLab.textColor = [UIColor colorWithRed:229/255.0 green:81/255.0 blue:40/255.0 alpha:1];
     cellTitleLab.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:cellTitleLab];

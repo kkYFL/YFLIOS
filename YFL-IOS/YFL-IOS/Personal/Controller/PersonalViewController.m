@@ -826,22 +826,49 @@
         NSData *data = UIImagePNGRepresentation(image);
         
         [HanZhaoHua uploadFileWithFiles:data success:^(NSString * _Nonnull imgUrl) {
-            [[PromptBox sharedBox] removeLoadingView];
             
             headerImageUrl = [imgUrl copy];
-            self.userModel.headImg = imgUrl;
-            APP_DELEGATE.userModel.headImg = imgUrl;
             
-            
-            NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.userModel.headImg];
-            [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
+            [self savePersonSource];
             
         } failure:^(NSError * _Nonnull error) {
             [[PromptBox sharedBox] removeLoadingView];
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"saveError"] ToView:self.view];
         }];
     }
     
 }
+
+
+-(void)savePersonSource{
+    
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [para setValue:APP_DELEGATE.userId forKey:@"userId"];
+    [para setValue:headerImageUrl forKey:@"headImg"];
+    [para setValue:self.userModel.motto forKey:@"motto"];
+    [para setValue:self.userModel.pmAddress forKey:@"address"];
+    [para setValue:self.userModel.pmSex forKey:@"sex"];
+    
+    
+    [HanZhaoHua savePersonalSourceWithPara:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSLog(@"%@", responseObject);
+        [[PromptBox sharedBox] removeLoadingView];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"saveSuccess"] ToView:self.view];
+        
+        self.userModel.headImg = headerImageUrl;
+        APP_DELEGATE.userModel.headImg = headerImageUrl;
+        NSString *headerurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,self.userModel.headImg];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:headerurl] placeholderImage:[UIImage imageNamed:@"exam_header"]];
+        
+    } failure:^(NSError * _Nonnull error) {
+        [[PromptBox sharedBox] removeLoadingView];
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"saveError"] ToView:self.view];
+    }];
+    
+}
+
+
 
 -(UIImage *)imageWithOriginalImage:(UIImage *)originalImage andScaledSize:(CGSize)imageNewSize{
     UIGraphicsBeginImageContext(imageNewSize);

@@ -340,8 +340,8 @@
 		<string>གནད་དོན་གཙོ་བོ</string>
 		<key>fankuihuifu</key>
 		<string>གནད་དོན་ལ་བརྡ་ལན</string>
-		<key>New item - 7</key>
-		<string></string>
+		<key>bukexiugaishoujihao</key>
+		<string>མི་བཟོ་བཅོས་ལག་ཐོགས་ཁ་པར་གྱི་ཨང་གྲངས</string>
 		<key>New item - 6</key>
 		<string></string>
 		<key>New item - 5</key>
@@ -689,7 +689,13 @@
 		<string>问题描述：</string>
 		<key>fankuihuifu</key>
 		<string>回复：</string>
-		<key>New item - 7</key>
+		<key>bukexiugaishoujihao</key>
+		<string>不可修改手机号</string>
+		<key>New item</key>
+		<string></string>
+		<key>New item - 2</key>
+		<string></string>
+		<key>New item - 3</key>
 		<string></string>
 	</dict>
 </dict>

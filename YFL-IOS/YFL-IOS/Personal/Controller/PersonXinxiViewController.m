@@ -21,10 +21,8 @@
     BOOL allowEdting;
     
     NSString *headerImageUrl;
-    NSString *phoneInputStr;
     NSString *sexInputStr;
     NSString *mottoInputStr;
-    NSString *addressInputStr;
 }
 
 @property (nonatomic, strong) UITableView *table;
@@ -75,40 +73,7 @@
 }
 
 -(void)loadData{
-//    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
-//
-//    [HTTPEngineGuide VolunteerJinduGetAllCategorySourceSuccess:^(NSDictionary *responseObject) {
-//        NSString *code = [[responseObject objectForKey:@"code"] stringValue];
-//
-//        if ([code isEqualToString:@"200"]) {
-//            [self hideDisnetView];
-//            // 数据加载完成
-//            [[PromptBox sharedBox] removeLoadingView];
-//            //
-//            NSDictionary *dataDic = [responseObject objectForKey:@"data"];
-//            NSArray *listArr = [dataDic objectForKey:@"list"];
-//
-//            [<#tableName#> reloadData];
-//        }
-//
-//    }else{
-//        //数据刷新
-//        [[PromptBox sharedBox] removeLoadingView];
-//        [self hideDisnetView];
-//
-//        //数据异常情况处理
-//        if ([code isEqualToString:@"702"] || [code isEqualToString:@"704"] || [code isEqualToString:@"706"]) {
-//            [PublicMethod OfflineNotificationWithCode:code];//其他code值，错误信息展示
-//        }else{
-//            NSString *msg=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]];
-//            [[PromptBox sharedBox] showPromptBoxWithText:msg onView:self.view hideTime:2 y:0];
-//        }
-//    }
-//
-//     } failure:^(NSError *error) {
-//         [[PromptBox sharedBox] removeLoadingView];
-//         [self showDisnetView];
-//     }];
+
 }
 
 
@@ -160,7 +125,7 @@
             xinxiCell.cellContentLabel.tag = 101;
         }else if (indexPath.row ==1){
             titleStr = [AppDelegate getURLWithKey:@"PhoneNum"];
-            contentStr = phoneInputStr?self.userModel.userName:self.userModel.userName;
+            contentStr = self.userModel.userName;
             xinxiCell.cellContentLabel.tag = 102;
         }else if (indexPath.row ==2){
             titleStr = [AppDelegate getURLWithKey:@"sex"];
@@ -189,7 +154,7 @@
     }else if (indexPath.section == 3){
         xinxiCell.type = XinxiCellTypeWithJustContent;
         xinxiCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@"wodedizhi"];
-        xinxiCell.cellContentLabel.text = addressInputStr.length?addressInputStr:self.userModel.pmAddress;
+        xinxiCell.cellContentLabel.text = self.userModel.pmAddress;
         xinxiCell.cellContentLabel.tag = 105;
     }
     
@@ -389,7 +354,7 @@
 
 -(void)savePersonSource{
     
-    if ([NSString isBlankString:headerImageUrl] && [NSString isBlankString:phoneInputStr] && [NSString isBlankString:sexInputStr] && [NSString isBlankString:mottoInputStr] && [NSString isBlankString:addressInputStr]) {
+    if ([NSString isBlankString:headerImageUrl]  && [NSString isBlankString:sexInputStr] && [NSString isBlankString:mottoInputStr]) {
         
         [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"xuanzexiugaineirong"] ToView:self.view];
         return;
@@ -416,20 +381,22 @@
 
     
     NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
     [para setValue:APP_DELEGATE.userId forKey:@"userId"];
     [para setValue:self.userModel.headImg forKey:@"headImg"];
     [para setValue:mottoInputStr?mottoInputStr:self.userModel.motto forKey:@"motto"];
-    [para setValue:addressInputStr?addressInputStr:self.userModel.pmAddress forKey:@"address"];
+    [para setValue:self.userModel.pmAddress forKey:@"address"];
     [para setValue:sexNum forKey:@"sex"];
 
     
     [HanZhaoHua savePersonalSourceWithPara:para success:^(NSDictionary * _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
-        
+        [[PromptBox sharedBox] removeLoadingView];
         [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"saveSuccess"] ToView:self.view];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonViewSourceNoti" object:nil];
     } failure:^(NSError * _Nonnull error) {
+        [[PromptBox sharedBox] removeLoadingView];
         [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"saveError"] ToView:self.view];
     }];
     
@@ -466,6 +433,11 @@
             return NO;
         }
         
+        if (textField.tag == 102) {
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"bukexiugaishoujihao"] ToView:self.view];
+            return NO;
+        }
+        
         if (textField.tag == 103) {
             [self.view endEditing:YES];
             [self showSexActionSheet];
@@ -487,14 +459,10 @@
 -(void)textContentDidChange:(NSNotification *)noti{
     UITextField *currentTextfield = (UITextField *)noti.object;
     
-    if (currentTextfield.tag == 102){
-        phoneInputStr = currentTextfield.text;
-    }else if (currentTextfield.tag == 103){
+    if (currentTextfield.tag == 103){
         sexInputStr = currentTextfield.text;
     }else if (currentTextfield.tag == 104){
         mottoInputStr = currentTextfield.text;
-    }else if (currentTextfield.tag == 105){
-        addressInputStr = currentTextfield.text;
     }
 }
 

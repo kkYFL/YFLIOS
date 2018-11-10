@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 //党员头像
 @property(nonatomic, copy) NSString *headImg;
 
+@property (nonatomic, copy) NSString *nameZy;
+
 @end
 
 NS_ASSUME_NONNULL_END

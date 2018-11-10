@@ -508,6 +508,11 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)MYGetFanbuGetH5SouceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
 
 
+/**
+ 墨云-语言切换
+ */
++(void)MYGetLaungeWithType:(NSInteger)type Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
+
 
 @end
 

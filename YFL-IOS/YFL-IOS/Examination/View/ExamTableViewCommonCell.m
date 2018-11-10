@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *numLabel;
 @property (nonatomic, strong) UILabel *nameLabel;
-@property (nonatomic, strong) UILabel *paimingLabel;
 @end
 
 
@@ -106,8 +105,7 @@
     if (_rankModel) {
         [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_rankModel.headImg]]];
         [self.nameLabel setText:_rankModel.name];
-        [self.numLabel setText:[NSString stringWithFormat:@"%@分",_rankModel.score]];
-
+        [self.numLabel setText:[NSString stringWithFormat:@"%@%@",_rankModel.score,[AppDelegate getURLWithKey:@"fen"]]];
     }
 }
 

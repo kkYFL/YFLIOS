@@ -8,6 +8,8 @@
 
 #import "EWTBaseViewController.h"
 
-@interface EducationDetailController : EWTBaseViewController
+@class SuggestionFeedback;
 
+@interface EducationDetailController : EWTBaseViewController
+@property (nonatomic, strong) SuggestionFeedback *feedBackModel;
 @end

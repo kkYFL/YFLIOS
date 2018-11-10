@@ -85,8 +85,8 @@
     
     EducationItemsTableCell *ItemsCell = [tableView dequeueReusableCellWithIdentifier:@"ItemsCell"];
     ItemsCell.dataArr = self.bannerList;
+    ItemsCell.cellTitleLab.text = [AppDelegate getURLWithKey:@"dangyuanrequ"];
     return ItemsCell;
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -245,8 +245,9 @@
 }
 
 -(void)changeLuanguageAction:(NSNotification *)noti{
-    [self.table reloadData];    
     self.title = [AppDelegate getURLWithKey:@"DangYuanEducationTitle"];
+    
+    [self refershHeader];
 }
 
 

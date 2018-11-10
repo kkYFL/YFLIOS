@@ -18,6 +18,8 @@
 }
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UILabel *selectTitle2;
+@property (nonatomic, strong) UILabel *selectTitle1;
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIImageView *headerBottonView;
 
@@ -176,6 +178,9 @@
     if (self.scoreList.count > indexPath.row) {
         TestRanking *rankModel = self.scoreList[indexPath.row];
         CommonCell.rankModel = rankModel;
+        
+        CommonCell.paimingLabel.text = [NSString stringWithFormat:@"%@ %ld",[AppDelegate getURLWithKey:@"paimingdi"],(indexPath.row+1)];
+
     }
     return CommonCell;
 }
@@ -339,6 +344,7 @@
         selectTitle1.textColor = [UIColor whiteColor];
         selectTitle1.textAlignment = NSTextAlignmentCenter;
         [selectImageView addSubview:selectTitle1];
+        self.selectTitle1 = selectTitle1;
         [selectTitle1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.centerY.equalTo(selectImageView);
         }];
@@ -366,6 +372,7 @@
         selectTitle2.textColor = [UIColor whiteColor];
         selectTitle2.textAlignment = NSTextAlignmentCenter;
         [selectImageView2 addSubview:selectTitle2];
+        self.selectTitle2 = selectTitle2;
         [selectTitle2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.centerY.equalTo(selectImageView2);
         }];
@@ -504,8 +511,14 @@
 }
 
 -(void)changeLuanguageAction:(NSNotification *)noti{
-    [self.table reloadData];    
     self.title = [AppDelegate getURLWithKey:@"DangyuanKaoshi"];
+    self.remindLabel2.text = [AppDelegate getURLWithKey:@"Chengjiyouxiu"];
+    self.remindLabel1.text = [AppDelegate getURLWithKey:@"ZuijinChengji"];
+    self.selectTitle2.text = [AppDelegate getURLWithKey:@"Daikaoshi"];
+    self.selectTitle1.text = [AppDelegate getURLWithKey:@"LishiKaoshi"];
+    self.paimingLabel.text = [AppDelegate getURLWithKey:@"KaoshiPaiming"];
+
+    [self refershHeader];
 }
 
 

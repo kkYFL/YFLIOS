@@ -24,10 +24,12 @@
 #import "PersonRowWithIconCell.h"
 #import "UpdateView.h"
 #import "UpdateModel.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+Toast.h"
 
 
 
-@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,SubjectViewDelegate>{
+@interface PersonalViewController ()<UITableViewDelegate,UITableViewDataSource,SubjectViewDelegate,UIActionSheetDelegate>{
     NSString *_filePath;//地址
     NSString *_info;    //更新说明
     
@@ -112,6 +114,8 @@
         NSDictionary *dataDic = [responseObject objectForKey:@"data"];
         if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
             self.userModel = [[UserMessage alloc]initWithDic:dataDic];
+            //同步个人信息
+            APP_DELEGATE.userModel = [[UserMessage alloc]initWithDic:dataDic];
         }
         NSLog(@"");
         self.serverCount ++;
@@ -371,22 +375,87 @@
             
         //语言切换
         }else if (indexPath.row == 1){
-            
-            NSString *type = @"";
-            if (APP_DELEGATE.isHan) {
-                APP_DELEGATE.isHan = NO;
-                type = @"1";
-            }else{
-                APP_DELEGATE.isHan = YES;
-                type = @"2";
-            }
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:type forKey:@"MYLaunuage"];
-            [defaults synchronize];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationChangeLaunuageNoti object:nil];
+            [self showSexActionSheet];
         }
     }
+}
+
+
+- (void)showSexActionSheet {
+    //[self resignKeyboard];
+    UIActionSheet *sexActionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                delegate:self
+                                                       cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"]
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:[AppDelegate getURLWithKey:@"hanyu"], [AppDelegate getURLWithKey:@"zangyu"], nil];
+    sexActionSheet.tag = 101;
+    sexActionSheet.delegate = self;
+    [sexActionSheet showInView:self.view];
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet.tag == 101) {
+        switch (buttonIndex)
+        {
+            case 0:
+                //sexInputStr = [AppDelegate getURLWithKey:@"nan"];
+                if (!APP_DELEGATE.isHan) {
+                    return;
+                }
+                
+                [self getServerLaunuage];
+
+                break;
+            case 1:
+                //sexInputStr = [AppDelegate getURLWithKey:@"nv"];
+                if (APP_DELEGATE.isHan) {
+                    return;
+                }
+                
+                [self getServerLaunuage];
+
+                break;
+        }
+    }
+}
+
+
+
+-(void)getServerLaunuage{
+    NSInteger serverType = 1;
+    if (APP_DELEGATE.isHan) {
+        serverType = 1;
+    }else{
+        serverType = 2;
+    }
+    
+    
+    [[PromptBox sharedBox] showLoadingWithText:[NSString stringWithFormat:@"%@...",[AppDelegate getURLWithKey:@"qiehuanzhong"]] onView:self.view];
+    [HanZhaoHua MYGetLaungeWithType:serverType Success:^(NSDictionary * _Nonnull responseObject) {
+        
+        [[PromptBox sharedBox] removeLoadingView];
+
+        
+        NSString *type = @"";
+        if (APP_DELEGATE.isHan) {
+            APP_DELEGATE.isHan = NO;
+            type = @"1";
+        }else{
+            APP_DELEGATE.isHan = YES;
+            type = @"2";
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:type forKey:@"MYLaunuage"];
+        [defaults synchronize];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationChangeLaunuageNoti object:nil];
+        
+    } failure:^(NSError * _Nonnull error) {
+        [[PromptBox sharedBox] removeLoadingView];
+        
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"qiehuanshibai"] ToView:self.view];
+    }];
 }
 
 #pragma mark - 懒加载
@@ -662,10 +731,9 @@
 
 
 -(void)changeLuanguageAction:(NSNotification *)noti{
-    [self.table reloadData];
-    [self refreshViewWithData];
-    
     self.title = [AppDelegate getURLWithKey:@"Gerenzhongxin"];
+    
+    [self refershHeader];
 }
 
 

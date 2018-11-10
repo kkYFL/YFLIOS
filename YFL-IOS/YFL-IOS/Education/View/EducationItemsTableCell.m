@@ -16,7 +16,6 @@
 #define itemViewW (SCREEN_WIDTH-itemMarginSpace*2-itemViewSpace)/2.0
 
 @interface EducationItemsTableCell ()
-@property (nonatomic, strong) UILabel *cellTitleLab;
 @property (nonatomic, strong) UIView *line1;
 @property (nonatomic, strong) UIView *line2;
 @property (nonatomic, strong) EducationItemContentView *item1;

@@ -1016,5 +1016,19 @@
 }
 
 
++(void)MYGetLaungeWithType:(NSInteger)type Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,@"/toolsCtrl/translation"];
+    NSDictionary *paraDic = @{@"userToken":APP_DELEGATE.userToken,
+                              @"queryType":[NSNumber numberWithInteger:type]};
+    
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
+}
+
+
+
 
 @end

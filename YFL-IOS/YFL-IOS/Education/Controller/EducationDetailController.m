@@ -8,6 +8,7 @@
 
 #import "EducationDetailController.h"
 #import "AppDelegate.h"
+#import "SuggestionFeedback.h"
 
 @interface EducationDetailController ()
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -36,6 +37,16 @@
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
+    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@",[AppDelegate getURLWithKey:@"fankuizhuti"] ,self.feedBackModel.title];
+    self.questDescribeLabel.text = [AppDelegate getURLWithKey:@"fankuiwentiMiaoshu"];
+    self.questContent.text = [NSString stringWithFormat:@"      %@",self.feedBackModel.problemInfo];
+    self.questBackLabel.text = [AppDelegate getURLWithKey:@"fankuihuifu"];
+    self.questBackContent.text = [NSString stringWithFormat:@"      %@",self.feedBackModel.answer];
+
+    if ([NSString isBlankString:self.feedBackModel.answer]) {
+        self.line.hidden = YES;
+        self.questBackLabel.hidden = YES;
+    }
     
     //
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,7 +94,24 @@
         make.right.equalTo(self.view.mas_right).offset(-26.0f);
     }];
     
+    
+    
+    /*
+     //处理状态； 1：解决中 2：已处理
+     @property(nonatomic, copy) NSString *answerState;
+     //反馈时间(时间戳)
+     @property(nonatomic, copy) NSString *createTime;
+     //问题描述
+     @property(nonatomic, copy) NSString *problemInfo;
+     //主题
+     @property(nonatomic, copy) NSString *title;
+     //回复信息
+     @property(nonatomic, copy) NSString *answer;
+     */
+    
 }
+
+
 
 -(void)loadData{
 //    [[PromptBox sharedBox] showLoadingWithText:@"加载中..." onView:self.view];
@@ -146,6 +174,8 @@
     }
     return _titleLabel;
 }
+
+
 
 
 -(UILabel *)questDescribeLabel{

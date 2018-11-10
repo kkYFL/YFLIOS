@@ -322,15 +322,33 @@
 		<string>གཏན་ཁེལ</string>
 		<key>faxianxinbanben</key>
 		<string>གསར་བ་རྙེད་པ་པར་གཞི</string>
+		<key>qiehuanzhong</key>
+		<string>切换ཁྲོད་...</string>
+		<key>qiehuanshibai</key>
+		<string>切换ཕམ་ཁ</string>
+		<key>paimingdi</key>
+		<string>གྲལ་སྟར་སྒྲིག་པ</string>
+		<key>fen</key>
+		<string>སྐར་གྲངས</string>
+		<key>hanyu</key>
+		<string>རྒྱ་སྐད</string>
+		<key>zangyu</key>
+		<string>བོད་སྐད</string>
+		<key>fankuizhuti</key>
+		<string>ལྡོག་འདྲེན་གནད་དོན</string>
+		<key>fankuiwentiMiaoshu</key>
+		<string>གནད་དོན་གཙོ་བོ</string>
+		<key>fankuihuifu</key>
+		<string>གནད་དོན་ལ་བརྡ་ལན</string>
 		<key>New item - 7</key>
-		<string></string>
-		<key>New item - 8</key>
 		<string></string>
 		<key>New item - 6</key>
 		<string></string>
+		<key>New item - 5</key>
+		<string></string>
 		<key>New item - 4</key>
 		<string></string>
-		<key>New item - 3</key>
+		<key>New item - 2</key>
 		<string></string>
 	</dict>
 	<key>Han</key>
@@ -653,7 +671,25 @@
 		<string>确认</string>
 		<key>faxianxinbanben</key>
 		<string>发现新版本</string>
-		<key>New item - 4</key>
+		<key>qiehuanzhong</key>
+		<string>切换中...</string>
+		<key>qiehuanshibai</key>
+		<string>切换失败</string>
+		<key>paimingdi</key>
+		<string>排名第</string>
+		<key>fen</key>
+		<string>分</string>
+		<key>hanyu</key>
+		<string>汉语</string>
+		<key>zangyu</key>
+		<string>藏语</string>
+		<key>fankuizhuti</key>
+		<string>主题：</string>
+		<key>fankuiwentiMiaoshu</key>
+		<string>问题描述：</string>
+		<key>fankuihuifu</key>
+		<string>回复：</string>
+		<key>New item - 7</key>
 		<string></string>
 	</dict>
 </dict>

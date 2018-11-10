@@ -10,6 +10,7 @@
 @class TestRanking;
 @interface ExamTableViewCommonCell : UITableViewCell
 @property (nonatomic, strong)  TestRanking *rankModel;
+@property (nonatomic, strong) UILabel *paimingLabel;
 +(CGFloat)CellH;
 
 @end

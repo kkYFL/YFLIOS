@@ -497,11 +497,6 @@
         ExamWaitingTableViewCell *waitingExam = [self.table dequeueReusableCellWithIdentifier:@"waitingExam"];
         waitingExam.hideRemindLabel = YES;
 
-//        if (_type == ExamViewTypeDefault) {
-//            waitingExam.hideRemindLabel = NO;
-//        }else{
-//            waitingExam.hideRemindLabel = YES;
-//        }
         if (self.dataArr3 && self.dataArr3.count > indexPath.row) {
             HistoryExam *examModel = self.dataArr3[indexPath.row];
             waitingExam.examModel = examModel;
@@ -535,6 +530,7 @@
 -(UIView *)pageItemView{
     if (!_pageItemView) {
         UIView *pageItemView = [[UIView alloc]init];
+        pageItemView.backgroundColor = [UIColor redColor];
         [self.navigationController.navigationBar addSubview:pageItemView];
         _pageItemView = pageItemView;
         [_pageItemView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -557,14 +553,14 @@
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_pageItemView addSubview:button];
         self.button = button;
-        [button setTitle:@"支部党员" forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@"zhibudangyuan"] forState:UIControlStateNormal];
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_pageItemView).offset(btnMargin);
             make.top.equalTo(_pageItemView).offset(10);
             make.height.mas_equalTo(btnH);
             make.width.mas_equalTo(btnW);
-            //make.height.mas_equalTo(<#Height#>);
         }];
+        
         
         
         UIButton *button1 = [[UIButton alloc]init];
@@ -574,7 +570,7 @@
         [button1.titleLabel setFont:[UIFont boldSystemFontOfSize:19.0f]];
         [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_pageItemView addSubview:button1];
-        [button1 setTitle:@"任务监督" forState:UIControlStateNormal];
+        [button1 setTitle:[AppDelegate getURLWithKey:@"renwujiandu"] forState:UIControlStateNormal];
         [button1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_pageItemView);
             make.top.equalTo(_pageItemView).offset(10);
@@ -587,7 +583,7 @@
         UIButton *button2 = [[UIButton alloc]init];
         button2.tag = 102;
         self.button2 = button2;
-        [button2 setTitle:@"考试监督" forState:UIControlStateNormal];
+        [button2 setTitle:[AppDelegate getURLWithKey:@"kaoshijiandu"] forState:UIControlStateNormal];
         [button2 addTarget:self action:@selector(selectSource:) forControlEvents:UIControlEventTouchUpInside];
         [button2.titleLabel setFont:[UIFont boldSystemFontOfSize:19.0f]];
         [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -673,12 +669,13 @@
         _pageItemView.hidden = NO;
     }
     
+    self.title = [AppDelegate getURLWithKey:@"zhibu"];
+
     
     if ([APP_DELEGATE.userModel.pmAuthor integerValue] == 1) {
         self.pageItemView.hidden = YES;
         self.table.hidden = YES;
         self.webView.hidden = NO;
-        self.title = [AppDelegate getURLWithKey:@"zhibu"];
 
         if ([NSString isBlankString:_htmlUrl]) {
             [self getH5Source];
@@ -690,6 +687,7 @@
         self.pageItemView.hidden = NO;
         self.table.hidden = NO;
         self.webView.hidden = YES;
+        
     }
 
 
@@ -703,12 +701,17 @@
 }
 
 -(void)changeLuanguageAction:(NSNotification *)noti{
-    [self.table reloadData];
-    self.title = [AppDelegate getURLWithKey:@"zhibu"];
     
+    
+    self.title = [AppDelegate getURLWithKey:@"zhibu"];
+
+
     [self.button setTitle:[AppDelegate getURLWithKey:@"zhibudangyuan"] forState:UIControlStateNormal];
     [self.button1 setTitle:[AppDelegate getURLWithKey:@"renwujiandu"] forState:UIControlStateNormal];
     [self.button2 setTitle:[AppDelegate getURLWithKey:@"kaoshijiandu"] forState:UIControlStateNormal];
+    
+    
+    [self refershHeader];
 }
 
 -(EWTWebView *)webView{

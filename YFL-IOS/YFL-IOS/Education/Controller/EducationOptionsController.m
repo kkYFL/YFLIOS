@@ -124,8 +124,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EducationDetailController *optionDetailVC = [[EducationDetailController alloc]init];
-    [self.navigationController pushViewController:optionDetailVC animated:YES];
+    if (self.feedbackArr.count > indexPath.row) {
+        SuggestionFeedback *model = self.feedbackArr[indexPath.row];
+        EducationDetailController *optionDetailVC = [[EducationDetailController alloc]init];
+        optionDetailVC.feedBackModel = model;
+        [self.navigationController pushViewController:optionDetailVC animated:YES];
+    }
+
 }
 
 #pragma mark - 懒加载

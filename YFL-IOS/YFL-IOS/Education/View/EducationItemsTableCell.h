@@ -10,6 +10,7 @@
 
 @interface EducationItemsTableCell : UITableViewCell
 +(CGFloat)CellH;
+@property (nonatomic, strong) UILabel *cellTitleLab;
 @property (nonatomic, strong) NSArray *dataArr;
 @end
 

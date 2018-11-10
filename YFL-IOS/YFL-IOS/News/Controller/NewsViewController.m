@@ -655,6 +655,7 @@
             InformationMenu *menmodel = self.menuList[3];
             NewsActivityViewController *acitivityVC = [[NewsActivityViewController alloc]init];
             acitivityVC.menuModel = menmodel;
+            acitivityVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:acitivityVC animated:YES];
         }
 
@@ -663,6 +664,7 @@
             InformationMenu *menmodel = self.menuList[2];
             NewsNoticeViewController *noticeVC = [[NewsNoticeViewController alloc]init];
             noticeVC.menuModel = menmodel;
+            noticeVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:noticeVC animated:YES];
         }
     }
@@ -698,8 +700,9 @@
 }
 
 -(void)changeLuanguageAction:(NSNotification *)noti{
-    [self.table reloadData];    
     self.title = [AppDelegate getURLWithKey:@"NewsHomeTitle"];
+    
+    [self refershHeader];
 }
 
 - (void)didReceiveMemoryWarning {

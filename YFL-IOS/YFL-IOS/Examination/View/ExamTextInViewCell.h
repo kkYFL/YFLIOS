@@ -12,5 +12,6 @@
 @interface ExamTextInViewCell : UITableViewCell
 @property (nonatomic, copy) NSString *sourceUrl;
 @property (nonatomic, strong) HistoryExamDetail *examModel;
-+(CGFloat)CellH;
++(CGFloat)CellHWithExamModel:(HistoryExamDetail *)examModel;
+
 @end

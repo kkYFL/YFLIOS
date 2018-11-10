@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
             return [ExamChooseCell CellHWithModel:_currentExamModel]+60;
         }
         
-        return [ExamTextInViewCell CellH];
+        return [ExamTextInViewCell CellHWithExamModel:_currentExamModel];
     }else if (indexPath.row == 3){
         return [ExamTextViewPutINCell CellH];
 
@@ -156,9 +156,8 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         
         
         ExamTextInViewCell *textInCell = [tableView dequeueReusableCellWithIdentifier:@"textInCell"];
-        if (self.detailList.count > _currentIndex) {
-            HistoryExamDetail *detailModel = self.detailList[_currentIndex];
-            textInCell.examModel = detailModel;
+        if (_currentExamModel) {
+            textInCell.examModel = _currentExamModel;
         }
         return textInCell;
         
@@ -295,7 +294,7 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
     //上一题
     if (viewTag == 101) {
         //返回到第一题点击返回按钮无效
-        if (_currentIndex <= 0) {
+        if (_currentIndex == 0) {
             return;
         }
         
@@ -303,9 +302,9 @@ typedef NS_ENUM(NSInteger,ExamContentViewType) {
         _currentIndex --;
         
         
+        [self refreshViewWithWithIndex:_currentIndex];
         
-        
-        //_viewType = ExamContentViewTypeDefault;
+        [self.table reloadData];
         
     //下一题
     }else if (viewTag == 102){

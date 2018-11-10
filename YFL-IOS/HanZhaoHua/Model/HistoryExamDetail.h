@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *score;
 //
 @property(nonatomic, copy) NSString *showOrder;
-//
+//1 文字  2 视频  3 音频  4 图片 
 @property(nonatomic, copy) NSString *titleType;
 
 -(id)initWithDic:(NSDictionary *)dic;

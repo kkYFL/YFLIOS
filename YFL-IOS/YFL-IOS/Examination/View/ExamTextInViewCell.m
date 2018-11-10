@@ -62,9 +62,8 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     self.examBG = examBG;
     [examBG setContentMode:UIViewContentModeScaleAspectFill];
     [examBG setImage:[UIImage imageNamed:@"exam_bg"]];
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGestureAction:)];
     examBG.userInteractionEnabled = YES;
-    [examBG addGestureRecognizer:tap1];
+    
     
     
     [examBG mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,39 +83,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 //    [self.backImageView sd_setImageWithURL:[NSURL URLWithString:self.corverImageUrl]];
     
     
-    [self.examBG addSubview:self.containerView];
-    [self.containerView addSubview:self.backImageView];
-    [self.containerView addSubview:self.playBtn];
-    [self.examBG addSubview:self.backBtn];
-    
-    
-    ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
-    //    KSMediaPlayerManager *playerManager = [[KSMediaPlayerManager alloc] init];
-    //    ZFIJKPlayerManager *playerManager = [[ZFIJKPlayerManager alloc] init];
-    /// 播放器相关
-    self.player = [ZFPlayerController playerWithPlayerManager:playerManager containerView:self.containerView];
-    self.player.controlView = self.controlView;
-    /// 设置退到后台继续播放
-    self.player.pauseWhenAppResignActive = NO;
-    @weakify(self)
-    self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
-        //@strongify(self)
-        //[self setNeedsStatusBarAppearanceUpdate];
-    };
-    
-    /// 播放完自动播放下一个
-    self.player.playerDidToEnd = ^(id  _Nonnull asset) {
-        @strongify(self)
-        [self.player.currentPlayerManager replay];
-        //        [self.player playTheNext];
-        //        if (!self.player.isLastAssetURL) {
-        //            NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
-        //            [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
-        //        } else {
-        //            [self.player stop];
-        //        }
-    };
-    
+
 
 }
 
@@ -125,6 +92,42 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     _examModel = examModel;
     
     if (_examModel) {
+        [self.examBG addSubview:self.containerView];
+        [self.containerView addSubview:self.backImageView];
+        [self.containerView addSubview:self.playBtn];
+        [self.examBG addSubview:self.backBtn];
+        
+        
+        ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
+        //    KSMediaPlayerManager *playerManager = [[KSMediaPlayerManager alloc] init];
+        //    ZFIJKPlayerManager *playerManager = [[ZFIJKPlayerManager alloc] init];
+        /// 播放器相关
+        self.player = [ZFPlayerController playerWithPlayerManager:playerManager containerView:self.containerView];
+        self.player.controlView = self.controlView;
+        /// 设置退到后台继续播放
+        self.player.pauseWhenAppResignActive = NO;
+        @weakify(self)
+        self.player.orientationWillChange = ^(ZFPlayerController * _Nonnull player, BOOL isFullScreen) {
+            //@strongify(self)
+            //[self setNeedsStatusBarAppearanceUpdate];
+        };
+        
+        /// 播放完自动播放下一个
+        self.player.playerDidToEnd = ^(id  _Nonnull asset) {
+            @strongify(self)
+            [self.player.currentPlayerManager replay];
+            //        [self.player playTheNext];
+            //        if (!self.player.isLastAssetURL) {
+            //            NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
+            //            [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
+            //        } else {
+            //            [self.player stop];
+            //        }
+        };
+        
+        
+        
+        
 //        if ([_examModel.ex hasPrefix:@"http"]) {
 //            self.corverImageUrl = self.newsModel.imgUrl;
 //        }else{
@@ -132,39 +135,54 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 //        }
         //[self.backImageView sd_setImageWithURL:[NSURL URLWithString:self.corverImageUrl]];
         
+        /*
+         //1 文字  2 视频  3 音频  4 图片
+         @property(nonatomic, copy) NSString *titleType;
+         */
         
-        if ([NSString isBlankString:_examModel.examUrl]) {
+        
+        if ([_examModel.titleType integerValue] == 2 || [_examModel.titleType integerValue] == 3) {
+            self.examBG.hidden = NO;
+            self.containerView.hidden = NO;
+            self.backBtn.hidden = NO;
             
-            //无播放资源返回
             
-        }else{
             if ([_examModel.examUrl hasPrefix:@"http"]) {
                 self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:_examModel.examUrl]];
             }else{
                 self.assetURLs = [NSArray arrayWithObject:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_examModel.examUrl]]];
             }
+            
+            self.player.assetURLs = self.assetURLs;
+
+        }else if([_examModel.titleType integerValue] == 4){
+            self.examBG.hidden = NO;
+            self.containerView.hidden = YES;
+            self.backBtn.hidden = YES;
+            
+            if ([_examModel.examUrl hasPrefix:@"http"]) {
+                [self.examBG sd_setImageWithURL:[NSURL URLWithString:_examModel.examUrl]];
+            }else{
+                [self.examBG sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,_examModel.examUrl]]];
+            }
+        }else if ([_examModel.titleType integerValue] == 1){
+            self.examBG.hidden = YES;
+            self.containerView.hidden = YES;
+            self.backBtn.hidden = YES;
         }
-        
-        //            if ([newsDetail.imgUrl hasPrefix:@"http"]) {
-        //                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:newsDetail.imgUrl]];
-        //            }else{
-        //                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsDetail.imgUrl]]];
-        //            }
-        
-        self.player.assetURLs = self.assetURLs;
 
     }
 }
 
 
-+(CGFloat)CellH{
++(CGFloat)CellHWithExamModel:(HistoryExamDetail *)examModel{
+    if ([examModel.titleType integerValue] == 1){
+        return 0.01f;
+    }
     return ExamTextViewH;
 }
 
 
--(void)tapGestureAction:(UITapGestureRecognizer *)tap{
-    
-}
 
 -(void)layoutSubviews{
     [super layoutSubviews];

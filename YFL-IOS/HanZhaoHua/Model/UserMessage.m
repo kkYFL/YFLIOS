@@ -21,7 +21,7 @@
         self.headImg = [NSString stringWithFormat:@"%@",[dic objectForKey:@"headImg"]];
         self.createMan = [NSString stringWithFormat:@"%@",[dic objectForKey:@"createMan"]];
         self.createTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"createTime"]];
-        self.userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userId"]];
+        self.userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"id"]];
         self.integral = [NSString stringWithFormat:@"%@",[dic objectForKey:@"integral"]];
         self.modifyMan = [NSString stringWithFormat:@"%@",[dic objectForKey:@"modifyMan"]];
         self.modifyTime = [NSString stringWithFormat:@"%@",[dic objectForKey:@"modifyTime"]];

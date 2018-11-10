@@ -282,12 +282,16 @@
 -(void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
     if (self.bannerList.count > index) {
-        WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
-        Banner *bannerModel = self.bannerList[index];
-        wzweb.titleVC               =  [AppDelegate getURLWithKey:@"XiangQing"];
-        wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.sourceHost,bannerModel.foreignUrl];
-        wzweb.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:wzweb animated:YES];
+//        WZWebViewController *wzweb  = [[WZWebViewController alloc] init];
+//        Banner *bannerModel = self.bannerList[index];
+//        wzweb.titleVC               =  [AppDelegate getURLWithKey:@"XiangQing"];
+//        if ([bannerModel.foreignUrl hasPrefix:@"http"]) {
+//            wzweb.webUrl = [NSString stringWithFormat:@"%@",bannerModel.foreignUrl];
+//        }else{
+//            wzweb.webUrl = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.sourceHost,bannerModel.foreignUrl];
+//        }
+//        wzweb.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:wzweb animated:YES];
     }
 
 }

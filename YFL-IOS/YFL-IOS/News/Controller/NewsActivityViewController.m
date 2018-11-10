@@ -47,7 +47,7 @@
     _blanView = [[MYBlanKView alloc]initWithFrame:self.view.bounds];
     _blanView.hidden = YES;
     [self.view addSubview:_blanView];
-
+    
     
     
     [self.view addSubview:self.table];

@@ -32,7 +32,6 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIImageView *icon = [[UIImageView alloc]init];
-    [icon setBackgroundColor:[UIColor grayColor]];
     [self.contentView addSubview:icon];
     self.icon = icon;
     [icon setContentMode:UIViewContentModeScaleToFill];

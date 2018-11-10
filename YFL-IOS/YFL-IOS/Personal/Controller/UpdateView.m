@@ -150,8 +150,8 @@
         cancelIMageView.userInteractionEnabled = YES;
         [cancelIMageView addGestureRecognizer:tap1];
         [cancelIMageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(topImageView).offset(-8);
-            make.top.equalTo(topImageView).offset(-6);
+            make.centerX.equalTo(topImageView.mas_right).offset(-4);
+            make.centerY.equalTo(topImageView.mas_top).offset(4);
             make.height.width.mas_equalTo(30);
         }];
         

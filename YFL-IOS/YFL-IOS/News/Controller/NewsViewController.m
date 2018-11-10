@@ -420,12 +420,9 @@
         
 
         //视频
-        __weak typeof(self) weakSelf = self;
         NewsContentMaxImageViewCell *MaxImageCell = [tableView dequeueReusableCellWithIdentifier:@"MaxImageCell"];
         MaxImageCell.content = newsModel.title;
         NSString *imageurl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,newsModel.imgUrl];
-    //        self.pinlunLabel.text = [NSString stringWithFormat:@"%@%@",[_newsModel.commonNum stringValue],[AppDelegate getURLWithKey:@"pinglun"]];
-
         [MaxImageCell.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageurl]];
         return MaxImageCell;
         

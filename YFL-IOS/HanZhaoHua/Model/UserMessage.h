@@ -65,6 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString *userPass;
 //
 @property(nonatomic, copy) NSString *userToken;
+//1 部长   2 支部书记  5  普通党员
+@property (nonatomic, copy) NSString *pmAuthor;
+
 
 -(id)initWithDic:(NSDictionary *)dic;
 

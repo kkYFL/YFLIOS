@@ -9,7 +9,6 @@
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 
-static NSString *host = @"http://47.100.247.71/protal/";
 
 @implementation HanZhaoHua
 
@@ -18,7 +17,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                  success: (void (^)(UserMessage *user))success
                  failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/doLogin"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host, @"/userCtrl/doLogin"];
     
     
     //外部传入数据
@@ -125,7 +124,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                         success: (void (^)(NSDictionary *responseObject))success
                         failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/resetPwd"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host, @"/userCtrl/resetPwd"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"oldPwd":oldPwd,
                               @"password":password
@@ -159,7 +158,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 +(NSString *)getRandomNum{
     int randomNum = (arc4random() % 10000)+1;
-    return [NSString stringWithFormat:@"%ld",randomNum];
+    return [NSString stringWithFormat:@"%d",randomNum];
 }
 
 
@@ -169,7 +168,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                    success: (void (^)(NSDictionary *responseObject))success
                                    failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/saveUserInfo"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/userCtrl/saveUserInfo"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"headImg":headImg,
                               @"motto":motto
@@ -183,7 +182,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 
 +(void)savePersonalSourceWithPara:(NSDictionary *)para success:(void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/saveUserInfo"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/userCtrl/saveUserInfo"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:para success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -198,7 +197,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                  success: (void (^)(NSNumber *score))success
                                  failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"integral/score.json"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/integral/score.json"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId
                               };
@@ -218,7 +217,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success:(void (^)(NSArray * _Nonnull))success
                           failure:(void (^)(NSError * _Nonnull))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"integral/logsList.json"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host, @"/integral/logsList.json"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId
                               };
@@ -244,7 +243,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                     success:(void (^)(NSDictionary * _Nonnull))success
                     failure:(void (^)(NSError * _Nonnull))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"sign/signIn.do"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/sign/signIn.do"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId
                               };
@@ -262,7 +261,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                 success: (void (^)(NSDictionary *responseObject))success
                                 failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"sign/signInList.json"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/sign/signInList.json"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"year":[[NSNumber alloc] initWithInteger:year],
@@ -280,7 +279,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                  success: (void (^)(NSArray *bannerList))success
                                  failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"positionCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/positionCtrl/getData"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"positionType":positionType
                               };
@@ -313,7 +312,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                   success: (void (^)(Banner *message))success
                                   failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"positionCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/positionCtrl/getData"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"positionType":positionType
                               };
@@ -332,7 +331,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                success: (void (^)(NSArray *menuList))success
                                failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationTypeCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/informationTypeCtrl/getData"];
     NSDictionary *paraDic = @{@"userToken":userToken};
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) {
@@ -357,7 +356,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                         success: (void (^)(NSArray *newsList))success
                         failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/informationCtrl/getData"];
     NSDictionary *paraDic = nil;
     if (title && title.length) {
                      paraDic = @{@"userToken":userToken,
@@ -397,7 +396,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success: (void (^)(NewsDetail *newsDetail))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"informationCtrl/getInfoHtml"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/informationCtrl/getInfoHtml"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"informationId":informationId
                               };
@@ -419,7 +418,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/getSysDate"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/getSysDate"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId};
     [[HTTPEngine sharedEngine] getRequestWithURL:urlStr parameter:paraDic success:^(NSDictionary *responseObject) {
@@ -436,7 +435,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                              success: (void (^)(NSArray * listArray))success
                              failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/getData"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"type":[NSNumber numberWithInteger:type],
                               @"page":[NSNumber numberWithInteger:page],
@@ -466,7 +465,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                    success: (void (^)(NSArray * listArray))success
                                    failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskCommentCtrl/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/taskCommentCtrl/getData"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId,
@@ -495,7 +494,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                            success: (void (^)(NSDictionary *responseObject))success
                            failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskCommentCtrl/addData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/taskCommentCtrl/addData"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId,
@@ -515,7 +514,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                success: (void (^)(NSDictionary *responseObject))success
                                failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/addHistory"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/addHistory"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId,
@@ -534,7 +533,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                success: (void (^)(NSNumber *totalLearnTime, NSArray *list))success
                                failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"memberTaskCtrl/getHistory"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/getHistory"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"taskId":taskId
@@ -561,7 +560,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                              success: (void (^)(NSArray *list))success
                              failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"advise/getData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/advise/getData"];
     NSDictionary *paraDic = @{@"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]
                               };
@@ -586,7 +585,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                             success: (void (^)(NSDictionary *responseObject))success
                             failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"advise/addData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/advise/addData"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"title":title,
                               @"problemInfo":problemInfo
@@ -606,7 +605,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                        success: (void (^)(NSArray *list))success
                        failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/getNotes"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@", APP_DELEGATE.host, @"/taskNotes/getNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"queryType":queryType,
                               @"page":[NSNumber numberWithInteger:page],
@@ -634,7 +633,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/addNotes"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/taskNotes/addNotes"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"learnContent":learnContent
                               };
@@ -651,7 +650,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                            success: (void (^)(NSDictionary *responseObject))success
                            failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/addNotesComment"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/taskNotes/addNotesComment"];
     NSDictionary *paraDic = @{@"userId":userId,
                               @"notesId":notesId,
                               @"commentInfo":commentInfo
@@ -667,7 +666,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                          success: (void (^)(NSDictionary *responseObject))success
                          failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/fabulous"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/taskNotes/fabulous"];
     NSDictionary *paraDic = @{@"notesId":notesId,
                               @"userId":APP_DELEGATE.userId
                               };
@@ -684,7 +683,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                               success: (void (^)(NSArray *list))success
                               failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"taskNotes/getNotesComment"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/taskNotes/getNotesComment"];
     NSDictionary *paraDic = @{@"notesId":notesId,
                               @"page":[NSNumber numberWithInteger:page],
                               @"limit":[NSNumber numberWithInteger:pageNum]
@@ -713,7 +712,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                         success: (void (^)(TestRanking *owner, NSArray *scoreList))success
                         failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryNearScore"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryNearScore"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"page":[NSNumber numberWithInteger:page],
@@ -747,7 +746,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                         success: (void (^)(NSArray *list))success
                         failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperList"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryExamPaperList"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"page":[NSNumber numberWithInteger:page],
@@ -775,7 +774,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                  success: (void (^)(NSArray *list))success
                                  failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperDetail"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryExamPaperDetail"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"paperId":paperId
@@ -803,7 +802,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                         success: (void (^)(NSDictionary *examRule))success
                         failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/examPaperDesc"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/examPaperDesc"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"paperId":paperId
@@ -825,7 +824,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                                     success: (void (^)(NSArray *detailList))success
                                     failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/queryExamPaperSourceList"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryExamPaperSourceList"];
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"paperId":paperId
@@ -850,7 +849,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
                           success: (void (^)(NSDictionary *responseObject))success
                           failure: (void (^)(NSError *error))failure
 {
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"exam/handExamPaper"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/handExamPaper"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -884,7 +883,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 +(void)GetPersonInfoSourceWithParaDic: (NSDictionary *)paraDic
                               success: (void (^)(NSDictionary *responseObject))success
                               failure: (void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/getUserInfo"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/userCtrl/getUserInfo"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -895,7 +894,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 +(void)GetAPPVersionSourceWithParaDic: (NSDictionary *)paraDic
                               success: (void (^)(NSDictionary *responseObject))success
                               failure: (void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"version/update.do"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/version/update.do"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -907,7 +906,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 +(void)GetAPPGuidenViewImageSourceWithParaDic: (NSDictionary *)paraDic
                                       success: (void (^)(NSDictionary *responseObject))success
                                       failure: (void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"positionCtrl/welcomeImgs"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/positionCtrl/welcomeImgs"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -929,7 +928,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 
 +(void)MYLogOutWithParaDic: (NSDictionary *)paraDic success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"userCtrl/logout"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/userCtrl/logout"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -937,22 +936,10 @@ static NSString *host = @"http://47.100.247.71/protal/";
     }];
 }
 
-
-+(void)MYGetLaungeWithType:(NSInteger)type Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/toolsCtrl/translation"];
-    NSDictionary *paraDic = @{@"userToken":APP_DELEGATE.userToken,
-                              @"userId":@"1"};
-    
-    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
-        if (success) success(responseObject);
-    } failure:^(NSError *error) {
-        if (failure) failure(error);
-    }];
-}
 
 +(void)MYGetLaungeWithParaDic:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
 
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/toolsCtrl/translation"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/toolsCtrl/translation"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -963,7 +950,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 +(void)MYGetDangYuanListWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/userCtrl/getBranchUser"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/userCtrl/getBranchUser"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -973,7 +960,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 
 +(void)MYGetDangYuanJianduListWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/memberTaskCtrl/getAuthorData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/getAuthorData"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -983,7 +970,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 
 +(void)MYGetDangYuanKaoshiJianduListWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/exam/getAuthorData"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/getAuthorData"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -994,7 +981,7 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 
 +(void)MYGetDangYuanRenwuDetailSourceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/memberTaskCtrl/getAuthorMember"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/memberTaskCtrl/getAuthorMember"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
@@ -1004,13 +991,28 @@ static NSString *host = @"http://47.100.247.71/protal/";
 
 
 +(void)MYGetDangYuanKaoshiDetailSourceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@", host, @"/exam/getAuthorMember"];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/getAuthorMember"];
     [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
         if (success) success(responseObject);
     } failure:^(NSError *error) {
         if (failure) failure(error);
     }];
 
+}
+
+
++(void)MYGetFanbuGetH5SouceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure{
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/toolsCtrl/getSysInfoHtml"];
+    
+    [paraDic setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [paraDic setValue:APP_DELEGATE.userId forKey:@"userId"];
+    
+    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
+        if (success) success(responseObject);
+    } failure:^(NSError *error) {
+        if (failure) failure(error);
+    }];
 }
 
 

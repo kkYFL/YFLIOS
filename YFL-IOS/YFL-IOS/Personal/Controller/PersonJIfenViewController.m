@@ -9,16 +9,17 @@
 #import "PersonJIfenViewController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
+#import "EWTWebView.h"
 
-@interface PersonJIfenViewController ()
+
+@interface PersonJIfenViewController ()<EWTWebViewDelegate>
 @property (nonatomic, strong) UIImageView *icon1;
 @property (nonatomic, strong) UILabel *describe;
 
 @property (nonatomic, strong) UIImageView *icon2;
 @property (nonatomic, strong) UILabel *describe2;
 
-
-
+@property (nonatomic, strong) EWTWebView *webView;
 @end
 
 @implementation PersonJIfenViewController
@@ -37,56 +38,60 @@
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
     
-    //
-    UIImageView *icon1 = [[UIImageView alloc]init];
-    [self.view addSubview:icon1];
-    self.icon1 = icon1;
-    [icon1 setContentMode:UIViewContentModeCenter];
-    [icon1 setImage:[UIImage imageNamed:@"jifen_describe"]];
-    [icon1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(15.0f);
-        make.top.equalTo(self.view).offset(15.0f);
-    }];
-
+    NSString *htmlUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,@"/toolsCtrl/getIntegralHtml.html"];
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlUrl]]];
     
     //
-    UILabel *describe = [[UILabel alloc] init];
-    describe.font = [UIFont systemFontOfSize:17.0f];
-    describe.text = @"积分说明";
-    describe.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    describe.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:describe];
-    self.describe = describe;
-    [describe mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(icon1.mas_right).offset(11.0f);
-        make.centerY.equalTo(icon1);
-    }];
-    
-    
-    //
-    UIImageView *icon2 = [[UIImageView alloc]init];
-    [self.view addSubview:icon2];
-    self.icon2 = icon2;
-    [icon2 setContentMode:UIViewContentModeCenter];
-    [icon2 setImage:[UIImage imageNamed:@"jifen_descirbe2"]];
-    [icon2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(15.0f);
-        make.top.equalTo(self.view).offset(100.0f);
-    }];
-    
-    
-    //
-    UILabel *describe2 = [[UILabel alloc] init];
-    describe2.font = [UIFont systemFontOfSize:17.0f];
-    describe2.text = @"积分获得";
-    describe2.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
-    describe2.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:describe2];
-    self.describe2 = describe2;
-    [self.describe2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(icon2.mas_right).offset(11.0f);
-        make.centerY.equalTo(icon2);
-    }];
+//    UIImageView *icon1 = [[UIImageView alloc]init];
+//    [self.view addSubview:icon1];
+//    self.icon1 = icon1;
+//    [icon1 setContentMode:UIViewContentModeCenter];
+//    [icon1 setImage:[UIImage imageNamed:@"jifen_describe"]];
+//    [icon1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(15.0f);
+//        make.top.equalTo(self.view).offset(15.0f);
+//    }];
+//
+//
+//    //
+//    UILabel *describe = [[UILabel alloc] init];
+//    describe.font = [UIFont systemFontOfSize:17.0f];
+//    describe.text = @"积分说明";
+//    describe.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+//    describe.textAlignment = NSTextAlignmentLeft;
+//    [self.view addSubview:describe];
+//    self.describe = describe;
+//    [describe mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(icon1.mas_right).offset(11.0f);
+//        make.centerY.equalTo(icon1);
+//    }];
+//
+//
+//    //
+//    UIImageView *icon2 = [[UIImageView alloc]init];
+//    [self.view addSubview:icon2];
+//    self.icon2 = icon2;
+//    [icon2 setContentMode:UIViewContentModeCenter];
+//    [icon2 setImage:[UIImage imageNamed:@"jifen_descirbe2"]];
+//    [icon2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(15.0f);
+//        make.top.equalTo(self.view).offset(100.0f);
+//    }];
+//
+//
+//    //
+//    UILabel *describe2 = [[UILabel alloc] init];
+//    describe2.font = [UIFont systemFontOfSize:17.0f];
+//    describe2.text = @"积分获得";
+//    describe2.textColor = [UIColor colorWithHexString:@"#0C0C0C"];
+//    describe2.textAlignment = NSTextAlignmentLeft;
+//    [self.view addSubview:describe2];
+//    self.describe2 = describe2;
+//    [self.describe2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(icon2.mas_right).offset(11.0f);
+//        make.centerY.equalTo(icon2);
+//    }];
     
 }
 
@@ -143,6 +148,16 @@
 #pragma mark - 右侧按钮
 -(void)rightButtonAction{
     
+}
+
+-(EWTWebView *)webView{
+    if (!_webView) {
+        EWTWebView *webView = [[EWTWebView alloc]initWithFrame:self.view.bounds];
+        webView.delegate = self;
+        _webView = webView;
+        [self.view addSubview:webView];
+    }
+    return _webView;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

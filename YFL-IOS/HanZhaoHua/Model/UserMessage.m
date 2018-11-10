@@ -40,6 +40,9 @@
         self.userName = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userName"]];
         self.userPass = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userPass"]];
         self.userToken = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userToken"]];
+        self.pmAuthor = [NSString stringWithFormat:@"%@",[dic objectForKey:@"pmAuthor"]];
+
+        //
 
     }
     return self;

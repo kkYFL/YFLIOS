@@ -177,18 +177,6 @@
         if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
             
             APP_DELEGATE.updateModel = [[UpdateModel alloc]initWithDic:dataDic];
-//            NSInteger isForceUpdate = [[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"isForceUpdate"]] integerValue];
-//            _filePath = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"filePath"]];
-//            _info = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"info"]];
-//
-//            if (isForceUpdate == 1) {
-//
-//            }else{
-//
-//            }
-            
-        
-            
         }
 
         
@@ -200,7 +188,7 @@
 
 -(void)gotoUPdateViersion{
     //测试使用
-    UpdateView *updateView = [[UpdateView alloc]initWithUpdateViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) ContentInfo:APP_DELEGATE.updateModel.info];
+    UpdateView *updateView = [[UpdateView alloc]initWithUpdateViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) ContentInfo:APP_DELEGATE.updateModel];
     updateView.delegate = self;
     self.updateView = updateView;
 }
@@ -383,13 +371,20 @@
             
         //语言切换
         }else if (indexPath.row == 1){
+            
+            NSString *type = @"";
             if (APP_DELEGATE.isHan) {
                 APP_DELEGATE.isHan = NO;
+                type = @"1";
             }else{
                 APP_DELEGATE.isHan = YES;
+                type = @"2";
             }
-
-             [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationChangeLaunuageNoti object:nil];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:type forKey:@"MYLaunuage"];
+            [defaults synchronize];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationChangeLaunuageNoti object:nil];
         }
     }
 }

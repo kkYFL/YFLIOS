@@ -43,19 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(id)initWithDic:(NSDictionary *)dic;
 @end
 
-/*
- "taskId":"任务id",
- "userId":"用户id",
- "vedioUrl":"视频/音频url",
- "taskThumb": "http://www.baidu.com",
- "taskSummary": "这里事任务的简介",
- "taskTitle": "这里是任务的标题" ,
- "taskContent":"任务内容",
- "taskType":"任务内容",
- "nowState":1，
- "learnTime":300，
- "createTime":300，
- "nowNum":30
- */
+
 
 NS_ASSUME_NONNULL_END

@@ -501,9 +501,11 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)MYGetDangYuanKaoshiDetailSourceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
 
 
+/**
+ 墨云-返回h5页面接口
+ */
 
-
-
++(void)MYGetFanbuGetH5SouceWithPara:(NSDictionary *)paraDic Success:(void (^)(NSDictionary *responseObject))success failure:(void (^)(NSError *error))failure;
 
 
 

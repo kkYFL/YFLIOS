@@ -318,10 +318,10 @@
 		<string>ལས་འགན་ལྟ་སྐུལ</string>
 		<key>kaoshijiandu</key>
 		<string>རྒྱུགས་ལེན་ལྟ་སྐུལ</string>
-		<key>New item</key>
-		<string></string>
-		<key>New item - 2</key>
-		<string></string>
+		<key>queren</key>
+		<string>གཏན་ཁེལ</string>
+		<key>faxianxinbanben</key>
+		<string>གསར་བ་རྙེད་པ་པར་གཞི</string>
 		<key>New item - 7</key>
 		<string></string>
 		<key>New item - 8</key>
@@ -649,10 +649,10 @@
 		<string>任务监督</string>
 		<key>kaoshijiandu</key>
 		<string>考试监督</string>
-		<key>New item - 2</key>
-		<string></string>
-		<key>New item - 3</key>
-		<string></string>
+		<key>queren</key>
+		<string>确认</string>
+		<key>faxianxinbanben</key>
+		<string>发现新版本</string>
 		<key>New item - 4</key>
 		<string></string>
 	</dict>

@@ -8,8 +8,11 @@
 
 #import "AboutViewController.h"
 #import "AppDelegate.h"
+#import "EWTWebView.h"
 
-@interface AboutViewController ()
+
+@interface AboutViewController ()<EWTWebViewDelegate>
+@property (nonatomic, strong) EWTWebView *webView;
 
 @end
 
@@ -28,6 +31,9 @@
     NAVIGATION_BAR_LEFT_BUTTON(0, 0, 25, 25, @"view_back", @"view_back", leftButtonAction);
     NAVIGATION_BAR_RIGHT_BUTTON(0, 0, 21, 21, @"recommend_search_normal", @"recommend_search_selected", rightButtonAction)
     
+    
+    NSString *htmlUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,@"/toolsCtrl/getAboutHtml.html"];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlUrl]]];
     
     //[self.view addSubview:<#tableName#>];
     
@@ -96,6 +102,17 @@
     [super viewWillAppear:animated];
     
     self.title = [AppDelegate getURLWithKey:@"Guanyu"];
+}
+
+-(EWTWebView *)webView{
+    if (!_webView) {
+        EWTWebView *webView = [[EWTWebView alloc]initWithFrame:self.view.bounds];
+        webView.delegate = self;
+        webView.wkWebView.scrollView.delegate = self;
+        _webView = webView;
+        [self.view addSubview:webView];
+    }
+    return _webView;
 }
 
 - (void)didReceiveMemoryWarning {

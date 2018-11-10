@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class UpdateModel;
 
 @protocol SubjectViewDelegate <NSObject>
 - (void)updateDelegate;
@@ -15,6 +16,5 @@
 @interface UpdateView : UIView
 @property (nonatomic, weak) id<SubjectViewDelegate> delegate;
 
-
--(instancetype)initWithUpdateViewWithFrame:(CGRect)rect ContentInfo:(NSString *)info;
+-(instancetype)initWithUpdateViewWithFrame:(CGRect)rect ContentInfo:(UpdateModel *)infoModel;
 @end

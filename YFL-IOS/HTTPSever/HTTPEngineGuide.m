@@ -134,42 +134,6 @@ static NSString * MoYunLoginUrl = @"userCtrl/doLogin";
 }
 
 
-+(void)MYGetSeverTimerStampSuccess:(void (^)(NSDictionary *responseObject))success
-                           failure:(void (^)(NSError *error))failure{
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getSysDate"];
-    NSDictionary *paraDic = @{@"userToken":@"1",
-                              @"userId":@"1"};
-    [[HTTPEngine sharedEngine] getRequestWithURL:urlStr parameter:paraDic success:^(NSDictionary *responseObject) {
-        if (success) success(responseObject);
-    } failure:^(NSError *error) {
-        if (failure) failure(error);
-    }];
-    
-    
-}
-
-
-+(void)MYLessonListSourceWithType:(NSInteger)type Page:(NSInteger)page PageNum:(NSInteger)pageNum Success:(void (^)(NSDictionary *responseObject))success
-                          failure:(void (^)(NSError *error))failure{
-    NSMutableString *urlStr = [NSMutableString stringWithString:@"http://47.100.247.71/protal/memberTaskCtrl/getData"];
-    NSDictionary *paraDic = @{@"type":[NSNumber numberWithInteger:type],
-                              @"page":[NSNumber numberWithInteger:page],
-                              @"limit":[NSNumber numberWithInteger:pageNum],
-                              @"userId":@"1"};
-    
-    [[HTTPEngine sharedEngine] postRequestWithBodyUrl:urlStr params:paraDic success:^(NSDictionary *responseObject) {
-        if (success) success(responseObject);
-    } failure:^(NSError *error) {
-        if (failure) failure(error);
-    }];
-    
-}
-
-
-
-
-
-
 
 
 @end

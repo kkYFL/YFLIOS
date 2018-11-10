@@ -24,10 +24,12 @@
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 #import "MJRefresh.h"
+#import "UpdateModel.h"
+#import "UpdateView.h"
 
 #define SDViewH 180
 
-@interface NewsViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>{
+@interface NewsViewController ()<UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate,SubjectViewDelegate>{
     NSInteger _pageIndex;
     BOOL hasLoadAll;
 }
@@ -40,6 +42,8 @@
 @property (nonatomic, strong) NSMutableArray *newsList;
 @property (nonatomic, strong) Banner *remindModel;
 @property (nonatomic, assign) NSInteger serverCount;
+
+@property (nonatomic, strong) UpdateView *updateView;
 
 @end
 
@@ -55,7 +59,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self initView];
     
     [self refershHeader];
@@ -106,6 +110,59 @@
     self.serverCount = 0;
     _pageIndex = 1;
     hasLoadAll = NO;
+}
+
+/*
+ "appType": 1,
+ "version:"1.0.1",
+ "isForceUpdate": 1,
+ "filePath": "file/update/version/android_1.0.1.apk",
+ "info":"更新说明"
+ */
+
+-(void)appVersionCheck{
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setValue:APP_DELEGATE.userToken forKey:@"userToken"];
+    [para setValue:@"2" forKey:@"appType"];
+    
+    [HanZhaoHua GetAPPVersionSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+        NSDictionary *dataDic = [responseObject objectForKey:@"data"];
+        
+        if (dataDic && [dataDic isKindOfClass:[NSDictionary class]]) {
+            
+            APP_DELEGATE.updateModel = [[UpdateModel alloc]initWithDic:dataDic];
+        }
+        
+        [self gotoUPdateViersion];
+        APP_DELEGATE.hasShowUpdate = YES;
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+-(void)gotoUPdateViersion{
+    //测试使用
+    UpdateView *updateView = [[UpdateView alloc]initWithUpdateViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) ContentInfo:APP_DELEGATE.updateModel];
+    updateView.delegate = self;
+    self.updateView = updateView;
+}
+
+#pragma mark - SubjectViewDelegate
+- (void)updateDelegate{
+    self.updateView.hidden = YES;
+    
+#ifdef DEBUG
+    NSString *tmpstr = @"https://itunes.apple.com/us/app/%E5%8D%96%E5%A5%BD%E8%BD%A6%E7%89%A9%E6%B5%81/id1212731400?ls=1&mt=8";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:tmpstr]];
+#else
+#endif
+    
+    if (!APP_DELEGATE.updateModel.filePath.length) {
+        return;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:APP_DELEGATE.updateModel.filePath]];
 }
 
 
@@ -616,6 +673,22 @@
     self.navigationController.navigationBar.hidden = YES;
     
     self.title = [AppDelegate getURLWithKey:@"NewsHomeTitle"];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    //退出后进来弹出
+    if (!APP_DELEGATE.hasShowUpdate) {
+        if (!APP_DELEGATE.updateModel) {
+            [self appVersionCheck];
+        }else{
+            [self gotoUPdateViersion];
+            APP_DELEGATE.hasShowUpdate = YES;
+        }
+        
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

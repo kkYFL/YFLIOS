@@ -28,6 +28,7 @@
 @property (nonatomic, assign) BOOL isHan;//默认 汉语
 
 @property (nonatomic, strong) UpdateModel *updateModel;
+@property (nonatomic, assign) BOOL hasShowUpdate;
 
 +(NSString *)getURLWithKey:(NSString *)key;
 @end

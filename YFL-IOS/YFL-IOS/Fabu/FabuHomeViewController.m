@@ -15,12 +15,15 @@
 #import "AppDelegate.h"
 #import "FanbuDangyuanMode.h"
 #import "LearningTaskModel.h"
+#import "EWTWebView.h"
 
-@interface FabuHomeViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface FabuHomeViewController ()<UITableViewDelegate,UITableViewDataSource,EWTWebViewDelegate,UIScrollViewDelegate>{
     NSInteger _selectIndex;
     UIView * _bottonLine;
     NSInteger _pageIndex;
     BOOL hasLoadAll;
+    
+    NSString *_htmlUrl;
 }
 @property (nonatomic, strong) UIView *pageItemView;
 @property (nonatomic, strong) UIButton *button;
@@ -34,6 +37,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArr2;
 @property (nonatomic, strong) NSMutableArray *dataArr3;
 
+@property (nonatomic, strong) EWTWebView *webView;
 @end
 
 @implementation FabuHomeViewController
@@ -664,9 +668,31 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     if (_pageItemView) {
         _pageItemView.hidden = NO;
     }
+    
+    
+    if ([APP_DELEGATE.userModel.pmAuthor integerValue] == 1) {
+        self.pageItemView.hidden = YES;
+        self.table.hidden = YES;
+        self.webView.hidden = NO;
+        self.title = [AppDelegate getURLWithKey:@"zhibu"];
+
+        if ([NSString isBlankString:_htmlUrl]) {
+            [self getH5Source];
+        }else{
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_htmlUrl]]];
+        }
+        
+    }else{
+        self.pageItemView.hidden = NO;
+        self.table.hidden = NO;
+        self.webView.hidden = YES;
+    }
+
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -685,6 +711,45 @@
     [self.button2 setTitle:[AppDelegate getURLWithKey:@"kaoshijiandu"] forState:UIControlStateNormal];
 }
 
+-(EWTWebView *)webView{
+    if (!_webView) {
+        EWTWebView *webView = [[EWTWebView alloc]initWithFrame:self.view.bounds];
+        webView.delegate = self;
+        webView.wkWebView.scrollView.delegate = self;
+        _webView = webView;
+        [self.view addSubview:webView];
+    }
+    return _webView;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    scrollView.contentOffset = CGPointMake(0, scrollView.contentOffset.y);
+}
+
+
+
+-(void)getH5Source{
+    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+    [para setObject:@"SYS_TJ" forKey:@"queryType"];
+    [HanZhaoHua MYGetFanbuGetH5SouceWithPara:para Success:^(NSDictionary * _Nonnull responseObject) {
+        NSDictionary *data = [responseObject objectForKey:@"data"];
+        if (data && [data isKindOfClass:[NSDictionary class]]) {
+            NSString *htmlSouce = [data objectForKey:@"htmlUrl"];
+            if (![NSString isBlankString:htmlSouce]) {
+                _htmlUrl = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host,htmlSouce];
+                
+                [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_htmlUrl]]];
+                
+            }
+        }
+        NSLog(@"");
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -692,7 +757,6 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 
 @end

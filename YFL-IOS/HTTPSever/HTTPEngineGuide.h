@@ -72,26 +72,6 @@
 
 
 
-/**
- 墨云-获取服务器时间
-
- */
-+(void)MYGetSeverTimerStampSuccess:(void (^)(NSDictionary *responseObject))success
-                           failure:(void (^)(NSError *error))failure;
-
-
-/**
- 墨云-获取学习任务列表
-
- @param type      类型   1:学习任务列表  2:学习痕迹列表
- @param page      页码
- @param pageNum   每页数据数量
- */
-+(void)MYLessonListSourceWithType:(NSInteger)type Page:(NSInteger)page PageNum:(NSInteger)pageNum Success:(void (^)(NSDictionary *responseObject))success
-                          failure:(void (^)(NSError *error))failure;
-
-
-
 
 
 

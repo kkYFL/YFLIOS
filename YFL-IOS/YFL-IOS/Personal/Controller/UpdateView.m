@@ -7,10 +7,13 @@
 //
 
 #import "UpdateView.h"
+#import "UpdateModel.h"
+#import "AppDelegate.h"
 
 @interface UpdateView ()
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *topImageView;
+@property (nonatomic, strong) UILabel *fanxianLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIButton *sureBtn;
 @property (nonatomic, strong) UIImageView *cancelIMageView;
@@ -18,7 +21,7 @@
 
 @implementation UpdateView
 
--(instancetype)initWithUpdateViewWithFrame:(CGRect)rect ContentInfo:(NSString *)info{
+-(instancetype)initWithUpdateViewWithFrame:(CGRect)rect ContentInfo:(UpdateModel *)infoModel{
     self = [super initWithFrame:rect];
     
     if (self) {
@@ -61,9 +64,35 @@
         }];
         
         
+        //
+        UILabel *fanxianLabel = [[UILabel alloc] init];
+        fanxianLabel.font = [UIFont systemFontOfSize:18.0f];
+        fanxianLabel.text = [AppDelegate getURLWithKey:@"faxianxinbanben"];
+        fanxianLabel.textColor = [UIColor whiteColor];
+        fanxianLabel.textAlignment = NSTextAlignmentLeft;
+        [self.topImageView addSubview:fanxianLabel];
+        [fanxianLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.topImageView).offset(15.0f);
+            make.bottom.equalTo(self.topImageView.mas_centerY).offset(0);
+        }];
+        
         
         //
-        NSString *contentStr = info.length?info:@"版本更新";
+        UILabel *versionLabel = [[UILabel alloc] init];
+        versionLabel.font = [UIFont systemFontOfSize:12.0f];
+        versionLabel.text = infoModel.version.length?infoModel.version:@"V1.0.1";
+        versionLabel.textColor = [UIColor whiteColor];
+        versionLabel.textAlignment = NSTextAlignmentLeft;
+        [self.topImageView addSubview:versionLabel];
+        [versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.topImageView).offset(15.f);
+            make.top.equalTo(fanxianLabel.mas_bottom).offset(4.0f);
+        }];
+        
+        
+        
+        //
+        NSString *contentStr = infoModel.info.length?infoModel.info:@"版本更新";
         CGFloat contentH = [self getSpaceLabelHeightwithString:contentStr Speace:4.0 withFont:[UIFont systemFontOfSize:18.0f] withWidth:SCREEN_WIDTH-90];
         
         UILabel *contentLabel = [[UILabel alloc] init];
@@ -87,7 +116,7 @@
         [button addTarget:self action:@selector(selectSource:) forControlEvents:UIControlEventTouchUpInside];
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 15.0f;
-        [button setTitle:@"确认" forState:UIControlStateNormal];
+        [button setTitle:[AppDelegate getURLWithKey:@"queren"] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
         [button setTitleColor:[UIColor colorWithHexString:@"#667480"] forState:UIControlStateNormal];
         button.layer.cornerRadius = 4.0f;
@@ -96,7 +125,7 @@
         [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.contentLabel.mas_bottom).offset(15.0f);
-            make.width.mas_equalTo(120);
+            make.width.mas_equalTo(160);
             make.height.mas_equalTo(30);
         }];
         

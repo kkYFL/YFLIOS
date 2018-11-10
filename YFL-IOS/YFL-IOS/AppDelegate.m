@@ -34,11 +34,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-
-    //资源路径
-     self.host = @"http://47.100.247.71/protal";
-     self.sourceHost = @"http://47.100.247.71/img";
+//配置域名
+#ifdef DEBUG
+    self.host = @"http://47.100.247.71/protal";
+    self.sourceHost = @"http://47.100.247.71/img";
+#else
+    self.host = @"http://hnxzzb.imwork.net/protal";
+    self.sourceHost = @"http://hnxzzb.imwork.net/img";
+#endif
     
+    //self.host = @"http://hnxzzb.imwork.net/protal";
+    //self.sourceHost = @"http://hnxzzb.imwork.net/img";
+    
+
+    self.hasShowUpdate = NO;
     
 //     self.userToken = @"1";
 //     self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
@@ -55,11 +64,17 @@
 //    self.updateView = updateView;
     
 
-
-
-
-
-    //[self showLoginAndRegistController];
+    //语言配置
+    //从缓存中读取
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *type = [defaults objectForKey:@"MYLaunuage"];
+    if (type) {
+        if ([type integerValue] == 1) {
+            APP_DELEGATE.isHan = NO;
+        }else{
+            APP_DELEGATE.isHan = YES;
+        }
+    }
     
 
 
@@ -108,7 +123,13 @@
     
     UITabBarController *tabBar = [[UITabBarController alloc]init];
     tabBar.delegate = self;
-    tabBar.viewControllers = @[newsNav,educationNav,fabuNav,examtionNav,personalNav];
+    
+    //普通党员
+    if ([APP_DELEGATE.userModel.pmAuthor integerValue] == 5) {
+        tabBar.viewControllers = @[newsNav,educationNav,examtionNav,personalNav];
+    }else{
+        tabBar.viewControllers = @[newsNav,educationNav,fabuNav,examtionNav,personalNav];
+    }
     tabBar.tabBar.translucent = NO;
     
 
@@ -138,8 +159,6 @@
     }
     [self.window setRootViewController:tabBar];
     [self.window makeKeyAndVisible];
-
-    
 
 }
     
@@ -299,7 +318,7 @@
     if (!_storyBoardView) {
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
         UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"LaunchScreen"];
-        UIImageView *screenImageView = [[UIImageView alloc]initWithFrame:vc.view.bounds];
+        UIImageView *screenImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [vc.view addSubview:screenImageView];
         _storyBoardView = screenImageView;
     }
@@ -315,6 +334,7 @@
     }else{
         launuage = @"Zang";
     }
+    
     NSDictionary *dic = [[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:launuage];
     return [dic objectForKey:key];
 }

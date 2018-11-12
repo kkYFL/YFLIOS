@@ -304,10 +304,10 @@
             [self.label2 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[1]]];
         }
         if (self.ruleDic.rules.count > 2) {
-            [self.label2 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[2]]];
+            [self.label3 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[2]]];
         }
         if (self.ruleDic.rules.count > 3) {
-            [self.label2 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[3]]];
+            [self.label4 setText:[NSString stringWithFormat:@"%@",self.ruleDic.rules[3]]];
         }
     }
 }

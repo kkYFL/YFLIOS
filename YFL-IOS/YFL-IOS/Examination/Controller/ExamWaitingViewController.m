@@ -9,9 +9,11 @@
 #import "ExamWaitingViewController.h"
 #import "ExamWaitingTableViewCell.h"
 #import "ExamhomeViewController.h"
+#import "ExamConentViewController.h"
 #import "HanZhaoHua.h"
 #import "AppDelegate.h"
 #import "MYBlanKView.h"
+#import "ExamRuleModel.h"
 
 
 @interface ExamWaitingViewController ()<UITableViewDelegate,UITableViewDataSource>{
@@ -116,6 +118,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_type == ExamViewTypeDefault) {
+        
+        if (self.list && self.list.count > indexPath.row) {
+            HistoryExam *examModel = self.list[indexPath.row];
+            
+            if (![NSString isBlankString:examModel.paperId]) {
+                
+                ExamRuleModel *ruleDic = [[ExamRuleModel alloc]init];
+                ruleDic.paperId = examModel.paperId;
+                
+                ExamConentViewController *examVC = [[ExamConentViewController alloc]init];
+                examVC.ruleDic = ruleDic;
+                [self.navigationController pushViewController:examVC animated:YES];
+            }
+        }
+        
         return;
     }
     

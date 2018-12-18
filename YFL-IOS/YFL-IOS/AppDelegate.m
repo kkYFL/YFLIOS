@@ -76,21 +76,32 @@
         }
     }
     
-
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    NSString *MYUerser = [userdefaults objectForKey:@"MYUserName"];
-
-
-    [self guidenView];
     
-    //启动图
-    [self screenViewCreate];
-
-//
+    //通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appAccessHomeWindow:) name:KNotificationAccessHomeWindow object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appSignOut:) name:KNotificationUserSignOut object:nil];
     
-    //[TestInterface test];
+
+    //读取信息
+    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *loginSource = [userdefaults objectForKey:myLoginSource];
+    //信息存在且没有退出操作，进入主页面
+    if (loginSource) {
+        UserMessage *userModel = [[UserMessage alloc]initWithDic:loginSource];
+        APP_DELEGATE.userModel = userModel;
+        APP_DELEGATE.userToken = APP_DELEGATE.userModel.userToken;
+        APP_DELEGATE.userId = APP_DELEGATE.userModel.userId;
+        APP_DELEGATE.userName = APP_DELEGATE.userModel.userName;
+        
+     [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
+        
+    //已经退出重新登录
+    }else{
+        [self guidenView];
+        //启动图
+        [self screenViewCreate];
+    }
+
     return YES;
 }
 
@@ -258,6 +269,7 @@
 
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    
 }
 
 -(UIWindow *)window{

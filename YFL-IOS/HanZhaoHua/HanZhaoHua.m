@@ -70,6 +70,12 @@
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             UserMessage *user = [[UserMessage alloc] initWithDic:dic];
             success(user);
+            
+            if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+                NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                [user setObject:dic forKey:myLoginSource];
+                [user setObject:[NSNumber numberWithInt:1] forKey:myLoginStatus];
+            }
         }
     } failure:^(NSError *error) {
         if (failure) failure(error);

@@ -27,6 +27,7 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+Toast.h"
 #import "EWTMediator+EWTImagePicker.h"
+#import "AppDelegate.h"
 
 #define kMaxCount 1
 
@@ -220,7 +221,8 @@
     
     
     if (!_filePath.length) {
-        [MBProgressHUD toastMessage:@"暂无更新信息" ToView:self.view];
+        //
+        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"ZanwuGengXingXinXi"] ToView:self.view];
         return;
     }
     
@@ -335,7 +337,6 @@
             rowCell.cellContentLabel.text = @"";
             rowCell.cellNewImageView.hidden = YES;
         }else if (indexPath.row == 1){
-            //rowCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@""]@"Guanyu", nil);
             rowCell.cellTitleLabel.text = [AppDelegate getURLWithKey:@"yuyanqiehuan"];
             rowCell.cellContentLabel.text =  [AppDelegate getURLWithKey:@"qiehuan"];
             rowCell.cellNewImageView.hidden = YES;

@@ -282,6 +282,12 @@
     [HanZhaoHua MYLogOutWithParaDic:paraDic success:^(NSDictionary * _Nonnull responseObject) {
         [[PromptBox sharedBox] removeLoadingView];
         
+        //退出登录信息清理
+        NSUserDefaults *userDefatluts = [NSUserDefaults standardUserDefaults];
+        [userDefatluts removeObjectForKey:myLoginSource];
+        [userDefatluts synchronize];
+        
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
     } failure:^(NSError * _Nonnull error) {
         [[PromptBox sharedBox] removeLoadingView];

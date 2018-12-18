@@ -133,6 +133,11 @@
             APP_DELEGATE.updateModel = [[UpdateModel alloc]initWithDic:dataDic];
         }
         
+        if (!APP_DELEGATE.updateModel.filePath.length) {
+            return;
+        }
+
+        
         [self gotoUPdateViersion];
         APP_DELEGATE.hasShowUpdate = YES;
         
@@ -685,6 +690,11 @@
         if (!APP_DELEGATE.updateModel) {
             [self appVersionCheck];
         }else{
+            
+            if (!APP_DELEGATE.updateModel.filePath.length) {
+                return;
+            }
+
             [self gotoUPdateViersion];
             APP_DELEGATE.hasShowUpdate = YES;
         }

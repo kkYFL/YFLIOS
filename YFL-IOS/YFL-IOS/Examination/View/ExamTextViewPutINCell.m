@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 
 @interface ExamTextViewPutINCell ()<UITextViewDelegate>
-@property (nonatomic, strong) UILabel *placeHolderView;
 
 @end
 
@@ -65,7 +64,10 @@
     return TextPutInView + 15*2;
 }
 
-
+-(void)setIsHistory:(BOOL)isHistory{
+    _isHistory = isHistory;
+    
+}
 -(void)textViewDidSelectAction:(NSNotification *)noti{
     UITextView *text = noti.object;
     if (text.text.length) {

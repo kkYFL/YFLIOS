@@ -129,6 +129,7 @@
                 
                 ExamConentViewController *examVC = [[ExamConentViewController alloc]init];
                 examVC.ruleDic = ruleDic;
+                examVC.isWaiting = NO;
                 [self.navigationController pushViewController:examVC animated:YES];
             }
         }

@@ -19,6 +19,9 @@
         self.isAnswer = [NSString stringWithFormat:@"%@",[dic objectForKey:@"isAnswer"]];
         self.selected = [NSString stringWithFormat:@"%@",[dic objectForKey:@"selected"]];
 
+        //isSelected
+        self.isSelected = [[NSString stringWithFormat:@"%@",[dic objectForKey:@"isSelected"]] integerValue];
+
     }
     return self;
 }

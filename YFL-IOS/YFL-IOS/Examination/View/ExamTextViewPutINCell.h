@@ -10,5 +10,8 @@
 
 @interface ExamTextViewPutINCell : UITableViewCell
 @property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) UILabel *placeHolderView;
+@property (nonatomic, assign) BOOL isHistory;
+
 +(CGFloat)CellH;
 @end

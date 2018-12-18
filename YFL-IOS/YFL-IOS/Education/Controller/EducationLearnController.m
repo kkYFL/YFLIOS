@@ -46,6 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initData];
+    
     [self initView];
     
     [self refershHeader];
@@ -53,6 +55,12 @@
 
 -(void)initData{
     selectIndex = 1;
+    _pageIndex = 1;
+    hasloadAll = NO;
+    self.studyNotesArr = [NSMutableArray array];
+}
+
+-(void)resetData{
     _pageIndex = 1;
     hasloadAll = NO;
     self.studyNotesArr = [NSMutableArray array];
@@ -173,7 +181,7 @@
 }
 
 -(void)refershHeader{
-    [self initData];
+    [self resetData];
     [self loadData];
 }
 
@@ -420,7 +428,6 @@
 
 
 -(void)setTextViewToolbar {
-    
     self.maskView = [[UIView alloc] initWithFrame:self.view.bounds];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(BlankTextViewtapActions:)];
@@ -461,7 +468,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     self.title = [AppDelegate getURLWithKey:@"XuexiXingDe"];
 }
 
@@ -473,8 +479,6 @@
 -(void)hidenBlankView{
     _blanView.hidden = YES;
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

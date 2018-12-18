@@ -11,4 +11,6 @@
 
 @interface ExamConentViewController : EWTBaseViewController
 @property (nonatomic, strong) ExamRuleModel *ruleDic;
+@property (nonatomic, assign) BOOL isWaiting;//是否等待
+
 @end

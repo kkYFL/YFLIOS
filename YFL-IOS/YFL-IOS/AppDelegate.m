@@ -48,6 +48,8 @@
     
 
     self.hasShowUpdate = NO;
+    //
+    [self initScreenView];
     
 //     self.userToken = @"1";
 //     self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
@@ -92,14 +94,17 @@
         APP_DELEGATE.userToken = APP_DELEGATE.userModel.userToken;
         APP_DELEGATE.userId = APP_DELEGATE.userModel.userId;
         APP_DELEGATE.userName = APP_DELEGATE.userModel.userName;
-        
-     [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
-        
+     
+    //window
+    [self tabBarViewInit];
+     //启动图
+    [self screenViewShow];
+
     //已经退出重新登录
     }else{
         [self guidenView];
         //启动图
-        [self screenViewCreate];
+        [self screenViewShow];
     }
 
     return YES;
@@ -146,11 +151,6 @@
     }
     tabBar.tabBar.translucent = NO;
     
-
-
-    
-    
-    
 //    LLTabBar *tab = [[LLTabBar alloc] initWithFrame:tabBar.tabBar.bounds];
 //
 //    tab.tabBarItemAttributes = @[@{kLLTabBarItemAttributeTitle : [AppDelegate getURLWithKey:@""]@"NewsHomeTitle", nil), kLLTabBarItemAttributeNormalImageName : @"news_icon_gray", kLLTabBarItemAttributeSelectedImageName : @"news_icon_light", kLLTabBarItemAttributeType : @(LLTabBarItemNormal)},
@@ -173,7 +173,6 @@
     }
     [self.window setRootViewController:tabBar];
     [self.window makeKeyAndVisible];
-
 }
     
 -(void)showLoginAndRegistController {
@@ -295,7 +294,9 @@
     return NO;
 }
 
-
+-(void)initScreenView{
+    self.storyBoardView.backgroundColor = [UIColor whiteColor];
+}
 -(void)ScreenViewSource{
     NSMutableDictionary *para = [NSMutableDictionary dictionary];
     [para setValue:@"HNX_SCREEN" forKey:@"config"];
@@ -305,10 +306,24 @@
         if (arr && [arr isKindOfClass:[NSArray class]] && arr.count) {
             NSDictionary *tmpDic = arr[0];
             NSString *urlStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"imgUrl"]];
-            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
-            [self.storyBoardView sd_setImageWithURL:imageUrl];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //从缓存中读取
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *screenURL = [defaults objectForKey:myScreenImageURL];
+            //第一次进入程序显示图片
+            if ([NSString isBlankString:screenURL]) {
+                NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
+                [self.storyBoardView sd_setImageWithURL:imageUrl];
+            }
+
+            //存储图片
+            if (![NSString isBlankString:urlStr]) {
+                //从缓存中读取
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:urlStr forKey:myScreenImageURL];
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.storyBoardView removeFromSuperview];
             });
 
@@ -322,8 +337,7 @@
 }
 
 
--(void)screenViewCreate{
-    self.storyBoardView.backgroundColor = [UIColor whiteColor];
+-(void)screenViewShow{
     [self.window addSubview:self.storyBoardView];
     [self ScreenViewSource];
 }
@@ -336,6 +350,15 @@
         UIImageView *screenImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [vc.view addSubview:screenImageView];
         _storyBoardView = screenImageView;
+        
+        //从缓存中读取
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *screenURL = [defaults objectForKey:myScreenImageURL];
+        if (![NSString isBlankString:screenURL]) {
+            NSString *urlStr = [NSString stringWithFormat:@"%@",screenURL];
+            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
+            [_storyBoardView sd_setImageWithURL:imageUrl];
+        }
     }
     return _storyBoardView;
 }

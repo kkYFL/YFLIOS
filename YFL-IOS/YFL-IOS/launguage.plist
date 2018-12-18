@@ -344,10 +344,10 @@
 		<string>མི་བཟོ་བཅོས་ལག་ཐོགས་ཁ་པར་གྱི་ཨང་གྲངས</string>
 		<key>kaoshitishi</key>
 		<string>གལ་ཏེ་ཁྱོད་ཐབས་མེད་གཙང་མའི་མཚོན་པའི་ཁྱོད་ཀྱི་བསམ་ཚུལ་དེ་ཁོ་ན་ར་ཁྱོད་ད་རུང་མི་རྒྱུས་ལོན། --ཨ་尔伯特·དབྱིན་སི་ཐན།</string>
-		<key>New item - 5</key>
-		<string></string>
-		<key>New item - 4</key>
-		<string></string>
+		<key>zuihouyiti</key>
+		<string>མཐར་མཇུག་གི་གནད་དོན་ལ</string>
+		<key>ZanwuGengXingXinXi</key>
+		<string>གནས་སྐབས་མེད་པ་གསར་སྒྱུར་ཆ་འཕྲིན</string>
 		<key>New item - 2</key>
 		<string></string>
 	</dict>
@@ -693,10 +693,10 @@
 		<string>不可修改手机号</string>
 		<key>kaoshitishi</key>
 		<string>如果你无法简洁的表达你的想法，那只说明你还不够了解他！		--阿尔伯特·爱因斯坦</string>
-		<key>New item - 2</key>
-		<string></string>
-		<key>New item - 3</key>
-		<string></string>
+		<key>zuihouyiti</key>
+		<string>已是最后一题</string>
+		<key>ZanwuGengXingXinXi</key>
+		<string>暂无更新信息</string>
 	</dict>
 </dict>
 </plist>

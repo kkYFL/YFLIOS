@@ -221,7 +221,6 @@
     
     
     if (!_filePath.length) {
-        //
         [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"ZanwuGengXingXinXi"] ToView:self.view];
         return;
     }

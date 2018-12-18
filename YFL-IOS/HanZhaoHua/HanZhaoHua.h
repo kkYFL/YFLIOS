@@ -394,6 +394,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)getWaitingToStartDetailWithUserToken: (NSString *)userToken
                                      userId: (NSString *)userId
                                     paperId: (NSString *)paperId
+                                  isWaiting:(BOOL)isWaiting
                                     success: (void (^)(NSArray *detailList))success
                                     failure: (void (^)(NSError *error))failure;
 

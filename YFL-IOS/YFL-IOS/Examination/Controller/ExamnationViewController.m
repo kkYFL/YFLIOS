@@ -107,13 +107,10 @@
                 }
                 
                 [self.scoreList addObjectsFromArray:scoreList];
-                
             }
             
             self.ownerRankeModel = owner;
-            
             [self resetViewWithData];
-            
             [self.table reloadData];
         } failure:^(NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -151,10 +148,6 @@
     [self initData];
     [self loadData];
 }
-
-
-
-
 
 
 #pragma mark - UITableView Delegate And Datasource

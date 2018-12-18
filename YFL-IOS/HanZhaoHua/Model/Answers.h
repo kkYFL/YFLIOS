@@ -21,7 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 //
 @property(nonatomic, copy) NSString *selected;
 
+
+@property (nonatomic, assign) NSInteger isSelected;//是否已经选择（考试历史使用）
+
+
 -(id)initWithDic:(NSDictionary *)dic;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -316,6 +316,7 @@
     if (self.ruleDic && ![NSString isBlankString:self.ruleDic.examId]) {
         ExamConentViewController *examVC = [[ExamConentViewController alloc]init];
         examVC.ruleDic = self.ruleDic;
+        examVC.isWaiting = YES;
         [self.navigationController pushViewController:examVC animated:YES];
     }
 

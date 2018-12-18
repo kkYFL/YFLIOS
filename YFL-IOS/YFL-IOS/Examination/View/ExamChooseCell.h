@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 @class HistoryExamDetail;
 @interface ExamChooseCell : UITableViewCell
-@property (nonatomic, strong) HistoryExamDetail *currentExamModel;
 +(CGFloat)CellHWithModel:(HistoryExamDetail *)examModel;
 @property (nonatomic, copy) void (^chooseActionBlock) (NSInteger chooseIndex);
+-(void)setExamModel:(HistoryExamDetail *)examModel isHistory:(BOOL)isHistory;
 
 @end
 

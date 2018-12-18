@@ -14,6 +14,8 @@
     NSArray *_zimiArr;
 }
 @property (nonatomic, strong) NSMutableArray *tagViewArr;
+@property (nonatomic, strong) HistoryExamDetail *currentExamModel;
+@property (nonatomic, assign) BOOL isHistoryExam;
 
 @end
 
@@ -37,8 +39,10 @@
 }
 
 
--(void)setCurrentExamModel:(HistoryExamDetail *)currentExamModel{
-    _currentExamModel = currentExamModel;
+-(void)setExamModel:(HistoryExamDetail *)examModel isHistory:(BOOL)isHistory{
+    _currentExamModel = examModel;
+    _isHistoryExam = isHistory;
+    
     if (_currentExamModel && _currentExamModel.answers && _currentExamModel.answers.count) {
         while (self.tagViewArr.count < _currentExamModel.answers.count) {
             ExamChooseTagView *tagView = [[ExamChooseTagView alloc]init];
@@ -61,11 +65,24 @@
                 Answers *ansModel = _currentExamModel.answers[i];
                 NSString *zimi = (_zimiArr.count>i)?_zimiArr[i]:@"";
                 [tagView.quetionContentLabel setText:[NSString stringWithFormat:@"%@%@",zimi,ansModel.content]];
-                if ([ansModel.selected integerValue] == 1) {
-                    tagView.selected = YES;
+                
+                //历史考试
+                if (isHistory) {
+                    if (ansModel.isSelected == 1) {
+                        tagView.selected = YES;
+                    }else{
+                        tagView.selected = NO;
+                    }
+                    
+                //待考试
                 }else{
-                    tagView.selected = NO;
+                    if ([ansModel.selected integerValue] == 1) {
+                        tagView.selected = YES;
+                    }else{
+                        tagView.selected = NO;
+                    }
                 }
+
                 
                 CGFloat topSpace = (25+15)*i;
                 [tagView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -93,6 +110,11 @@
 
 -(void)tapGestureAction:(UITapGestureRecognizer *)tap{
     if (!_currentExamModel) {
+        return;
+    }
+    
+    //历史考试返回不能进行选择
+    if (self.isHistoryExam) {
         return;
     }
     

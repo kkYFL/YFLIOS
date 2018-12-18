@@ -826,13 +826,25 @@
     }];
 }
 
+
+//exam/queryExamPaperSourceList
+
+//
+
 +(void)getWaitingToStartDetailWithUserToken: (NSString *)userToken
                                      userId: (NSString *)userId
                                     paperId: (NSString *)paperId
+                                  isWaiting:(BOOL)isWaiting
                                     success: (void (^)(NSArray *detailList))success
-                                    failure: (void (^)(NSError *error))failure
-{
-    NSString *urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryExamPaperSourceList"];
+                                    failure: (void (^)(NSError *error))failure{
+    NSString *urlStr = @"";
+    if (isWaiting) {
+        urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryExamPaperSourceList"];
+    }else{
+        urlStr = [NSString stringWithFormat:@"%@%@",APP_DELEGATE.host, @"/exam/queryHistoryExamPaper"];
+    }
+
+    
     NSDictionary *paraDic = @{@"userToken":userToken,
                               @"userId":userId,
                               @"paperId":paperId

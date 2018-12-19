@@ -313,7 +313,7 @@
             //第一次进入程序显示图片
             if ([NSString isBlankString:screenURL]) {
                 NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
-                [self.storyBoardView sd_setImageWithURL:imageUrl];
+                [self.storyBoardView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"launchDefault"]];
             }
 
             //存储图片
@@ -348,6 +348,8 @@
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
         UIViewController *vc = [storyBoard instantiateViewControllerWithIdentifier:@"LaunchScreen"];
         UIImageView *screenImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        //添加默认的启动图片
+        [screenImageView setImage:[UIImage imageNamed:@"launchDefault"]];
         [vc.view addSubview:screenImageView];
         _storyBoardView = screenImageView;
         
@@ -357,7 +359,7 @@
         if (![NSString isBlankString:screenURL]) {
             NSString *urlStr = [NSString stringWithFormat:@"%@",screenURL];
             NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
-            [_storyBoardView sd_setImageWithURL:imageUrl];
+            [_storyBoardView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"launchDefault"]];
         }
     }
     return _storyBoardView;

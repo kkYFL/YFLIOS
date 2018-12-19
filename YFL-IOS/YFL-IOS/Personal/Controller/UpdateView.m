@@ -80,7 +80,7 @@
         //
         UILabel *versionLabel = [[UILabel alloc] init];
         versionLabel.font = [UIFont systemFontOfSize:12.0f];
-        versionLabel.text = infoModel.version.length?infoModel.version:@"V1.0.1";
+        versionLabel.text = infoModel.version.length?infoModel.version:@"V1.0.0";
         versionLabel.textColor = [UIColor whiteColor];
         versionLabel.textAlignment = NSTextAlignmentLeft;
         [self.topImageView addSubview:versionLabel];

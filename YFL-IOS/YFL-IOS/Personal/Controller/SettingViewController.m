@@ -284,7 +284,7 @@
         
         //退出登录信息清理
         NSUserDefaults *userDefatluts = [NSUserDefaults standardUserDefaults];
-        [userDefatluts removeObjectForKey:myLoginSource];
+        [userDefatluts removeObjectForKey:@"myLoginSource"];
         [userDefatluts synchronize];
         
         

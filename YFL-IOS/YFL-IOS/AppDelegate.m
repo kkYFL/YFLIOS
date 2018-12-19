@@ -43,9 +43,6 @@
     self.sourceHost = @"http://hnxzzb.imwork.net/img";
 #endif
     
-    //self.host = @"http://hnxzzb.imwork.net/protal";
-    //self.sourceHost = @"http://hnxzzb.imwork.net/img";
-    
 
     self.hasShowUpdate = NO;
     //
@@ -86,7 +83,7 @@
 
     //读取信息
     NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *loginSource = [userdefaults objectForKey:myLoginSource];
+    NSDictionary *loginSource = [userdefaults objectForKey:@"myLoginSource"];
     //信息存在且没有退出操作，进入主页面
     if (loginSource) {
         UserMessage *userModel = [[UserMessage alloc]initWithDic:loginSource];

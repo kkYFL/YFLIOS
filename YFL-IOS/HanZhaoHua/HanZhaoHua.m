@@ -72,10 +72,22 @@
             success(user);
             
             if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+                
+                //删除字典中的null
+                NSMutableDictionary *mutableD = [NSMutableDictionary dictionaryWithDictionary:dic];
+                for (NSString *keyStr in mutableD.allKeys) {
+                    if ([[mutableD objectForKey:keyStr] isEqual:[NSNull null]]) {
+                        [mutableD setObject:@"" forKey:keyStr];
+                    }
+                }
+                NSDictionary *tmpDic = [NSDictionary dictionaryWithDictionary:mutableD];
+                
+                
                 NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-                [user setObject:dic forKey:myLoginSource];
+                [user setObject:tmpDic forKey:@"myLoginSource"];
                 [user setObject:[NSNumber numberWithInt:1] forKey:myLoginStatus];
             }
+            
         }
     } failure:^(NSError *error) {
         if (failure) failure(error);

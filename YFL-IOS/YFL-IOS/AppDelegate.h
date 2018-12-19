@@ -10,7 +10,6 @@
 #import "UserMessage.h"
 @class UpdateModel;
 
-static NSString * const myLoginSource = @"myLoginSource";
 static NSString * const myLoginStatus = @"myLoginStatus";
 static NSString * const myScreenImageURL = @"myScreenURL";
 

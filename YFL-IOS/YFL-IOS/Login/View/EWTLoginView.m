@@ -160,7 +160,6 @@
     findButton.titleLabel.textAlignment = NSTextAlignmentRight;
     findButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [findButton addTarget:self action:@selector(findPassword) forControlEvents:UIControlEventTouchUpInside];
-//    [findButton setTitleColor:HEXACOLOR(0xA7ACB9, 1.0) forState:UIControlStateNormal];
     [findButton setTitleColor:[UIColor colorWithHexString:@"#0096F6"] forState:UIControlStateNormal];
 
     [self addSubview:findButton];
@@ -181,7 +180,7 @@
 
 #pragma mark 忘记密码
 - (void)findPassword {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@"forgetPassword"] message:[NSString stringWithFormat:@"%@ 13634174103%@",[AppDelegate getURLWithKey:@"iphonePlay"],[AppDelegate getURLWithKey:@"chongzhi"]] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"] otherButtonTitles:[AppDelegate getURLWithKey:@"queding"], nil];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:[AppDelegate getURLWithKey:@"forgetPassword"] message:[NSString stringWithFormat:@"%@ 13389712485",[AppDelegate getURLWithKey:@"iphonePlay"]] delegate:self cancelButtonTitle:[AppDelegate getURLWithKey:@"quxiao"] otherButtonTitles:[AppDelegate getURLWithKey:@"queding"], nil];
     [alertView show];
     
 }
@@ -200,7 +199,7 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"13634174103"];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"13389712485"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }

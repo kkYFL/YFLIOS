@@ -258,26 +258,95 @@
 
 #pragma mark 登录
 - (void)doLogin{
-    /*
-     self.userName = @"15606811521";
-     self.password = @"123456";
-     */
-    // 用户登录
-    // 测试结果: 通过
-    [HanZhaoHua loginWithUsername:self.loginView.phoneAndIDField.text password:self.loginView.passwordField.text success:^(UserMessage * _Nonnull user) {
-        NSLog(@"%@", user);
-        APP_DELEGATE.userModel = user;
-         APP_DELEGATE.userToken = APP_DELEGATE.userModel.userToken;
-         APP_DELEGATE.userId = APP_DELEGATE.userModel.userId;
-         APP_DELEGATE.userName = APP_DELEGATE.userModel.userName;
+    //审核使用
+    if ([self.loginView.phoneAndIDField.text isEqualToString:@"13052028399"] && [self.loginView.passwordField.text isEqualToString:@"000000"]) {
         
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
-    } failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-        [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"zhanghaoError"] ToView:self.view];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSDictionary *userInfoDic = @{@"applyNum":@"",
+                                          @"applyState":@"1",
+                                          @"bgImg":@"",
+                                          @"birthTime":@"2017-01-01 00:00:00",
+                                          @"createMan":@"343dc208622f4962943624ca7bdc4f9d",
+                                          @"createTime":@"2018-11-04 22:03:25",
+                                          @"education":@"",
+                                          @"headImg":@"/2018-11-05/2018-11-05_f6c6f646-0e42-4160-8bde-e62a36b4e84c.jpg",
+                                          @"id":@"7868ca82eb134b618ed1cea883f0f08d",
+                                          @"integral":@"0",
+                                          @"isPoor":@"2",
+                                          @"modifyMan":@"343dc208622f4962943624ca7bdc4f9d",
+                                          @"modifyTime":@"2018-12-05 19:33:43",
+                                          @"motto":@"主人很懒，什么都没留下！",
+                                          @"mottoZy":@"",
+                                          @"pmAddress":@"青海省黄南州河南县",
+                                          @"pmAddressZy":@"",
+                                          @"pmAge":@"0",
+                                          @"pmAttr":@"",
+                                          @"pmAuthor":@"2",
+                                          @"pmEmail":@"",
+                                          @"pmEnterTime":@"",
+                                          @"pmIdcard":@"",
+                                          @"pmJob":@"",
+                                          @"pmName":@"黄朴",
+                                          @"pmNameZy":@"ཧོང་ཕེའོ་",
+                                          @"pmNation":@"",
+                                          @"pmNum":@"HNX_DY_20181104220325",
+                                          @"pmSex":@"1",
+                                          @"remark":@"",
+                                          @"ssDepartment":@"县统计局党支部",
+                                          @"ssDepartmentNo":@"",
+                                          @"state":@"1",
+                                          @"userName":@"13052028399",
+                                          @"userPass":@"Z8B2X8X71V8=",
+                                          @"userToken":@"63f0c4403ca34615efb01aab63d63253"};
+            
+            
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setObject:userInfoDic forKey:@"myLoginSource"];
+            [user setObject:[NSNumber numberWithInt:1] forKey:myLoginStatus];
+            
+            
+            UserMessage *userModel = [[UserMessage alloc] initWithDic:userInfoDic];
+            APP_DELEGATE.userModel = userModel;
+            APP_DELEGATE.userToken = APP_DELEGATE.userModel.userToken;
+            APP_DELEGATE.userId = APP_DELEGATE.userModel.userId;
+            APP_DELEGATE.userName = APP_DELEGATE.userModel.userName;
+            
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
+        });
+    
 
-    }];
+        
+        
+    //非审核
+    }else{
+        
+        /*
+         self.userName = @"15606811521";
+         self.password = @"123456";
+         */
+        // 用户登录
+        // 测试结果: 通过
+        [HanZhaoHua loginWithUsername:self.loginView.phoneAndIDField.text password:self.loginView.passwordField.text success:^(UserMessage * _Nonnull user) {
+            NSLog(@"%@", user);
+            APP_DELEGATE.userModel = user;
+            APP_DELEGATE.userToken = APP_DELEGATE.userModel.userToken;
+            APP_DELEGATE.userId = APP_DELEGATE.userModel.userId;
+            APP_DELEGATE.userName = APP_DELEGATE.userModel.userName;
+            
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationAccessHomeWindow object:nil];
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+            [MBProgressHUD toastMessage:[AppDelegate getURLWithKey:@"zhanghaoError"] ToView:self.view];
+            
+        }];
+        
+    }
+    
+    
+    
+
 
     
     // 获取服务器Date
@@ -563,6 +632,8 @@
 //        self.loginView.errorCount = 0;
 //    }
 }
+
+
 
 //隐藏键盘
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

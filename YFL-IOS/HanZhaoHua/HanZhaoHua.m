@@ -165,12 +165,28 @@
     NSInteger currentMonth=[[formatter stringFromDate:date]integerValue];
     [formatter setDateFormat:@"dd"];
     NSInteger currentDay=[[formatter stringFromDate:date] integerValue];
+    
+    NSString *monthStr = @"";
+    if (currentMonth<10) {
+        monthStr = [NSString stringWithFormat:@"%@%ld",@"0",currentMonth];
+    }else{
+        monthStr = [NSString stringWithFormat:@"%ld",currentMonth];
+    }
 
-    if (currentDay < 10) {
-        return [NSString stringWithFormat:@"%ld%ld%@%ld",currentYear,currentMonth,@"0",currentDay];
+    NSString *dayStr = @"";
+    if (currentDay<10) {
+        dayStr = [NSString stringWithFormat:@"%@%ld",@"0",currentDay];
+    }else{
+        dayStr = [NSString stringWithFormat:@"%ld",currentDay];
     }
     
-    return [NSString stringWithFormat:@"%ld%ld%ld",currentYear,currentMonth,currentDay];
+    return [NSString stringWithFormat:@"%ld%@%@",currentYear,monthStr,dayStr];
+    
+//    if (currentDay < 10) {
+//        return [NSString stringWithFormat:@"%ld%ld%@%ld",currentYear,currentMonth,@"0",currentDay];
+//    }
+//
+//    return [NSString stringWithFormat:@"%ld%ld%ld",currentYear,currentMonth,currentDay];
 }
 
 

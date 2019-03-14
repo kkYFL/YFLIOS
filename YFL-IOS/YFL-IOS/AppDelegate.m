@@ -43,6 +43,10 @@
     self.sourceHost = @"http://hnxzzb.imwork.net/img";
 #endif
     
+    //http://hnxzzb.qicp.vip
+    
+    self.host = @"http://hnxzzb.qicp.vip/protal";
+    self.sourceHost = @"http://hnxzzb.qicp.vip/img";
 
     self.hasShowUpdate = NO;
     //

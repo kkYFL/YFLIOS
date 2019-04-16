@@ -44,7 +44,7 @@
     self.sourceHost = @"http://hnxzzb.imwork.net/img";
 #endif
     
-    [self avoidCrash];
+//    [self avoidCrash];
     
     //http://hnxzzb.qicp.vip
     

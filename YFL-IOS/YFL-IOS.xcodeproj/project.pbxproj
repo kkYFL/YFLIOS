@@ -1356,6 +1356,7 @@
 				3A699B6920BA650C00F7BB60 /* Frameworks */,
 				3A699B6A20BA650C00F7BB60 /* Resources */,
 				BD6D278E11B0911EED387B29 /* [CP] Embed Pods Frameworks */,
+				E0A15DDFD184FD0E85FFEB53 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1483,6 +1484,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0A15DDFD184FD0E85FFEB53 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-YFL-IOS/Pods-YFL-IOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

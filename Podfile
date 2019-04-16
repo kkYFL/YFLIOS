@@ -13,7 +13,8 @@ target 'YFL-IOS' do
   pod 'SDWebImage', '~> 4.1.0'
   pod 'MJRefresh', '~> 3.1.12'
   pod 'Masonry', '~> 1.0.2'
-  pod 'AvoidCrash','~> 2.2.3'
+  pod 'AvoidCrash'
+
   # Cycle Scroll View
   pod 'SDCycleScrollView', '~> 1.64'
   pod 'Bugly'

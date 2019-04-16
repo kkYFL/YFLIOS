@@ -20,6 +20,7 @@
 #import "LLTabBar.h"
 #import "UpdateView.h"
 #import "UpdateModel.h"
+#import "AvoidCrash.h"
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate,SubjectViewDelegate>
@@ -43,6 +44,8 @@
     self.sourceHost = @"http://hnxzzb.imwork.net/img";
 #endif
     
+    [self avoidCrash];
+    
     //http://hnxzzb.qicp.vip
     
     self.host = @"http://hnxzzb.qicp.vip/protal";
@@ -51,6 +54,9 @@
     self.hasShowUpdate = NO;
     //
     [self initScreenView];
+    
+    
+    
     
 //     self.userToken = @"1";
 //     self.userId = @"69b9aa05fbfb4cd1b6c8e9ee74397101";
@@ -110,6 +116,37 @@
 
     return YES;
 }
+
+
+-(void)avoidCrash {
+    /*
+     *  相比于becomeEffective，增加
+     *  对”unrecognized selector sent to instance”防止崩溃的处理
+     *
+     *  但是必须配合setupClassStringsArr:使用
+     */
+    [AvoidCrash makeAllEffective];
+    
+    //项目中所防止unrecognized selector sent to instance的类有下面几个，主要是防止后台数据格式错乱导致的崩溃。
+    //若要防止后台接口数据错乱，用下面的几个类即可。
+    NSArray *noneSelClassStrings = @[
+                                     @"NSNull",
+                                     @"NSNumber",
+                                     @"NSString",
+                                     @"NSDictionary",
+                                     @"NSArray"
+                                     ];
+    [AvoidCrash setupNoneSelClassStringsArr:noneSelClassStrings];
+    
+    //监听通知:AvoidCrashNotification, 获取AvoidCrash捕获的崩溃日志的详细信息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealwithCrashMessage:) name:AvoidCrashNotification object:nil];
+}
+
+//AvoidCrash异常通知监听方法，在这里我们可以调用reportException方法进行上报
+- (void)dealwithCrashMessage:(NSNotification *)notification {
+    NSException *exception = [NSException exceptionWithName:@"AvoidCrash" reason:[notification valueForKeyPath:@"userInfo.errorName"] userInfo:notification.userInfo];
+}
+
 
 - (void)updateDelegate{
     self.updateView.hidden = YES;

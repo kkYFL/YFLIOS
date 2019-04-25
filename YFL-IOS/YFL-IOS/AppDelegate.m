@@ -164,7 +164,7 @@
     
     
     FabuHomeViewController *fabuVC = [[FabuHomeViewController alloc]init];
-    EWTBaseNavigationController *fabuNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"zhibu"] image:[UIImage imageNamed:@"education_icon_gray"] selectedImage:[UIImage imageNamed:@"education_icon_light"] VC:fabuVC];
+    EWTBaseNavigationController *fabuNav = [self viewControllerWithTitle:[AppDelegate getURLWithKey:@"zhibu"] image:[UIImage imageNamed:@"danghui"] selectedImage:[UIImage imageNamed:@"danghui"] VC:fabuVC];
     
     
     

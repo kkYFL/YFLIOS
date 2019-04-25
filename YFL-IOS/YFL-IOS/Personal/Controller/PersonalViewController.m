@@ -901,7 +901,12 @@
 
 
 -(void)dealloc{
-    [self removeObserver:self forKeyPath:@"serverCount"];
+    @try {
+        [self removeObserver:self forKeyPath:@"serverCount"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"多次删除kvo 报错了");
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

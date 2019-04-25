@@ -335,43 +335,48 @@
 -(void)initScreenView{
     self.storyBoardView.backgroundColor = [UIColor whiteColor];
 }
--(void)ScreenViewSource{
-    NSMutableDictionary *para = [NSMutableDictionary dictionary];
-    [para setValue:@"HNX_SCREEN" forKey:@"config"];
     
-    [HanZhaoHua GetAPPGuidenViewImageSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
-        NSArray *arr = [responseObject objectForKey:@"data"];
-        if (arr && [arr isKindOfClass:[NSArray class]] && arr.count) {
-            NSDictionary *tmpDic = arr[0];
-            NSString *urlStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"imgUrl"]];
-            
-            //从缓存中读取
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *screenURL = [defaults objectForKey:myScreenImageURL];
-            //第一次进入程序显示图片
-            if ([NSString isBlankString:screenURL]) {
-                NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
-                [self.storyBoardView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"launchDefault"]];
-            }
-
-            //存储图片
-            if (![NSString isBlankString:urlStr]) {
-                //从缓存中读取
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:urlStr forKey:myScreenImageURL];
-            }
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.storyBoardView removeFromSuperview];
-            });
-
-        }else{
-            [self.storyBoardView removeFromSuperview];
-        }
-        
-    } failure:^(NSError * _Nonnull error) {
+-(void)ScreenViewSource{
+    [self.storyBoardView setImage:[UIImage imageNamed:@"launchDefault"]];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.storyBoardView removeFromSuperview];
-    }];
+    });
+//    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+//    [para setValue:@"HNX_SCREEN" forKey:@"config"];
+//
+//    [HanZhaoHua GetAPPGuidenViewImageSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+//        NSArray *arr = [responseObject objectForKey:@"data"];
+//        if (arr && [arr isKindOfClass:[NSArray class]] && arr.count) {
+//            NSDictionary *tmpDic = arr[0];
+//            NSString *urlStr = [NSString stringWithFormat:@"%@",[tmpDic objectForKey:@"imgUrl"]];
+//
+//            //从缓存中读取
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//            NSString *screenURL = [defaults objectForKey:myScreenImageURL];
+//            //第一次进入程序显示图片
+//            if ([NSString isBlankString:screenURL]) {
+//                NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
+//                [self.storyBoardView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"launchDefault"]];
+//            }
+//
+//            //存储图片
+//            if (![NSString isBlankString:urlStr]) {
+//                //从缓存中读取
+//                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//                [defaults setObject:urlStr forKey:myScreenImageURL];
+//            }
+//
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self.storyBoardView removeFromSuperview];
+//            });
+//
+//        }else{
+//            [self.storyBoardView removeFromSuperview];
+//        }
+//
+//    } failure:^(NSError * _Nonnull error) {
+//        [self.storyBoardView removeFromSuperview];
+//    }];
 }
 
 
@@ -392,13 +397,13 @@
         _storyBoardView = screenImageView;
         
         //从缓存中读取
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *screenURL = [defaults objectForKey:myScreenImageURL];
-        if (![NSString isBlankString:screenURL]) {
-            NSString *urlStr = [NSString stringWithFormat:@"%@",screenURL];
-            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
-            [_storyBoardView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"launchDefault"]];
-        }
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        NSString *screenURL = [defaults objectForKey:myScreenImageURL];
+//        if (![NSString isBlankString:screenURL]) {
+//            NSString *urlStr = [NSString stringWithFormat:@"%@",screenURL];
+//            NSURL *imageUrl = ([urlStr hasPrefix:@"http"])?[NSURL URLWithString:urlStr]:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",APP_DELEGATE.sourceHost,urlStr]];
+//            [_storyBoardView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"launchDefault"]];
+//        }
     }
     return _storyBoardView;
 }

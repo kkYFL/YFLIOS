@@ -96,8 +96,8 @@ int lastindex = 0;
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * self.remoteImageArr.count, 0);
     //
     
-    for (int i = 0; i < self.remoteImageArr.count; i++) {
-        // 主图片
+    for (int i = 0; i < 4; i++) {
+        //主图片
         UIImageView *mainImage = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         mainImage.userInteractionEnabled = YES;
         [self.scrollView addSubview:mainImage];
@@ -115,7 +115,10 @@ int lastindex = 0;
 //            mainImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"ios_5.7.0_1%d",i]];
 //        }
         
-        [mainImage sd_setImageWithURL:[NSURL URLWithString:self.remoteImageArr[i]] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]]];
+//        [mainImage sd_setImageWithURL:[NSURL URLWithString:self.remoteImageArr[i]] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]]];
+//        [mainImage sd_setImageWithURL:[NSURL URLWithString:self.remoteImageArr[i]] placeholderImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]]];
+        [mainImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]]];
+
         
         if (i == (self.remoteImageArr.count - 1)) {
             UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(kipBtnClicked)];
@@ -125,34 +128,35 @@ int lastindex = 0;
 }
 
 -(void)guidenViewSource{
-    NSMutableDictionary *para = [NSMutableDictionary dictionary];
-    [para setValue:@"HNX_GUIDE" forKey:@"config"];
-    
-    self.remoteImageArr = [NSMutableArray array];
-    [HanZhaoHua GetAPPGuidenViewImageSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
-        NSArray *arr = [responseObject objectForKey:@"data"];
-        if (arr && [arr isKindOfClass:[NSArray class]]) {
-            for (NSInteger i = 0; i<arr.count; i++) {
-                NSDictionary *objDic = arr[i];
-                NSString *imgUrl = [NSString stringWithFormat:@"%@",[objDic objectForKey:@"imgUrl"]];
-                if (![NSString isBlankString:imgUrl]) {
-                    [self.remoteImageArr addObject:imgUrl];
-                }
-            }
-        }
-        
-        if (self.remoteImageArr.count) {
-            [self setViewWithData];
-        }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
-        }
-        
-
-    } failure:^(NSError * _Nonnull error) {
-        //进入注册页面
-
-     [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
-    }];
+    [self setViewWithData];
+//    NSMutableDictionary *para = [NSMutableDictionary dictionary];
+//    [para setValue:@"HNX_GUIDE" forKey:@"config"];
+//
+//    self.remoteImageArr = [NSMutableArray array];
+//    [HanZhaoHua GetAPPGuidenViewImageSourceWithParaDic:para success:^(NSDictionary * _Nonnull responseObject) {
+//        NSArray *arr = [responseObject objectForKey:@"data"];
+//        if (arr && [arr isKindOfClass:[NSArray class]]) {
+//            for (NSInteger i = 0; i<arr.count; i++) {
+//                NSDictionary *objDic = arr[i];
+//                NSString *imgUrl = [NSString stringWithFormat:@"%@",[objDic objectForKey:@"imgUrl"]];
+//                if (![NSString isBlankString:imgUrl]) {
+//                    [self.remoteImageArr addObject:imgUrl];
+//                }
+//            }
+//        }
+//
+//        if (self.remoteImageArr.count) {
+//            [self setViewWithData];
+//        }else{
+//            [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+//        }
+//
+//
+//    } failure:^(NSError * _Nonnull error) {
+//        //进入注册页面
+//
+//     [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationUserSignOut object:nil];
+//    }];
 }
 
 - (void)videoTypeBuilding {

@@ -15,6 +15,7 @@
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 int lastindex = 0;
+#define ScrollViewCount 4
 
 
 @interface GuideViewController ()<UIScrollViewDelegate>{
@@ -36,7 +37,7 @@ int lastindex = 0;
 }
 @property (nonatomic,strong) UIScrollView *scroll;
 @property (strong,nonatomic) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *remoteImageArr;
+//@property (nonatomic, strong) NSMutableArray *remoteImageArr;
 
 @end
 
@@ -93,10 +94,10 @@ int lastindex = 0;
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.view addSubview:self.scrollView];
     //
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * self.remoteImageArr.count, 0);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * ScrollViewCount, 0);
     //
     
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ScrollViewCount; i++) {
         //主图片
         UIImageView *mainImage = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         mainImage.userInteractionEnabled = YES;
@@ -120,7 +121,7 @@ int lastindex = 0;
         [mainImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipx_%d", i]]];
 
         
-        if (i == (self.remoteImageArr.count - 1)) {
+        if (i == (ScrollViewCount - 1)) {
             UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(kipBtnClicked)];
             [mainImage addGestureRecognizer:gesture];
         }
@@ -253,7 +254,7 @@ int lastindex = 0;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.scrollView.contentOffset.x > SCREEN_WIDTH * (self.remoteImageArr.count - 1) + 10) {
+    if (self.scrollView.contentOffset.x > SCREEN_WIDTH * (ScrollViewCount - 1) + 10) {
         if (!_isOpenGuide) {
             _isOpenGuide = YES;
             [self kipBtnClicked];

@@ -21,19 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchDefault" translatesAutoresizingMaskIntoConstraints="NO" id="zNM-qb-etj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchDefault" translatesAutoresizingMaskIntoConstraints="NO" id="zNM-qb-etj">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Aw4-i9-J14" firstAttribute="top" secondItem="zNM-qb-etj" secondAttribute="bottom" id="HTs-Si-4QE"/>
-                            <constraint firstItem="zNM-qb-etj" firstAttribute="leading" secondItem="f0O-DY-Y5P" secondAttribute="leadingMargin" id="POa-Zt-anM"/>
-                            <constraint firstAttribute="trailing" secondItem="zNM-qb-etj" secondAttribute="trailing" constant="95" id="ThW-FA-82b"/>
                             <constraint firstItem="zNM-qb-etj" firstAttribute="top" secondItem="u1U-zR-vpG" secondAttribute="bottom" id="XWk-qA-Wae"/>
                             <constraint firstAttribute="trailing" secondItem="zNM-qb-etj" secondAttribute="trailing" id="ZmC-l5-s25"/>
                             <constraint firstItem="zNM-qb-etj" firstAttribute="leading" secondItem="f0O-DY-Y5P" secondAttribute="leading" id="eSz-YT-ELC"/>
-                            <constraint firstAttribute="bottom" secondItem="zNM-qb-etj" secondAttribute="bottom" constant="362" id="ehw-za-SXi"/>
                         </constraints>
                     </view>
                 </viewController>
